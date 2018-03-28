@@ -32,10 +32,7 @@ Confidentiality/privacy concerns
 
 #### Vision for deliverable
 
-  Our main vision for the deliverable of this project is an R package. We would first like this R package to query bikeshare data, save it as .csvs, and organize it intuitively and 
+  Our main vision for the deliverable of this project is an R package. We would first like this R package to query bikeshare data, save it as .csvs, and organize it intuitively and in a way that can easily interact with similar data pulled with different arguments. Next, we would like to develop a function that develops a sort of "suite" of visualizations based on what the user would like to know about (i.e. which datasets to consider, around what time frame, and in what location).
 
-Visualizations
-Data
-Software (R package)
 
 
