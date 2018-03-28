@@ -25,10 +25,11 @@ Identify client/stakeholders and their contact information
 
 
 #### Describe the data
-  The data is stored in a json feed in a standardized data format for bikeshare data (gbfs). Links to each dataset can be found at http://biketownpdx.socialbicycles.com/opendata/gbfs.json/. The data is stored in 9 different files: system information, station information, station status, free bike status, system hours, system calendar, system regions, system pricing plans, and system alerts.
+  The data is stored in a json feed in a standardized data format for bikeshare data (gbfs). Links to each dataset can be found at http://biketownpdx.socialbicycles.com/opendata/gbfs.json/. The data is stored in 9 different files: system information, station information, station status, free bike status, system hours, system calendar, system regions, system pricing plans, and system alerts. All of this data is real-time, and is not aggregated over a larger time span. Accordingly, these individual files are small (100kb at most). Each of the files has its own observational unit and variable types.
+  
+  For this reason, we need a data source that encompasses data since the project began and/or data with query-specified time ranges.
+  There is a promising source that needs to be looked into further here. https://app.socialbicycles.com/developer
 
-
-Source with citation
 Data structure / size
 Observational unit
 Types of variables
