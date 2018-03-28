@@ -18,10 +18,15 @@ What kinds of questions are people asking about this data, and how can that visu
 
 #### Relevant Work 
 
+The following works help us to understand the structure of bike sharing programs and what kinds of questions people are asking about bike sharing, which can help guide us in thinking about what types of functions would be most useful to people trying to analyze bike sharing data.
 
+Bike-sharing: History, Impacts, Models of Provision, and Future (DeMaio)
 
-(people also thinking about this) (at least 3)
-Identify client/stakeholders and their contact information
+Bikesharing in Europe, the Americas, and Asia: Past, Present, and Future (Shaheen et. al)
+
+Shared Bicycles in a City: A Signal Processing and Data Analysis Perspective (Borgnat et. al)
+
+#### Identify client/stakeholders and their contact information
 
 
 #### Describe the data
