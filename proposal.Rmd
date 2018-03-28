@@ -24,6 +24,9 @@ Identify client/stakeholders and their contact information
 
 
 #### Describe the data
+  The data is stored in a json feed in a standardized data format for bikeshare data (gbfs). Links to each dataset can be found at http://biketownpdx.socialbicycles.com/opendata/gbfs.json/. The data is stored in 9 different files: system information, station information, station status, free bike status, system hours, system calendar, system regions, system pricing plans, and system alerts.
+
+
 Source with citation
 Data structure / size
 Observational unit
