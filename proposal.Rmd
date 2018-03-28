@@ -1,0 +1,41 @@
+---
+output: github_document
+---
+# Project Proposal: Bikeshare 1
+
+#### *Kaelyn Rosenberg & Simon Couch*
+
+
+#### General Theme
+
+Several years ago Portland introduced a bikeshare program called Biketown. In this system, bikes are available to rent from stations throughout the city and can be returned to another station, with the transaction conducting via smartphone, resulting in a rich trail of data. We plan to develop an R package to assist in making use of this data.
+
+#### Specific Questions
+What functions can be written to query and organize this data based on user arguments?
+
+What kinds of questions are people asking about this data, and how can that visualization process be automated?
+
+#### Relevant Work 
+
+
+
+(people also thinking about this) (at least 3)
+Identify client/stakeholders and their contact information
+
+
+#### Describe the data
+Source with citation
+Data structure / size
+Observational unit
+Types of variables
+Confidentiality/privacy concerns
+
+#### Vision for deliverable
+
+  Our main vision for the deliverable of this project is an R package. We would first like this R package to query bikeshare data, save it as .csvs, and organize it intuitively and 
+
+Visualizations
+Data
+Software (R package)
+
+
