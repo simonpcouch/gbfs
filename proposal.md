@@ -4,17 +4,17 @@ Project Proposal: Bikeshare 1
 
 #### *Kaelyn Rosenberg & Simon Couch*
 
-#### General Theme
+#### General theme
 
 Several years ago Portland introduced a bikeshare program called Biketown. In this system, bikes are available to rent from stations throughout the city and can be returned to another station, with the transaction conducting via smartphone, resulting in a rich trail of data. We plan to develop an R package to assist in making use of this data.
 
-#### Specific Questions
+#### Specific questions
 
 What functions can be written to query and organize this data based on user arguments?
 
 What kinds of questions are people asking about this data, and how can that visualization process be automated?
 
-#### Relevant Work
+#### Relevant work
 
 The following works help us to understand the structure of bike sharing programs and what kinds of questions people are asking about bike sharing, which can help guide us in thinking about what types of functions would be most useful to people trying to analyze bike sharing data.
 
