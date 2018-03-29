@@ -24,7 +24,7 @@ Bikesharing in Europe, the Americas, and Asia: Past, Present, and Future (Shahee
 
 Shared Bicycles in a City: A Signal Processing and Data Analysis Perspective (Borgnat et. al)
 
-#### Identify client/stakeholders and their contact information
+#### Clients/stakeholders and their contact information
 
 For further information on biketown data storage, these contacts might be useful:
 
@@ -34,7 +34,7 @@ To get in touch with someone at the Portland Bureau of Transportation:
 
 503-823-5185 (Note: this is a general referral line--numbers of specific departments listed online do not seem relevant to this work)
 
-#### Describe the data
+#### The data
 
 The data is stored in a json feed in a standardized data format for bikeshare data (gbfs). Links to each dataset can be found at <http://biketownpdx.socialbicycles.com/opendata/gbfs.json/>. The data is stored in 9 different files: system information, station information, station status, free bike status, system hours, system calendar, system regions, system pricing plans, and system alerts. All of this data is real-time, and is not aggregated over a larger time span. Accordingly, these individual files are small (100kb at most). Each of the files has its own observational unit and variable types.
 
