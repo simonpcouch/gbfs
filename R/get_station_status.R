@@ -8,8 +8,9 @@ feed <- "http://biketownpdx.socialbicycles.com/opendata/station_status.json"
 #save feed
 station_status <- fromJSON(txt = feed)
 
-#extract data, convert to df
-station_status_data <- station_status$data$stations
+#extract data, convert to df, convert POSIX timestamp to date
+station_status_data <- station_status$data$stations %>%
+  mutate(last_reported = as.POSIXct(last_reported, origin = "1970-01-01"))
 
 #extract last_updated, convert POSIX timestamp to date
 station_status_last_updated <- station_status$last_updated %>%
