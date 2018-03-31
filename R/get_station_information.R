@@ -1,5 +1,6 @@
 library(jsonlite)
 library(tidyverse)
+library(lubridate)
 
 #get url
 feed <- "http://biketownpdx.socialbicycles.com/opendata/station_information.json"
