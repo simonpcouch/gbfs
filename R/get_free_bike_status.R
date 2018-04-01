@@ -3,10 +3,10 @@ library(tidyverse)
 library(lubridate)
 
 #get url
-feed <- "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json"
+free_bike_status_feed <- "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json"
 
 #save feed
-free_bike_status <- fromJSON(txt = feed)
+free_bike_status <- fromJSON(txt = free_bike_status_feed)
 
 #extract data, convert to df
 free_bike_status_data <- free_bike_status$data$bikes
