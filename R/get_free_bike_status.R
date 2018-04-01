@@ -11,6 +11,10 @@ free_bike_status <- fromJSON(txt = feed)
 #extract data, convert to df
 free_bike_status_data <- free_bike_status$data$bikes
 
+#class columns
+free_bike_status_data$is_reserved <- as.logical(free_bike_status_data$is_reserved)
+free_bike_status_data$is_disabled <- as.logical(free_bike_status_data$is_disabled)
+
 #extract last_updated, convert POSIX timestamp to date
 free_bike_status_last_updated <- free_bike_status$last_updated %>%
   as.POSIXct(., origin = "1970-01-01")

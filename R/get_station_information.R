@@ -11,6 +11,9 @@ station_information <- fromJSON(txt = feed)
 #extract data, convert to df
 station_information_data <- station_information$data$stations
 
+#class columns
+station_information_data$rental_methods <- as.character(station_information_data$rental_methods)
+
 #extract last_updated, convert POSIX timestamp to date
 station_information_last_updated <- station_information$last_updated %>%
   as.POSIXct(., origin = "1970-01-01")
