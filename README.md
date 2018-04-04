@@ -9,4 +9,8 @@ Kaelyn Rosenberg
 #### Timeline
 Mar 29: Project Proposal
 
+Apr 9: 
+- Decide components of R package
+- Write function for querying data
+
 May 10: Symposium
