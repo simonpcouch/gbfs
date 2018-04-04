@@ -2,6 +2,8 @@ library(jsonlite)
 library(tidyverse)
 library(lubridate)
 
+get_free_bike_status <- function() {
+
 #get url
 free_bike_status_feed <- "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json"
 
@@ -19,7 +21,22 @@ free_bike_status_data$is_disabled <- as.logical(free_bike_status_data$is_disable
 free_bike_status_last_updated <- free_bike_status$last_updated %>%
   as.POSIXct(., origin = "1970-01-01")
 
+#mutate new last_updated column
+free_bike_status_data <- free_bike_status_data %>%
+  mutate(last_updated = free_bike_status_last_updated)
+
 #extract time til next update (in seconds), convert to numeric
 free_bike_status_ttl <- free_bike_status$ttl %>%
   as.numeric()
+
+update_fbs <- function() {
+fbs <- readRDS("~/bikeshare-1/data/fbs.rds")
+fbs_update <- rbind(free_bike_status_data, fbs)
+saveRDS(fbs_update, file = "~/bikeshare-1/data/fbs.rds")
+}
+
+ifelse(file.exists("~/bikeshare-1/data/fbs.rds"), 
+       update_fbs(),
+       saveRDS(free_bike_status_data, file = "~/bikeshare-1/data/fbs.rds"))
+}
 
