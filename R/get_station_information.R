@@ -2,6 +2,8 @@ library(jsonlite)
 library(tidyverse)
 library(lubridate)
 
+get_station_information <- function() {
+
 #get url
 station_information_feed <- "http://biketownpdx.socialbicycles.com/opendata/station_information.json"
 
@@ -21,4 +23,9 @@ station_information_last_updated <- station_information$last_updated %>%
 #extract time til next update (in seconds), convert to numeric
 station_information_ttl <- station_information$ttl %>%
   as.numeric()
+
+#save() results in a smaller file size and allows for easier `rbind`ing than write_csv()
+#write_csv(x = station_information_data, path = "data-raw/station_information.csv")
+save(station_information_data, file = "~/bikeshare-1/data-raw/station_information.rda")
+}
 

@@ -2,6 +2,8 @@ library(jsonlite)
 library(tidyverse)
 library(lubridate)
 
+get_station_status <- function() {
+
 #get url
 station_status_feed <- "http://biketownpdx.socialbicycles.com/opendata/station_status.json"
 
@@ -23,7 +25,15 @@ station_status_data$is_returning <- as.logical(station_status_data$is_returning)
 station_status_last_updated <- station_status$last_updated %>%
   as.POSIXct(., origin = "1970-01-01")
 
+#mutate new last_updated column
+station_status_data <- station_status_data %>%
+  mutate(last_updated = station_status_last_updated)
+
 #extract time til next update (in seconds), convert to numeric
 station_status_ttl <- station_status$ttl %>%
   as.numeric()
 
+#save() results in a smaller file size and allows for easier `rbind`ing than write_csv()
+#write_csv(x = station_status_data, path = "data-raw/station_status.csv")
+save(station_status_data, file = "~/bikeshare-1/data-raw/station_status_data.rda")
+}
