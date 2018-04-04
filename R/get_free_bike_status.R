@@ -21,9 +21,15 @@ free_bike_status_data$is_disabled <- as.logical(free_bike_status_data$is_disable
 free_bike_status_last_updated <- free_bike_status$last_updated %>%
   as.POSIXct(., origin = "1970-01-01")
 
-#mutate new last_updated column
+#mutate columns for time of observation
 free_bike_status_data <- free_bike_status_data %>%
-  mutate(last_updated = free_bike_status_last_updated)
+  mutate(last_updated = free_bike_status_last_updated,
+         year = lubridate::year(last_updated),
+         month = lubridate::month(last_updated),
+         day = lubridate::day(last_updated),
+         hour = lubridate::hour(last_updated),
+         minute = lubridate::minute(last_updated))
+
 
 #extract time til next update (in seconds), convert to numeric
 free_bike_status_ttl <- free_bike_status$ttl %>%
