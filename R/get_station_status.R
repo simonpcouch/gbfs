@@ -2,10 +2,18 @@ library(jsonlite)
 library(tidyverse)
 library(lubridate)
 
-get_station_status <- function() {
+get_station_status <- function(city, filepath) {
 
 #get url
-station_status_feed <- "http://biketownpdx.socialbicycles.com/opendata/station_status.json"
+station_status_feed <- if (city == "Portland") {
+  "http://biketownpdx.socialbicycles.com/opendata/station_status.json"
+} else if (city == "Abu Dhabi") {
+  "https://api-core.bikeshare.ae/gbfs/ar/station_status.json"
+} else if (city == "Rosario") {
+  "https://www.mibicitubici.gob.ar/opendata/station_status.json"
+} else if (city == "Melbourne") {
+  "http://monashbikeshare.com/opendata/station_status.json"
+}
 
 #save feed
 station_status <- fromJSON(txt = station_status_feed)
@@ -36,13 +44,13 @@ station_status_data <- station_status_data %>%
 station_status_ttl <- station_status$ttl %>%
   as.numeric()
 
-update_ss <- function() {
-  ss <- readRDS("~/bikeshare-1/data/ss.rds")
+update_ss <- function(filepath) {
+  ss <- readRDS(filepath)
   ss_update <- rbind(station_status_data, ss)
-  saveRDS(ss_update, file = "~/bikeshare-1/data/ss.rds")
+  saveRDS(ss_update, file = filepath)
 }
 
-ifelse(file.exists("~/bikeshare-1/data/ss.rds"), 
-       update_ss(),
-       saveRDS(station_status_data, file = "~/bikeshare-1/data/ss.rds"))
+ifelse(file.exists(filepath), 
+       update_ss(filepath),
+       saveRDS(station_status_data, file = filepath))
 }
