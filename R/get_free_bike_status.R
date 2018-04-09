@@ -2,10 +2,11 @@ library(jsonlite)
 library(tidyverse)
 library(lubridate)
 
-get_free_bike_status <- function() {
+get_free_bike_status <- function(url) {
 
 #get url
-free_bike_status_feed <- "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json"
+# url for testing: "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json"
+free_bike_status_feed <- url
 
 #save feed
 free_bike_status <- fromJSON(txt = free_bike_status_feed)
