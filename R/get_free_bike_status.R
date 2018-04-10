@@ -2,7 +2,7 @@ library(jsonlite)
 library(tidyverse)
 library(lubridate)
 
-get_free_bike_status <- function(url) {
+get_free_bike_status <- function(url, filepath) {
 
 #get url
 # url for testing: "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json"
@@ -36,14 +36,14 @@ free_bike_status_data <- free_bike_status_data %>%
 free_bike_status_ttl <- free_bike_status$ttl %>%
   as.numeric()
 
-update_fbs <- function() {
-fbs <- readRDS("~/bikeshare-1/data/fbs.rds")
+update_fbs <- function(filepath) {
+fbs <- readRDS(filepath)
 fbs_update <- rbind(free_bike_status_data, fbs)
-saveRDS(fbs_update, file = "~/bikeshare-1/data/fbs.rds")
+saveRDS(fbs_update, file = filepath)
 }
 
-ifelse(file.exists("~/bikeshare-1/data/fbs.rds"), 
-       update_fbs(),
-       saveRDS(free_bike_status_data, file = "~/bikeshare-1/data/fbs.rds"))
+ifelse(file.exists(filepath), 
+       update_fbs(filepath),
+       saveRDS(free_bike_status_data, file = filepath))
 }
 

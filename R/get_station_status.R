@@ -2,18 +2,10 @@ library(jsonlite)
 library(tidyverse)
 library(lubridate)
 
-get_station_status <- function(city, filepath) {
+get_station_status <- function(url, filepath) {
 
 #get url
-station_status_feed <- if (city == "Portland") {
-  "http://biketownpdx.socialbicycles.com/opendata/station_status.json"
-} else if (city == "Abu Dhabi") {
-  "https://api-core.bikeshare.ae/gbfs/ar/station_status.json"
-} else if (city == "Rosario") {
-  "https://www.mibicitubici.gob.ar/opendata/station_status.json"
-} else if (city == "Melbourne") {
-  "http://monashbikeshare.com/opendata/station_status.json"
-}
+station_status_feed <- url
 
 #save feed
 station_status <- fromJSON(txt = station_status_feed)
