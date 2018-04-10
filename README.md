@@ -13,4 +13,10 @@ Apr 9:
 - Decide components of R package
 - Write function for querying data
 
+Apr 27: Finish coding
+
+May 4: 
+- Write documentation
+- Submit to CRAN
+
 May 10: Symposium
