@@ -2,7 +2,7 @@ library(jsonlite)
 library(tidyverse)
 library(lubridate)
 
-get_system_hours <- function (url, filepath) {
+get_system_hours <- function (url, filepath = "data/system_hours.rds") {
   
 system_hours_feed <- url
 

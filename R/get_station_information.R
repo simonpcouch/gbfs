@@ -2,7 +2,7 @@ library(jsonlite)
 library(tidyverse)
 library(lubridate)
 
-get_station_information <- function(url, filepath) {
+get_station_information <- function(url, filepath = "data/station_information.rds") {
 
 #get url
 station_information_feed <- url

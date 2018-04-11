@@ -2,7 +2,7 @@ library(jsonlite)
 library(tidyverse)
 library(lubridate)
 
-get_system_calendar <- function (url, filepath) {
+get_system_calendar <- function (url, filepath = "data/system_calendar.rds") {
 
 system_calendar_feed <- url    
 
