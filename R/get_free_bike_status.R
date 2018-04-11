@@ -2,7 +2,7 @@ library(jsonlite)
 library(tidyverse)
 library(lubridate)
 
-get_free_bike_status <- function(url, filepath) {
+get_free_bike_status <- function(url, filepath = "data/free_bike_status.rds") {
 
 #get url
 # url for testing: "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json"
