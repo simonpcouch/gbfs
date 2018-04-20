@@ -81,7 +81,9 @@ get_gbfs <- function(city, feeds = "all", directory = "gbfs_data") {
   }
 
 # create directory
-dir.create(directory)
+if (!dir.exists(directory)) {
+  dir.create(directory)
+}
     
 # call functions
   if (feeds == "all" | feeds == "static") {
