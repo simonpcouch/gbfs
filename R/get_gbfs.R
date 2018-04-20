@@ -1,4 +1,4 @@
-get_gbfs <- function(city, feeds = "all") {
+get_gbfs <- function(city, feeds = "all", directory = "gbfs_data") {
   
   library(jsonlite)
   library(tidyverse)
@@ -79,32 +79,35 @@ get_gbfs <- function(city, feeds = "all") {
       filter(str_detect(url, "system_alerts")) %>%
       as.character()
   }
-  
+
+# create directory
+dir.create(directory)
+    
 # call functions
   if (feeds == "all" | feeds == "static") {
-    get_station_information(stat_info_feed)
-    get_system_information(sys_info_feed)
+    get_station_information(stat_info_feed, paste(directory, "/station_information.rds", sep = ""))
+    get_system_information(sys_info_feed, paste(directory, "/system_information.rds", sep = ""))
     if (exists("sys_hours_feed")) {
-      get_system_hours(sys_hours_feed)
+      get_system_hours(sys_hours_feed, paste(directory, "/system_hours.rds", sep = ""))
     }
     if (exists("sys_cal_feed")) {
-      get_system_calendar(sys_cal_feed)
+      get_system_calendar(sys_cal_feed, paste(directory, "/system_calendar.rds", sep = ""))
     }
     if (exists("sys_reg_feed")) {
-      get_system_regions(sys_reg_feed)
+      get_system_regions(sys_reg_feed, paste(directory, "/system_regions.rds", sep = ""))
     }
     if (exists("sys_price_feed")) {
-      get_system_pricing_plans(sys_price_feed)
+      get_system_pricing_plans(sys_price_feed, paste(directory, "/system_pricing_plans.rds", sep = ""))
     }
     if (exists("sys_alerts_feed")) {
-      get_system_alerts(sys_alerts_feed)
+      get_system_alerts(sys_alerts_feed, paste(directory, "/system_alerts.rds", sep = ""))
     }
   }
   
   if (feeds == "all" | feeds == "dynamic") {
-    get_station_status(stat_status_feed)
+    get_station_status(stat_status_feed, paste(directory, "/station_status.rds", sep = ""))
     if (exists("fbs_feed")) {
-      get_free_bike_status(fbs_feed)
+      get_free_bike_status(fbs_feed, paste(directory, "/free_bike_status.rds", sep = ""))
     }
   }
   
