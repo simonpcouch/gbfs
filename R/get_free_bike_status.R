@@ -42,8 +42,13 @@ fbs_update <- rbind(free_bike_status_data, fbs)
 saveRDS(fbs_update, file = filepath)
 }
 
-ifelse(file.exists(filepath), 
-       update_fbs(filepath),
-       saveRDS(free_bike_status_data, file = filepath))
+if (file.exists(filepath)) {
+  update_fbs(filepath)
+}
+
+else {
+  saveRDS(free_bike_status_data, file = filepath)
+}
+
 }
 
