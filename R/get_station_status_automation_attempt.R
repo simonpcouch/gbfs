@@ -53,5 +53,4 @@ if (cumulative == TRUE) {
   #code for when cumulative is false: just save the file
   saveRDS(station_status_data, file = filepath)
 }
-
 }
