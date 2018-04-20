@@ -13,8 +13,10 @@ system_hours <- fromJSON(txt = system_hours_feed)
 system_hours_data <- system_hours$data$rental_hours
 
 # class columns
-system_hours_data$user_types <- as.character(system_hours_data$user_types)
-system_hours_data$days <- as.character(system_hours_data$days)
+for (i in 1:nrow(system_hours_data)) {
+  system_hours_data$user_types[i] <- paste(unlist(system_hours_data$user_types[i]), collapse = ", ")
+  system_hours_data$days[i] <- paste(unlist(system_hours_data$days[i]), collapse = ", ")
+}
 
 # extract last_updated, convert POSIX timestamp to date
 system_hours_last_updated <- system_hours$last_updated %>%

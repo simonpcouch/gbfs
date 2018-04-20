@@ -16,7 +16,12 @@ station_status_data <- station_status$data$stations
 #classcolumns of station_status_data
 station_status_data$last_reported <- as.POSIXct(station_status_data$last_reported, 
                                                origin = "1970-01-01")
-station_status_data$num_bikes_disabled <- as.numeric(station_status_data$num_bikes_disabled)
+if ("num_bikes_disabled" %in% colnames(station_status_data)) {
+  station_status_data$num_bikes_disabled <- as.numeric(station_status_data$num_bikes_disabled)
+}
+if ("num_docks_disabled" %in% colnames(station_status_data)) {
+  station_status_data$num_docks_disabled <- as.numeric(station_status_data$num_docks_disabled)
+}
 station_status_data$is_installed <- as.logical(station_status_data$is_installed)
 station_status_data$is_renting <- as.logical(station_status_data$is_renting)
 station_status_data$is_returning <- as.logical(station_status_data$is_returning)
