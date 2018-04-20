@@ -42,7 +42,12 @@ update_ss <- function(filepath) {
   saveRDS(ss_update, file = filepath)
 }
 
-ifelse(file.exists(filepath), 
-       update_ss(filepath),
-       saveRDS(station_status_data, file = filepath))
+if (file.exists(filepath)) {
+  update_ss(filepath)
+}
+
+else {
+  saveRDS(station_status_data, file = filepath)
+}
+        
 }
