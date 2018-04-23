@@ -1,4 +1,4 @@
-string_to_url <- function(city) {
+city_to_url <- function(city) {
   if (1 == length(agrep(x = as.character(city), pattern = ".json"))) {
     #return the city argument as 'url'
     url <- city
@@ -95,8 +95,7 @@ get_gbfs <- function(city, feeds = "all", directory = "gbfs_data") {
   library(tidyverse)
   library(stringr)
 
-  # change this to a fuzzy match with systems.csv later
-  url <- city
+  city_to_url(city = city)
 
   gbfs <- fromJSON(txt = url)
 
