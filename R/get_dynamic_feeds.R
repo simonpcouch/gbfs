@@ -1,3 +1,12 @@
+#' Save the free_bike_status file as a .rds file.
+#' 
+#' @param url A link to an active free_bike_status .json feed.
+#' @param filepath A connection or path to save the .rds to-- defaults to 
+#' "data/free_bike_status.rds"
+#' @return A .rds object generated from the current specified feed.
+#' @examples
+#' get_free_bike_status(url = "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json")
+
 get_free_bike_status <- function(url, filepath = "data/free_bike_status.rds") {
 
   #get url
@@ -48,6 +57,14 @@ get_free_bike_status <- function(url, filepath = "data/free_bike_status.rds") {
 
 }
 
+#' Save the station_status file as a .rds file.
+#' 
+#' @param url A link to an active station_status .json feed.
+#' @param filepath A connection or path to save the .rds to-- defaults to 
+#' "data/station_status.rds"
+#' @return A .rds object generated from the current specified feed.
+#' @examples
+#' get_station_status(url = "http://biketownpdx.socialbicycles.com/opendata/station_status.json")
 
 get_station_status <- function(url, filepath = "data/station_status.rds") {
 

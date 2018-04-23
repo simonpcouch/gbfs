@@ -17,7 +17,6 @@ city_to_url <- function(city) {
   }
 }
 
-
 get_gbfs_feeds <- function(url) {
 
   #test url: "http://biketownpdx.socialbicycles.com/opendata/gbfs.json"
@@ -83,6 +82,18 @@ get_gbfs_feeds <- function(url) {
   }
 
 }
+
+#' Save gbfs feeds to a user-specified directory.
+#' 
+#' @param city A character string or a url to an active gbfs.json feed
+#' @param filepath A folder to save the files to--defaults to "gbfs_data"
+#' @param directory A link to an active station_information .json feed.
+#' @return A .rds object generated from the current specified feed.
+#' @examples
+#' get_gbfs(city = "topeka")
+#' get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json")
+#' get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json")
+#' get_gbfs("https://gbfs.bcycle.com/bcycle_greenbikeslc/gbfs.json", directory = "slcbikes")
 
 get_gbfs <- function(city, feeds = "all", directory = "gbfs_data") {
 

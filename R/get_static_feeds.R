@@ -1,3 +1,12 @@
+#' Save the station_information file as a .rds file.
+#' 
+#' @param url A link to an active station_information .json feed.
+#' @param filepath A connection or path to save the .rds to-- defaults to 
+#' "data/station_information.rds"
+#' @return A .rds object generated from the current specified feed.
+#' @examples
+#' get_station_information(url = "http://biketownpdx.socialbicycles.com/opendata/station_information.json")
+
 get_station_information <- function(url, filepath = "data/station_information.rds") {
 
   #get url
@@ -29,6 +38,15 @@ get_station_information <- function(url, filepath = "data/station_information.rd
   saveRDS(station_information_data, file = filepath)
 }
 
+#' Save the system_alerts file as a .rds file.
+#' 
+#' @param url A link to an active system_alerts .json feed.
+#' @param filepath A connection or path to save the .rds to-- defaults to 
+#' "data/system_alerts.rds"
+#' @return A .rds object generated from the current specified feed.
+#' @examples
+#' get_system_alerts(url = "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json")
+
 get_system_alerts <- function (url, filepath = "data/system_alerts.rds") {
 
   system_alerts_feed <- url
@@ -51,6 +69,14 @@ get_system_alerts <- function (url, filepath = "data/system_alerts.rds") {
 
 }
 
+#' Save the system_calendar file as a .rds file.
+#' 
+#' @param url A link to an active system_calendar .json feed.
+#' @param filepath A connection or path to save the .rds to-- defaults to 
+#' "data/system_calendar.rds"
+#' @return A .rds object generated from the current specified feed.
+#' @examples
+#' get_system_calendar(url = "http://biketownpdx.socialbicycles.com/opendata/system_calendar.json")
 
 get_system_calendar <- function (url, filepath = "data/system_calendar.rds") {
 
@@ -73,6 +99,15 @@ get_system_calendar <- function (url, filepath = "data/system_calendar.rds") {
   saveRDS(system_calendar_data, file = filepath)
 
 }
+
+#' Save the system_hours file as a .rds file.
+#' 
+#' @param url A link to an active system_hours .json feed.
+#' @param filepath A connection or path to save the .rds to-- defaults to 
+#' "data/system_hours.rds"
+#' @return A .rds object generated from the current specified feed.
+#' @examples
+#' get_system_hours(url = "http://biketownpdx.socialbicycles.com/opendata/system_hours.json")
 
 get_system_hours <- function (url, filepath = "data/system_hours.rds") {
 
@@ -102,6 +137,14 @@ get_system_hours <- function (url, filepath = "data/system_hours.rds") {
 
 }
 
+#' Save the system_information file as a .rds file.
+#' 
+#' @param url A link to an active system_information .json feed.
+#' @param filepath A connection or path to save the .rds to-- defaults to 
+#' "data/system_information.rds"
+#' @return A .rds object generated from the current specified feed.
+#' @examples
+#' get_system_information(url = "http://biketownpdx.socialbicycles.com/opendata/system_information.json")
 
 get_system_information <- function(url, filepath = "data/system_information.rds"){
 
@@ -125,6 +168,14 @@ get_system_information <- function(url, filepath = "data/system_information.rds"
 
 }
 
+#' Save the system_pricing_plans file as a .rds file.
+#' 
+#' @param url A link to an active system_pricing_plans .json feed.
+#' @param filepath A connection or path to save the .rds to-- defaults to 
+#' "data/system_pricing_plans.rds"
+#' @return A .rds object generated from the current specified feed.
+#' @examples
+#' get_system_pricing_plans(url = "http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json")
 
 get_system_pricing_plans <- function(url, filepath = "data/system_pricing_plans.rds") {
 
@@ -151,6 +202,14 @@ get_system_pricing_plans <- function(url, filepath = "data/system_pricing_plans.
 
 }
 
+#' Save the system_regions file as a .rds file.
+#' 
+#' @param url A link to an active system_regions .json feed.
+#' @param filepath A connection or path to save the .rds to-- defaults to 
+#' "data/system_regions.rds"
+#' @return A .rds object generated from the current specified feed.
+#' @examples
+#' get_system_regions(url = "http://biketownpdx.socialbicycles.com/opendata/system_regions.json")
 
 get_system_regions <- function (url, filepath = "data/system_regions.rds") {
 
