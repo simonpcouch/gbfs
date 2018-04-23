@@ -20,11 +20,6 @@ city_to_url <- function(city) {
 
 get_gbfs_feeds <- function(url) {
 
-  library(jsonlite)
-  library(tidyverse)
-  library(stringr)
-
-
   #test url: "http://biketownpdx.socialbicycles.com/opendata/gbfs.json"
   gbfs <- fromJSON(txt = url)
 
@@ -90,10 +85,6 @@ get_gbfs_feeds <- function(url) {
 }
 
 get_gbfs <- function(city, feeds = "all", directory = "gbfs_data") {
-
-  library(jsonlite)
-  library(tidyverse)
-  library(stringr)
 
   city_to_url(city = city)
 

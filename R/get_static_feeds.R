@@ -1,10 +1,5 @@
 get_station_information <- function(url, filepath = "data/station_information.rds") {
 
-  library(jsonlite)
-  library(tidyverse)
-  library(lubridate)
-  library(stringr)
-
   #get url
   station_information_feed <- url
 
@@ -36,10 +31,6 @@ get_station_information <- function(url, filepath = "data/station_information.rd
 
 get_system_alerts <- function (url, filepath = "data/system_alerts.rds") {
 
-  library(jsonlite)
-  library(tidyverse)
-  library(lubridate)
-
   system_alerts_feed <- url
 
   # save feed
@@ -63,11 +54,6 @@ get_system_alerts <- function (url, filepath = "data/system_alerts.rds") {
 
 get_system_calendar <- function (url, filepath = "data/system_calendar.rds") {
 
-  library(jsonlite)
-  library(tidyverse)
-  library(lubridate)
-
-
   system_calendar_feed <- url
 
   # save feed
@@ -89,11 +75,6 @@ get_system_calendar <- function (url, filepath = "data/system_calendar.rds") {
 }
 
 get_system_hours <- function (url, filepath = "data/system_hours.rds") {
-
-  library(jsonlite)
-  library(tidyverse)
-  library(lubridate)
-
 
   system_hours_feed <- url
 
@@ -124,11 +105,6 @@ get_system_hours <- function (url, filepath = "data/system_hours.rds") {
 
 get_system_information <- function(url, filepath = "data/system_information.rds"){
 
-  library(jsonlite)
-  library(tidyverse)
-  library(lubridate)
-
-
   system_information_feed <- url
 
   # save feed
@@ -151,10 +127,6 @@ get_system_information <- function(url, filepath = "data/system_information.rds"
 
 
 get_system_pricing_plans <- function(url, filepath = "data/system_pricing_plans.rds") {
-
-  library(jsonlite)
-  library(tidyverse)
-  library(lubridate)
 
   system_pricing_plans_feed <- url
 
@@ -181,10 +153,6 @@ get_system_pricing_plans <- function(url, filepath = "data/system_pricing_plans.
 
 
 get_system_regions <- function (url, filepath = "data/system_regions.rds") {
-
-  library(jsonlite)
-  library(tidyverse)
-  library(lubridate)
 
   system_regions_feed <- url
 

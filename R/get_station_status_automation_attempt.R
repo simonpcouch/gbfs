@@ -1,8 +1,5 @@
 get_station_status <- function(url, filepath = "data/station_status.rds", cumulative = FALSE) {
 
-  library(jsonlite)
-  library(tidyverse)
-  
 #test station_status_feed: "http://biketownpdx.socialbicycles.com/opendata/station_status.json"  
   
 #get url

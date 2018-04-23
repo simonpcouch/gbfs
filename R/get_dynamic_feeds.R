@@ -1,9 +1,5 @@
 get_free_bike_status <- function(url, filepath = "data/free_bike_status.rds") {
 
-  library(jsonlite)
-  library(tidyverse)
-  library(lubridate)
-
   #get url
   # url for testing: "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json"
   free_bike_status_feed <- url
@@ -54,10 +50,6 @@ get_free_bike_status <- function(url, filepath = "data/free_bike_status.rds") {
 
 
 get_station_status <- function(url, filepath = "data/station_status.rds") {
-
-  library(jsonlite)
-  library(tidyverse)
-  library(lubridate)
 
   #get url
   station_status_feed <- url
