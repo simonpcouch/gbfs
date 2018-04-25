@@ -3,7 +3,7 @@ Type: Package
 Title: Download General Bikeshare Feed Specification Files
 Version: 1.0.0
 Authors@R: c(
-    person("Kaelyn", "Rosenberg", , "kaerosen@reed.edu", c("aut", "cre")),
+    person("Kaelyn", "Rosenberg", , "kaerosenberg@gmail.com", c("aut")),
     person("Simon P.", "Couch", , "simonpatrickcouch@gmail.com", c("aut", "cre")))
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
