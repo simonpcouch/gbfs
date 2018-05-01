@@ -1,10 +1,3 @@
-  #needs to somehow be supplied station_status_feed and filepath from the crontab
-
-  #test station_status_feed: "http://biketownpdx.socialbicycles.com/opendata/station_status.json"  
-  
-  #somehow get station_status feed
-  station_status_feed
-  
   #save feed
   station_status <- fromJSON(txt = station_status_feed)
   

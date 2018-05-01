@@ -25,11 +25,10 @@ if (cumulative == TRUE) {
         #code for taskscheduleR
         return("Automation functionality has not yet been implemented for Windows machines.")
       } else {
-        x <- system.file("R", "update_ss.R", package="gbfs")
         arg1 <- paste0("station_status_feed = ", station_status_feed)
         arg2 <- paste0("filepath = ", filepath)
         #code for cronR
-        cmd <- cron_rscript(rscript = '~/R/update_ss.R', 
+        cmd <- cron_rscript(rscript = 'R/update_ss.R', 
                             rscript_args = c(arg1, arg2))
         cron_add(command = cmd, 
                  frequency = 'minutely', 
