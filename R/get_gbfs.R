@@ -83,17 +83,22 @@ get_gbfs_feeds <- function(url) {
 
 }
 
-#' Save gbfs feeds to a user-specified directory.
+#' Save gbfs feeds.
 #' 
-#' @param city A character string or a url to an active gbfs.json feed
-#' @param filepath A folder to save the files to--defaults to "gbfs_data"
-#' @param directory A link to an active station_information .json feed.
-#' @return A .rds object generated from the current specified feed.
+#' \code{get_gbfs} checks for the existence of gbfs feeds for a given city and saves the
+#' feeds as .rds objects in a directory that can be specified by the user.
+#' 
+#' @param city A character string or a url to an active gbfs.json feed.
+#' @param feeds A character string specifying which feeds should be saved. Options are
+#'   "all", "static", and "dynamic".
+#' @param directory The name of an existing folder or folder to be created, where the feeds
+#'   will be saved.
+#' @return A folder containing the specified feeds saved as .rds objects.
 #' @examples
-#' get_gbfs(city = "topeka")
-#' get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json")
-#' get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json")
+#' get_gbfs(city = "boise")
+#' get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json", feeds = "dynamic")
 #' get_gbfs("https://gbfs.bcycle.com/bcycle_greenbikeslc/gbfs.json", directory = "slcbikes")
+#' @export
 
 get_gbfs <- function(city, feeds = "all", directory = "gbfs_data") {
 
@@ -168,29 +173,29 @@ if (!dir.exists(directory)) {
 
 # call functions
   if (feeds == "all" | feeds == "static") {
-    get_station_information(stat_info_feed, paste(directory, "/station_information.rds", sep = ""))
-    get_system_information(sys_info_feed, paste(directory, "/system_information.rds", sep = ""))
+    get_station_information(stat_info_feed, directory = directory)
+    get_system_information(sys_info_feed, directory = directory)
     if (exists("sys_hours_feed")) {
-      get_system_hours(sys_hours_feed, paste(directory, "/system_hours.rds", sep = ""))
+      get_system_hours(sys_hours_feed, directory = directory)
     }
     if (exists("sys_cal_feed")) {
-      get_system_calendar(sys_cal_feed, paste(directory, "/system_calendar.rds", sep = ""))
+      get_system_calendar(sys_cal_feed, directory = directory)
     }
     if (exists("sys_reg_feed")) {
-      get_system_regions(sys_reg_feed, paste(directory, "/system_regions.rds", sep = ""))
+      get_system_regions(sys_reg_feed, directory = directory)
     }
     if (exists("sys_price_feed")) {
-      get_system_pricing_plans(sys_price_feed, paste(directory, "/system_pricing_plans.rds", sep = ""))
+      get_system_pricing_plans(sys_price_feed, directory = directory)
     }
     if (exists("sys_alerts_feed")) {
-      get_system_alerts(sys_alerts_feed, paste(directory, "/system_alerts.rds", sep = ""))
+      get_system_alerts(sys_alerts_feed, directory = directory)
     }
   }
 
   if (feeds == "all" | feeds == "dynamic") {
-    get_station_status(stat_status_feed, paste(directory, "/station_status.rds", sep = ""))
+    get_station_status(stat_status_feed, directory = directory)
     if (exists("fbs_feed")) {
-      get_free_bike_status(fbs_feed, paste(directory, "/free_bike_status.rds", sep = ""))
+      get_free_bike_status(fbs_feed, directory = directory)
     }
   }
 
