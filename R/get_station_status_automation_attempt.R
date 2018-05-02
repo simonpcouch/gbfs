@@ -35,7 +35,7 @@ if (cumulative == TRUE) {
                  id = 'get_station_status', 
                  description = 'Grabs every minute.')   
       
-    } else {
+    }} else {
     #append rows
     ss <- readRDS(filepath)
     ss_update <- rbind(station_status_data, ss)
@@ -44,4 +44,3 @@ if (cumulative == TRUE) {
     #code for when cumulative is false: just save the file
     saveRDS(station_status_data, file = filepath)
   }}
-}
