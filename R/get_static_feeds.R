@@ -1,16 +1,32 @@
-#' Save the station_information file as a .rds file.
+#' Save the station_information feed.
 #' 
-#' @param url A link to an active station_information .json feed.
-#' @param filepath A connection or path to save the .rds to-- defaults to 
-#' "data/station_information.rds"
-#' @return A .rds object generated from the current specified feed.
+#' \code{get_station_information} saves the station_information feed for a given city as a .rds object.
+#' 
+#' @param city A character string or a url to an active gbfs.json feed.
+#' @param directory The name of an existing folder or folder to be created, where the feed will
+#'   will be saved.
+#' @param file The name of the file to be saved. Must end in .rds.
+#' @return A .rds object generated from the current station_information feed.
 #' @examples
-#' get_station_information(url = "http://biketownpdx.socialbicycles.com/opendata/station_information.json")
+#' get_station_information(city = "http://biketownpdx.socialbicycles.com/opendata/station_information.json")
+#' get_station_information(city = "Battle Creek")
+#' @export
 
-get_station_information <- function(url, filepath = "data/station_information.rds") {
+get_station_information <- function(city, directory = "data", file = "station_information.rds") {
 
-  #get url
-  station_information_feed <- url
+  url <- city_to_url(city)
+  
+  if (url != city) {
+    gbfs <- fromJSON(txt = url)
+    gbfs_feeds <- gbfs$data$en$feeds
+    station_information_feed <- gbfs_feeds %>%
+      select(url) %>%
+      filter(str_detect(url, "station_information")) %>%
+      as.character()
+  }
+  else {
+    station_information_feed <- url
+  }
 
   #save feed
   station_information <- fromJSON(txt = station_information_feed)
@@ -28,28 +44,48 @@ get_station_information <- function(url, filepath = "data/station_information.rd
   #extract last_updated, convert POSIX timestamp to date
   station_information_last_updated <- station_information$last_updated %>%
     as.POSIXct(., origin = "1970-01-01")
-
-  #extract time til next update (in seconds), convert to numeric
-  station_information_ttl <- station_information$ttl %>%
-    as.numeric()
+  
+  # create directory
+  if (!dir.exists(directory)) {
+    dir.create(directory)
+  }
 
   #save() results in a smaller file size and allows for easier `rbind`ing than write_csv()
   #write_csv(x = station_information_data, path = "data-raw/station_information.csv")
-  saveRDS(station_information_data, file = filepath)
+  saveRDS(station_information_data, file = paste(directory, file, sep = "/"))
 }
 
-#' Save the system_alerts file as a .rds file.
+#' Save the system_alerts feed.
 #' 
-#' @param url A link to an active system_alerts .json feed.
-#' @param filepath A connection or path to save the .rds to-- defaults to 
-#' "data/system_alerts.rds"
-#' @return A .rds object generated from the current specified feed.
+#' \code{get_system_alerts} saves the system_alerts feed for a given city as a .rds object.
+#' 
+#' @param city A character string or a url to an active gbfs.json feed.
+#' @param directory The name of an existing folder or folder to be created, where the feed will
+#'   will be saved.
+#' @param file The name of the file to be saved. Must end in .rds.
+#' @return A .rds object generated from the current system_alerts feed.
 #' @examples
-#' get_system_alerts(url = "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json")
+#' get_system_alerts(city = "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json")
+#' get_system_alerts(city = "Santa Monica")
+#' @export
 
-get_system_alerts <- function (url, filepath = "data/system_alerts.rds") {
+get_system_alerts <- function (city, directory = "data", file = "system_alerts.rds") {
 
-  system_alerts_feed <- url
+  url <- city_to_url(city)
+  
+  if (url != city) {
+    gbfs <- fromJSON(txt = url)
+    gbfs_feeds <- gbfs$data$en$feeds
+    if ("system_alerts" %in% gbfs_feeds$name) {
+      system_alerts_feed <- gbfs_feeds %>%
+        select(url) %>%
+        filter(str_detect(url, "system_alerts")) %>%
+        as.character()
+    }
+  }
+  else {
+    system_alerts_feed <- url
+  }
 
   # save feed
   system_alerts <- fromJSON(txt = system_alerts_feed)
@@ -60,27 +96,47 @@ get_system_alerts <- function (url, filepath = "data/system_alerts.rds") {
   # extract last_updated, convert POSIX timestamp to date
   system_alerts_last_updated <- system_alerts$last_updated %>%
     as.POSIXct(., origin = "1970-01-01")
+  
+  # create directory
+  if (!dir.exists(directory)) {
+    dir.create(directory)
+  }
 
-  # extract time til next update (in seconds), convert to numeric
-  system_alerts_ttl <- system_alerts$ttl %>%
-    as.numeric()
-
-  saveRDS(system_alerts_data, file = filepath)
+  saveRDS(system_alerts_data, file = paste(directory, file, sep = "/"))
 
 }
 
-#' Save the system_calendar file as a .rds file.
+#' Save the system_calendar feed.
 #' 
-#' @param url A link to an active system_calendar .json feed.
-#' @param filepath A connection or path to save the .rds to-- defaults to 
-#' "data/system_calendar.rds"
-#' @return A .rds object generated from the current specified feed.
+#' \code{get_system_calendar} saves the system_calendar feed for a given city as a .rds object.
+#' 
+#' @param city A character string or a url to an active gbfs.json feed.
+#' @param directory The name of an existing folder or folder to be created, where the feed will
+#'   will be saved.
+#' @param file The name of the file to be saved. Must end in .rds.
+#' @return A .rds object generated from the current system_calendar feed.
 #' @examples
-#' get_system_calendar(url = "http://biketownpdx.socialbicycles.com/opendata/system_calendar.json")
+#' get_system_calendar(city = "http://biketownpdx.socialbicycles.com/opendata/system_calendar.json")
+#' get_system_calendar(city = "Tampa")
+#' @export
 
-get_system_calendar <- function (url, filepath = "data/system_calendar.rds") {
+get_system_calendar <- function (city, directory = "data", file = "system_calendar.rds") {
 
-  system_calendar_feed <- url
+  url <- city_to_url(city)
+  
+  if (url != city) {
+    gbfs <- fromJSON(txt = url)
+    gbfs_feeds <- gbfs$data$en$feeds
+    if ("system_calendar" %in% gbfs_feeds$name) {
+      system_calendar_feed <- gbfs_feeds %>%
+        select(url) %>%
+        filter(str_detect(url, "system_calendar")) %>%
+        as.character()
+    }
+  }
+  else {
+    system_calendar_feed <- url
+  }
 
   # save feed
   system_calendar <- fromJSON(txt = system_calendar_feed)
@@ -95,23 +151,47 @@ get_system_calendar <- function (url, filepath = "data/system_calendar.rds") {
   # extract time til next update (in seconds), convert to numeric
   system_calendar_ttl <- system_calendar$ttl %>%
     as.numeric()
+  
+  # create directory
+  if (!dir.exists(directory)) {
+    dir.create(directory)
+  }
 
-  saveRDS(system_calendar_data, file = filepath)
+  saveRDS(system_calendar_data, file = paste(directory, file, sep = "/"))
 
 }
 
-#' Save the system_hours file as a .rds file.
+#' Save the system_hours feed.
 #' 
-#' @param url A link to an active system_hours .json feed.
-#' @param filepath A connection or path to save the .rds to-- defaults to 
-#' "data/system_hours.rds"
-#' @return A .rds object generated from the current specified feed.
+#' \code{get_system_hours} saves the system_hours feed for a given city as a .rds object.
+#' 
+#' @param city A character string or a url to an active gbfs.json feed.
+#' @param directory The name of an existing folder or folder to be created, where the feed will
+#'   will be saved.
+#' @param file The name of the file to be saved. Must end in .rds.
+#' @return A .rds object generated from the current system_hours feed.
 #' @examples
-#' get_system_hours(url = "http://biketownpdx.socialbicycles.com/opendata/system_hours.json")
+#' get_system_hours(city = "http://biketownpdx.socialbicycles.com/opendata/system_hours.json")
+#' get_system_hours(city = "Phoenix")
+#' @export
 
-get_system_hours <- function (url, filepath = "data/system_hours.rds") {
+get_system_hours <- function (city, directory = "data", file = "system_hours.rds") {
 
-  system_hours_feed <- url
+  url <- city_to_url(city)
+  
+  if (url != city) {
+    gbfs <- fromJSON(txt = url)
+    gbfs_feeds <- gbfs$data$en$feeds
+    if ("system_hours" %in% gbfs_feeds$name) {
+      system_hours_feed <- gbfs_feeds %>%
+        select(url) %>%
+        filter(str_detect(url, "system_hours")) %>%
+        as.character()
+    }
+  }
+  else {
+    system_hours_feed <- url
+  }
 
   # save feed
   system_hours <- fromJSON(txt = system_hours_feed)
@@ -129,26 +209,44 @@ get_system_hours <- function (url, filepath = "data/system_hours.rds") {
   system_hours_last_updated <- system_hours$last_updated %>%
     as.POSIXct(., origin = "1970-01-01")
 
-  # extract time til next update (in seconds), convert to numeric
-  system_hours_ttl <- system_hours$ttl %>%
-    as.numeric()
-
-  saveRDS(system_hours_data, file = filepath)
+  # create directory
+  if (!dir.exists(directory)) {
+    dir.create(directory)
+  }
+  
+  saveRDS(system_hours_data, file = paste(directory, file, sep = "/"))
 
 }
 
-#' Save the system_information file as a .rds file.
+#' Save the system_information feed.
 #' 
-#' @param url A link to an active system_information .json feed.
-#' @param filepath A connection or path to save the .rds to-- defaults to 
-#' "data/system_information.rds"
-#' @return A .rds object generated from the current specified feed.
+#' \code{get_system_information} saves the system_information feed for a given city as a .rds object.
+#' 
+#' @param city A character string or a url to an active gbfs.json feed.
+#' @param directory The name of an existing folder or folder to be created, where the feed will
+#'   will be saved.
+#' @param file The name of the file to be saved. Must end in .rds.
+#' @return A .rds object generated from the current system_information feed.
 #' @examples
-#' get_system_information(url = "http://biketownpdx.socialbicycles.com/opendata/system_information.json")
+#' get_system_information(city = "http://biketownpdx.socialbicycles.com/opendata/system_information.json")
+#' get_system_information(city = "Omaha")
+#' @export
 
-get_system_information <- function(url, filepath = "data/system_information.rds"){
+get_system_information <- function(city, directory = "data", file = "system_information.rds"){
 
-  system_information_feed <- url
+  url <- city_to_url(city)
+  
+  if (url != city) {
+    gbfs <- fromJSON(txt = url)
+    gbfs_feeds <- gbfs$data$en$feeds
+    system_information_feed <- gbfs_feeds %>%
+      select(url) %>%
+      filter(str_detect(url, "system_information")) %>%
+      as.character()
+  }
+  else {
+    system_information_feed <- url
+  }
 
   # save feed
   system_information <- fromJSON(txt = system_information_feed)
@@ -160,26 +258,46 @@ get_system_information <- function(url, filepath = "data/system_information.rds"
   system_information_last_updated <- system_information$last_updated %>%
     as.POSIXct(., origin = "1970-01-01")
 
-  # extract time til next update (in seconds), convert to numeric
-  system_information_ttl <- system_information$ttl %>%
-    as.numeric()
+  # create directory
+  if (!dir.exists(directory)) {
+    dir.create(directory)
+  }
 
-  saveRDS(system_information_data, file = filepath)
+  saveRDS(system_information_data, file = paste(directory, file, sep = "/"))
 
 }
 
-#' Save the system_pricing_plans file as a .rds file.
+#' Save the system_pricing_plans feed.
 #' 
-#' @param url A link to an active system_pricing_plans .json feed.
-#' @param filepath A connection or path to save the .rds to-- defaults to 
-#' "data/system_pricing_plans.rds"
-#' @return A .rds object generated from the current specified feed.
+#' \code{get_system_pricing_plans} saves the system_pricing_plans feed for a given city as a .rds object.
+#' 
+#' @param city A character string or a url to an active gbfs.json feed.
+#' @param directory The name of an existing folder or folder to be created, where the feed will
+#'   will be saved.
+#' @param file The name of the file to be saved. Must end in .rds.
+#' @return A .rds object generated from the current system_pricing_plans feed.
 #' @examples
-#' get_system_pricing_plans(url = "http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json")
+#' get_system_pricing_plans(city = "http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json")
+#' get_system_pricing_plans(city = "Houston")
+#' @export
 
-get_system_pricing_plans <- function(url, filepath = "data/system_pricing_plans.rds") {
+get_system_pricing_plans <- function(city, directory = "data", file = "system_pricing_plans.rds") {
 
-  system_pricing_plans_feed <- url
+  url <- city_to_url(city)
+  
+  if (url != city) {
+    gbfs <- fromJSON(txt = url)
+    gbfs_feeds <- gbfs$data$en$feeds
+    if ("system_pricing_plans" %in% gbfs_feeds$name) {
+      system_pricing_plans_feed <- gbfs_feeds %>%
+        select(url) %>%
+        filter(str_detect(url, "system_pricing_plans")) %>%
+        as.character()
+    }
+  }
+  else {
+    system_pricing_plans_feed <- url
+  }
 
   # save feed
   system_pricing_plans <- fromJSON(txt = system_pricing_plans_feed)
@@ -194,26 +312,46 @@ get_system_pricing_plans <- function(url, filepath = "data/system_pricing_plans.
   system_pricing_plans_last_updated <- system_pricing_plans$last_updated %>%
     as.POSIXct(., origin = "1970-01-01")
 
-  # extract time til next update (in seconds), convert to numeric
-  system_pricing_plans_ttl <- system_pricing_plans$ttl %>%
-    as.numeric()
+  # create directory
+  if (!dir.exists(directory)) {
+    dir.create(directory)
+  }
 
-  saveRDS(system_pricing_plans_data, file = filepath)
+  saveRDS(system_pricing_plans_data, file = paste(directory, file, sep = "/"))
 
 }
 
-#' Save the system_regions file as a .rds file.
+#' Save the system_regions feed.
 #' 
-#' @param url A link to an active system_regions .json feed.
-#' @param filepath A connection or path to save the .rds to-- defaults to 
-#' "data/system_regions.rds"
-#' @return A .rds object generated from the current specified feed.
+#' \code{get_system_regions} saves the system_regions feed for a given city as a .rds object.
+#' 
+#' @param city A character string or a url to an active gbfs.json feed.
+#' @param directory The name of an existing folder or folder to be created, where the feed will
+#'   will be saved.
+#' @param file The name of the file to be saved. Must end in .rds.
+#' @return A .rds object generated from the current system_regions feed.
 #' @examples
-#' get_system_regions(url = "http://biketownpdx.socialbicycles.com/opendata/system_regions.json")
+#' get_system_regions(city = "http://biketownpdx.socialbicycles.com/opendata/system_regions.json")
+#' get_system_regions(city = "Boston")
+#' @export
 
-get_system_regions <- function (url, filepath = "data/system_regions.rds") {
+get_system_regions <- function (city, directory = "data", file = "system_regions.rds") {
 
-  system_regions_feed <- url
+  url <- city_to_url(city)
+  
+  if (url != city) {
+    gbfs <- fromJSON(txt = url)
+    gbfs_feeds <- gbfs$data$en$feeds
+    if ("system_regions" %in% gbfs_feeds$name) {
+      system_regions_feed <- gbfs_feeds %>%
+        select(url) %>%
+        filter(str_detect(url, "system_regions")) %>%
+        as.character()
+    }
+  }
+  else {
+    system_regions_feed <- url
+  }
 
   # save feed
   system_regions <- fromJSON(txt = system_regions_feed)
@@ -225,10 +363,11 @@ get_system_regions <- function (url, filepath = "data/system_regions.rds") {
   system_regions_last_updated <- system_regions$last_updated %>%
     as.POSIXct(., origin = "1970-01-01")
 
-  # extract time til next update (in seconds), convert to numeric
-  system_regions_ttl <- system_regions$ttl %>%
-    as.numeric()
+  # create directory
+  if (!dir.exists(directory)) {
+    dir.create(directory)
+  }
 
-  saveRDS(system_regions_data, file = filepath)
+  saveRDS(system_regions_data, file = paste(directory, file, sep = "/"))
 
 }
