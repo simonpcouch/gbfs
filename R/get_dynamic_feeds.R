@@ -1,17 +1,36 @@
-#' Save the free_bike_status file as a .rds file.
+#' Save the free_bike_status feed.
 #' 
-#' @param url A link to an active free_bike_status .json feed.
-#' @param filepath A connection or path to save the .rds to-- defaults to 
-#' "data/free_bike_status.rds"
-#' @return A .rds object generated from the current specified feed.
+#' If the specified file does not exist, \code{get_free_bike_status} saves the free_bike_status
+#' feed for a given city as a .rds object. If the specified file does exist, \code{get_free_bike_status}
+#' appends the current free_bike_status feed to the existing file.
+#' 
+#' @param city A character string or a url to an active gbfs.json feed.
+#' @param directory The name of an existing folder or folder to be created, where the feed will
+#'   will be saved.
+#' @param file The name of an existing file or new file to be saved. Must end in .rds.
+#' @return A .rds object generated from the current free_bike_status feed.
 #' @examples
-#' get_free_bike_status(url = "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json")
+#' get_free_bike_status(city = "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json")
+#' get_free_bike_status(city = "Melbourne")
+#' @export
 
-get_free_bike_status <- function(url, filepath = "data/free_bike_status.rds") {
+get_free_bike_status <- function(city, directory = "data", file = "free_bike_status.rds") {
 
-  #get url
-  # url for testing: "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json"
-  free_bike_status_feed <- url
+  url <- city_to_url(city)
+  
+  if (url != city) {
+    gbfs <- fromJSON(txt = url)
+    gbfs_feeds <- gbfs$data$en$feeds
+    if ("free_bike_status" %in% gbfs_feeds$name) {
+      free_bike_status_feed <- gbfs_feeds %>%
+        select(url) %>%
+        filter(str_detect(url, "free_bike_status")) %>%
+        as.character()
+    }
+  }
+  else {
+    free_bike_status_feed <- url
+  }
 
   #save feed
   free_bike_status <- fromJSON(txt = free_bike_status_feed)
@@ -28,18 +47,20 @@ get_free_bike_status <- function(url, filepath = "data/free_bike_status.rds") {
     as.POSIXct(., origin = "1970-01-01")
 
   #mutate columns for time of observation
-  free_bike_status_data <- free_bike_status_data %>%
-    mutate(last_updated = free_bike_status_last_updated,
-           year = lubridate::year(last_updated),
-           month = lubridate::month(last_updated),
-           day = lubridate::day(last_updated),
-           hour = lubridate::hour(last_updated),
-           minute = lubridate::minute(last_updated))
+  if (class(free_bike_status_data) == "data.frame") {
+    free_bike_status_data <- free_bike_status_data %>%
+      mutate(last_updated = free_bike_status_last_updated,
+             year = lubridate::year(last_updated),
+             month = lubridate::month(last_updated),
+             day = lubridate::day(last_updated),
+             hour = lubridate::hour(last_updated),
+             minute = lubridate::minute(last_updated))
+  }
 
-
-  #extract time til next update (in seconds), convert to numeric
-  free_bike_status_ttl <- free_bike_status$ttl %>%
-    as.numeric()
+  # create directory
+  if (!dir.exists(directory)) {
+    dir.create(directory)
+  }
 
   update_fbs <- function(filepath) {
     fbs <- readRDS(filepath)
@@ -47,29 +68,47 @@ get_free_bike_status <- function(url, filepath = "data/free_bike_status.rds") {
     saveRDS(fbs_update, file = filepath)
   }
 
-  if (file.exists(filepath)) {
-    update_fbs(filepath)
+  if (file.exists(paste(directory, file, sep = "/"))) {
+    update_fbs(paste(directory, file, sep = "/"))
   }
 
   else {
-    saveRDS(free_bike_status_data, file = filepath)
+    saveRDS(free_bike_status_data, file = paste(directory, file, sep = "/"))
   }
 
 }
 
-#' Save the station_status file as a .rds file.
+#' Save the station_status feed.
 #' 
-#' @param url A link to an active station_status .json feed.
-#' @param filepath A connection or path to save the .rds to-- defaults to 
-#' "data/station_status.rds"
-#' @return A .rds object generated from the current specified feed.
+#' If the specified file does not exist, \code{get_station_status} saves the station_status
+#' feed for a given city as a .rds object. If the specified file does exist, \code{get_station_status}
+#' appends the current station_status feed to the existing file.
+#' 
+#' @param city A character string or a url to an active gbfs.json feed.
+#' @param directory The name of an existing folder or folder to be created, where the feed will
+#'   will be saved.
+#' @param file The name of an existing file or new file to be saved. Must end in .rds.
+#' @return A .rds object generated from the current station_status feed.
 #' @examples
-#' get_station_status(url = "http://biketownpdx.socialbicycles.com/opendata/station_status.json")
+#' get_station_status(city = "http://biketownpdx.socialbicycles.com/opendata/station_status.json")
+#' get_station_status(city = "Montreal")
+#' @export
 
-get_station_status <- function(url, filepath = "data/station_status.rds") {
+get_station_status <- function(city, directory = "data", file = "station_status.rds") {
 
-  #get url
-  station_status_feed <- url
+  url <- city_to_url(city)
+  
+  if (url != city) {
+    gbfs <- fromJSON(txt = url)
+    gbfs_feeds <- gbfs$data$en$feeds
+    station_status_feed <- gbfs_feeds %>%
+      select(url) %>%
+      filter(str_detect(url, "station_status")) %>%
+      as.character()
+  }
+  else {
+    station_status_feed <- url
+  }
 
   #save feed
   station_status <- fromJSON(txt = station_status_feed)
@@ -101,9 +140,10 @@ get_station_status <- function(url, filepath = "data/station_status.rds") {
            hour = lubridate::hour(last_updated),
            minute = lubridate::minute(last_updated))
 
-  #extract time til next update (in seconds), convert to numeric
-  station_status_ttl <- station_status$ttl %>%
-    as.numeric()
+  # create directory
+  if (!dir.exists(directory)) {
+    dir.create(directory)
+  }
 
   update_ss <- function(filepath) {
     ss <- readRDS(filepath)
@@ -111,12 +151,12 @@ get_station_status <- function(url, filepath = "data/station_status.rds") {
     saveRDS(ss_update, file = filepath)
   }
 
-  if (file.exists(filepath)) {
-    update_ss(filepath)
+  if (file.exists(paste(directory, file, sep = "/"))) {
+    update_ss(paste(directory, file, sep = "/"))
   }
 
   else {
-    saveRDS(station_status_data, file = filepath)
+    saveRDS(station_status_data, file = paste(directory, file, sep = "/"))
   }
 
 }
