@@ -50,8 +50,8 @@ get_free_bike_status <- function(city, directory = "data", file = "free_bike_sta
   #mutate columns for time of observation
   if (class(free_bike_status_data) == "data.frame") {
     free_bike_status_data <- free_bike_status_data %>%
-      dplyr::mutate(last_updated = free_bike_status_last_updated,
-             year = lubridate::year(last_updated),
+      dplyr::mutate(last_updated = free_bike_status_last_updated) %>%
+      dplyr::mutate(year = lubridate::year(last_updated),
              month = lubridate::month(last_updated),
              day = lubridate::day(last_updated),
              hour = lubridate::hour(last_updated),
@@ -93,7 +93,7 @@ get_free_bike_status <- function(city, directory = "data", file = "free_bike_sta
 #' @examples
 #' get_station_status(city = 
 #' "http://biketownpdx.socialbicycles.com/opendata/station_status.json")
-#' get_station_status(city = "Montreal")
+#' get_station_status(city = "kansas city", directory = "kc_gbfs")
 #' @export
 
 get_station_status <- function(city, directory = "data", file = "station_status.rds") {
@@ -118,7 +118,7 @@ get_station_status <- function(city, directory = "data", file = "station_status.
   #extract data, convert to df
   station_status_data <- station_status$data$stations
 
-  #classcolumns of station_status_data
+  #class columns of station_status_data
   station_status_data$last_reported <- as.POSIXct(station_status_data$last_reported,
                                                   origin = "1970-01-01")
   if ("num_bikes_disabled" %in% colnames(station_status_data)) {
@@ -132,7 +132,8 @@ get_station_status <- function(city, directory = "data", file = "station_status.
   station_status_data$is_returning <- as.logical(station_status_data$is_returning)
 
   #rename last_reported to last_updated for consistency between datasets
-  station_status_data <- dplyr::rename(station_status_data, last_updated = last_reported)
+  station_status_data <- station_status_data %>%
+    dplyr::rename(last_updated = last_reported)
 
   #mutate more useful columns from last_updated
   station_status_data <- station_status_data %>%

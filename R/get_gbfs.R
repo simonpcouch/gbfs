@@ -1,4 +1,5 @@
 city_to_url <- function(city) {
+  
   if (1 == length(agrep(x = as.character(city), pattern = ".json"))) {
     #return the city argument as 'url'
     url <- city
@@ -7,8 +8,8 @@ city_to_url <- function(city) {
     #match string with a url
     systems_cols <- readr::cols(
       `Country Code` = readr::col_character(),
-      `Name` = readr::col_character(),
-      `Location` = readr::col_character(),
+      "Name" = readr::col_character(),
+      "Location" = readr::col_character(),
       `System ID` = readr::col_character(),
       `URL` = readr::col_character(),
       `Auto-Discovery URL` = readr::col_character()
@@ -176,7 +177,7 @@ get_gbfs <- function(city, feeds = "all", directory = "gbfs_data") {
       dplyr::filter(stringr::str_detect(url, "system_alerts")) %>%
       as.character()
   }
-
+  
 # create directory
 if (!dir.exists(directory)) {
   dir.create(directory)

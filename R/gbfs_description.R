@@ -14,3 +14,5 @@
 #' @name gbfs
 #' @importFrom dplyr %>%
 NULL
+
+utils::globalVariables(c(".", "Location", "Name", "last_reported", "last_updated"))
