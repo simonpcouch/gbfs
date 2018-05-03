@@ -17,11 +17,11 @@ get_station_information <- function(city, directory = "data", file = "station_in
   url <- city_to_url(city)
   
   if (url != city) {
-    gbfs <- fromJSON(txt = url)
+    gbfs <- jsonlite::fromJSON(txt = url)
     gbfs_feeds <- gbfs$data$en$feeds
     station_information_feed <- gbfs_feeds %>%
-      select(url) %>%
-      filter(str_detect(url, "station_information")) %>%
+      dplyr::select(url) %>%
+      dplyr::filter(stringr::str_detect(url, "station_information")) %>%
       as.character()
   }
   else {
@@ -29,7 +29,7 @@ get_station_information <- function(city, directory = "data", file = "station_in
   }
 
   #save feed
-  station_information <- fromJSON(txt = station_information_feed)
+  station_information <- jsonlite::fromJSON(txt = station_information_feed)
 
   #extract data, convert to df
   station_information_data <- station_information$data$stations
@@ -74,12 +74,12 @@ get_system_alerts <- function (city, directory = "data", file = "system_alerts.r
   url <- city_to_url(city)
   
   if (url != city) {
-    gbfs <- fromJSON(txt = url)
+    gbfs <- jsonlite::fromJSON(txt = url)
     gbfs_feeds <- gbfs$data$en$feeds
     if ("system_alerts" %in% gbfs_feeds$name) {
       system_alerts_feed <- gbfs_feeds %>%
-        select(url) %>%
-        filter(str_detect(url, "system_alerts")) %>%
+        dplyr::select(url) %>%
+        dplyr::filter(stringr::str_detect(url, "system_alerts")) %>%
         as.character()
     }
   }
@@ -88,7 +88,7 @@ get_system_alerts <- function (city, directory = "data", file = "system_alerts.r
   }
 
   # save feed
-  system_alerts <- fromJSON(txt = system_alerts_feed)
+  system_alerts <- jsonlite::fromJSON(txt = system_alerts_feed)
 
   # extract data, convert to df
   system_alerts_data <- system_alerts$data$alerts
@@ -125,12 +125,12 @@ get_system_calendar <- function (city, directory = "data", file = "system_calend
   url <- city_to_url(city)
   
   if (url != city) {
-    gbfs <- fromJSON(txt = url)
+    gbfs <- jsonlite::fromJSON(txt = url)
     gbfs_feeds <- gbfs$data$en$feeds
     if ("system_calendar" %in% gbfs_feeds$name) {
       system_calendar_feed <- gbfs_feeds %>%
-        select(url) %>%
-        filter(str_detect(url, "system_calendar")) %>%
+        dplyr::select(url) %>%
+        dplyr::filter(stringr::str_detect(url, "system_calendar")) %>%
         as.character()
     }
   }
@@ -139,7 +139,7 @@ get_system_calendar <- function (city, directory = "data", file = "system_calend
   }
 
   # save feed
-  system_calendar <- fromJSON(txt = system_calendar_feed)
+  system_calendar <- jsonlite::fromJSON(txt = system_calendar_feed)
 
   # extract data, convert to df
   system_calendar_data <- system_calendar$data$calendars
@@ -180,12 +180,12 @@ get_system_hours <- function (city, directory = "data", file = "system_hours.rds
   url <- city_to_url(city)
   
   if (url != city) {
-    gbfs <- fromJSON(txt = url)
+    gbfs <- jsonlite::fromJSON(txt = url)
     gbfs_feeds <- gbfs$data$en$feeds
     if ("system_hours" %in% gbfs_feeds$name) {
       system_hours_feed <- gbfs_feeds %>%
-        select(url) %>%
-        filter(str_detect(url, "system_hours")) %>%
+        dplyr::select(url) %>%
+        dplyr::filter(stringr::str_detect(url, "system_hours")) %>%
         as.character()
     }
   }
@@ -194,7 +194,7 @@ get_system_hours <- function (city, directory = "data", file = "system_hours.rds
   }
 
   # save feed
-  system_hours <- fromJSON(txt = system_hours_feed)
+  system_hours <- jsonlite::fromJSON(txt = system_hours_feed)
 
   # extract data, convert to df
   system_hours_data <- system_hours$data$rental_hours
@@ -237,11 +237,11 @@ get_system_information <- function(city, directory = "data", file = "system_info
   url <- city_to_url(city)
   
   if (url != city) {
-    gbfs <- fromJSON(txt = url)
+    gbfs <- jsonlite::fromJSON(txt = url)
     gbfs_feeds <- gbfs$data$en$feeds
     system_information_feed <- gbfs_feeds %>%
-      select(url) %>%
-      filter(str_detect(url, "system_information")) %>%
+      dplyr::select(url) %>%
+      dplyr::filter(stringr::str_detect(url, "system_information")) %>%
       as.character()
   }
   else {
@@ -249,7 +249,7 @@ get_system_information <- function(city, directory = "data", file = "system_info
   }
 
   # save feed
-  system_information <- fromJSON(txt = system_information_feed)
+  system_information <- jsonlite::fromJSON(txt = system_information_feed)
 
   # extract data, convert to df
   system_information_data <- as.data.frame(system_information$data)
@@ -286,12 +286,12 @@ get_system_pricing_plans <- function(city, directory = "data", file = "system_pr
   url <- city_to_url(city)
   
   if (url != city) {
-    gbfs <- fromJSON(txt = url)
+    gbfs <- jsonlite::fromJSON(txt = url)
     gbfs_feeds <- gbfs$data$en$feeds
     if ("system_pricing_plans" %in% gbfs_feeds$name) {
       system_pricing_plans_feed <- gbfs_feeds %>%
-        select(url) %>%
-        filter(str_detect(url, "system_pricing_plans")) %>%
+        dplyr::select(url) %>%
+        dplyr::filter(stringr::str_detect(url, "system_pricing_plans")) %>%
         as.character()
     }
   }
@@ -300,7 +300,7 @@ get_system_pricing_plans <- function(city, directory = "data", file = "system_pr
   }
 
   # save feed
-  system_pricing_plans <- fromJSON(txt = system_pricing_plans_feed)
+  system_pricing_plans <- jsonlite::fromJSON(txt = system_pricing_plans_feed)
 
   # extract data, convert to df
   system_pricing_plans_data <- system_pricing_plans$data$plans
@@ -340,12 +340,12 @@ get_system_regions <- function (city, directory = "data", file = "system_regions
   url <- city_to_url(city)
   
   if (url != city) {
-    gbfs <- fromJSON(txt = url)
+    gbfs <- jsonlite::fromJSON(txt = url)
     gbfs_feeds <- gbfs$data$en$feeds
     if ("system_regions" %in% gbfs_feeds$name) {
       system_regions_feed <- gbfs_feeds %>%
-        select(url) %>%
-        filter(str_detect(url, "system_regions")) %>%
+        dplyr::select(url) %>%
+        dplyr::filter(stringr::str_detect(url, "system_regions")) %>%
         as.character()
     }
   }
@@ -354,7 +354,7 @@ get_system_regions <- function (city, directory = "data", file = "system_regions
   }
 
   # save feed
-  system_regions <- fromJSON(txt = system_regions_feed)
+  system_regions <- jsonlite::fromJSON(txt = system_regions_feed)
 
   # extract data, convert to df
   system_regions_data <- system_regions$data$regions

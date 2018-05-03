@@ -19,12 +19,12 @@ get_free_bike_status <- function(city, directory = "data", file = "free_bike_sta
   url <- city_to_url(city)
   
   if (url != city) {
-    gbfs <- fromJSON(txt = url)
+    gbfs <- jsonlite::fromJSON(txt = url)
     gbfs_feeds <- gbfs$data$en$feeds
     if ("free_bike_status" %in% gbfs_feeds$name) {
       free_bike_status_feed <- gbfs_feeds %>%
-        select(url) %>%
-        filter(str_detect(url, "free_bike_status")) %>%
+        dplyr::select(url) %>%
+        dplyr::filter(stringr::str_detect(url, "free_bike_status")) %>%
         as.character()
     }
   }
@@ -33,7 +33,7 @@ get_free_bike_status <- function(city, directory = "data", file = "free_bike_sta
   }
 
   #save feed
-  free_bike_status <- fromJSON(txt = free_bike_status_feed)
+  free_bike_status <- jsonlite::fromJSON(txt = free_bike_status_feed)
 
   #extract data, convert to df
   free_bike_status_data <- free_bike_status$data$bikes
@@ -99,11 +99,11 @@ get_station_status <- function(city, directory = "data", file = "station_status.
   url <- city_to_url(city)
   
   if (url != city) {
-    gbfs <- fromJSON(txt = url)
+    gbfs <- jsonlite::fromJSON(txt = url)
     gbfs_feeds <- gbfs$data$en$feeds
     station_status_feed <- gbfs_feeds %>%
-      select(url) %>%
-      filter(str_detect(url, "station_status")) %>%
+      dplyr::select(url) %>%
+      dplyr::filter(stringr::str_detect(url, "station_status")) %>%
       as.character()
   }
   else {
@@ -111,7 +111,7 @@ get_station_status <- function(city, directory = "data", file = "station_status.
   }
 
   #save feed
-  station_status <- fromJSON(txt = station_status_feed)
+  station_status <- jsonlite::fromJSON(txt = station_status_feed)
 
   #extract data, convert to df
   station_status_data <- station_status$data$stations
