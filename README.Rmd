@@ -1,0 +1,53 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+devtools::load_all()
+```
+
+# General Bikeshare Feed Specification - R Package
+
+The `gbfs` package supplies a set of functions to interface with General
+Bikeshare Feed Specification .json feeds in R, allowing users to save
+and accumulate tidy .rds datasets for specified cities/bikeshare programs.
+
+__Features__
+
+* Get bikeshare data by specifying city or supplying url of feed
+* All feeds for a city can be saved with a single function
+* New information from dynamic feeds can be appended to existing dataset
+
+## Installation
+
+You can install gbfs from github with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("ds-civic-data/gbfs")
+```
+
+## Example
+
+Here the function `get_gbfs()` is used to create a folder and save all existing
+gbfs .json feeds for Portland. Then `get_station_status()` is used to append the
+most recent version of the station status .json feed to the station status .rds
+dataset.
+
+```{r example}
+get_gbfs(city = "Portland", feeds = "all", directory = "pdx_gbfs")
+list.files("pdx_gbfs")
+station_status <- readRDS("pdx_gbfs/station_status.rds")
+head(station_status)
+nrow(station_status)
+get_station_status(city = "Portland", directory = "pdx_gbfs", file = "station_status.rds")
+station_status <- readRDS("pdx_gbfs/station_status.rds")
+nrow(station_status)
+```
