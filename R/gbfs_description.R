@@ -2,7 +2,9 @@
 #'
 #' General Bikeshare Feed Specification
 #'
-#' Description
+#' The `gbfs` package supplies a set of functions to interface with General
+#' Bikeshare Feed Specification .json feeds in R, allowing users to save
+#' and accumulate tidy .rds datasets for specified cities/bikeshare programs.
 #'
 #' @section gbfs Functions:
 #' get_gbfs(), get_free_bike_status(), get_station_information(),

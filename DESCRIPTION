@@ -1,13 +1,14 @@
 Package: gbfs
 Type: Package
-Title: Download General Bikeshare Feed Specification Files
+Title: Interface with General Bikeshare Feed Specification Files
 Version: 1.0.0
 Authors@R: c(
     person("Kaelyn", "Rosenberg", , "kaerosenberg@gmail.com", c("aut")),
     person("Simon P.", "Couch", , "simonpatrickcouch@gmail.com", c("aut", "cre")))
 Maintainer: Simon P. Couch <simonpatrickcouch@gmail.com>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: The `gbfs` package supplies a set of functions to interface with 
+    General Bikeshare Feed Specification .json feeds in R, allowing users to 
+    save and accumulate tidy .rds datasets for specified cities/bikeshare programs.
 License: CC0
 Imports:
     dplyr,
