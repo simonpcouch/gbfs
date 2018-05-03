@@ -5,17 +5,28 @@ city_to_url <- function(city) {
     url
   } else {
     #match string with a url
-    cities <- readr::read_csv("https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv") %>%
+    systems_cols <- cols(
+      `Country Code` = col_character(),
+      Name = col_character(),
+      Location = col_character(),
+      `System ID` = col_character(),
+      URL = col_character(),
+      `Auto-Discovery URL` = col_character()
+    )
+    
+    cities <- readr::read_csv("https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv",
+                              col_types = systems_cols) %>%
       dplyr::select(Name, Location, 'Auto-Discovery URL')
     city_index <- as.numeric(agrep(x = cities$Location, pattern = city), ignore.case = TRUE)
     url <- as.data.frame((cities)[city_index, 'Auto-Discovery URL'])
-    if (nrow(url) == 1) {
+    if (nrow(url) == 1) { 
       as.character(url)
     } else {
-      stop(sprintf("Several cities matched the string supplied. Consider supplying a url ending in gbfs.json"))
-    }
-  }
-}
+        if(nrow(url) > 1) {
+          stop(sprintf("Several cities matched the string supplied. Consider supplying a url ending in gbfs.json"))
+        } else {
+          stop(sprintf("No supported cities matched the string supplied. Consider supplying a url ending in gbfs.json"))
+    }}}}
 
 get_gbfs_feeds <- function(url) {
 
