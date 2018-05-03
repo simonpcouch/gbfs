@@ -2,22 +2,28 @@
 % Please edit documentation in R/get_dynamic_feeds.R
 \name{get_free_bike_status}
 \alias{get_free_bike_status}
-\title{Save the free_bike_status file as a .rds file.}
+\title{Save the free_bike_status feed.}
 \usage{
-get_free_bike_status(url, filepath = "data/free_bike_status.rds")
+get_free_bike_status(city, directory = "data",
+  file = "free_bike_status.rds")
 }
 \arguments{
-\item{url}{A link to an active free_bike_status .json feed.}
+\item{city}{A character string or a url to an active gbfs.json feed.}
 
-\item{filepath}{A connection or path to save the .rds to-- defaults to 
-"data/free_bike_status.rds"}
+\item{directory}{The name of an existing folder or folder to be created, where the feed will
+will be saved.}
+
+\item{file}{The name of an existing file or new file to be saved. Must end in .rds.}
 }
 \value{
-A .rds object generated from the current specified feed.
+A .rds object generated from the current free_bike_status feed.
 }
 \description{
-Save the free_bike_status file as a .rds file.
+If the specified file does not exist, \code{get_free_bike_status} saves the free_bike_status
+feed for a given city as a .rds object. If the specified file does exist, \code{get_free_bike_status}
+appends the current free_bike_status feed to the existing file.
 }
 \examples{
-get_free_bike_status(url = "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json")
+get_free_bike_status(city = "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json")
+get_free_bike_status(city = "Melbourne")
 }

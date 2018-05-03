@@ -2,22 +2,25 @@
 % Please edit documentation in R/get_static_feeds.R
 \name{get_system_calendar}
 \alias{get_system_calendar}
-\title{Save the system_calendar file as a .rds file.}
+\title{Save the system_calendar feed.}
 \usage{
-get_system_calendar(url, filepath = "data/system_calendar.rds")
+get_system_calendar(city, directory = "data", file = "system_calendar.rds")
 }
 \arguments{
-\item{url}{A link to an active system_calendar .json feed.}
+\item{city}{A character string or a url to an active gbfs.json feed.}
 
-\item{filepath}{A connection or path to save the .rds to-- defaults to 
-"data/system_calendar.rds"}
+\item{directory}{The name of an existing folder or folder to be created, where the feed will
+will be saved.}
+
+\item{file}{The name of the file to be saved. Must end in .rds.}
 }
 \value{
-A .rds object generated from the current specified feed.
+A .rds object generated from the current system_calendar feed.
 }
 \description{
-Save the system_calendar file as a .rds file.
+\code{get_system_calendar} saves the system_calendar feed for a given city as a .rds object.
 }
 \examples{
-get_system_calendar(url = "http://biketownpdx.socialbicycles.com/opendata/system_calendar.json")
+get_system_calendar(city = "http://biketownpdx.socialbicycles.com/opendata/system_calendar.json")
+get_system_calendar(city = "Tampa")
 }

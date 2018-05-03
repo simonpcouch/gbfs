@@ -2,22 +2,26 @@
 % Please edit documentation in R/get_static_feeds.R
 \name{get_system_pricing_plans}
 \alias{get_system_pricing_plans}
-\title{Save the system_pricing_plans file as a .rds file.}
+\title{Save the system_pricing_plans feed.}
 \usage{
-get_system_pricing_plans(url, filepath = "data/system_pricing_plans.rds")
+get_system_pricing_plans(city, directory = "data",
+  file = "system_pricing_plans.rds")
 }
 \arguments{
-\item{url}{A link to an active system_pricing_plans .json feed.}
+\item{city}{A character string or a url to an active gbfs.json feed.}
 
-\item{filepath}{A connection or path to save the .rds to-- defaults to 
-"data/system_pricing_plans.rds"}
+\item{directory}{The name of an existing folder or folder to be created, where the feed will
+will be saved.}
+
+\item{file}{The name of the file to be saved. Must end in .rds.}
 }
 \value{
-A .rds object generated from the current specified feed.
+A .rds object generated from the current system_pricing_plans feed.
 }
 \description{
-Save the system_pricing_plans file as a .rds file.
+\code{get_system_pricing_plans} saves the system_pricing_plans feed for a given city as a .rds object.
 }
 \examples{
-get_system_pricing_plans(url = "http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json")
+get_system_pricing_plans(city = "http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json")
+get_system_pricing_plans(city = "Houston")
 }

@@ -2,22 +2,25 @@
 % Please edit documentation in R/get_static_feeds.R
 \name{get_system_hours}
 \alias{get_system_hours}
-\title{Save the system_hours file as a .rds file.}
+\title{Save the system_hours feed.}
 \usage{
-get_system_hours(url, filepath = "data/system_hours.rds")
+get_system_hours(city, directory = "data", file = "system_hours.rds")
 }
 \arguments{
-\item{url}{A link to an active system_hours .json feed.}
+\item{city}{A character string or a url to an active gbfs.json feed.}
 
-\item{filepath}{A connection or path to save the .rds to-- defaults to 
-"data/system_hours.rds"}
+\item{directory}{The name of an existing folder or folder to be created, where the feed will
+will be saved.}
+
+\item{file}{The name of the file to be saved. Must end in .rds.}
 }
 \value{
-A .rds object generated from the current specified feed.
+A .rds object generated from the current system_hours feed.
 }
 \description{
-Save the system_hours file as a .rds file.
+\code{get_system_hours} saves the system_hours feed for a given city as a .rds object.
 }
 \examples{
-get_system_hours(url = "http://biketownpdx.socialbicycles.com/opendata/system_hours.json")
+get_system_hours(city = "http://biketownpdx.socialbicycles.com/opendata/system_hours.json")
+get_system_hours(city = "Phoenix")
 }

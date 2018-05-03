@@ -2,26 +2,28 @@
 % Please edit documentation in R/get_gbfs.R
 \name{get_gbfs}
 \alias{get_gbfs}
-\title{Save gbfs feeds to a user-specified directory.}
+\title{Save gbfs feeds.}
 \usage{
 get_gbfs(city, feeds = "all", directory = "gbfs_data")
 }
 \arguments{
-\item{city}{A character string or a url to an active gbfs.json feed}
+\item{city}{A character string or a url to an active gbfs.json feed.}
 
-\item{directory}{A link to an active station_information .json feed.}
+\item{feeds}{A character string specifying which feeds should be saved. Options are
+"all", "static", and "dynamic".}
 
-\item{filepath}{A folder to save the files to--defaults to "gbfs_data"}
+\item{directory}{The name of an existing folder or folder to be created, where the feeds
+will be saved.}
 }
 \value{
-A .rds object generated from the current specified feed.
+A folder containing the specified feeds saved as .rds objects.
 }
 \description{
-Save gbfs feeds to a user-specified directory.
+\code{get_gbfs} checks for the existence of gbfs feeds for a given city and saves the
+feeds as .rds objects in a directory that can be specified by the user.
 }
 \examples{
-get_gbfs(city = "topeka")
-get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json")
-get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json")
+get_gbfs(city = "boise")
+get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json", feeds = "dynamic")
 get_gbfs("https://gbfs.bcycle.com/bcycle_greenbikeslc/gbfs.json", directory = "slcbikes")
 }

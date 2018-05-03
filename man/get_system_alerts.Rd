@@ -2,22 +2,25 @@
 % Please edit documentation in R/get_static_feeds.R
 \name{get_system_alerts}
 \alias{get_system_alerts}
-\title{Save the system_alerts file as a .rds file.}
+\title{Save the system_alerts feed.}
 \usage{
-get_system_alerts(url, filepath = "data/system_alerts.rds")
+get_system_alerts(city, directory = "data", file = "system_alerts.rds")
 }
 \arguments{
-\item{url}{A link to an active system_alerts .json feed.}
+\item{city}{A character string or a url to an active gbfs.json feed.}
 
-\item{filepath}{A connection or path to save the .rds to-- defaults to 
-"data/system_alerts.rds"}
+\item{directory}{The name of an existing folder or folder to be created, where the feed will
+will be saved.}
+
+\item{file}{The name of the file to be saved. Must end in .rds.}
 }
 \value{
-A .rds object generated from the current specified feed.
+A .rds object generated from the current system_alerts feed.
 }
 \description{
-Save the system_alerts file as a .rds file.
+\code{get_system_alerts} saves the system_alerts feed for a given city as a .rds object.
 }
 \examples{
-get_system_alerts(url = "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json")
+get_system_alerts(city = "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json")
+get_system_alerts(city = "Santa Monica")
 }

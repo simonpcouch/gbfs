@@ -2,23 +2,27 @@
 % Please edit documentation in R/get_dynamic_feeds.R
 \name{get_station_status}
 \alias{get_station_status}
-\title{Save the station_status file as a .rds file.}
+\title{Save the station_status feed.}
 \usage{
-get_station_status(url, filepath = "data/station_status.rds",
-  cumulative = FALSE)
+get_station_status(city, directory = "data", file = "station_status.rds")
 }
 \arguments{
-\item{url}{A link to an active station_status .json feed.}
+\item{city}{A character string or a url to an active gbfs.json feed.}
 
-\item{filepath}{A connection or path to save the .rds to-- defaults to 
-"data/station_status.rds"}
+\item{directory}{The name of an existing folder or folder to be created, where the feed will
+will be saved.}
+
+\item{file}{The name of an existing file or new file to be saved. Must end in .rds.}
 }
 \value{
-A .rds object generated from the current specified feed.
+A .rds object generated from the current station_status feed.
 }
 \description{
-Save the station_status file as a .rds file.
+If the specified file does not exist, \code{get_station_status} saves the station_status
+feed for a given city as a .rds object. If the specified file does exist, \code{get_station_status}
+appends the current station_status feed to the existing file.
 }
 \examples{
-get_station_status(url = "http://biketownpdx.socialbicycles.com/opendata/station_status.json")
+get_station_status(city = "http://biketownpdx.socialbicycles.com/opendata/station_status.json")
+get_station_status(city = "Montreal")
 }

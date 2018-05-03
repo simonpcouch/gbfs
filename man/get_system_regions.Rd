@@ -2,22 +2,25 @@
 % Please edit documentation in R/get_static_feeds.R
 \name{get_system_regions}
 \alias{get_system_regions}
-\title{Save the system_regions file as a .rds file.}
+\title{Save the system_regions feed.}
 \usage{
-get_system_regions(url, filepath = "data/system_regions.rds")
+get_system_regions(city, directory = "data", file = "system_regions.rds")
 }
 \arguments{
-\item{url}{A link to an active system_regions .json feed.}
+\item{city}{A character string or a url to an active gbfs.json feed.}
 
-\item{filepath}{A connection or path to save the .rds to-- defaults to 
-"data/system_regions.rds"}
+\item{directory}{The name of an existing folder or folder to be created, where the feed will
+will be saved.}
+
+\item{file}{The name of the file to be saved. Must end in .rds.}
 }
 \value{
-A .rds object generated from the current specified feed.
+A .rds object generated from the current system_regions feed.
 }
 \description{
-Save the system_regions file as a .rds file.
+\code{get_system_regions} saves the system_regions feed for a given city as a .rds object.
 }
 \examples{
-get_system_regions(url = "http://biketownpdx.socialbicycles.com/opendata/system_regions.json")
+get_system_regions(city = "http://biketownpdx.socialbicycles.com/opendata/system_regions.json")
+get_system_regions(city = "Boston")
 }
