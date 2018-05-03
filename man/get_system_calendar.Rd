@@ -21,6 +21,7 @@ A .rds object generated from the current system_calendar feed.
 \code{get_system_calendar} saves the system_calendar feed for a given city as a .rds object.
 }
 \examples{
-get_system_calendar(city = "http://biketownpdx.socialbicycles.com/opendata/system_calendar.json")
+get_system_calendar(city = 
+"http://biketownpdx.socialbicycles.com/opendata/system_calendar.json")
 get_system_calendar(city = "Tampa")
 }

@@ -23,6 +23,7 @@ feed for a given city as a .rds object. If the specified file does exist, \code{
 appends the current station_status feed to the existing file.
 }
 \examples{
-get_station_status(city = "http://biketownpdx.socialbicycles.com/opendata/station_status.json")
+get_station_status(city = 
+"http://biketownpdx.socialbicycles.com/opendata/station_status.json")
 get_station_status(city = "Montreal")
 }

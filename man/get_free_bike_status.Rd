@@ -24,6 +24,7 @@ feed for a given city as a .rds object. If the specified file does exist, \code{
 appends the current free_bike_status feed to the existing file.
 }
 \examples{
-get_free_bike_status(city = "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json")
+get_free_bike_status(city = 
+"http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json")
 get_free_bike_status(city = "Melbourne")
 }

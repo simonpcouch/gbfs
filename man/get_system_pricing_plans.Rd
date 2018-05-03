@@ -22,6 +22,7 @@ A .rds object generated from the current system_pricing_plans feed.
 \code{get_system_pricing_plans} saves the system_pricing_plans feed for a given city as a .rds object.
 }
 \examples{
-get_system_pricing_plans(city = "http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json")
+get_system_pricing_plans(city = 
+"http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json")
 get_system_pricing_plans(city = "Houston")
 }

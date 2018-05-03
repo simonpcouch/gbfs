@@ -5,13 +5,13 @@ city_to_url <- function(city) {
     url
   } else {
     #match string with a url
-    systems_cols <- cols(
-      `Country Code` = col_character(),
-      Name = col_character(),
-      Location = col_character(),
-      `System ID` = col_character(),
-      URL = col_character(),
-      `Auto-Discovery URL` = col_character()
+    systems_cols <- readr::cols(
+      `Country Code` = readr::col_character(),
+      `Name` = readr::col_character(),
+      `Location` = readr::col_character(),
+      `System ID` = readr::col_character(),
+      `URL` = readr::col_character(),
+      `Auto-Discovery URL` = readr::col_character()
     )
     
     cities <- readr::read_csv("https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv",

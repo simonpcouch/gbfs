@@ -21,6 +21,7 @@ A .rds object generated from the current system_hours feed.
 \code{get_system_hours} saves the system_hours feed for a given city as a .rds object.
 }
 \examples{
-get_system_hours(city = "http://biketownpdx.socialbicycles.com/opendata/system_hours.json")
+get_system_hours(city = 
+"http://biketownpdx.socialbicycles.com/opendata/system_hours.json")
 get_system_hours(city = "Phoenix")
 }

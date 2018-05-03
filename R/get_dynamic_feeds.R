@@ -10,7 +10,8 @@
 #' @param file The name of an existing file or new file to be saved. Must end in .rds.
 #' @return A .rds object generated from the current free_bike_status feed.
 #' @examples
-#' get_free_bike_status(city = "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json")
+#' get_free_bike_status(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json")
 #' get_free_bike_status(city = "Melbourne")
 #' @export
 
@@ -49,7 +50,7 @@ get_free_bike_status <- function(city, directory = "data", file = "free_bike_sta
   #mutate columns for time of observation
   if (class(free_bike_status_data) == "data.frame") {
     free_bike_status_data <- free_bike_status_data %>%
-      mutate(last_updated = free_bike_status_last_updated,
+      dplyr::mutate(last_updated = free_bike_status_last_updated,
              year = lubridate::year(last_updated),
              month = lubridate::month(last_updated),
              day = lubridate::day(last_updated),
@@ -90,7 +91,8 @@ get_free_bike_status <- function(city, directory = "data", file = "free_bike_sta
 #' @param file The name of an existing file or new file to be saved. Must end in .rds.
 #' @return A .rds object generated from the current station_status feed.
 #' @examples
-#' get_station_status(city = "http://biketownpdx.socialbicycles.com/opendata/station_status.json")
+#' get_station_status(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/station_status.json")
 #' get_station_status(city = "Montreal")
 #' @export
 
@@ -130,11 +132,11 @@ get_station_status <- function(city, directory = "data", file = "station_status.
   station_status_data$is_returning <- as.logical(station_status_data$is_returning)
 
   #rename last_reported to last_updated for consistency between datasets
-  station_status_data <- rename(station_status_data, last_updated = last_reported)
+  station_status_data <- dplyr::rename(station_status_data, last_updated = last_reported)
 
   #mutate more useful columns from last_updated
   station_status_data <- station_status_data %>%
-    mutate(year = lubridate::year(last_updated),
+    dplyr::mutate(year = lubridate::year(last_updated),
            month = lubridate::month(last_updated),
            day = lubridate::day(last_updated),
            hour = lubridate::hour(last_updated),

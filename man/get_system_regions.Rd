@@ -21,6 +21,7 @@ A .rds object generated from the current system_regions feed.
 \code{get_system_regions} saves the system_regions feed for a given city as a .rds object.
 }
 \examples{
-get_system_regions(city = "http://biketownpdx.socialbicycles.com/opendata/system_regions.json")
+get_system_regions(city = 
+"http://biketownpdx.socialbicycles.com/opendata/system_regions.json")
 get_system_regions(city = "Boston")
 }

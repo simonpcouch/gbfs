@@ -22,6 +22,7 @@ A .rds object generated from the current station_information feed.
 \code{get_station_information} saves the station_information feed for a given city as a .rds object.
 }
 \examples{
-get_station_information(city = "http://biketownpdx.socialbicycles.com/opendata/station_information.json")
+get_station_information(city = 
+"http://biketownpdx.socialbicycles.com/opendata/station_information.json")
 get_station_information(city = "Battle Creek")
 }

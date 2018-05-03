@@ -22,6 +22,7 @@ A .rds object generated from the current system_information feed.
 \code{get_system_information} saves the system_information feed for a given city as a .rds object.
 }
 \examples{
-get_system_information(city = "http://biketownpdx.socialbicycles.com/opendata/system_information.json")
+get_system_information(city = 
+"http://biketownpdx.socialbicycles.com/opendata/system_information.json")
 get_system_information(city = "Omaha")
 }

@@ -21,6 +21,7 @@ A .rds object generated from the current system_alerts feed.
 \code{get_system_alerts} saves the system_alerts feed for a given city as a .rds object.
 }
 \examples{
-get_system_alerts(city = "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json")
+get_system_alerts(city = 
+"http://biketownpdx.socialbicycles.com/opendata/system_alerts.json")
 get_system_alerts(city = "Santa Monica")
 }
