@@ -4,7 +4,7 @@ author: "Simon P. Couch"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{KCMO Example}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -18,8 +18,8 @@ knitr::opts_chunk$set(
 
 In this example, we'll load `gbfs` into the environment and then explore some of the basic functionality of the package using Kansas City, Missouri's `B-Cycle` program as an example.
 
-```{r, eval = FALSE}
-library(gbfs)
+```{r}
+devtools::load_all()
 ```
 
 We'll start by using the `get_gbfs` function--this is generally a good starting place. `get_gbfs` can find and grab all of the feeds for a specified city and save them in a folder as tidy .rds datasets. For the `city` argument, supply `get_gbfs` with either the url to KCMO's gbfs.json file (at `https://gbfs.bcycle.com/bcycle_kc/gbfs.json`) or a character string with the name of the city. Here, we'll use the name of the city. Notice we did not supply an argument for `feeds`, so the function will default to grabbing all of the feeds that it finds exists.
@@ -35,7 +35,7 @@ dir("kc_bikeshare")
 Here, it looks like Kansas City, in addition to the required .json feeds, supplies `system_pricing_plans` and `system_regions`. The only 'dynamic' feed, (i.e. feed that changes regularly) supplied is the required `station_status`. Let's take a look at `station_status`.
 
 ```{r}
-station_status <- readRDS("~/bikeshare-1/vignettes/kc_bikeshare/station_status.rds")
+station_status <- readRDS("./kc_bikeshare/station_status.rds")
 
 str(station_status)
 
@@ -51,7 +51,7 @@ get_gbfs(city = "kansas city", directory = "kc_bikeshare", feeds = "dynamic")
 Reading the dataset in again and calling `nrow`, we can see that the number of rows doubled.
 
 ```{r}
-station_status <- readRDS("~/bikeshare-1/vignettes/kc_bikeshare/station_status.rds")
+station_status <- readRDS("./kc_bikeshare/station_status.rds")
 
 nrow(station_status)
 ```
