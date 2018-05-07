@@ -13,6 +13,8 @@ devtools::load_all()
 
 # General Bikeshare Feed Specification - R Package
 
+[![Travis-CI Build Status](https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master)](https://travis-ci.org/ds-civic-data/gbfs)
+
 The `gbfs` package supplies a set of functions to interface with General
 Bikeshare Feed Specification .json feeds in R, allowing users to save
 and accumulate tidy .rds datasets for specified cities/bikeshare programs.
