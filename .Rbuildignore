@@ -1,7 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-R/get_station_status_automation_attempt.R
-R/automate_ss.R
 cran-comments.Rmd
 cran-comments.md
 ^\.travis\.yml$
