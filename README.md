@@ -10,7 +10,7 @@ The `gbfs` package supplies a set of functions to interface with General Bikesha
 
 -   Get bikeshare data by specifying city or supplying url of feed
 -   All feeds for a city can be saved with a single function
--   New information from dynamic feeds can be appended to existing dataset
+-   New information from dynamic feeds can be appended to existing datasets
 
 Installation
 ------------
@@ -38,30 +38,30 @@ list.files("pdx_gbfs")
 station_status <- readRDS("pdx_gbfs/station_status.rds")
 head(station_status)
 #>   station_id num_bikes_available num_bikes_disabled num_docks_available
-#> 1   hub_1512                  13                  0                   3
+#> 1   hub_1512                   5                  0                  12
 #> 2   hub_1513                   3                  0                  15
-#> 3   hub_1514                   1                  0                  17
-#> 4   hub_1515                   9                  0                   9
+#> 3   hub_1514                   2                  0                  16
+#> 4   hub_1515                   8                  0                  10
 #> 5   hub_1516                  14                  0                   0
-#> 6   hub_1517                   4                  0                  10
+#> 6   hub_1517                   1                  0                  13
 #>   is_installed is_renting is_returning        last_updated year month day
-#> 1         TRUE       TRUE         TRUE 2018-05-07 13:53:10 2018     5   7
-#> 2         TRUE       TRUE         TRUE 2018-05-07 13:53:10 2018     5   7
-#> 3         TRUE       TRUE         TRUE 2018-05-07 13:53:10 2018     5   7
-#> 4         TRUE       TRUE         TRUE 2018-05-07 13:53:10 2018     5   7
-#> 5         TRUE       TRUE         TRUE 2018-05-07 13:53:10 2018     5   7
-#> 6         TRUE       TRUE         TRUE 2018-05-07 13:53:10 2018     5   7
+#> 1         TRUE       TRUE         TRUE 2018-05-07 16:14:36 2018     5   7
+#> 2         TRUE       TRUE         TRUE 2018-05-07 16:14:36 2018     5   7
+#> 3         TRUE       TRUE         TRUE 2018-05-07 16:14:36 2018     5   7
+#> 4         TRUE       TRUE         TRUE 2018-05-07 16:14:36 2018     5   7
+#> 5         TRUE       TRUE         TRUE 2018-05-07 16:14:36 2018     5   7
+#> 6         TRUE       TRUE         TRUE 2018-05-07 16:14:36 2018     5   7
 #>   hour minute
-#> 1   13     53
-#> 2   13     53
-#> 3   13     53
-#> 4   13     53
-#> 5   13     53
-#> 6   13     53
+#> 1   16     14
+#> 2   16     14
+#> 3   16     14
+#> 4   16     14
+#> 5   16     14
+#> 6   16     14
 nrow(station_status)
-#> [1] 369
+#> [1] 123
 get_station_status(city = "Portland", directory = "pdx_gbfs", file = "station_status.rds")
 station_status <- readRDS("pdx_gbfs/station_status.rds")
 nrow(station_status)
-#> [1] 492
+#> [1] 246
 ```

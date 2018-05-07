@@ -23,7 +23,7 @@ __Features__
 
 * Get bikeshare data by specifying city or supplying url of feed
 * All feeds for a city can be saved with a single function
-* New information from dynamic feeds can be appended to existing dataset
+* New information from dynamic feeds can be appended to existing datasets
 
 ## Installation
 
