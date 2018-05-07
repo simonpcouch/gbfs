@@ -19,7 +19,8 @@ will be saved.}
 A .rds object generated from the current system_pricing_plans feed.
 }
 \description{
-\code{get_system_pricing_plans} saves the system_pricing_plans feed for a given city as a .rds object.
+\code{get_system_pricing_plans} saves the system_pricing_plans feed for a given city as a .rds object. Go to 
+`https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 }
 \examples{
 get_system_pricing_plans(city = 

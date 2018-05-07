@@ -21,7 +21,8 @@ A .rds object generated from the current free_bike_status feed.
 \description{
 If the specified file does not exist, \code{get_free_bike_status} saves the free_bike_status
 feed for a given city as a .rds object. If the specified file does exist, \code{get_free_bike_status}
-appends the current free_bike_status feed to the existing file.
+appends the current free_bike_status feed to the existing file. Go to 
+`https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 }
 \examples{
 get_free_bike_status(city = 

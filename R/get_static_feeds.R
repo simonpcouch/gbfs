@@ -1,6 +1,8 @@
 #' Save the station_information feed.
 #' 
-#' \code{get_station_information} saves the station_information feed for a given city as a .rds object.
+#' \code{get_station_information} saves the station_information feed for a given city as 
+#' a .rds object. Go to `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see 
+#' metadata for this dataset.
 #' 
 #' @param city A character string or a url to an active gbfs.json feed.
 #' @param directory The name of an existing folder or folder to be created, where the feed will
@@ -58,7 +60,8 @@ get_station_information <- function(city, directory = "data", file = "station_in
 
 #' Save the system_alerts feed.
 #' 
-#' \code{get_system_alerts} saves the system_alerts feed for a given city as a .rds object.
+#' \code{get_system_alerts} saves the system_alerts feed for a given city as a .rds object. Go to 
+#' `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 #' 
 #' @param city A character string or a url to an active gbfs.json feed.
 #' @param directory The name of an existing folder or folder to be created, where the feed will
@@ -110,7 +113,8 @@ get_system_alerts <- function (city, directory = "data", file = "system_alerts.r
 
 #' Save the system_calendar feed.
 #' 
-#' \code{get_system_calendar} saves the system_calendar feed for a given city as a .rds object.
+#' \code{get_system_calendar} saves the system_calendar feed for a given city as a .rds object. Go to 
+#' `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 #' 
 #' @param city A character string or a url to an active gbfs.json feed.
 #' @param directory The name of an existing folder or folder to be created, where the feed will
@@ -166,7 +170,8 @@ get_system_calendar <- function (city, directory = "data", file = "system_calend
 
 #' Save the system_hours feed.
 #' 
-#' \code{get_system_hours} saves the system_hours feed for a given city as a .rds object.
+#' \code{get_system_hours} saves the system_hours feed for a given city as a .rds object. Go to 
+#' `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 #' 
 #' @param city A character string or a url to an active gbfs.json feed.
 #' @param directory The name of an existing folder or folder to be created, where the feed will
@@ -224,7 +229,8 @@ get_system_hours <- function (city, directory = "data", file = "system_hours.rds
 
 #' Save the system_information feed.
 #' 
-#' \code{get_system_information} saves the system_information feed for a given city as a .rds object.
+#' \code{get_system_information} saves the system_information feed for a given city as a .rds object. Go to 
+#' `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 #' 
 #' @param city A character string or a url to an active gbfs.json feed.
 #' @param directory The name of an existing folder or folder to be created, where the feed will
@@ -274,7 +280,8 @@ get_system_information <- function(city, directory = "data", file = "system_info
 
 #' Save the system_pricing_plans feed.
 #' 
-#' \code{get_system_pricing_plans} saves the system_pricing_plans feed for a given city as a .rds object.
+#' \code{get_system_pricing_plans} saves the system_pricing_plans feed for a given city as a .rds object. Go to 
+#' `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 #' 
 #' @param city A character string or a url to an active gbfs.json feed.
 #' @param directory The name of an existing folder or folder to be created, where the feed will
@@ -329,7 +336,8 @@ get_system_pricing_plans <- function(city, directory = "data", file = "system_pr
 
 #' Save the system_regions feed.
 #' 
-#' \code{get_system_regions} saves the system_regions feed for a given city as a .rds object.
+#' \code{get_system_regions} saves the system_regions feed for a given city as a .rds object. Go to 
+#' `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 #' 
 #' @param city A character string or a url to an active gbfs.json feed.
 #' @param directory The name of an existing folder or folder to be created, where the feed will

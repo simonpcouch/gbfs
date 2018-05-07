@@ -98,7 +98,8 @@ get_gbfs_feeds <- function(url) {
 #' Save gbfs feeds.
 #' 
 #' \code{get_gbfs} checks for the existence of gbfs feeds for a given city and saves the
-#' feeds as .rds objects in a directory that can be specified by the user.
+#' feeds as .rds objects in a directory that can be specified by the user. Go to 
+#' `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for each dataset.
 #' 
 #' @param city A character string or a url to an active gbfs.json feed.
 #' @param feeds A character string specifying which feeds should be saved. Options are

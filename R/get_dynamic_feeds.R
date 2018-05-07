@@ -2,7 +2,8 @@
 #' 
 #' If the specified file does not exist, \code{get_free_bike_status} saves the free_bike_status
 #' feed for a given city as a .rds object. If the specified file does exist, \code{get_free_bike_status}
-#' appends the current free_bike_status feed to the existing file.
+#' appends the current free_bike_status feed to the existing file. Go to 
+#' `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 #' 
 #' @param city A character string or a url to an active gbfs.json feed.
 #' @param directory The name of an existing folder or folder to be created, where the feed will
@@ -83,7 +84,8 @@ get_free_bike_status <- function(city, directory = "data", file = "free_bike_sta
 #' 
 #' If the specified file does not exist, \code{get_station_status} saves the station_status
 #' feed for a given city as a .rds object. If the specified file does exist, \code{get_station_status}
-#' appends the current station_status feed to the existing file.
+#' appends the current station_status feed to the existing file. Go to 
+#' `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 #' 
 #' @param city A character string or a url to an active gbfs.json feed.
 #' @param directory The name of an existing folder or folder to be created, where the feed will

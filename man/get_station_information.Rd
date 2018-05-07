@@ -19,7 +19,9 @@ will be saved.}
 A .rds object generated from the current station_information feed.
 }
 \description{
-\code{get_station_information} saves the station_information feed for a given city as a .rds object.
+\code{get_station_information} saves the station_information feed for a given city as 
+a .rds object. Go to `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see 
+metadata for this dataset.
 }
 \examples{
 get_station_information(city = 

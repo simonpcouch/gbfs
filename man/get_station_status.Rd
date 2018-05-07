@@ -20,7 +20,8 @@ A .rds object generated from the current station_status feed.
 \description{
 If the specified file does not exist, \code{get_station_status} saves the station_status
 feed for a given city as a .rds object. If the specified file does exist, \code{get_station_status}
-appends the current station_status feed to the existing file.
+appends the current station_status feed to the existing file. Go to 
+`https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 }
 \examples{
 get_station_status(city = 

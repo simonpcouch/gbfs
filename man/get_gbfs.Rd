@@ -20,7 +20,8 @@ A folder containing the specified feeds saved as .rds objects.
 }
 \description{
 \code{get_gbfs} checks for the existence of gbfs feeds for a given city and saves the
-feeds as .rds objects in a directory that can be specified by the user.
+feeds as .rds objects in a directory that can be specified by the user. Go to 
+`https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for each dataset.
 }
 \examples{
 get_gbfs(city = "boise")

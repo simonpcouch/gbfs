@@ -19,7 +19,8 @@ will be saved.}
 A .rds object generated from the current system_information feed.
 }
 \description{
-\code{get_system_information} saves the system_information feed for a given city as a .rds object.
+\code{get_system_information} saves the system_information feed for a given city as a .rds object. Go to 
+`https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 }
 \examples{
 get_system_information(city = 
