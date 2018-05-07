@@ -26,5 +26,5 @@ RoxygenNote: 6.0.1.9000
 Suggests: knitr,
     rmarkdown
 URL: https://github.com/ds-civic-data/gbfs
-BugReports: https://github.com/andrewpbray/ds-civic-data/gbfs/issues
+BugReports: https://github.com/ds-civic-data/gbfs/issues
 VignetteBuilder: knitr
