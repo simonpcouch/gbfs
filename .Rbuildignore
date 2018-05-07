@@ -3,6 +3,5 @@
 cran-comments.Rmd
 cran-comments.md
 ^\.travis\.yml$
-pdx_gbfs/
 docs/
 ^README.Rmd
