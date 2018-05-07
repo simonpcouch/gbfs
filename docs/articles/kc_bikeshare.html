@@ -102,29 +102,29 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">station_status &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">"./kc_bikeshare/station_status.rds"</span>)
 
 <span class="kw">str</span>(station_status)
-<span class="co">#&gt; 'data.frame':    210 obs. of  12 variables:</span>
+<span class="co">#&gt; 'data.frame':    294 obs. of  12 variables:</span>
 <span class="co">#&gt;  $ station_id         : chr  "bcycle_kc_2073" "bcycle_kc_2074" "bcycle_kc_2075" "bcycle_kc_2076" ...</span>
-<span class="co">#&gt;  $ num_bikes_available: int  5 5 4 7 9 4 9 8 6 5 ...</span>
-<span class="co">#&gt;  $ num_docks_available: int  6 4 10 7 6 6 5 4 5 6 ...</span>
+<span class="co">#&gt;  $ num_bikes_available: int  5 5 4 7 9 4 7 7 6 5 ...</span>
+<span class="co">#&gt;  $ num_docks_available: int  6 4 10 7 6 6 7 5 5 6 ...</span>
 <span class="co">#&gt;  $ is_installed       : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</span>
 <span class="co">#&gt;  $ is_renting         : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</span>
 <span class="co">#&gt;  $ is_returning       : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</span>
-<span class="co">#&gt;  $ last_updated       : POSIXct, format: "2018-05-07 15:15:33" "2018-05-07 15:15:33" ...</span>
+<span class="co">#&gt;  $ last_updated       : POSIXct, format: "2018-05-07 16:03:03" "2018-05-07 16:03:03" ...</span>
 <span class="co">#&gt;  $ year               : num  2018 2018 2018 2018 2018 ...</span>
 <span class="co">#&gt;  $ month              : num  5 5 5 5 5 5 5 5 5 5 ...</span>
 <span class="co">#&gt;  $ day                : int  7 7 7 7 7 7 7 7 7 7 ...</span>
-<span class="co">#&gt;  $ hour               : int  15 15 15 15 15 15 15 15 15 15 ...</span>
-<span class="co">#&gt;  $ minute             : int  15 15 15 15 15 15 15 15 15 15 ...</span>
+<span class="co">#&gt;  $ hour               : int  16 16 16 16 16 16 16 16 16 16 ...</span>
+<span class="co">#&gt;  $ minute             : int  3 3 3 3 3 3 3 3 3 3 ...</span>
 
 <span class="kw">nrow</span>(station_status)
-<span class="co">#&gt; [1] 210</span></code></pre></div>
+<span class="co">#&gt; [1] 294</span></code></pre></div>
 <p>Here, we see that there are currently 42 rows in station status. There are also plenty of interesting columns, such as the station ID, the number of bikes available currently, etc. As I write this, a few minutes have passed since I called <code>get_gbfs</code>. We can now call <code>get_gbfs</code> again, with slightly different arguments, so that we can append rows to the <code>station_status</code> dataset but keep the static files unchanged.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_gbfs.html">get_gbfs</a></span>(<span class="dt">city =</span> <span class="st">"kansas city"</span>, <span class="dt">directory =</span> <span class="st">"kc_bikeshare"</span>, <span class="dt">feeds =</span> <span class="st">"dynamic"</span>)</code></pre></div>
 <p>Reading the dataset in again and calling <code>nrow</code>, we can see that the number of rows doubled.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">station_status &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">"./kc_bikeshare/station_status.rds"</span>)
 
 <span class="kw">nrow</span>(station_status)
-<span class="co">#&gt; [1] 252</span></code></pre></div>
+<span class="co">#&gt; [1] 336</span></code></pre></div>
 <p>In the dataset, there are now two entries for each station—running this function many times over time could allow for the tracking of many interesting variables of time. In a few lines, there is already plenty to explore.</p>
 <p>In combination with cron or task scheduler, depending on your operating system, this set of functions can be used to quickly build up informative datasets about bikeshare programs in a user’s town of interest.</p>
   </div>
