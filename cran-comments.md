@@ -17,3 +17,12 @@ Downstream dependencies
 -----------------------
 
 There are currently no downstream dependencies for this package.
+
+Resubmission
+------------
+
+This is a resubmission. In this version we have:
+
+-   Modified the DESCRIPTION to not begin with "This package."
+
+-   Ensured that functions do not write by default or in examples/vignettes in the user's home filespace, writing to tempdir() instead.
