@@ -24,7 +24,7 @@ appends the current station_status feed to the existing file. Go to
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 }
 \examples{
-get_station_status(city = 
-"http://biketownpdx.socialbicycles.com/opendata/station_status.json")
-get_station_status(city = "kansas city", directory = "kc_gbfs")
+\donttest{get_station_status(city = 
+"http://biketownpdx.socialbicycles.com/opendata/station_status.json")}
+\donttest{get_station_status(city = "kansas city", directory = "kc_gbfs")}
 }

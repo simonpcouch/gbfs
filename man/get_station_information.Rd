@@ -24,7 +24,7 @@ a .rds object. Go to `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see
 metadata for this dataset.
 }
 \examples{
-get_station_information(city = 
-"http://biketownpdx.socialbicycles.com/opendata/station_information.json")
-get_station_information(city = "Battle Creek")
+\donttest{get_station_information(city = 
+"http://biketownpdx.socialbicycles.com/opendata/station_information.json")}
+\donttest{get_station_information(city = "Battle Creek")}
 }

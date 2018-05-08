@@ -11,9 +11,9 @@
 #' @param file The name of an existing file or new file to be saved. Must end in .rds.
 #' @return A .rds object generated from the current free_bike_status feed.
 #' @examples
-#' get_free_bike_status(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json")
-#' get_free_bike_status(city = "Melbourne")
+#' \donttest{get_free_bike_status(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json")}
+#' \donttest{get_free_bike_status(city = "Melbourne")}
 #' @export
 
 get_free_bike_status <- function(city, directory = "data", file = "free_bike_status.rds") {
@@ -93,9 +93,9 @@ get_free_bike_status <- function(city, directory = "data", file = "free_bike_sta
 #' @param file The name of an existing file or new file to be saved. Must end in .rds.
 #' @return A .rds object generated from the current station_status feed.
 #' @examples
-#' get_station_status(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/station_status.json")
-#' get_station_status(city = "kansas city", directory = "kc_gbfs")
+#' \donttest{get_station_status(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/station_status.json")}
+#' \donttest{get_station_status(city = "kansas city", directory = "kc_gbfs")}
 #' @export
 
 get_station_status <- function(city, directory = "data", file = "station_status.rds") {

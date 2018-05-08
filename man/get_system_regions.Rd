@@ -22,7 +22,7 @@ A .rds object generated from the current system_regions feed.
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 }
 \examples{
-get_system_regions(city = 
-"http://biketownpdx.socialbicycles.com/opendata/system_regions.json")
-get_system_regions(city = "Boston")
+\donttest{get_system_regions(city = 
+"http://biketownpdx.socialbicycles.com/opendata/system_regions.json")}
+\donttest{get_system_regions(city = "Boston")}
 }

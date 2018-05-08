@@ -10,9 +10,9 @@
 #' @param file The name of the file to be saved. Must end in .rds.
 #' @return A .rds object generated from the current station_information feed.
 #' @examples
-#' get_station_information(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/station_information.json")
-#' get_station_information(city = "Battle Creek")
+#' \donttest{get_station_information(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/station_information.json")}
+#' \donttest{get_station_information(city = "Battle Creek")}
 #' @export
 
 get_station_information <- function(city, directory = "data", file = "station_information.rds") {
@@ -69,9 +69,9 @@ get_station_information <- function(city, directory = "data", file = "station_in
 #' @param file The name of the file to be saved. Must end in .rds.
 #' @return A .rds object generated from the current system_alerts feed.
 #' @examples
-#' get_system_alerts(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json")
-#' get_system_alerts(city = "Santa Monica")
+#' \donttest{get_system_alerts(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json")}
+#' \donttest{get_system_alerts(city = "Santa Monica")}
 #' @export
 
 get_system_alerts <- function (city, directory = "data", file = "system_alerts.rds") {
@@ -122,9 +122,9 @@ get_system_alerts <- function (city, directory = "data", file = "system_alerts.r
 #' @param file The name of the file to be saved. Must end in .rds.
 #' @return A .rds object generated from the current system_calendar feed.
 #' @examples
-#' get_system_calendar(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/system_calendar.json")
-#' get_system_calendar(city = "Tampa")
+#' \donttest{get_system_calendar(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/system_calendar.json")}
+#' \donttest{get_system_calendar(city = "Tampa")}
 #' @export
 
 get_system_calendar <- function (city, directory = "data", file = "system_calendar.rds") {
@@ -179,9 +179,9 @@ get_system_calendar <- function (city, directory = "data", file = "system_calend
 #' @param file The name of the file to be saved. Must end in .rds.
 #' @return A .rds object generated from the current system_hours feed.
 #' @examples
-#' get_system_hours(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/system_hours.json")
-#' get_system_hours(city = "Phoenix")
+#' \donttest{get_system_hours(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/system_hours.json")}
+#' \donttest{get_system_hours(city = "Phoenix")}
 #' @export
 
 get_system_hours <- function (city, directory = "data", file = "system_hours.rds") {
@@ -238,9 +238,9 @@ get_system_hours <- function (city, directory = "data", file = "system_hours.rds
 #' @param file The name of the file to be saved. Must end in .rds.
 #' @return A .rds object generated from the current system_information feed.
 #' @examples
-#' get_system_information(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/system_information.json")
-#' get_system_information(city = "Omaha")
+#' \donttest{get_system_information(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/system_information.json")}
+#' \donttest{get_system_information(city = "Omaha")}
 #' @export
 
 get_system_information <- function(city, directory = "data", file = "system_information.rds"){
@@ -289,9 +289,9 @@ get_system_information <- function(city, directory = "data", file = "system_info
 #' @param file The name of the file to be saved. Must end in .rds.
 #' @return A .rds object generated from the current system_pricing_plans feed.
 #' @examples
-#' get_system_pricing_plans(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json")
-#' get_system_pricing_plans(city = "Houston")
+#' \donttest{get_system_pricing_plans(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json")}
+#' \donttest{get_system_pricing_plans(city = "Houston")}
 #' @export
 
 get_system_pricing_plans <- function(city, directory = "data", file = "system_pricing_plans.rds") {
@@ -345,9 +345,9 @@ get_system_pricing_plans <- function(city, directory = "data", file = "system_pr
 #' @param file The name of the file to be saved. Must end in .rds.
 #' @return A .rds object generated from the current system_regions feed.
 #' @examples
-#' get_system_regions(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/system_regions.json")
-#' get_system_regions(city = "Boston")
+#' \donttest{get_system_regions(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/system_regions.json")}
+#' \donttest{get_system_regions(city = "Boston")}
 #' @export
 
 get_system_regions <- function (city, directory = "data", file = "system_regions.rds") {

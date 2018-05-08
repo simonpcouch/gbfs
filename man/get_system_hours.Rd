@@ -22,7 +22,7 @@ A .rds object generated from the current system_hours feed.
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 }
 \examples{
-get_system_hours(city = 
-"http://biketownpdx.socialbicycles.com/opendata/system_hours.json")
-get_system_hours(city = "Phoenix")
+\donttest{get_system_hours(city = 
+"http://biketownpdx.socialbicycles.com/opendata/system_hours.json")}
+\donttest{get_system_hours(city = "Phoenix")}
 }

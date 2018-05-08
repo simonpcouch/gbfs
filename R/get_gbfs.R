@@ -107,10 +107,11 @@ get_gbfs_feeds <- function(url) {
 #' @param directory The name of an existing folder or folder to be created, where the feeds
 #'   will be saved.
 #' @return A folder containing the specified feeds saved as .rds objects.
+#' 
 #' @examples
-#' get_gbfs(city = "boise")
-#' get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json", feeds = "dynamic")
-#' get_gbfs("https://gbfs.bcycle.com/bcycle_greenbikeslc/gbfs.json", directory = "slcbikes")
+#' \donttest{get_gbfs(city = "boise")}
+#' \donttest{get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json", feeds = "dynamic")}
+#' \donttest{get_gbfs("https://gbfs.bcycle.com/bcycle_greenbikeslc/gbfs.json", directory = "slcbikes")}
 #' @export
 
 get_gbfs <- function(city, feeds = "all", directory = "gbfs_data") {

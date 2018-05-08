@@ -22,7 +22,7 @@ A .rds object generated from the current system_alerts feed.
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 }
 \examples{
-get_system_alerts(city = 
-"http://biketownpdx.socialbicycles.com/opendata/system_alerts.json")
-get_system_alerts(city = "Santa Monica")
+\donttest{get_system_alerts(city = 
+"http://biketownpdx.socialbicycles.com/opendata/system_alerts.json")}
+\donttest{get_system_alerts(city = "Santa Monica")}
 }

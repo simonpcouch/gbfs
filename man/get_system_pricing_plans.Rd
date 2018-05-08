@@ -23,7 +23,7 @@ A .rds object generated from the current system_pricing_plans feed.
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 }
 \examples{
-get_system_pricing_plans(city = 
-"http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json")
-get_system_pricing_plans(city = "Houston")
+\donttest{get_system_pricing_plans(city = 
+"http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json")}
+\donttest{get_system_pricing_plans(city = "Houston")}
 }

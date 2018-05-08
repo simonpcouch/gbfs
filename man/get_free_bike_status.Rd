@@ -25,7 +25,7 @@ appends the current free_bike_status feed to the existing file. Go to
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 }
 \examples{
-get_free_bike_status(city = 
-"http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json")
-get_free_bike_status(city = "Melbourne")
+\donttest{get_free_bike_status(city = 
+"http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json")}
+\donttest{get_free_bike_status(city = "Melbourne")}
 }
