@@ -4,8 +4,7 @@
 \alias{get_system_information}
 \title{Save the system_information feed.}
 \usage{
-get_system_information(city, directory = "data",
-  file = "system_information.rds")
+get_system_information(city, directory, file = "system_information.rds")
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed.}
@@ -24,6 +23,6 @@ A .rds object generated from the current system_information feed.
 }
 \examples{
 \donttest{get_system_information(city = 
-"http://biketownpdx.socialbicycles.com/opendata/system_information.json")}
-\donttest{get_system_information(city = "Omaha")}
+"http://biketownpdx.socialbicycles.com/opendata/system_information.json", directory = tempdir())}
+\donttest{get_system_information(city = "Omaha",  directory = tempdir())}
 }

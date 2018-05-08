@@ -41,13 +41,15 @@ gbfs .json feeds for Portland. Then `get_station_status()` is used to append the
 most recent version of the station status .json feed to the station status .rds
 dataset.
 
+Note: Throughout this example I use a temporary directory by calling `withr::with_dir(tempdir(), ...)` as the codes are examples. In real life, we would skip the temporary directory stuff; just focus on the `...` for the purpose of this tutorial.
+
 ```{r example}
-get_gbfs(city = "Portland", feeds = "all", directory = "pdx_gbfs")
-list.files("pdx_gbfs")
-station_status <- readRDS("pdx_gbfs/station_status.rds")
+withr::with_dir(tempdir(), get_gbfs(city = "Portland", feeds = "all", directory = "pdx_gbfs"))
+withr::with_dir(tempdir(), list.files("pdx_gbfs"))
+station_status <- withr::with_dir(tempdir(), readRDS("pdx_gbfs/station_status.rds"))
 head(station_status)
 nrow(station_status)
-get_station_status(city = "Portland", directory = "pdx_gbfs", file = "station_status.rds")
-station_status <- readRDS("pdx_gbfs/station_status.rds")
+withr::with_dir(tempdir(), get_station_status(city = "Portland", directory = "pdx_gbfs", file = "station_status.rds"))
+station_status <- withr::with_dir(tempdir(), readRDS("pdx_gbfs/station_status.rds"))
 nrow(station_status)
 ```

@@ -4,8 +4,7 @@
 \alias{get_system_pricing_plans}
 \title{Save the system_pricing_plans feed.}
 \usage{
-get_system_pricing_plans(city, directory = "data",
-  file = "system_pricing_plans.rds")
+get_system_pricing_plans(city, directory, file = "system_pricing_plans.rds")
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed.}
@@ -24,6 +23,6 @@ A .rds object generated from the current system_pricing_plans feed.
 }
 \examples{
 \donttest{get_system_pricing_plans(city = 
-"http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json")}
-\donttest{get_system_pricing_plans(city = "Houston")}
+"http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json", directory = tempdir())}
+\donttest{get_system_pricing_plans(city = "Houston", directory = tempdir())}
 }

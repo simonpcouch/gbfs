@@ -4,8 +4,7 @@
 \alias{get_station_information}
 \title{Save the station_information feed.}
 \usage{
-get_station_information(city, directory = "data",
-  file = "station_information.rds")
+get_station_information(city, directory, file = "station_information.rds")
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed.}
@@ -25,6 +24,6 @@ metadata for this dataset.
 }
 \examples{
 \donttest{get_station_information(city = 
-"http://biketownpdx.socialbicycles.com/opendata/station_information.json")}
-\donttest{get_station_information(city = "Battle Creek")}
+"http://biketownpdx.socialbicycles.com/opendata/station_information.json",  directory = tempdir())}
+\donttest{get_station_information(city = "Battle Creek",  directory = tempdir())}
 }

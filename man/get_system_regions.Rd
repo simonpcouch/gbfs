@@ -4,7 +4,7 @@
 \alias{get_system_regions}
 \title{Save the system_regions feed.}
 \usage{
-get_system_regions(city, directory = "data", file = "system_regions.rds")
+get_system_regions(city, directory, file = "system_regions.rds")
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed.}
@@ -23,6 +23,6 @@ A .rds object generated from the current system_regions feed.
 }
 \examples{
 \donttest{get_system_regions(city = 
-"http://biketownpdx.socialbicycles.com/opendata/system_regions.json")}
-\donttest{get_system_regions(city = "Boston")}
+"http://biketownpdx.socialbicycles.com/opendata/system_regions.json", directory = tempdir())}
+\donttest{get_system_regions(city = "Boston", directory = tempdir())}
 }

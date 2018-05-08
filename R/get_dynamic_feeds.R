@@ -12,8 +12,8 @@
 #' @return A .rds object generated from the current free_bike_status feed.
 #' @examples
 #' \donttest{get_free_bike_status(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json")}
-#' \donttest{get_free_bike_status(city = "Melbourne")}
+#' "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json", directory = tempdir())}
+#' \donttest{get_free_bike_status(city = "Melbourne", directory = tempdir())}
 #' @export
 
 get_free_bike_status <- function(city, directory, file = "free_bike_status.rds") {
@@ -94,8 +94,8 @@ get_free_bike_status <- function(city, directory, file = "free_bike_status.rds")
 #' @return A .rds object generated from the current station_status feed.
 #' @examples
 #' \donttest{get_station_status(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/station_status.json")}
-#' \donttest{get_station_status(city = "kansas city", directory = "kc_gbfs")}
+#' "http://biketownpdx.socialbicycles.com/opendata/station_status.json", directory = tempdir())}
+#' \donttest{get_station_status(city = "kansas city", directory = tempdir())}
 #' @export
 
 get_station_status <- function(city, directory, file = "station_status.rds") {

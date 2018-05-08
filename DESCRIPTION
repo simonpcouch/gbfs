@@ -18,7 +18,8 @@ Imports:
     roxygen2,
     testthat,
     lubridate,
-    utils
+    utils,
+    withr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1.9000

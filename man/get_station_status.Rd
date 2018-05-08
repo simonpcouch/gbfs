@@ -4,7 +4,7 @@
 \alias{get_station_status}
 \title{Save the station_status feed.}
 \usage{
-get_station_status(city, directory = "data", file = "station_status.rds")
+get_station_status(city, directory, file = "station_status.rds")
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed.}
@@ -25,6 +25,6 @@ appends the current station_status feed to the existing file. Go to
 }
 \examples{
 \donttest{get_station_status(city = 
-"http://biketownpdx.socialbicycles.com/opendata/station_status.json")}
-\donttest{get_station_status(city = "kansas city", directory = "kc_gbfs")}
+"http://biketownpdx.socialbicycles.com/opendata/station_status.json", directory = tempdir())}
+\donttest{get_station_status(city = "kansas city", directory = tempdir())}
 }

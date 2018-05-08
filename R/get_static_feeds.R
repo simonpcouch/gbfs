@@ -11,8 +11,8 @@
 #' @return A .rds object generated from the current station_information feed.
 #' @examples
 #' \donttest{get_station_information(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/station_information.json")}
-#' \donttest{get_station_information(city = "Battle Creek")}
+#' "http://biketownpdx.socialbicycles.com/opendata/station_information.json",  directory = tempdir())}
+#' \donttest{get_station_information(city = "Battle Creek",  directory = tempdir())}
 #' @export
 
 get_station_information <- function(city, directory, file = "station_information.rds") {
@@ -70,8 +70,8 @@ get_station_information <- function(city, directory, file = "station_information
 #' @return A .rds object generated from the current system_alerts feed.
 #' @examples
 #' \donttest{get_system_alerts(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json")}
-#' \donttest{get_system_alerts(city = "Santa Monica")}
+#' "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json", directory = tempdir())}
+#' \donttest{get_system_alerts(city = "Santa Monica", directory = tempdir())}
 #' @export
 
 get_system_alerts <- function (city, directory, file = "system_alerts.rds") {
@@ -123,8 +123,8 @@ get_system_alerts <- function (city, directory, file = "system_alerts.rds") {
 #' @return A .rds object generated from the current system_calendar feed.
 #' @examples
 #' \donttest{get_system_calendar(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/system_calendar.json")}
-#' \donttest{get_system_calendar(city = "Tampa")}
+#' "http://biketownpdx.socialbicycles.com/opendata/system_calendar.json", directory = tempdir())}
+#' \donttest{get_system_calendar(city = "Tampa", directory = tempdir())}
 #' @export
 
 get_system_calendar <- function (city, directory, file = "system_calendar.rds") {
@@ -180,8 +180,8 @@ get_system_calendar <- function (city, directory, file = "system_calendar.rds") 
 #' @return A .rds object generated from the current system_hours feed.
 #' @examples
 #' \donttest{get_system_hours(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/system_hours.json")}
-#' \donttest{get_system_hours(city = "Phoenix")}
+#' "http://biketownpdx.socialbicycles.com/opendata/system_hours.json", directory = tempdir())}
+#' \donttest{get_system_hours(city = "Phoenix", directory = tempdir())}
 #' @export
 
 get_system_hours <- function (city, directory, file = "system_hours.rds") {
@@ -239,8 +239,8 @@ get_system_hours <- function (city, directory, file = "system_hours.rds") {
 #' @return A .rds object generated from the current system_information feed.
 #' @examples
 #' \donttest{get_system_information(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/system_information.json")}
-#' \donttest{get_system_information(city = "Omaha")}
+#' "http://biketownpdx.socialbicycles.com/opendata/system_information.json", directory = tempdir())}
+#' \donttest{get_system_information(city = "Omaha",  directory = tempdir())}
 #' @export
 
 get_system_information <- function(city, directory, file = "system_information.rds"){
@@ -290,8 +290,8 @@ get_system_information <- function(city, directory, file = "system_information.r
 #' @return A .rds object generated from the current system_pricing_plans feed.
 #' @examples
 #' \donttest{get_system_pricing_plans(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json")}
-#' \donttest{get_system_pricing_plans(city = "Houston")}
+#' "http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json", directory = tempdir())}
+#' \donttest{get_system_pricing_plans(city = "Houston", directory = tempdir())}
 #' @export
 
 get_system_pricing_plans <- function(city, directory, file = "system_pricing_plans.rds") {
@@ -346,8 +346,8 @@ get_system_pricing_plans <- function(city, directory, file = "system_pricing_pla
 #' @return A .rds object generated from the current system_regions feed.
 #' @examples
 #' \donttest{get_system_regions(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/system_regions.json")}
-#' \donttest{get_system_regions(city = "Boston")}
+#' "http://biketownpdx.socialbicycles.com/opendata/system_regions.json", directory = tempdir())}
+#' \donttest{get_system_regions(city = "Boston", directory = tempdir())}
 #' @export
 
 get_system_regions <- function (city, directory, file = "system_regions.rds") {

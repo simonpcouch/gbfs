@@ -31,7 +31,6 @@ city_to_url <- function(city) {
 
 get_gbfs_feeds <- function(url) {
 
-  #test url: "http://biketownpdx.socialbicycles.com/opendata/gbfs.json"
   gbfs <- jsonlite::fromJSON(txt = url)
 
   feeds <- gbfs$data$en$feeds
@@ -109,9 +108,11 @@ get_gbfs_feeds <- function(url) {
 #' @return A folder containing the specified feeds saved as .rds objects.
 #' 
 #' @examples
-#' \donttest{get_gbfs(city = "boise")}
-#' \donttest{get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json", feeds = "dynamic")}
-#' \donttest{get_gbfs("https://gbfs.bcycle.com/bcycle_greenbikeslc/gbfs.json", directory = "slcbikes")}
+#' \donttest{get_gbfs(city = "boise", directory = tempdir())}
+#' \donttest{get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json", 
+#' feeds = "dynamic",  directory = tempdir())}
+#' \donttest{get_gbfs("https://gbfs.bcycle.com/bcycle_greenbikeslc/gbfs.json", 
+#' directory = "slcbikes",  directory = tempdir())}
 #' @export
 
 get_gbfs <- function(city, feeds = "all", directory) {

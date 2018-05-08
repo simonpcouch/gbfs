@@ -4,7 +4,7 @@
 \alias{get_system_hours}
 \title{Save the system_hours feed.}
 \usage{
-get_system_hours(city, directory = "data", file = "system_hours.rds")
+get_system_hours(city, directory, file = "system_hours.rds")
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed.}
@@ -23,6 +23,6 @@ A .rds object generated from the current system_hours feed.
 }
 \examples{
 \donttest{get_system_hours(city = 
-"http://biketownpdx.socialbicycles.com/opendata/system_hours.json")}
-\donttest{get_system_hours(city = "Phoenix")}
+"http://biketownpdx.socialbicycles.com/opendata/system_hours.json", directory = tempdir())}
+\donttest{get_system_hours(city = "Phoenix", directory = tempdir())}
 }

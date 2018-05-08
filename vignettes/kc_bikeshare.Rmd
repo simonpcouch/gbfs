@@ -22,21 +22,25 @@ In this example, we'll load `gbfs` into the environment and then explore some of
 devtools::load_all()
 ```
 
+Note: Throughout this vignette I use a temporary directory by calling `withr::with_dir(tempdir(), ...)` as this is a vignette and the codes are examples. In real life, we would skip the temporary directory stuff; just focus on the `...` for the purpose of this tutorial.
+
 We'll start by using the `get_gbfs` function--this is generally a good starting place. `get_gbfs` can find and grab all of the feeds for a specified city and save them in a folder as tidy .rds datasets. For the `city` argument, supply `get_gbfs` with either the url to KCMO's gbfs.json file (at `https://gbfs.bcycle.com/bcycle_kc/gbfs.json`) or a character string with the name of the city. Here, we'll use the name of the city. Notice we did not supply an argument for `feeds`, so the function will default to grabbing all of the feeds that it finds exists.
 
 ```{r}
-get_gbfs(city = "kansas city", directory = "kc_bikeshare")
+withr::with_dir(tempdir(), get_gbfs(city = "kansas city", directory = "kc_bikeshare"))
 ```
 
 ```{r}
-dir("kc_bikeshare")
+withr::with_dir(tempdir(), dir("kc_bikeshare"))
 ```
 
 Here, it looks like Kansas City, in addition to the required .json feeds, supplies `system_pricing_plans` and `system_regions`. The only 'dynamic' feed, (i.e. feed that changes regularly) supplied is the required `station_status`. Let's take a look at `station_status`.
 
-```{r}
-station_status <- readRDS("./kc_bikeshare/station_status.rds")
+```{r, echo = FALSE}
+station_status <- withr::with_dir(tempdir(), readRDS("./kc_bikeshare/station_status.rds"))
+```
 
+```{r}
 str(station_status)
 
 nrow(station_status)
@@ -45,13 +49,15 @@ nrow(station_status)
 Here, we see that there are currently 42 rows in station status. There are also plenty of interesting columns, such as the station ID, the number of bikes available currently, etc. As I write this, a few minutes have passed since I called `get_gbfs`. We can now call `get_gbfs` again, with slightly different arguments, so that we can append rows to the `station_status` dataset but keep the static files unchanged.
 
 ```{r}
-get_gbfs(city = "kansas city", directory = "kc_bikeshare", feeds = "dynamic")
+withr::with_dir(tempdir(), get_gbfs(city = "kansas city", 
+                                    directory = "kc_bikeshare", 
+                                    feeds = "dynamic"))
 ```
 
 Reading the dataset in again and calling `nrow`, we can see that the number of rows doubled.
 
 ```{r}
-station_status <- readRDS("./kc_bikeshare/station_status.rds")
+station_status <- withr::with_dir(tempdir(), readRDS("./kc_bikeshare/station_status.rds"))
 
 nrow(station_status)
 ```

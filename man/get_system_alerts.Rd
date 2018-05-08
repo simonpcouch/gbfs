@@ -4,7 +4,7 @@
 \alias{get_system_alerts}
 \title{Save the system_alerts feed.}
 \usage{
-get_system_alerts(city, directory = "data", file = "system_alerts.rds")
+get_system_alerts(city, directory, file = "system_alerts.rds")
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed.}
@@ -23,6 +23,6 @@ A .rds object generated from the current system_alerts feed.
 }
 \examples{
 \donttest{get_system_alerts(city = 
-"http://biketownpdx.socialbicycles.com/opendata/system_alerts.json")}
-\donttest{get_system_alerts(city = "Santa Monica")}
+"http://biketownpdx.socialbicycles.com/opendata/system_alerts.json", directory = tempdir())}
+\donttest{get_system_alerts(city = "Santa Monica", directory = tempdir())}
 }

@@ -4,7 +4,7 @@
 \alias{get_system_calendar}
 \title{Save the system_calendar feed.}
 \usage{
-get_system_calendar(city, directory = "data", file = "system_calendar.rds")
+get_system_calendar(city, directory, file = "system_calendar.rds")
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed.}
@@ -23,6 +23,6 @@ A .rds object generated from the current system_calendar feed.
 }
 \examples{
 \donttest{get_system_calendar(city = 
-"http://biketownpdx.socialbicycles.com/opendata/system_calendar.json")}
-\donttest{get_system_calendar(city = "Tampa")}
+"http://biketownpdx.socialbicycles.com/opendata/system_calendar.json", directory = tempdir())}
+\donttest{get_system_calendar(city = "Tampa", directory = tempdir())}
 }

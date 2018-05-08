@@ -4,7 +4,7 @@
 \alias{get_gbfs}
 \title{Save gbfs feeds.}
 \usage{
-get_gbfs(city, feeds = "all", directory = "gbfs_data")
+get_gbfs(city, feeds = "all", directory)
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed.}
@@ -24,7 +24,9 @@ feeds as .rds objects in a directory that can be specified by the user. Go to
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for each dataset.
 }
 \examples{
-\donttest{get_gbfs(city = "boise")}
-\donttest{get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json", feeds = "dynamic")}
-\donttest{get_gbfs("https://gbfs.bcycle.com/bcycle_greenbikeslc/gbfs.json", directory = "slcbikes")}
+\donttest{get_gbfs(city = "boise", directory = tempdir())}
+\donttest{get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json", 
+feeds = "dynamic",  directory = tempdir())}
+\donttest{get_gbfs("https://gbfs.bcycle.com/bcycle_greenbikeslc/gbfs.json", 
+directory = "slcbikes",  directory = tempdir())}
 }
