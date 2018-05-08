@@ -114,7 +114,7 @@ get_gbfs_feeds <- function(url) {
 #' \donttest{get_gbfs("https://gbfs.bcycle.com/bcycle_greenbikeslc/gbfs.json", directory = "slcbikes")}
 #' @export
 
-get_gbfs <- function(city, feeds = "all", directory = "gbfs_data") {
+get_gbfs <- function(city, feeds = "all", directory) {
 
   url <- city_to_url(city = city)
 

@@ -15,7 +15,7 @@
 #' \donttest{get_station_information(city = "Battle Creek")}
 #' @export
 
-get_station_information <- function(city, directory = "data", file = "station_information.rds") {
+get_station_information <- function(city, directory, file = "station_information.rds") {
 
   url <- city_to_url(city)
   
@@ -74,7 +74,7 @@ get_station_information <- function(city, directory = "data", file = "station_in
 #' \donttest{get_system_alerts(city = "Santa Monica")}
 #' @export
 
-get_system_alerts <- function (city, directory = "data", file = "system_alerts.rds") {
+get_system_alerts <- function (city, directory, file = "system_alerts.rds") {
 
   url <- city_to_url(city)
   
@@ -127,7 +127,7 @@ get_system_alerts <- function (city, directory = "data", file = "system_alerts.r
 #' \donttest{get_system_calendar(city = "Tampa")}
 #' @export
 
-get_system_calendar <- function (city, directory = "data", file = "system_calendar.rds") {
+get_system_calendar <- function (city, directory, file = "system_calendar.rds") {
 
   url <- city_to_url(city)
   
@@ -184,7 +184,7 @@ get_system_calendar <- function (city, directory = "data", file = "system_calend
 #' \donttest{get_system_hours(city = "Phoenix")}
 #' @export
 
-get_system_hours <- function (city, directory = "data", file = "system_hours.rds") {
+get_system_hours <- function (city, directory, file = "system_hours.rds") {
 
   url <- city_to_url(city)
   
@@ -243,7 +243,7 @@ get_system_hours <- function (city, directory = "data", file = "system_hours.rds
 #' \donttest{get_system_information(city = "Omaha")}
 #' @export
 
-get_system_information <- function(city, directory = "data", file = "system_information.rds"){
+get_system_information <- function(city, directory, file = "system_information.rds"){
 
   url <- city_to_url(city)
   
@@ -294,7 +294,7 @@ get_system_information <- function(city, directory = "data", file = "system_info
 #' \donttest{get_system_pricing_plans(city = "Houston")}
 #' @export
 
-get_system_pricing_plans <- function(city, directory = "data", file = "system_pricing_plans.rds") {
+get_system_pricing_plans <- function(city, directory, file = "system_pricing_plans.rds") {
 
   url <- city_to_url(city)
   
@@ -350,7 +350,7 @@ get_system_pricing_plans <- function(city, directory = "data", file = "system_pr
 #' \donttest{get_system_regions(city = "Boston")}
 #' @export
 
-get_system_regions <- function (city, directory = "data", file = "system_regions.rds") {
+get_system_regions <- function (city, directory, file = "system_regions.rds") {
 
   url <- city_to_url(city)
   

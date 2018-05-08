@@ -16,7 +16,7 @@
 #' \donttest{get_free_bike_status(city = "Melbourne")}
 #' @export
 
-get_free_bike_status <- function(city, directory = "data", file = "free_bike_status.rds") {
+get_free_bike_status <- function(city, directory, file = "free_bike_status.rds") {
 
   url <- city_to_url(city)
   
@@ -98,7 +98,7 @@ get_free_bike_status <- function(city, directory = "data", file = "free_bike_sta
 #' \donttest{get_station_status(city = "kansas city", directory = "kc_gbfs")}
 #' @export
 
-get_station_status <- function(city, directory = "data", file = "station_status.rds") {
+get_station_status <- function(city, directory, file = "station_status.rds") {
 
   url <- city_to_url(city)
   
