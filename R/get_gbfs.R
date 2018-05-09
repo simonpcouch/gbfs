@@ -112,7 +112,7 @@ get_gbfs_feeds <- function(url) {
 #' \donttest{get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json", 
 #' feeds = "dynamic",  directory = tempdir())}
 #' \donttest{get_gbfs("https://gbfs.bcycle.com/bcycle_greenbikeslc/gbfs.json", 
-#' directory = "slcbikes",  directory = tempdir())}
+#' directory = tempdir())}
 #' @export
 
 get_gbfs <- function(city, feeds = "all", directory) {

@@ -28,5 +28,5 @@ feeds as .rds objects in a directory that can be specified by the user. Go to
 \donttest{get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json", 
 feeds = "dynamic",  directory = tempdir())}
 \donttest{get_gbfs("https://gbfs.bcycle.com/bcycle_greenbikeslc/gbfs.json", 
-directory = "slcbikes",  directory = tempdir())}
+directory = tempdir())}
 }
