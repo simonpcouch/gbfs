@@ -102,9 +102,9 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<p>Here the function <code>get_gbfs()</code> is used to create a folder and save all existing gbfs .json feeds for Portland. Then <code>get_station_status()</code> is used to append the most recent version of the station status .json feed to the station status .rds dataset.</p>
+<p>Here the function <code><a href="reference/get_gbfs.html">get_gbfs()</a></code> is used to create a folder and save all existing gbfs .json feeds for Portland. Then <code><a href="reference/get_station_status.html">get_station_status()</a></code> is used to append the most recent version of the station status .json feed to the station status .rds dataset.</p>
 <p>Note: Throughout this example I use a temporary directory by calling <code><a href="http://www.rdocumentation.org/packages/withr/topics/with_dir">withr::with_dir(tempdir(), ...)</a></code> as the codes are examples. In real life, we would skip the temporary directory stuff; just focus on the <code>...</code> for the purpose of this tutorial.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/withr/topics/with_dir">with_dir</a></span>(<span class="kw">tempdir</span>(), <span class="kw">get_gbfs</span>(<span class="dt">city =</span> <span class="st">"Portland"</span>, <span class="dt">feeds =</span> <span class="st">"all"</span>, <span class="dt">directory =</span> <span class="st">"pdx_gbfs"</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/withr/topics/with_dir">with_dir</a></span>(<span class="kw">tempdir</span>(), <span class="kw"><a href="reference/get_gbfs.html">get_gbfs</a></span>(<span class="dt">city =</span> <span class="st">"Portland"</span>, <span class="dt">feeds =</span> <span class="st">"all"</span>, <span class="dt">directory =</span> <span class="st">"pdx_gbfs"</span>))
 withr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/withr/topics/with_dir">with_dir</a></span>(<span class="kw">tempdir</span>(), <span class="kw">list.files</span>(<span class="st">"pdx_gbfs"</span>))
 <span class="co">#&gt; [1] "free_bike_status.rds"     "station_information.rds" </span>
 <span class="co">#&gt; [3] "station_status.rds"       "system_alerts.rds"       </span>
@@ -114,29 +114,29 @@ withr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentati
 station_status &lt;-<span class="st"> </span>withr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/withr/topics/with_dir">with_dir</a></span>(<span class="kw">tempdir</span>(), <span class="kw">readRDS</span>(<span class="st">"pdx_gbfs/station_status.rds"</span>))
 <span class="kw">head</span>(station_status)
 <span class="co">#&gt;   station_id num_bikes_available num_bikes_disabled num_docks_available</span>
-<span class="co">#&gt; 1   hub_1512                  11                  0                   6</span>
-<span class="co">#&gt; 2   hub_1513                   8                  0                  10</span>
-<span class="co">#&gt; 3   hub_1514                   6                  0                  12</span>
-<span class="co">#&gt; 4   hub_1515                   5                  0                  12</span>
-<span class="co">#&gt; 5   hub_1516                  15                  0                   0</span>
-<span class="co">#&gt; 6   hub_1517                   4                  0                  10</span>
+<span class="co">#&gt; 1   hub_1512                  13                  0                   5</span>
+<span class="co">#&gt; 2   hub_1513                  12                  0                   6</span>
+<span class="co">#&gt; 3   hub_1514                   9                  0                   9</span>
+<span class="co">#&gt; 4   hub_1515                   3                  0                  14</span>
+<span class="co">#&gt; 5   hub_1516                   6                  0                   9</span>
+<span class="co">#&gt; 6   hub_1517                   6                  0                   8</span>
 <span class="co">#&gt;   is_installed is_renting is_returning        last_updated year month day</span>
-<span class="co">#&gt; 1         TRUE       TRUE         TRUE 2018-05-08 09:58:55 2018     5   8</span>
-<span class="co">#&gt; 2         TRUE       TRUE         TRUE 2018-05-08 09:58:55 2018     5   8</span>
-<span class="co">#&gt; 3         TRUE       TRUE         TRUE 2018-05-08 09:58:55 2018     5   8</span>
-<span class="co">#&gt; 4         TRUE       TRUE         TRUE 2018-05-08 09:58:55 2018     5   8</span>
-<span class="co">#&gt; 5         TRUE       TRUE         TRUE 2018-05-08 09:58:55 2018     5   8</span>
-<span class="co">#&gt; 6         TRUE       TRUE         TRUE 2018-05-08 09:58:55 2018     5   8</span>
+<span class="co">#&gt; 1         TRUE       TRUE         TRUE 2018-05-09 08:48:21 2018     5   9</span>
+<span class="co">#&gt; 2         TRUE       TRUE         TRUE 2018-05-09 08:48:21 2018     5   9</span>
+<span class="co">#&gt; 3         TRUE       TRUE         TRUE 2018-05-09 08:48:21 2018     5   9</span>
+<span class="co">#&gt; 4         TRUE       TRUE         TRUE 2018-05-09 08:48:21 2018     5   9</span>
+<span class="co">#&gt; 5         TRUE       TRUE         TRUE 2018-05-09 08:48:21 2018     5   9</span>
+<span class="co">#&gt; 6         TRUE       TRUE         TRUE 2018-05-09 08:48:21 2018     5   9</span>
 <span class="co">#&gt;   hour minute</span>
-<span class="co">#&gt; 1    9     58</span>
-<span class="co">#&gt; 2    9     58</span>
-<span class="co">#&gt; 3    9     58</span>
-<span class="co">#&gt; 4    9     58</span>
-<span class="co">#&gt; 5    9     58</span>
-<span class="co">#&gt; 6    9     58</span>
+<span class="co">#&gt; 1    8     48</span>
+<span class="co">#&gt; 2    8     48</span>
+<span class="co">#&gt; 3    8     48</span>
+<span class="co">#&gt; 4    8     48</span>
+<span class="co">#&gt; 5    8     48</span>
+<span class="co">#&gt; 6    8     48</span>
 <span class="kw">nrow</span>(station_status)
 <span class="co">#&gt; [1] 123</span>
-withr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/withr/topics/with_dir">with_dir</a></span>(<span class="kw">tempdir</span>(), <span class="kw">get_station_status</span>(<span class="dt">city =</span> <span class="st">"Portland"</span>, <span class="dt">directory =</span> <span class="st">"pdx_gbfs"</span>, <span class="dt">file =</span> <span class="st">"station_status.rds"</span>))
+withr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/withr/topics/with_dir">with_dir</a></span>(<span class="kw">tempdir</span>(), <span class="kw"><a href="reference/get_station_status.html">get_station_status</a></span>(<span class="dt">city =</span> <span class="st">"Portland"</span>, <span class="dt">directory =</span> <span class="st">"pdx_gbfs"</span>, <span class="dt">file =</span> <span class="st">"station_status.rds"</span>))
 station_status &lt;-<span class="st"> </span>withr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/withr/topics/with_dir">with_dir</a></span>(<span class="kw">tempdir</span>(), <span class="kw">readRDS</span>(<span class="st">"pdx_gbfs/station_status.rds"</span>))
 <span class="kw">nrow</span>(station_status)
 <span class="co">#&gt; [1] 246</span></code></pre></div>
