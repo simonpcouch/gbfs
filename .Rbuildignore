@@ -5,4 +5,4 @@ cran-comments.md
 ^\.travis\.yml$
 docs/
 ^README.Rmd
-poster/
+gbfs_poster_final.jpg
