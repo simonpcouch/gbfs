@@ -13,7 +13,9 @@ devtools::load_all()
 
 # General Bikeshare Feed Specification - R Package
 
-[![Travis-CI Build Status](https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master)](https://travis-ci.org/ds-civic-data/gbfs)
+*Developed by Kaelyn M. Rosenberg (author) and Simon P. Couch (author, maintainer)*
+
+![CRAN Badge](http://www.r-pkg.org/badges/version/gbfs) [![Travis-CI Build Status](https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master)](https://travis-ci.org/ds-civic-data/gbfs)
 
 The `gbfs` package supplies a set of functions to interface with General
 Bikeshare Feed Specification .json feeds in R, allowing users to save
@@ -27,7 +29,14 @@ __Features__
 
 ## Installation
 
-You can install gbfs from github with:
+We're now on CRAN! Install the latest release, 1.0.0, with:
+
+```{r cran-installation, eval = FALSE}
+install.packages("gbfs")
+library("gbfs")
+```
+
+You can install the development version of `gbfs` from github with:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")

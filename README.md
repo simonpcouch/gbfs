@@ -2,7 +2,9 @@
 General Bikeshare Feed Specification - R Package
 ================================================
 
-[![Travis-CI Build Status](https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master)](https://travis-ci.org/ds-civic-data/gbfs)
+*Developed by Kaelyn M. Rosenberg (author) and Simon P. Couch (author, maintainer)*
+
+![CRAN Badge](http://www.r-pkg.org/badges/version/gbfs) [![Travis-CI Build Status](https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master)](https://travis-ci.org/ds-civic-data/gbfs)
 
 The `gbfs` package supplies a set of functions to interface with General Bikeshare Feed Specification .json feeds in R, allowing users to save and accumulate tidy .rds datasets for specified cities/bikeshare programs.
 
@@ -15,7 +17,14 @@ The `gbfs` package supplies a set of functions to interface with General Bikesha
 Installation
 ------------
 
-You can install gbfs from github with:
+We're now on CRAN! Install the latest release, 1.0.0, with:
+
+``` r
+install.packages("gbfs")
+library("gbfs")
+```
+
+You can install the development version of `gbfs` from github with:
 
 ``` r
 # install.packages("devtools")
@@ -40,26 +49,26 @@ withr::with_dir(tempdir(), list.files("pdx_gbfs"))
 station_status <- withr::with_dir(tempdir(), readRDS("pdx_gbfs/station_status.rds"))
 head(station_status)
 #>   station_id num_bikes_available num_bikes_disabled num_docks_available
-#> 1   hub_1512                  13                  0                   4
-#> 2   hub_1513                   9                  0                   9
-#> 3   hub_1514                   6                  0                  12
-#> 4   hub_1515                   7                  0                  10
-#> 5   hub_1516                  16                  0                   0
-#> 6   hub_1517                   4                  0                  10
+#> 1   hub_1512                   3                  0                  15
+#> 2   hub_1513                  10                  0                   8
+#> 3   hub_1514                  12                  0                   6
+#> 4   hub_1515                   5                  0                  12
+#> 5   hub_1516                   7                  0                   9
+#> 6   hub_1517                   9                  0                   5
 #>   is_installed is_renting is_returning        last_updated year month day
-#> 1         TRUE       TRUE         TRUE 2018-05-08 09:43:38 2018     5   8
-#> 2         TRUE       TRUE         TRUE 2018-05-08 09:43:38 2018     5   8
-#> 3         TRUE       TRUE         TRUE 2018-05-08 09:43:38 2018     5   8
-#> 4         TRUE       TRUE         TRUE 2018-05-08 09:43:38 2018     5   8
-#> 5         TRUE       TRUE         TRUE 2018-05-08 09:43:38 2018     5   8
-#> 6         TRUE       TRUE         TRUE 2018-05-08 09:43:38 2018     5   8
+#> 1         TRUE       TRUE         TRUE 2018-05-11 07:58:46 2018     5  11
+#> 2         TRUE       TRUE         TRUE 2018-05-11 07:58:46 2018     5  11
+#> 3         TRUE       TRUE         TRUE 2018-05-11 07:58:46 2018     5  11
+#> 4         TRUE       TRUE         TRUE 2018-05-11 07:58:46 2018     5  11
+#> 5         TRUE       TRUE         TRUE 2018-05-11 07:58:46 2018     5  11
+#> 6         TRUE       TRUE         TRUE 2018-05-11 07:58:46 2018     5  11
 #>   hour minute
-#> 1    9     43
-#> 2    9     43
-#> 3    9     43
-#> 4    9     43
-#> 5    9     43
-#> 6    9     43
+#> 1    7     58
+#> 2    7     58
+#> 3    7     58
+#> 4    7     58
+#> 5    7     58
+#> 6    7     58
 nrow(station_status)
 #> [1] 123
 withr::with_dir(tempdir(), get_station_status(city = "Portland", directory = "pdx_gbfs", file = "station_status.rds"))
