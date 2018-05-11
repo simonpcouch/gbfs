@@ -84,7 +84,8 @@
 <div id="general-bikeshare-feed-specification---r-package" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#general-bikeshare-feed-specification---r-package" class="anchor"></a>General Bikeshare Feed Specification - R Package</h1></div>
-
+<p><em>Developed by Kaelyn M. Rosenberg (author) and Simon P. Couch (author, maintainer)</em></p>
+<p><img src="http://www.r-pkg.org/badges/version/gbfs" alt="CRAN Badge"><a href="https://travis-ci.org/ds-civic-data/gbfs"><img src="https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master" alt="Travis-CI Build Status"></a></p>
 <p>The <code>gbfs</code> package supplies a set of functions to interface with General Bikeshare Feed Specification .json feeds in R, allowing users to save and accumulate tidy .rds datasets for specified cities/bikeshare programs.</p>
 <p><strong>Features</strong></p>
 <ul>
@@ -95,7 +96,10 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install gbfs from github with:</p>
+<p>We’re now on CRAN! Install the latest release, 1.0.0, with:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"gbfs"</span>)
+<span class="kw">library</span>(<span class="st">"gbfs"</span>)</code></pre></div>
+<p>You can install the development version of <code>gbfs</code> from github with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ds-civic-data/gbfs"</span>)</code></pre></div>
 </div>
@@ -114,26 +118,26 @@ withr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentati
 station_status &lt;-<span class="st"> </span>withr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/withr/topics/with_dir">with_dir</a></span>(<span class="kw">tempdir</span>(), <span class="kw">readRDS</span>(<span class="st">"pdx_gbfs/station_status.rds"</span>))
 <span class="kw">head</span>(station_status)
 <span class="co">#&gt;   station_id num_bikes_available num_bikes_disabled num_docks_available</span>
-<span class="co">#&gt; 1   hub_1512                  13                  0                   5</span>
-<span class="co">#&gt; 2   hub_1513                  12                  0                   6</span>
-<span class="co">#&gt; 3   hub_1514                   9                  0                   9</span>
-<span class="co">#&gt; 4   hub_1515                   3                  0                  14</span>
-<span class="co">#&gt; 5   hub_1516                   6                  0                   9</span>
-<span class="co">#&gt; 6   hub_1517                   6                  0                   8</span>
+<span class="co">#&gt; 1   hub_1512                   5                  0                  13</span>
+<span class="co">#&gt; 2   hub_1513                   9                  0                   9</span>
+<span class="co">#&gt; 3   hub_1514                  12                  0                   6</span>
+<span class="co">#&gt; 4   hub_1515                   4                  0                  13</span>
+<span class="co">#&gt; 5   hub_1516                  11                  0                   5</span>
+<span class="co">#&gt; 6   hub_1517                   9                  0                   5</span>
 <span class="co">#&gt;   is_installed is_renting is_returning        last_updated year month day</span>
-<span class="co">#&gt; 1         TRUE       TRUE         TRUE 2018-05-09 08:48:21 2018     5   9</span>
-<span class="co">#&gt; 2         TRUE       TRUE         TRUE 2018-05-09 08:48:21 2018     5   9</span>
-<span class="co">#&gt; 3         TRUE       TRUE         TRUE 2018-05-09 08:48:21 2018     5   9</span>
-<span class="co">#&gt; 4         TRUE       TRUE         TRUE 2018-05-09 08:48:21 2018     5   9</span>
-<span class="co">#&gt; 5         TRUE       TRUE         TRUE 2018-05-09 08:48:21 2018     5   9</span>
-<span class="co">#&gt; 6         TRUE       TRUE         TRUE 2018-05-09 08:48:21 2018     5   9</span>
+<span class="co">#&gt; 1         TRUE       TRUE         TRUE 2018-05-11 10:10:32 2018     5  11</span>
+<span class="co">#&gt; 2         TRUE       TRUE         TRUE 2018-05-11 10:10:32 2018     5  11</span>
+<span class="co">#&gt; 3         TRUE       TRUE         TRUE 2018-05-11 10:10:32 2018     5  11</span>
+<span class="co">#&gt; 4         TRUE       TRUE         TRUE 2018-05-11 10:10:32 2018     5  11</span>
+<span class="co">#&gt; 5         TRUE       TRUE         TRUE 2018-05-11 10:10:32 2018     5  11</span>
+<span class="co">#&gt; 6         TRUE       TRUE         TRUE 2018-05-11 10:10:32 2018     5  11</span>
 <span class="co">#&gt;   hour minute</span>
-<span class="co">#&gt; 1    8     48</span>
-<span class="co">#&gt; 2    8     48</span>
-<span class="co">#&gt; 3    8     48</span>
-<span class="co">#&gt; 4    8     48</span>
-<span class="co">#&gt; 5    8     48</span>
-<span class="co">#&gt; 6    8     48</span>
+<span class="co">#&gt; 1   10     10</span>
+<span class="co">#&gt; 2   10     10</span>
+<span class="co">#&gt; 3   10     10</span>
+<span class="co">#&gt; 4   10     10</span>
+<span class="co">#&gt; 5   10     10</span>
+<span class="co">#&gt; 6   10     10</span>
 <span class="kw">nrow</span>(station_status)
 <span class="co">#&gt; [1] 123</span>
 withr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/withr/topics/with_dir">with_dir</a></span>(<span class="kw">tempdir</span>(), <span class="kw"><a href="reference/get_station_status.html">get_station_status</a></span>(<span class="dt">city =</span> <span class="st">"Portland"</span>, <span class="dt">directory =</span> <span class="st">"pdx_gbfs"</span>, <span class="dt">file =</span> <span class="st">"station_status.rds"</span>))
@@ -148,6 +152,8 @@ station_status &lt;-<span class="st"> </span>withr<span class="op">::</span><spa
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=gbfs">https://​cloud.r-project.org/​package=gbfs</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/ds-civic-data/gbfs">https://​github.com/​ds-civic-data/​gbfs</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/ds-civic-data/gbfs/issues">https://​github.com/​ds-civic-data/​gbfs/​issues</a>
@@ -168,13 +174,7 @@ station_status &lt;-<span class="st"> </span>withr<span class="op">::</span><spa
 </ul>
 </div>
 
-      <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://travis-ci.org/ds-civic-data/gbfs"><img src="https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-</ul>
-</div>
-</div>
+      </div>
 
 </div>
 
