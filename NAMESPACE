@@ -2,6 +2,7 @@
 
 export(get_free_bike_status)
 export(get_gbfs)
+export(get_gbfs_cities)
 export(get_station_information)
 export(get_station_status)
 export(get_system_alerts)

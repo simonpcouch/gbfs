@@ -1,3 +1,30 @@
+get_gbfs_cities_full <- function() {
+  systems_cols <- readr::cols(
+                              `Country Code` = readr::col_character(),
+                              "Name" = readr::col_character(),
+                              "Location" = readr::col_character(),
+                              `System ID` = readr::col_character(),
+                              `URL` = readr::col_character(),
+                              `Auto-Discovery URL` = readr::col_character()
+                              )
+
+  readr::read_csv("https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv",
+                  col_types = systems_cols)
+}
+
+#' Get table of all GBFS cities
+#'
+#' List all cities currently known to issue GBFS feeds
+#'
+#' @return A \code{data.frame} of all cities issuing GBFS feeds
+#' @export
+get_gbfs_cities <- function() {
+  `Country Code` <- `URL` <- NULL
+  get_gbfs_cities_full() %>%
+    dplyr::select(`Country Code`, Name, Location, URL)
+}
+
+
 city_to_url <- function(city) {
   
   if (1 == length(agrep(x = as.character(city), pattern = ".json"))) {
@@ -5,18 +32,7 @@ city_to_url <- function(city) {
     url <- city
     url
   } else {
-    #match string with a url
-    systems_cols <- readr::cols(
-      `Country Code` = readr::col_character(),
-      "Name" = readr::col_character(),
-      "Location" = readr::col_character(),
-      `System ID` = readr::col_character(),
-      `URL` = readr::col_character(),
-      `Auto-Discovery URL` = readr::col_character()
-    )
-    
-    cities <- readr::read_csv("https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv",
-                              col_types = systems_cols) %>%
+    cities <- get_gbfs_cities_full() %>%
       dplyr::select(Name, Location, 'Auto-Discovery URL')
     city_index <- as.numeric(agrep(x = cities$Location, pattern = city), ignore.case = TRUE)
     url <- as.data.frame((cities)[city_index, 'Auto-Discovery URL'])
@@ -215,6 +231,3 @@ if (!dir.exists(directory)) {
   }
 
 }
-
-
-
