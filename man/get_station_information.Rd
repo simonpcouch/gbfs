@@ -7,7 +7,8 @@
 get_station_information(city, directory, file = "station_information.rds")
 }
 \arguments{
-\item{city}{A character string or a url to an active gbfs.json feed.}
+\item{city}{A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}
+for a current list of available cities.}
 
 \item{directory}{The name of an existing folder or folder to be created, where the feed will
 will be saved.}

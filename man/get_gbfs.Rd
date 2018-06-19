@@ -7,7 +7,8 @@
 get_gbfs(city, feeds = "all", directory)
 }
 \arguments{
-\item{city}{A character string or a url to an active gbfs.json feed.}
+\item{city}{A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}
+for a current list of available cities.}
 
 \item{feeds}{A character string specifying which feeds should be saved. Options are
 "all", "static", and "dynamic".}

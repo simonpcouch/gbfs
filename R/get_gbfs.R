@@ -116,7 +116,8 @@ get_gbfs_feeds <- function(url) {
 #' feeds as .rds objects in a directory that can be specified by the user. Go to 
 #' `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for each dataset.
 #' 
-#' @param city A character string or a url to an active gbfs.json feed.
+#' @param city A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}
+#' for a current list of available cities.
 #' @param feeds A character string specifying which feeds should be saved. Options are
 #'   "all", "static", and "dynamic".
 #' @param directory The name of an existing folder or folder to be created, where the feeds
