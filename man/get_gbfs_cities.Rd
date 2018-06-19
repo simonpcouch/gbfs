@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_gbfs.R
 \name{get_gbfs_cities}
 \alias{get_gbfs_cities}
-\title{Get table of all GBFS cities}
+\title{Get table of all cities releasing GBFS feeds}
 \usage{
 get_gbfs_cities()
 }
@@ -10,5 +10,5 @@ get_gbfs_cities()
 A \code{data.frame} of all cities issuing GBFS feeds
 }
 \description{
-List all cities currently known to issue GBFS feeds
+Get table of all cities releasing GBFS feeds
 }

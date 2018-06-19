@@ -12,9 +12,7 @@ get_gbfs_cities_full <- function() {
                   col_types = systems_cols)
 }
 
-#' Get table of all GBFS cities
-#'
-#' List all cities currently known to issue GBFS feeds
+#' Get table of all cities releasing GBFS feeds
 #'
 #' @return A \code{data.frame} of all cities issuing GBFS feeds
 #' @export
