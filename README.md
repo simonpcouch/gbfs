@@ -4,7 +4,7 @@ General Bikeshare Feed Specification - R Package
 
 *Developed by Kaelyn M. Rosenberg (author) and Simon P. Couch (author, maintainer)*
 
-![CRAN Badge](http://www.r-pkg.org/badges/version/%7Bgbfs%7D) [![Build Status](https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master)](https://travis-ci.org/ds-civic-data/gbfs)
+![CRAN Badge](http://www.r-pkg.org/badges/version/gbfs) [![Build Status](https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master)](https://travis-ci.org/ds-civic-data/gbfs)
 
 The `gbfs` package supplies a set of functions to interface with General Bikeshare Feed Specification .json feeds in R, allowing users to save and accumulate tidy .rds datasets for specified cities/bikeshare programs.
 
@@ -56,19 +56,19 @@ head(station_status)
 #> 5   hub_1516                  11                  0                   3
 #> 6   hub_1517                   7                  0                   6
 #>   is_installed is_renting is_returning        last_updated year month day
-#> 1         TRUE       TRUE         TRUE 2018-09-21 10:13:23 2018     9  21
-#> 2         TRUE       TRUE         TRUE 2018-09-21 10:13:23 2018     9  21
-#> 3         TRUE       TRUE         TRUE 2018-09-21 10:13:23 2018     9  21
-#> 4         TRUE       TRUE         TRUE 2018-09-21 10:13:23 2018     9  21
-#> 5         TRUE       TRUE         TRUE 2018-09-21 10:13:23 2018     9  21
-#> 6         TRUE       TRUE         TRUE 2018-09-21 10:13:23 2018     9  21
+#> 1         TRUE       TRUE         TRUE 2018-09-21 10:19:33 2018     9  21
+#> 2         TRUE       TRUE         TRUE 2018-09-21 10:19:33 2018     9  21
+#> 3         TRUE       TRUE         TRUE 2018-09-21 10:19:33 2018     9  21
+#> 4         TRUE       TRUE         TRUE 2018-09-21 10:19:33 2018     9  21
+#> 5         TRUE       TRUE         TRUE 2018-09-21 10:19:33 2018     9  21
+#> 6         TRUE       TRUE         TRUE 2018-09-21 10:19:33 2018     9  21
 #>   hour minute
-#> 1   10     13
-#> 2   10     13
-#> 3   10     13
-#> 4   10     13
-#> 5   10     13
-#> 6   10     13
+#> 1   10     19
+#> 2   10     19
+#> 3   10     19
+#> 4   10     19
+#> 5   10     19
+#> 6   10     19
 nrow(station_status)
 #> [1] 144
 withr::with_dir(tempdir(), get_station_status(city = "Portland", directory = "pdx_gbfs", file = "station_status.rds"))
