@@ -1,7 +1,7 @@
 Package: gbfs
 Type: Package
 Title: Interface with General Bikeshare Feed Specification Files
-Version: 1.0.1
+Version: 1.1.0
 Authors@R: c(
     person("Kaelyn", "Rosenberg", , "kaerosenberg@gmail.com", c("aut")),
     person("Simon P.", "Couch", , "simonpatrickcouch@gmail.com", c("aut", "cre")),
@@ -15,15 +15,10 @@ Imports:
     readr,
     stringr,
     jsonlite,
-    devtools,
-    roxygen2,
-    testthat,
-    lubridate,
-    utils,
-    withr
+    lubridate
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1.9000
+RoxygenNote: 6.1.0
 Suggests: knitr,
     rmarkdown
 URL: https://github.com/ds-civic-data/gbfs

@@ -4,7 +4,8 @@
 \alias{get_system_pricing_plans}
 \title{Save the system_pricing_plans feed.}
 \usage{
-get_system_pricing_plans(city, directory, file = "system_pricing_plans.rds")
+get_system_pricing_plans(city, directory,
+  file = "system_pricing_plans.rds")
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}

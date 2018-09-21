@@ -12,8 +12,6 @@
 #' @param file The name of an existing file or new file to be saved. Must end in .rds.
 #' @return A .rds object generated from the current free_bike_status feed.
 #' @examples
-#' \donttest{get_free_bike_status(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json", directory = tempdir())}
 #' \donttest{get_free_bike_status(city = "Melbourne", directory = tempdir())}
 #' @export
 
@@ -30,8 +28,7 @@ get_free_bike_status <- function(city, directory, file = "free_bike_status.rds")
         dplyr::filter(stringr::str_detect(url, "free_bike_status")) %>%
         as.character()
     }
-  }
-  else {
+  } else {
     free_bike_status_feed <- url
   }
 
@@ -97,7 +94,6 @@ get_free_bike_status <- function(city, directory, file = "free_bike_status.rds")
 #' @examples
 #' \donttest{get_station_status(city = 
 #' "http://biketownpdx.socialbicycles.com/opendata/station_status.json", directory = tempdir())}
-#' \donttest{get_station_status(city = "kansas city", directory = tempdir())}
 #' @export
 
 get_station_status <- function(city, directory, file = "station_status.rds") {
@@ -134,7 +130,46 @@ get_station_status <- function(city, directory, file = "station_status.rds") {
   station_status_data$is_installed <- as.logical(station_status_data$is_installed)
   station_status_data$is_renting <- as.logical(station_status_data$is_renting)
   station_status_data$is_returning <- as.logical(station_status_data$is_returning)
-
+  
+  # get rid of dataframe within dataframe if it exists (for multiple bike types)
+  if ("num_bikes_disabled" %in% colnames(station_status_data) & "num_docks_disabled" %in% colnames(station_status_data)) {
+  station_status_data <- station_status_data %>% dplyr::select(station_id,
+                                                        num_bikes_available,
+                                                        num_bikes_disabled,
+                                                        num_docks_available,
+                                                        num_docks_disabled,
+                                                        is_installed,
+                                                        is_renting,
+                                                        is_returning,
+                                                        last_reported)
+  } else if ("num_docks_disabled" %in% colnames(station_status_data)) {
+    station_status_data <- station_status_data %>% dplyr::select(station_id,
+                                                          num_bikes_available,
+                                                          num_docks_available,
+                                                          num_docks_disabled,
+                                                          is_installed,
+                                                          is_renting,
+                                                          is_returning,
+                                                          last_reported)
+  } else if ("num_bikes_disabled" %in% colnames(station_status_data)) {
+    station_status_data <- station_status_data %>% dplyr::select(station_id,
+                                                          num_bikes_available,
+                                                          num_bikes_disabled,
+                                                          num_docks_available,
+                                                          is_installed,
+                                                          is_renting,
+                                                          is_returning,
+                                                          last_reported)
+  } else {
+    station_status_data <- station_status_data %>% dplyr::select(station_id,
+                                                          num_bikes_available,
+                                                          num_docks_available,
+                                                          is_installed,
+                                                          is_renting,
+                                                          is_returning,
+                                                          last_reported)
+  }
+  
   #rename last_reported to last_updated for consistency between datasets
   station_status_data <- station_status_data %>%
     dplyr::rename(last_updated = last_reported)

@@ -17,4 +17,7 @@
 #' @importFrom dplyr %>%
 NULL
 
-utils::globalVariables(c(".", "Location", "Name", "last_reported", "last_updated"))
+utils::globalVariables(c(".", "Location", "Name", "last_reported", "last_updated",
+                         "num_bikes_available", "num_bikes_disabled", "num_docks_available",
+                         "num_docks_disabled", "is_installed", "is_renting", "is_returning",
+                         "station_id"))

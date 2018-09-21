@@ -3,6 +3,10 @@
 \name{get_gbfs_cities}
 \alias{get_gbfs_cities}
 \title{Get table of all cities releasing GBFS feeds}
+\source{
+North American Bikeshare Association, General Bikeshare Feed Specification
+ \url{https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv}
+}
 \usage{
 get_gbfs_cities()
 }

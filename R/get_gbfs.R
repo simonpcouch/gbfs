@@ -15,6 +15,8 @@ get_gbfs_cities_full <- function() {
 #' Get table of all cities releasing GBFS feeds
 #'
 #' @return A \code{data.frame} of all cities issuing GBFS feeds
+#' @source North American Bikeshare Association, General Bikeshare Feed Specification
+#'  \url{https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv}
 #' @export
 get_gbfs_cities <- function() {
   `Country Code` <- `URL` <- NULL
@@ -124,10 +126,6 @@ get_gbfs_feeds <- function(url) {
 #' 
 #' @examples
 #' \donttest{get_gbfs(city = "boise", directory = tempdir())}
-#' \donttest{get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json", 
-#' feeds = "dynamic",  directory = tempdir())}
-#' \donttest{get_gbfs("https://gbfs.bcycle.com/bcycle_greenbikeslc/gbfs.json", 
-#' directory = tempdir())}
 #' @export
 
 get_gbfs <- function(city, feeds = "all", directory) {

@@ -27,5 +27,4 @@ appends the current station_status feed to the existing file. Go to
 \examples{
 \donttest{get_station_status(city = 
 "http://biketownpdx.socialbicycles.com/opendata/station_status.json", directory = tempdir())}
-\donttest{get_station_status(city = "kansas city", directory = tempdir())}
 }
