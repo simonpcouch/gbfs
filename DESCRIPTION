@@ -23,4 +23,3 @@ Suggests: knitr,
     rmarkdown
 URL: https://github.com/ds-civic-data/gbfs
 BugReports: https://github.com/ds-civic-data/gbfs/issues
-VignetteBuilder: knitr
