@@ -259,14 +259,18 @@ get_system_information <- function(city, directory, file = "system_information.r
       dplyr::select(url) %>%
       dplyr::filter(stringr::str_detect(url, "system_information")) %>%
       as.character()
-  }
-  else {
+  } else {
     system_information_feed <- url
   }
 
   # save feed
   system_information <- jsonlite::fromJSON(txt = system_information_feed)
 
+  # some systems leave purchase URL null rather than missing
+  if (is.null(system_information$data$purchase_url)) {
+    system_information$data$purchase_url <- NA
+  }
+  
   # extract data, convert to df
   system_information_data <- as.data.frame(system_information$data)
 
