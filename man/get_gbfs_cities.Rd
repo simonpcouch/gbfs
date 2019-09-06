@@ -11,7 +11,9 @@ North American Bikeshare Association, General Bikeshare Feed Specification
 get_gbfs_cities()
 }
 \value{
-A \code{data.frame} of all cities issuing GBFS feeds
+A \code{data.frame} of all cities issuing GBFS feeds. The `Auto-Discovery URL`
+column supplies the relevant .json feeds, while the entries in the `URL` column 
+take the user to the public-facing webpage of the programs.
 }
 \description{
 Get table of all cities releasing GBFS feeds

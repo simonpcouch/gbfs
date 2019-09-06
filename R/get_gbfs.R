@@ -1,27 +1,23 @@
-get_gbfs_cities_full <- function() {
-  systems_cols <- readr::cols(
-                              `Country Code` = readr::col_character(),
-                              "Name" = readr::col_character(),
-                              "Location" = readr::col_character(),
-                              `System ID` = readr::col_character(),
-                              `URL` = readr::col_character(),
-                              `Auto-Discovery URL` = readr::col_character()
-                              )
-
-  readr::read_csv("https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv",
-                  col_types = systems_cols)
-}
-
 #' Get table of all cities releasing GBFS feeds
 #'
-#' @return A \code{data.frame} of all cities issuing GBFS feeds
+#' @return A \code{data.frame} of all cities issuing GBFS feeds. The `Auto-Discovery URL`
+#' column supplies the relevant .json feeds, while the entries in the `URL` column 
+#' take the user to the public-facing webpage of the programs.
 #' @source North American Bikeshare Association, General Bikeshare Feed Specification
 #'  \url{https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv}
 #' @export
-get_gbfs_cities <- function() {
-  `Country Code` <- `URL` <- NULL
-  get_gbfs_cities_full() %>%
-    dplyr::select(`Country Code`, Name, Location, URL)
+  get_gbfs_cities <- function() {
+  systems_cols <- readr::cols(
+    `Country Code` = readr::col_character(),
+    "Name" = readr::col_character(),
+    "Location" = readr::col_character(),
+    `System ID` = readr::col_character(),
+    `URL` = readr::col_character(),
+    `Auto-Discovery URL` = readr::col_character()
+  )
+  
+  readr::read_csv("https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv",
+                  col_types = systems_cols)
 }
 
 
@@ -32,7 +28,7 @@ city_to_url <- function(city) {
     url <- city
     url
   } else {
-    cities <- get_gbfs_cities_full() %>%
+    cities <- get_gbfs_cities() %>%
       dplyr::select(Name, Location, 'Auto-Discovery URL')
     city_index <- as.numeric(agrep(x = cities$Location, pattern = city), ignore.case = TRUE)
     url <- as.data.frame((cities)[city_index, 'Auto-Discovery URL'])
@@ -40,9 +36,9 @@ city_to_url <- function(city) {
       as.character(url)
     } else {
         if(nrow(url) > 1) {
-          stop(sprintf("Several cities matched the string supplied. Consider supplying a url ending in gbfs.json"))
+          stop(sprintf("Several cities matched the string supplied. Consider using `get_gbfs_cities()` to find the desired .json URL."))
         } else {
-          stop(sprintf("No supported cities matched the string supplied. Consider supplying a url ending in gbfs.json"))
+          stop(sprintf("No supported cities matched the string supplied. Consider using `get_gbfs_cities()` to find the desired .json URL."))
     }}}}
 
 get_gbfs_feeds <- function(url) {
