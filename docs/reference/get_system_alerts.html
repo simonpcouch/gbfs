@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Save the system_alerts feed. — get_system_alerts • gbfs</title>
+<title>Grab the system_alerts feed. — get_system_alerts • gbfs</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
 
 
-<meta property="og:title" content="Save the system_alerts feed. — get_system_alerts" />
+<meta property="og:title" content="Grab the system_alerts feed. — get_system_alerts" />
 
-<meta property="og:description" content="get_system_alerts saves the system_alerts feed for a given city as a .rds object. Go to 
+<meta property="og:description" content="get_system_alerts grabs and tidies the system_alerts feed for a given city. Go to 
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset." />
 <meta name="twitter:card" content="summary" />
 
@@ -67,7 +67,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gbfs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -107,19 +107,20 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Save the system_alerts feed.</h1>
+    <h1>Grab the system_alerts feed.</h1>
     <small class="dont-index">Source: <a href='https://github.com/ds-civic-data/gbfs/blob/master/R/get_static_feeds.R'><code>R/get_static_feeds.R</code></a></small>
     <div class="hidden name"><code>get_system_alerts.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>get_system_alerts</code> saves the system_alerts feed for a given city as a .rds object. Go to 
+    <p><code>get_system_alerts</code> grabs and tidies the system_alerts feed for a given city. Go to 
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_system_alerts</span>(<span class='no'>city</span>, <span class='no'>directory</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"system_alerts.rds"</span>)</pre>
+    <pre class="usage"><span class='fu'>get_system_alerts</span>(<span class='no'>city</span>, <span class='kw'>directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"system_alerts.rds"</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"save"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,11 +139,18 @@ will be saved.</p></td>
       <th>file</th>
       <td><p>The name of the file to be saved. Must end in .rds.</p></td>
     </tr>
+    <tr>
+      <th>output</th>
+      <td><p>The type of output method. If `output = "save"`, the object will be saved as
+an .rds object at the given path. If `output = "return"`, the output will be returned
+as a dataframe object. Setting `output = "both"` will do both.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A .rds object generated from the current system_alerts feed.</p>
+    <p>Depends on argument to `output`: Either a saved .rds object generated from the 
+current system_alerts feed, a dataframe object, or both.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
