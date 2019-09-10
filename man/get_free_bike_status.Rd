@@ -2,26 +2,33 @@
 % Please edit documentation in R/get_dynamic_feeds.R
 \name{get_free_bike_status}
 \alias{get_free_bike_status}
-\title{Save the free_bike_status feed.}
+\title{Grab the free_bike_status feed.}
 \usage{
-get_free_bike_status(city, directory, file = "free_bike_status.rds")
+get_free_bike_status(city, directoryv = NULL,
+  file = "free_bike_status.rds", output = "save")
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}
 for a current list of available cities.}
 
+\item{file}{The name of an existing file or new file to be saved. Must end in .rds.}
+
+\item{output}{The type of output method. If `output = "save"`, the object will be saved as
+an .rds object at the given path. If `output = "return"`, the output will be returned
+as a dataframe object. Setting `output = "both"` will do both.}
+
 \item{directory}{The name of an existing folder or folder to be created, where the feed will
 will be saved.}
-
-\item{file}{The name of an existing file or new file to be saved. Must end in .rds.}
 }
 \value{
-A .rds object generated from the current free_bike_status feed.
+Depends on argument to `output`: Either a saved .rds object generated from the 
+current station_information feed, a dataframe object, or both.
 }
 \description{
 If the specified file does not exist, \code{get_free_bike_status} saves the free_bike_status
 feed for a given city as a .rds object. If the specified file does exist, \code{get_free_bike_status}
-appends the current free_bike_status feed to the existing file. Go to 
+appends the current free_bike_status feed to the existing file. The resulting dataframe can
+alternatively be returned (rather than saved) using the `output` argument. Go to 
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 }
 \examples{

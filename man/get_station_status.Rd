@@ -2,9 +2,10 @@
 % Please edit documentation in R/get_dynamic_feeds.R
 \name{get_station_status}
 \alias{get_station_status}
-\title{Save the station_status feed.}
+\title{Grab the station_status feed.}
 \usage{
-get_station_status(city, directory, file = "station_status.rds")
+get_station_status(city, directory = NULL, file = "station_status.rds",
+  output = "save")
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}
@@ -14,9 +15,14 @@ for a current list of available cities.}
 will be saved.}
 
 \item{file}{The name of an existing file or new file to be saved. Must end in .rds.}
+
+\item{output}{The type of output method. If `output = "save"`, the object will be saved as
+an .rds object at the given path. If `output = "return"`, the output will be returned
+as a dataframe object. Setting `output = "both"` will do both.}
 }
 \value{
-A .rds object generated from the current station_status feed.
+Depends on argument to `output`: Either a saved .rds object generated from the 
+current station_information feed, a dataframe object, or both.
 }
 \description{
 If the specified file does not exist, \code{get_station_status} saves the station_status

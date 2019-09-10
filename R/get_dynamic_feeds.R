@@ -1,8 +1,9 @@
-#' Save the free_bike_status feed.
+#' Grab the free_bike_status feed.
 #' 
 #' If the specified file does not exist, \code{get_free_bike_status} saves the free_bike_status
 #' feed for a given city as a .rds object. If the specified file does exist, \code{get_free_bike_status}
-#' appends the current free_bike_status feed to the existing file. Go to 
+#' appends the current free_bike_status feed to the existing file. The resulting dataframe can
+#' alternatively be returned (rather than saved) using the `output` argument. Go to 
 #' `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 #' 
 #' @param city A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}
@@ -10,13 +11,27 @@
 #' @param directory The name of an existing folder or folder to be created, where the feed will
 #'   will be saved.
 #' @param file The name of an existing file or new file to be saved. Must end in .rds.
-#' @return A .rds object generated from the current free_bike_status feed.
+#' @param output The type of output method. If `output = "save"`, the object will be saved as
+#' an .rds object at the given path. If `output = "return"`, the output will be returned
+#' as a dataframe object. Setting `output = "both"` will do both.
+#' @return Depends on argument to `output`: Either a saved .rds object generated from the 
+#' current station_information feed, a dataframe object, or both.
 #' @examples
 #' \donttest{get_free_bike_status(city = "Melbourne", directory = tempdir())}
 #' @export
 
-get_free_bike_status <- function(city, directory, file = "free_bike_status.rds") {
+get_free_bike_status <- function(city, directory = NULL, file = "free_bike_status.rds", output = "save") {
 
+  if (!output %in% c("save", "return", "both")) {
+    stop(sprintf("Please supply one of \"save\", \"return\", or \"both\" as arguments to `output`."))
+  }
+  
+  if (is.null(directory) & output %in% c("save", "both")) {
+    stop(sprintf("You have not supplied a location to save the resulting file, but the supplied arguments
+    indicate that you'd like to save the dataframe. Please supply a `directory` argument or 
+    set `output = \"return\".`"))
+  }
+  
   url <- city_to_url(city)
   
   if (url != city) {
@@ -57,28 +72,34 @@ get_free_bike_status <- function(city, directory, file = "free_bike_status.rds")
              minute = lubridate::minute(last_updated))
   }
 
-  # create directory
-  if (!dir.exists(directory)) {
-    dir.create(directory)
+  
+  if (output %in% c("save", "both")) {
+    # create directory
+    if (!dir.exists(directory)) {
+      dir.create(directory)
+    }
+  
+    update_fbs <- function(filepath) {
+      fbs <- readRDS(filepath)
+      fbs_update <- rbind(free_bike_status_data, fbs)
+      saveRDS(fbs_update, file = filepath)
+    }
+  
+    if (file.exists(paste(directory, file, sep = "/"))) {
+      update_fbs(paste(directory, file, sep = "/"))
+    }
+  
+    else {
+      saveRDS(free_bike_status_data, file = paste(directory, file, sep = "/"))
+    }
   }
-
-  update_fbs <- function(filepath) {
-    fbs <- readRDS(filepath)
-    fbs_update <- rbind(free_bike_status_data, fbs)
-    saveRDS(fbs_update, file = filepath)
+  
+  if (output %in% c("return", "both")) {
+    free_bike_status_data
   }
-
-  if (file.exists(paste(directory, file, sep = "/"))) {
-    update_fbs(paste(directory, file, sep = "/"))
-  }
-
-  else {
-    saveRDS(free_bike_status_data, file = paste(directory, file, sep = "/"))
-  }
-
 }
 
-#' Save the station_status feed.
+#' Grab the station_status feed.
 #' 
 #' If the specified file does not exist, \code{get_station_status} saves the station_status
 #' feed for a given city as a .rds object. If the specified file does exist, \code{get_station_status}
@@ -90,14 +111,28 @@ get_free_bike_status <- function(city, directory, file = "free_bike_status.rds")
 #' @param directory The name of an existing folder or folder to be created, where the feed will
 #'   will be saved.
 #' @param file The name of an existing file or new file to be saved. Must end in .rds.
-#' @return A .rds object generated from the current station_status feed.
+#' @param output The type of output method. If `output = "save"`, the object will be saved as
+#' an .rds object at the given path. If `output = "return"`, the output will be returned
+#' as a dataframe object. Setting `output = "both"` will do both.
+#' @return Depends on argument to `output`: Either a saved .rds object generated from the 
+#' current station_information feed, a dataframe object, or both.
 #' @examples
 #' \donttest{get_station_status(city = 
 #' "http://biketownpdx.socialbicycles.com/opendata/station_status.json", directory = tempdir())}
 #' @export
 
-get_station_status <- function(city, directory, file = "station_status.rds") {
+get_station_status <- function(city, directory = NULL, file = "station_status.rds", output = "save") {
 
+  if (!output %in% c("save", "return", "both")) {
+    stop(sprintf("Please supply one of \"save\", \"return\", or \"both\" as arguments to `output`."))
+  }
+  
+  if (is.null(directory) & output %in% c("save", "both")) {
+    stop(sprintf("You have not supplied a location to save the resulting file, but the supplied arguments
+    indicate that you'd like to save the dataframe. Please supply a `directory` argument or 
+    set `output = \"return\".`"))
+  }
+  
   url <- city_to_url(city)
   
   if (url != city) {
@@ -182,23 +217,29 @@ get_station_status <- function(city, directory, file = "station_status.rds") {
            hour = lubridate::hour(last_updated),
            minute = lubridate::minute(last_updated))
 
-  # create directory
-  if (!dir.exists(directory)) {
-    dir.create(directory)
+  
+  if (output %in% c("save", "both")) {
+    # create directory
+    if (!dir.exists(directory)) {
+      dir.create(directory)
+    }
+  
+    update_ss <- function(filepath) {
+      ss <- readRDS(filepath)
+      ss_update <- rbind(station_status_data, ss)
+      saveRDS(ss_update, file = filepath)
+    }
+  
+    if (file.exists(paste(directory, file, sep = "/"))) {
+      update_ss(paste(directory, file, sep = "/"))
+    }
+  
+    else {
+      saveRDS(station_status_data, file = paste(directory, file, sep = "/"))
+    }
   }
-
-  update_ss <- function(filepath) {
-    ss <- readRDS(filepath)
-    ss_update <- rbind(station_status_data, ss)
-    saveRDS(ss_update, file = filepath)
+  
+  if (output %in% c("return", "both")) {
+    station_status_data
   }
-
-  if (file.exists(paste(directory, file, sep = "/"))) {
-    update_ss(paste(directory, file, sep = "/"))
-  }
-
-  else {
-    saveRDS(station_status_data, file = paste(directory, file, sep = "/"))
-  }
-
 }
