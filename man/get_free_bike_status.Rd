@@ -4,21 +4,21 @@
 \alias{get_free_bike_status}
 \title{Grab the free_bike_status feed.}
 \usage{
-get_free_bike_status(city, directoryv = NULL,
+get_free_bike_status(city, directory = NULL,
   file = "free_bike_status.rds", output = "save")
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}
 for a current list of available cities.}
 
+\item{directory}{The name of an existing folder or folder to be created, where the feed will
+will be saved.}
+
 \item{file}{The name of an existing file or new file to be saved. Must end in .rds.}
 
 \item{output}{The type of output method. If `output = "save"`, the object will be saved as
 an .rds object at the given path. If `output = "return"`, the output will be returned
 as a dataframe object. Setting `output = "both"` will do both.}
-
-\item{directory}{The name of an existing folder or folder to be created, where the feed will
-will be saved.}
 }
 \value{
 Depends on argument to `output`: Either a saved .rds object generated from the 
