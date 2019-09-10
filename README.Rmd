@@ -29,7 +29,7 @@ __Features__
 
 ## Installation
 
-We're now on CRAN! Install the latest release, 1.1.0, with:
+We're now on CRAN! Install the latest release, 1.2.0, with:
 
 ```{r cran-installation, eval = FALSE}
 install.packages("gbfs")
