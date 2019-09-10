@@ -6,4 +6,3 @@ cran-comments.md
 docs/
 ^README.Rmd
 NEWS.Rmd
-^CRAN-RELEASE$
