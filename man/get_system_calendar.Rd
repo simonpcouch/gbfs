@@ -2,9 +2,10 @@
 % Please edit documentation in R/get_static_feeds.R
 \name{get_system_calendar}
 \alias{get_system_calendar}
-\title{Save the system_calendar feed.}
+\title{Grab the system_calendar feed.}
 \usage{
-get_system_calendar(city, directory, file = "system_calendar.rds")
+get_system_calendar(city, directory = NULL,
+  file = "system_calendar.rds", output = "save")
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}
@@ -14,12 +15,17 @@ for a current list of available cities.}
 will be saved.}
 
 \item{file}{The name of the file to be saved. Must end in .rds.}
+
+\item{output}{The type of output method. If `output = "save"`, the object will be saved as
+an .rds object at the given path. If `output = "return"`, the output will be returned
+as a dataframe object. Setting `output = "both"` will do both.}
 }
 \value{
-A .rds object generated from the current system_calendar feed.
+Depends on argument to `output`: Either a saved .rds object generated from the 
+current system_alerts feed, a dataframe object, or both
 }
 \description{
-\code{get_system_calendar} saves the system_calendar feed for a given city as a .rds object. Go to 
+\code{get_system_calendar} grabs and tidies the system_calendar feed for a given city. Go to 
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 }
 \examples{
