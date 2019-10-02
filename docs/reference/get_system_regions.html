@@ -8,11 +8,13 @@
 
 <title>Grab the system_regions feed. — get_system_regions • gbfs</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -32,11 +34,12 @@
 
 
 
-<meta property="og:title" content="Grab the system_regions feed. — get_system_regions" />
 
+<meta property="og:title" content="Grab the system_regions feed. — get_system_regions" />
 <meta property="og:description" content="get_system_regions grabs and tidies the system_regions feed for a given city. Go to 
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -86,7 +89,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ds-civic-data/gbfs">
@@ -113,15 +115,13 @@
     </div>
 
     <div class="ref-description">
-    
     <p><code>get_system_regions</code> grabs and tidies the system_regions feed for a given city. Go to 
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>get_system_regions</span>(<span class='no'>city</span>, <span class='kw'>directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"system_regions.rds"</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"save"</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -146,12 +146,11 @@ an .rds object at the given path. If `output = "return"`, the output will be ret
 as a dataframe object. Setting `output = "both"` will do both.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Depends on argument to `output`: Either a saved .rds object generated from the 
 current system_alerts feed, a dataframe object, or both.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>get_system_regions</span>(<span class='kw'>city</span> <span class='kw'>=</span>
@@ -162,9 +161,7 @@ current system_alerts feed, a dataframe object, or both.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -178,7 +175,7 @@ current system_alerts feed, a dataframe object, or both.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>
