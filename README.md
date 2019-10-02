@@ -1,5 +1,5 @@
 
-# General Bikeshare Feed Specification - R Package
+# General Bikeshare Feed Specification - R Package <a href='https://gbfs.netlify.com'><img src='figures/hex.png' align="right" height="200" /></a>
 
 *Developed by Kaelyn M. Rosenberg (author) and Simon P. Couch (author,
 maintainer)*
@@ -15,8 +15,6 @@ programs. The North American Bikeshare Association’s
 format for live information on the status of bikeshare programs, as well
 as metadata, including counts of bikes at stations, ridership costs, and
 geographic locations of stations and parked bikes.
-
-<img style="float: right;" src="figures/hex.png" width="240">
 
 **Features**
 
