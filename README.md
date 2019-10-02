@@ -6,7 +6,6 @@ maintainer)*
 
 ![CRAN Badge](http://www.r-pkg.org/badges/version/gbfs) [![Build
 Status](https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master)](https://travis-ci.org/ds-civic-data/gbfs)
-<img style="float: right;" src="figures/hex.png" width="240">
 
 The `gbfs` package supplies a set of functions to interface with General
 Bikeshare Feed Specification .json feeds in R, allowing users to save
@@ -16,6 +15,8 @@ programs. The North American Bikeshare Association’s
 format for live information on the status of bikeshare programs, as well
 as metadata, including counts of bikes at stations, ridership costs, and
 geographic locations of stations and parked bikes.
+
+<img style="float: right;" src="figures/hex.png" width="240">
 
 **Features**
 
