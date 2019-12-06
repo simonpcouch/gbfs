@@ -4,7 +4,9 @@
 *Developed by Kaelyn M. Rosenberg (author) and Simon P. Couch (author,
 maintainer)*
 
-![CRAN Badge](http://www.r-pkg.org/badges/version/gbfs) [![Build
+[![CRAN
+status](https://www.r-pkg.org/badges/version/tidyr)](https://cran.r-project.org/package=tidyr)
+[![Build
 Status](https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master)](https://travis-ci.org/ds-civic-data/gbfs)
 
 The `gbfs` package supplies a set of functions to interface with General
