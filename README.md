@@ -5,7 +5,7 @@
 maintainer)*
 
 [![CRAN
-status](https://www.r-pkg.org/badges/version/tidyr)](https://cran.r-project.org/package=tidyr)
+status](https://www.r-pkg.org/badges/version/gbfs)](https://cran.r-project.org/package=gbfs)
 [![Build
 Status](https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master)](https://travis-ci.org/ds-civic-data/gbfs)
 
