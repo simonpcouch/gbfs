@@ -4,8 +4,12 @@
 \alias{get_system_alerts}
 \title{Grab the system_alerts feed.}
 \usage{
-get_system_alerts(city, directory = NULL, file = "system_alerts.rds",
-  output = "save")
+get_system_alerts(
+  city,
+  directory = NULL,
+  file = "system_alerts.rds",
+  output = "save"
+)
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}

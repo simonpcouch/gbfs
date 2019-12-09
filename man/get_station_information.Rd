@@ -4,8 +4,12 @@
 \alias{get_station_information}
 \title{Grab the station_information feed.}
 \usage{
-get_station_information(city, directory = NULL,
-  file = "station_information.rds", output = "save")
+get_station_information(
+  city,
+  directory = NULL,
+  file = "station_information.rds",
+  output = "save"
+)
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}

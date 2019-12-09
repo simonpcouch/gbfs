@@ -4,8 +4,12 @@
 \alias{get_system_information}
 \title{Grab the system_information feed.}
 \usage{
-get_system_information(city, directory = NULL,
-  file = "system_information.rds", output = "save")
+get_system_information(
+  city,
+  directory = NULL,
+  file = "system_information.rds",
+  output = "save"
+)
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}

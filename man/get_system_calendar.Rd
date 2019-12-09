@@ -4,8 +4,12 @@
 \alias{get_system_calendar}
 \title{Grab the system_calendar feed.}
 \usage{
-get_system_calendar(city, directory = NULL,
-  file = "system_calendar.rds", output = "save")
+get_system_calendar(
+  city,
+  directory = NULL,
+  file = "system_calendar.rds",
+  output = "save"
+)
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}

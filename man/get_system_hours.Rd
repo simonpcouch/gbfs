@@ -4,8 +4,12 @@
 \alias{get_system_hours}
 \title{Grab the system_hours feed.}
 \usage{
-get_system_hours(city, directory = NULL, file = "system_hours.rds",
-  output = "save")
+get_system_hours(
+  city,
+  directory = NULL,
+  file = "system_hours.rds",
+  output = "save"
+)
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}

@@ -3,7 +3,6 @@
 \docType{package}
 \name{gbfs}
 \alias{gbfs}
-\alias{gbfs-package}
 \title{Package: gbfs}
 \description{
 General Bikeshare Feed Specification
