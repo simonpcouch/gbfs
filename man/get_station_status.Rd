@@ -4,15 +4,20 @@
 \alias{get_station_status}
 \title{Grab the station_status feed.}
 \usage{
-get_station_status(city, directory = NULL, file = "station_status.rds",
-  output = "save")
+get_station_status(
+  city,
+  directory = NULL,
+  file = "station_status.rds",
+  output = "save"
+)
 }
 \arguments{
 \item{city}{A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}
 for a current list of available cities.}
 
 \item{directory}{The name of an existing folder or folder to be created, where the feed will
-will be saved.}
+will be saved. This argument is only required if `output = "save"` (the default option.)
+If `output = "return"`, this argument will be ignored.}
 
 \item{file}{The name of an existing file or new file to be saved. Must end in .rds.}
 
@@ -21,16 +26,20 @@ an .rds object at the given path. If `output = "return"`, the output will be ret
 as a dataframe object. Setting `output = "both"` will do both.}
 }
 \value{
-Depends on argument to `output`: Either a saved .rds object generated from the 
-current station_information feed, a dataframe object, or both.
+The output of this function depends on argument to `output`: Either 
+a saved .rds object generated from the current station_information feed, 
+a dataframe object, or both.
 }
 \description{
 If the specified file does not exist, \code{get_station_status} saves the station_status
 feed for a given city as a .rds object. If the specified file does exist, \code{get_station_status}
-appends the current station_status feed to the existing file. Go to 
+appends the new rows from the current station_status feed to the existing file. Go to 
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 }
 \examples{
+# grab the station status for portland's bikeshare program, and save the output
 \donttest{get_station_status(city = 
 "http://biketownpdx.socialbicycles.com/opendata/station_status.json", directory = tempdir())}
+# grab the station status for klagenfurt and return the output as a dataframe
+\donttest{get_station_status(city = "klagenfurt", output = "return")}
 }
