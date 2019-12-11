@@ -15,7 +15,7 @@
 #' @docType package
 #' @name gbfs
 #' @importFrom dplyr %>%
-NULL
+"_PACKAGE"
 
 utils::globalVariables(c(".", "Location", "Name", "last_reported", "last_updated",
                          "num_bikes_available", "num_bikes_disabled", "num_docks_available",

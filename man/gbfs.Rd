@@ -3,6 +3,7 @@
 \docType{package}
 \name{gbfs}
 \alias{gbfs}
+\alias{gbfs-package}
 \title{Package: gbfs}
 \description{
 General Bikeshare Feed Specification
@@ -20,3 +21,25 @@ get_system_hours(), get_system_information(),
 get_system_pricing_plans(), get_system_regions()
 }
 
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/ds-civic-data/gbfs}
+  \item Report bugs at \url{https://github.com/ds-civic-data/gbfs/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Simon P. Couch \email{simonpatrickcouch@gmail.com}
+
+Authors:
+\itemize{
+  \item Kaelyn Rosenberg \email{kaerosenberg@gmail.com}
+}
+
+Other contributors:
+\itemize{
+  \item Mark Padgham \email{mark.padgham@email.com} [contributor]
+}
+
+}
