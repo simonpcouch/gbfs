@@ -17,9 +17,10 @@ for a current list of available cities.}
 
 \item{directory}{The name of an existing folder or folder to be created, where the feed will
 will be saved. This argument is only required if `output = "save"` (the default option.)
-If `output = "return"`, this argument will be ignored.}
+This argument will be ignored, if `output = "return"`}
 
-\item{file}{The name of an existing file or new file to be saved. Must end in .rds.}
+\item{file}{Name of an existing file or a new file to be saved. Must end in .rds.
+This argument will be ignored if `output = "return"`.}
 
 \item{output}{The type of output method. If `output = "save"`, the object will be saved as
 an .rds object at the given path. If `output = "return"`, the output will be returned
@@ -37,9 +38,22 @@ appends the new rows from the current station_status feed to the existing file. 
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 }
 \examples{
-# grab the station status for portland's bikeshare program, and save the output
-\donttest{get_station_status(city = 
-"http://biketownpdx.socialbicycles.com/opendata/station_status.json", directory = tempdir())}
-# grab the station status for klagenfurt and return the output as a dataframe
-\donttest{get_station_status(city = "klagenfurt", output = "return")}
+# we can grab the station status feed for portland, 
+# oregon in one of several ways! first, supply the `city` 
+# argument as a URL, and save to file by leaving output 
+# set to it's default. usually, we would supply a character 
+# string (like "pdx", maybe,) for the `directory` argument 
+# instead of `tempdir`.
+\donttest{get_station_status(city = "http://biketownpdx.socialbicycles.com/opendata/station_status.json",  
+                   directory = tempdir())}
+                    
+# or, instead, just supply the name of 
+# the city as a string. 
+\donttest{get_station_status(city = "portland",
+                   directory = tempdir())}
+                    
+# instead of saving the output as a file, we can 
+# just return the output as a dataframe
+\donttest{get_station_status(city = "portland",  
+                   output = "return")}
 }

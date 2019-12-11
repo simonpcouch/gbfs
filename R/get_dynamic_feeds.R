@@ -20,13 +20,24 @@
 #' saved .rds object generated from the current station_information feed, a 
 #' dataframe object, or both.
 #' @examples
-#' # grab the free bike status data from melbourne, and save it
-#' \donttest{get_free_bike_status(city = "Melbourne", directory = tempdir())}
-#' # grab the free bike status from the czech republic, and return it as a dataframe
-#' \donttest{get_free_bike_status(
-#' city = "https://gbfs.nextbike.net/maps/gbfs/v1/nextbike_cz/cs/free_bike_status.json", 
-#' output = "return"
-#' )}
+#' # we can grab the free bike status feed for portland, 
+#' # oregon in one of several ways! first, supply the `city` 
+#' # argument as a URL, and save to file by leaving output 
+#' # set to it's default. usually, we would supply a character 
+#' # string (like "pdx", maybe,) for the `directory` argument 
+#' # instead of `tempdir`.
+#' \donttest{get_free_bike_status(city = "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json",  
+#'                      directory = tempdir())}
+#'                     
+#' # or, instead, just supply the name of 
+#' # the city as a string. 
+#'\donttest{get_free_bike_status(city = "portland",
+#'                      directory = tempdir())}
+#'                     
+#' # instead of saving the output as a file, we can 
+#' # just return the output as a dataframe
+#' \donttest{get_free_bike_status(city = "portland",  
+#'                      output = "return")}
 #' @export
 
 get_free_bike_status <- function(city, directory = NULL, file = "free_bike_status.rds", output = "save") {
@@ -119,8 +130,9 @@ get_free_bike_status <- function(city, directory = NULL, file = "free_bike_statu
 #' for a current list of available cities.
 #' @param directory The name of an existing folder or folder to be created, where the feed will
 #'   will be saved. This argument is only required if `output = "save"` (the default option.)
-#'   If `output = "return"`, this argument will be ignored.
-#' @param file The name of an existing file or new file to be saved. Must end in .rds.
+#'   This argument will be ignored, if `output = "return"`
+#' @param file Name of an existing file or a new file to be saved. Must end in .rds.
+#'   This argument will be ignored if `output = "return"`.
 #' @param output The type of output method. If `output = "save"`, the object will be saved as
 #' an .rds object at the given path. If `output = "return"`, the output will be returned
 #' as a dataframe object. Setting `output = "both"` will do both.
@@ -128,11 +140,24 @@ get_free_bike_status <- function(city, directory = NULL, file = "free_bike_statu
 #' a saved .rds object generated from the current station_information feed, 
 #' a dataframe object, or both.
 #' @examples
-#' # grab the station status for portland's bikeshare program, and save the output
-#' \donttest{get_station_status(city = 
-#' "http://biketownpdx.socialbicycles.com/opendata/station_status.json", directory = tempdir())}
-#' # grab the station status for klagenfurt and return the output as a dataframe
-#' \donttest{get_station_status(city = "klagenfurt", output = "return")}
+#' # we can grab the station status feed for portland, 
+#' # oregon in one of several ways! first, supply the `city` 
+#' # argument as a URL, and save to file by leaving output 
+#' # set to it's default. usually, we would supply a character 
+#' # string (like "pdx", maybe,) for the `directory` argument 
+#' # instead of `tempdir`.
+#' \donttest{get_station_status(city = "http://biketownpdx.socialbicycles.com/opendata/station_status.json",  
+#'                    directory = tempdir())}
+#'                     
+#' # or, instead, just supply the name of 
+#' # the city as a string. 
+#'\donttest{get_station_status(city = "portland",
+#'                    directory = tempdir())}
+#'                     
+#' # instead of saving the output as a file, we can 
+#' # just return the output as a dataframe
+#' \donttest{get_station_status(city = "portland",  
+#'                    output = "return")}
 #' @export
 
 get_station_status <- function(city, directory = NULL, file = "station_status.rds", output = "save") {

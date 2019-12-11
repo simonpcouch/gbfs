@@ -39,11 +39,22 @@ alternatively be returned (rather than saved) using the `output` argument. Go to
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
 }
 \examples{
-# grab the free bike status data from melbourne, and save it
-\donttest{get_free_bike_status(city = "Melbourne", directory = tempdir())}
-# grab the free bike status from the czech republic, and return it as a dataframe
-\donttest{get_free_bike_status(
-city = "https://gbfs.nextbike.net/maps/gbfs/v1/nextbike_cz/cs/free_bike_status.json", 
-output = "return"
-)}
+# we can grab the free bike status feed for portland, 
+# oregon in one of several ways! first, supply the `city` 
+# argument as a URL, and save to file by leaving output 
+# set to it's default. usually, we would supply a character 
+# string (like "pdx", maybe,) for the `directory` argument 
+# instead of `tempdir`.
+\donttest{get_free_bike_status(city = "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json",  
+                     directory = tempdir())}
+                    
+# or, instead, just supply the name of 
+# the city as a string. 
+\donttest{get_free_bike_status(city = "portland",
+                     directory = tempdir())}
+                    
+# instead of saving the output as a file, we can 
+# just return the output as a dataframe
+\donttest{get_free_bike_status(city = "portland",  
+                     output = "return")}
 }
