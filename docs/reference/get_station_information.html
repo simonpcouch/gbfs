@@ -37,6 +37,7 @@
 
 <meta property="og:title" content="Grab the station_information feed. — get_station_information" />
 <meta property="og:description" content="get_station_information grabs and tidies the station_information feed for a given city. 
+This dataset contains locations, capacity, and other information about bikeshare stations.
 Go to `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset." />
 <meta name="twitter:card" content="summary" />
 
@@ -70,7 +71,7 @@ Go to `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for th
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gbfs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0.9000</span>
       </span>
     </div>
 
@@ -116,46 +117,843 @@ Go to `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for th
 
     <div class="ref-description">
     <p><code>get_station_information</code> grabs and tidies the station_information feed for a given city. 
+This dataset contains locations, capacity, and other information about bikeshare stations.
 Go to `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_station_information</span>(<span class='no'>city</span>, <span class='kw'>directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"station_information.rds"</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"save"</span>)</pre>
+    <pre class="usage"><span class='fu'>get_station_information</span>(
+  <span class='no'>city</span>,
+  <span class='kw'>directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"station_information.rds"</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"save"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>city</th>
-      <td><p>A character string or a url to an active gbfs.json feed. See <code>get_gbfs_cities</code>
-for a current list of available cities.</p></td>
+      <td><p>A character string that can be matched to a city or a url to an active 
+gbfs .json feed. See <code>get_gbfs_cities</code> for a current list of available cities.</p></td>
     </tr>
     <tr>
       <th>directory</th>
-      <td><p>The name of an existing folder or folder to be created, where the feed will
-will be saved.</p></td>
+      <td><p>The name of an existing folder or folder to be created, where 
+the feed will will be saved. This argument is not required if <code>output = "return"</code>.</p></td>
     </tr>
     <tr>
       <th>file</th>
-      <td><p>The name of the file to be saved (if output is default). Must end in .rds.</p></td>
+      <td><p>The name of the file to be saved (if <code>output</code> is set to <code>"save"</code> 
+or <code>"both"</code>), as a character string. Must end in <code>".rds"</code>.</p></td>
     </tr>
     <tr>
       <th>output</th>
-      <td><p>The type of output method. If `output = "save"`, the object will be saved as
-an .rds object at the given path. If `output = "return"`, the output will be returned
-as a dataframe object. Setting `output = "both"` will do both.</p></td>
+      <td><p>The type of output method. If <code>output = "save"</code>, the object 
+will be saved as an .rds object at the given path. If <code>output = "return"</code>, 
+the output will be returned as a dataframe object. Setting 
+<code>output = "both"</code> will do both.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Depends on argument to `output`: Either a saved .rds object generated from the 
-current station_information feed, a dataframe object, or both</p>
+    <p>The output of this function depends on argument to <code>output</code>. 
+Either a saved .rds object generated from the current station_information 
+feed, a dataframe object, or both.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_station_information</span>(<span class='kw'>city</span> <span class='kw'>=</span>
-<span class='st'>"http://biketownpdx.socialbicycles.com/opendata/station_information.json"</span>,  <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-<span class='fu'>get_station_information</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"Battle Creek"</span>,  <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># we can grab the station information feed for portland, </span>
+<span class='co'># oregon in one of several ways! first, supply the `city` </span>
+<span class='co'># argument as a URL, and save to file by leaving output </span>
+<span class='co'># set to it's default. usually, we would supply a character </span>
+<span class='co'># string (like "pdx", maybe,) for the `directory` argument </span>
+<span class='co'># instead of `tempdir`.</span>
+<span class='fu'>get_station_information</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"http://biketownpdx.socialbicycles.com/opendata/system_alerts.json"</span>,
+                        <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+
+<span class='co'># or, instead, just supply the name of </span>
+<span class='co'># the city as a string. </span>
+<span class='fu'>get_station_information</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>,
+                        <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+
+<span class='co'># instead of saving the output as a file, we can </span>
+<span class='co'># just return the output as a dataframe</span>
+<span class='fu'>get_station_information</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>,
+                        <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"return"</span>)</div><div class='output co'>#&gt;     station_id
+#&gt; 1     hub_1512
+#&gt; 2     hub_1513
+#&gt; 3     hub_1514
+#&gt; 4     hub_1515
+#&gt; 5     hub_1516
+#&gt; 6     hub_1517
+#&gt; 7     hub_1518
+#&gt; 8     hub_1519
+#&gt; 9     hub_1521
+#&gt; 10    hub_1522
+#&gt; 11    hub_1523
+#&gt; 12    hub_1524
+#&gt; 13    hub_1527
+#&gt; 14    hub_1528
+#&gt; 15    hub_1529
+#&gt; 16    hub_1535
+#&gt; 17    hub_1536
+#&gt; 18    hub_1537
+#&gt; 19    hub_1538
+#&gt; 20    hub_1539
+#&gt; 21    hub_1540
+#&gt; 22    hub_1541
+#&gt; 23    hub_1542
+#&gt; 24    hub_1543
+#&gt; 25    hub_1544
+#&gt; 26    hub_1545
+#&gt; 27    hub_1546
+#&gt; 28    hub_1547
+#&gt; 29    hub_1548
+#&gt; 30    hub_1549
+#&gt; 31    hub_1550
+#&gt; 32    hub_1551
+#&gt; 33    hub_1552
+#&gt; 34    hub_1554
+#&gt; 35    hub_1555
+#&gt; 36    hub_1556
+#&gt; 37    hub_1558
+#&gt; 38    hub_1559
+#&gt; 39    hub_1560
+#&gt; 40    hub_1561
+#&gt; 41    hub_1562
+#&gt; 42    hub_1563
+#&gt; 43    hub_1564
+#&gt; 44    hub_1566
+#&gt; 45    hub_1567
+#&gt; 46    hub_1568
+#&gt; 47    hub_1569
+#&gt; 48    hub_1570
+#&gt; 49    hub_1571
+#&gt; 50    hub_1572
+#&gt; 51    hub_1573
+#&gt; 52    hub_1574
+#&gt; 53    hub_1575
+#&gt; 54    hub_1577
+#&gt; 55    hub_1578
+#&gt; 56    hub_1579
+#&gt; 57    hub_1580
+#&gt; 58    hub_1581
+#&gt; 59    hub_1582
+#&gt; 60    hub_1583
+#&gt; 61    hub_1584
+#&gt; 62    hub_1585
+#&gt; 63    hub_1586
+#&gt; 64    hub_1588
+#&gt; 65    hub_1590
+#&gt; 66    hub_1591
+#&gt; 67    hub_1592
+#&gt; 68    hub_1593
+#&gt; 69    hub_1594
+#&gt; 70    hub_1595
+#&gt; 71    hub_1597
+#&gt; 72    hub_1598
+#&gt; 73    hub_1599
+#&gt; 74    hub_1600
+#&gt; 75    hub_1601
+#&gt; 76    hub_1602
+#&gt; 77    hub_1603
+#&gt; 78    hub_1604
+#&gt; 79    hub_1605
+#&gt; 80    hub_1606
+#&gt; 81    hub_1607
+#&gt; 82    hub_1608
+#&gt; 83    hub_1609
+#&gt; 84    hub_1611
+#&gt; 85    hub_1612
+#&gt; 86    hub_1613
+#&gt; 87    hub_1614
+#&gt; 88    hub_1615
+#&gt; 89    hub_1616
+#&gt; 90    hub_1617
+#&gt; 91    hub_1713
+#&gt; 92    hub_2275
+#&gt; 93    hub_2276
+#&gt; 94    hub_2598
+#&gt; 95    hub_2677
+#&gt; 96    hub_2678
+#&gt; 97    hub_2679
+#&gt; 98    hub_2680
+#&gt; 99    hub_2681
+#&gt; 100   hub_2682
+#&gt; 101   hub_2683
+#&gt; 102   hub_2684
+#&gt; 103   hub_2685
+#&gt; 104   hub_2686
+#&gt; 105   hub_2687
+#&gt; 106   hub_2688
+#&gt; 107   hub_2689
+#&gt; 108   hub_2695
+#&gt; 109   hub_2696
+#&gt; 110   hub_2698
+#&gt; 111   hub_2707
+#&gt; 112   hub_2708
+#&gt; 113   hub_2789
+#&gt; 114   hub_2798
+#&gt; 115   hub_2875
+#&gt; 116   hub_3240
+#&gt; 117   hub_3929
+#&gt; 118   hub_3957
+#&gt; 119   hub_4034
+#&gt; 120   hub_4050
+#&gt; 121   hub_4312
+#&gt; 122   hub_4313
+#&gt; 123   hub_4315
+#&gt; 124   hub_4316
+#&gt; 125   hub_4317
+#&gt; 126   hub_4318
+#&gt; 127   hub_4319
+#&gt; 128   hub_4320
+#&gt; 129   hub_4321
+#&gt; 130   hub_4322
+#&gt; 131   hub_4323
+#&gt; 132   hub_4324
+#&gt; 133   hub_4325
+#&gt; 134   hub_4326
+#&gt; 135   hub_4327
+#&gt; 136   hub_4328
+#&gt; 137   hub_4329
+#&gt; 138   hub_4368
+#&gt; 139   hub_4381
+#&gt; 140   hub_4482
+#&gt; 141   hub_5277
+#&gt; 142   hub_5311
+#&gt; 143   hub_5316
+#&gt; 144   hub_5357
+#&gt; 145   hub_5414
+#&gt; 146   hub_5470
+#&gt; 147   hub_5473
+#&gt; 148   hub_5474
+#&gt; 149   hub_5476
+#&gt; 150   hub_5491
+#&gt; 151   hub_5493
+#&gt; 152   hub_5498
+#&gt; 153   hub_5567
+#&gt; 154   hub_5597
+#&gt;                                                                  name
+#&gt; 1                                             SW 10th at Harvey Milk 
+#&gt; 2                                   SE Gideon at 12th Ave MAX station
+#&gt; 3                                                  SE Clinton at 26th
+#&gt; 4                                              SE Elliott at Division
+#&gt; 5                                                    SE Clay at Water
+#&gt; 6                                                  SE 29th at Belmont
+#&gt; 7                                                  SE Water at Taylor
+#&gt; 8                                                    SE 14th at Stark
+#&gt; 9                                            N Prescott at Interstate
+#&gt; 10                                                  NE Glisan at 24th
+#&gt; 11                                            NE Wheeler at Multnomah
+#&gt; 12                                        N Mississippi at N Skidmore
+#&gt; 13                               SE Taylor at Chavez Community Corral
+#&gt; 14                                                NW 13th at Marshall
+#&gt; 15                                                NW 18th at Northrup
+#&gt; 16                                     SW Park at Portland Art Museum
+#&gt; 17                 SW 4th at Jefferson (City Hall) - Community Corral
+#&gt; 18                        SW Broadway at Smith Memorial Student Union
+#&gt; 19                                    Urban Center Plaza at SW 6th St
+#&gt; 20                                                  SW 4th at College
+#&gt; 21                                                 SW Harrison at 1st
+#&gt; 22                                   SW Moody at Aerial Tram Terminal
+#&gt; 23                                                SW 10th at Columbia
+#&gt; 24                                                    SW 12th at Clay
+#&gt; 25                                                     SW 5th at Main
+#&gt; 26                                 NW Marshall at Tanner Springs Park
+#&gt; 27                                                 NW Thurman at 24th
+#&gt; 28                                                 NW Raleigh at 21st
+#&gt; 29                                                SE 34th at Division
+#&gt; 30                                                SE 30th at Division
+#&gt; 31                                                 SE Clinton at 21st
+#&gt; 32                                                   SE 29th at Stark
+#&gt; 33                                                 SE Belmont at 20th
+#&gt; 34                                               SE 34th at Hawthorne
+#&gt; 35                                                NE 15th at Broadway
+#&gt; 36                                                    NE MLK at Knott
+#&gt; 37                                                 NW Everett at 22nd
+#&gt; 38                                             N Vancouver at Alberta
+#&gt; 39                                          N Killingsworth at Albina
+#&gt; 40                                       NW Johnson at Jamison Square
+#&gt; 41                                               NW Station at Irving
+#&gt; 42                                                 NW 23rd at Overton
+#&gt; 43                                                NW 20th at Burnside
+#&gt; 44                                                  NW Glisan at 21st
+#&gt; 45                                                 NW 21st at Johnson
+#&gt; 46                                                 NW 10th at Everett
+#&gt; 47                                       SW Salmon at Waterfront Park
+#&gt; 48                                             SW River at Montgomery
+#&gt; 49                                         SW Harvey Milk at Burnside
+#&gt; 50                                               SW 18th at Jefferson
+#&gt; 51                                 SW 11th at Main - Community Corral
+#&gt; 52                                                     SW 2nd at Pine
+#&gt; 53                                                   SW 3rd at Ankeny
+#&gt; 54                                                 SW 5th at Morrison
+#&gt; 55                                                      SW 5th at Oak
+#&gt; 56                                  SW Market at Keller Fountain Park
+#&gt; 57                                                SW Morrison at 18th
+#&gt; 58                              SW Morrison at Pioneer Courthouse Sq.
+#&gt; 59                                        SW Yamhill at Director Park
+#&gt; 60                                              NW 11th at The Fields
+#&gt; 61                                                NW 18th at Flanders
+#&gt; 62                                                 NW 22nd at Lovejoy
+#&gt; 63                                                  NW 2nd at Everett
+#&gt; 64                                                   NW Couch at 11th
+#&gt; 65                                                NW Flanders at 14th
+#&gt; 66                                           Tilikum West at SW Moody
+#&gt; 67                                                 NW Kearney at 23rd
+#&gt; 68                                               NW Naito at Ironside
+#&gt; 69                                              N Failing at Williams
+#&gt; 70                                             N Mississippi at Beech
+#&gt; 71                           N Russell at Interstate Community Corral
+#&gt; 72                                              N Williams at Fremont
+#&gt; 73                                           NE 11th at Holladay Park
+#&gt; 74                                           SW Naito at Ankeny Plaza
+#&gt; 75                                                NE 22nd at Burnside
+#&gt; 76                                                NE Broadway at 12th
+#&gt; 77                              NE Holladay at MLK - Community Corral
+#&gt; 78                                                NE Multnomah at 9th
+#&gt; 79                                              NE Multnomah at Grand
+#&gt; 80                                                   NE Sandy at 16th
+#&gt; 81                                                  NE Going at Grand
+#&gt; 82                                               SE 29th at Hawthorne
+#&gt; 83                                           SE 2nd Pl at Tilikum Way
+#&gt; 84                                                  SE 9th at Belmont
+#&gt; 85                                                    SE Alder at 6th
+#&gt; 86                                                 SE Belmont at 33rd
+#&gt; 87                                               SE Hawthorne at 20th
+#&gt; 88                                               SE Ladd at Hawthorne
+#&gt; 89                           SW Park at W Burnside - Community Corral
+#&gt; 90                                                N Mason at Williams
+#&gt; 91                                                 NW 19th at Johnson
+#&gt; 92                                NE 28th at Couch - Community Corral
+#&gt; 93                                 SE 28th at Pine - Community Corral
+#&gt; 94                                    Metro Campus - Community Corral
+#&gt; 95                              NE Alberta at 10th - Community Corral
+#&gt; 96                              NE Alberta at 14th - Community Corral
+#&gt; 97                              NE Alberta at 17th - Community Corral
+#&gt; 98                              NE Alberta at 22nd - Community Corral
+#&gt; 99                              NE Alberta at 24th - Community Corral
+#&gt; 100                     NE Alberta at NE 29th/30th - Community Corral
+#&gt; 101            NE 33rd at Jarrett (Kennedy School) - Community Corral
+#&gt; 102                             NE 33rd at Emerson - Community Corral
+#&gt; 103                         NE 14th Pl at Prescott - Community Corral
+#&gt; 104                             NE Fremont at 15th - Community Corral
+#&gt; 105                    N Michigan at Killingsworth - Community Corral
+#&gt; 106                     N Concord at Killingsworth - Community Corral
+#&gt; 107                         N Killingsworth at Gay - Community Corral
+#&gt; 108                       NE Killingsworth at 30th - Community Corral
+#&gt; 109                       NE 17th at Killingsworth - Community Corral
+#&gt; 110                                              SE 40th at Hawthorne
+#&gt; 111                                              SW Naito at Morrison
+#&gt; 112                     N Interstate at Willamette - Community Corral
+#&gt; 113                                            NW Broadway at Everett
+#&gt; 114                                             NW Pettygrove at 15th
+#&gt; 115                                                SW Moody at Thomas
+#&gt; 116                                                   NE Couch at MLK
+#&gt; 117                                                SE Belmont at 42nd
+#&gt; 118                                             NE 2nd at NE Schuyler
+#&gt; 119 SW Park at SW Wright (Oregon Holocaust Memorial) Community Corral
+#&gt; 120                                                  NW Front at 17th
+#&gt; 121                             SE Belmont at 45th - Community Corral
+#&gt; 122                           SE 37th at Gladstone - Community Corral
+#&gt; 123                             NE 50th at Fremont - Community Corral
+#&gt; 124                           NE Cully at Skidmore - Community Corral
+#&gt; 125                          SE 29th and Gladstone - Community Corral
+#&gt; 126                            SE 50th at Division - Community Corral
+#&gt; 127                            SE 47th at Hawthorne- Community Corral
+#&gt; 128                               NE 28th at Glisan- Community Corral
+#&gt; 129                            SE 50th at Hawthorne- Community Corral
+#&gt; 130                            SE 49th at Division - Community Corral
+#&gt; 131                              NE 30th at Glisan - Community Corral
+#&gt; 132                            SE 37th at Division - Community Corral
+#&gt; 133        NE 41st at Sandy Blvd (Hollywood Theatre) Community Corral
+#&gt; 134                                                NE 42nd at Hancock
+#&gt; 135                             NE 48th at Fremont - Community Corral
+#&gt; 136    NE 22nd at Thompson - Community Corral (Irvington Tennis Club)
+#&gt; 137                       N Burrage at Killingsworth Community Corral
+#&gt; 138                             NE 10th at Halsey -- Community Corral
+#&gt; 139                           NW Nicolai at Sherlock Community Corral
+#&gt; 140                                                SE 9th at Burnside
+#&gt; 141                      NE Cully at Killingsworth - Community Corral
+#&gt; 142                                                 SE 9th at Madison
+#&gt; 143                     SE Powell Blvd at 29th Ave - Community Corral
+#&gt; 144                                                   NW 4th at Couch
+#&gt; 145                                                SW 3rd at Morrison
+#&gt; 146                                                 NE 60th at Cully 
+#&gt; 147                                                  NE 50th at Sandy
+#&gt; 148                                                 NE Glisan at 53rd
+#&gt; 149                                       NE 42nd at NE Alberta Court
+#&gt; 150                                            SE Powell Blvd at 28th
+#&gt; 151                                                  NE 43rd at Sandy
+#&gt; 152                          N Wheeler at Broadway - Community Corral
+#&gt; 153                                                SE 50th at Clinton
+#&gt; 154                              N Alberta Street at N Interstate Ave
+#&gt;      region_id       lon      lat
+#&gt; 1   region_241 -122.6811 45.52175
+#&gt; 2   region_241 -122.6535 45.50281
+#&gt; 3   region_241 -122.6395 45.50357
+#&gt; 4   region_241 -122.6534 45.50513
+#&gt; 5   region_241 -122.6663 45.51148
+#&gt; 6   region_241 -122.6361 45.51623
+#&gt; 7   region_241 -122.6658 45.51515
+#&gt; 8   region_241 -122.6517 45.51845
+#&gt; 9   region_241 -122.6819 45.55522
+#&gt; 10  region_241 -122.6416 45.52649
+#&gt; 11  region_241 -122.6659 45.53087
+#&gt; 12  region_241 -122.6755 45.55459
+#&gt; 13  region_241 -122.6229 45.51516
+#&gt; 14  region_241 -122.6844 45.53080
+#&gt; 15  region_241 -122.6896 45.53143
+#&gt; 16  region_241 -122.6833 45.51592
+#&gt; 17  region_241 -122.6784 45.51515
+#&gt; 18  region_241 -122.6837 45.51184
+#&gt; 19  region_241 -122.6823 45.51158
+#&gt; 20  region_241 -122.6812 45.50936
+#&gt; 21  region_241 -122.6777 45.50971
+#&gt; 22  region_241 -122.6716 45.49914
+#&gt; 23  region_241 -122.6847 45.51544
+#&gt; 24  region_241 -122.6870 45.51507
+#&gt; 25  region_241 -122.6791 45.51610
+#&gt; 26  region_241 -122.6816 45.53083
+#&gt; 27  region_241 -122.7007 45.53550
+#&gt; 28  region_241 -122.6949 45.53409
+#&gt; 29  region_241 -122.6296 45.50484
+#&gt; 30  region_241 -122.6346 45.50469
+#&gt; 31  region_241 -122.6447 45.50337
+#&gt; 32  region_241 -122.6360 45.51936
+#&gt; 33  region_241 -122.6460 45.51636
+#&gt; 34  region_241 -122.6295 45.51191
+#&gt; 35  region_241 -122.6506 45.53508
+#&gt; 36  region_241 -122.6615 45.54180
+#&gt; 37  region_241 -122.6965 45.52488
+#&gt; 38  region_241 -122.6685 45.55941
+#&gt; 39  region_241 -122.6747 45.56283
+#&gt; 40  region_241 -122.6820 45.52864
+#&gt; 41  region_241 -122.6766 45.52828
+#&gt; 42  region_241 -122.6986 45.53212
+#&gt; 43  region_241 -122.6933 45.52331
+#&gt; 44  region_241 -122.6941 45.52635
+#&gt; 45  region_241 -122.6946 45.52827
+#&gt; 46  region_241 -122.6811 45.52500
+#&gt; 47  region_241 -122.6739 45.51557
+#&gt; 48  region_241 -122.6735 45.50910
+#&gt; 49  region_241 -122.6840 45.52279
+#&gt; 50  region_241 -122.6920 45.51788
+#&gt; 51  region_241 -122.6847 45.51730
+#&gt; 52  region_241 -122.6726 45.52142
+#&gt; 53  region_241 -122.6733 45.52248
+#&gt; 54  region_241 -122.6774 45.51889
+#&gt; 55  region_241 -122.6764 45.52117
+#&gt; 56  region_241 -122.6789 45.51232
+#&gt; 57  region_241 -122.6897 45.52196
+#&gt; 58  region_241 -122.6795 45.51946
+#&gt; 59  region_241 -122.6813 45.51898
+#&gt; 60  region_241 -122.6824 45.53233
+#&gt; 61  region_241 -122.6893 45.52556
+#&gt; 62  region_241 -122.6966 45.52976
+#&gt; 63  region_241 -122.6725 45.52537
+#&gt; 64  region_241 -122.6818 45.52374
+#&gt; 65  region_241 -122.6856 45.52571
+#&gt; 66  region_241 -122.6714 45.50277
+#&gt; 67  region_241 -122.6987 45.52914
+#&gt; 68  region_241 -122.6742 45.52871
+#&gt; 69  region_241 -122.6669 45.55076
+#&gt; 70  region_241 -122.6757 45.54999
+#&gt; 71  region_241 -122.6770 45.54108
+#&gt; 72  region_241 -122.6668 45.54759
+#&gt; 73  region_241 -122.6547 45.53014
+#&gt; 74  region_241 -122.6703 45.52270
+#&gt; 75  region_241 -122.6434 45.52297
+#&gt; 76  region_241 -122.6536 45.53497
+#&gt; 77  region_241 -122.6618 45.52969
+#&gt; 78  region_241 -122.6575 45.53141
+#&gt; 79  region_241 -122.6597 45.53146
+#&gt; 80  region_241 -122.6498 45.52441
+#&gt; 81  region_241 -122.6604 45.55645
+#&gt; 82  region_241 -122.6363 45.51202
+#&gt; 83  region_241 -122.6633 45.50624
+#&gt; 84  region_241 -122.6566 45.51633
+#&gt; 85  region_241 -122.6601 45.51790
+#&gt; 86  region_241 -122.6308 45.51650
+#&gt; 87  region_241 -122.6454 45.51222
+#&gt; 88  region_241 -122.6533 45.51208
+#&gt; 89  region_241 -122.6790 45.52277
+#&gt; 90  region_241 -122.6669 45.55335
+#&gt; 91  region_241 -122.6905 45.52862
+#&gt; 92  region_241 -122.6372 45.52373
+#&gt; 93  region_241 -122.6372 45.52059
+#&gt; 94  region_241 -122.6604 45.52772
+#&gt; 95  region_241 -122.6554 45.55914
+#&gt; 96  region_241 -122.6514 45.55917
+#&gt; 97  region_241 -122.6475 45.55907
+#&gt; 98  region_241 -122.6427 45.55906
+#&gt; 99  region_241 -122.6408 45.55909
+#&gt; 100 region_241 -122.6355 45.55902
+#&gt; 101 region_241 -122.6305 45.56453
+#&gt; 102 region_241 -122.6303 45.56139
+#&gt; 103 region_241 -122.6507 45.55568
+#&gt; 104 region_241 -122.6508 45.54829
+#&gt; 105 region_241 -122.6770 45.56252
+#&gt; 106 region_241 -122.6848 45.56245
+#&gt; 107 region_241 -122.6890 45.56274
+#&gt; 108 region_241 -122.6350 45.56272
+#&gt; 109 region_241 -122.6481 45.56275
+#&gt; 110 region_241 -122.6210 45.51186
+#&gt; 111 region_241 -122.6725 45.51783
+#&gt; 112 region_241 -122.6820 45.56197
+#&gt; 113 region_241 -122.6776 45.52508
+#&gt; 114 region_241 -122.6863 45.53290
+#&gt; 115 region_241 -122.6719 45.49429
+#&gt; 116 region_241 -122.6619 45.52359
+#&gt; 117 region_241 -122.6190 45.51646
+#&gt; 118 region_241 -122.6636 45.53561
+#&gt; 119 region_241 -122.7044 45.52182
+#&gt; 120 region_241 -122.6881 45.53715
+#&gt; 121 region_241 -122.6160 45.51658
+#&gt; 122 region_241 -122.6234 45.49334
+#&gt; 123 region_241 -122.6112 45.54828
+#&gt; 124 region_241 -122.6021 45.55392
+#&gt; 125 region_241 -122.6358 45.49334
+#&gt; 126 region_241 -122.6109 45.50528
+#&gt; 127 region_241 -122.6142 45.51195
+#&gt; 128 region_241 -122.6362 45.52643
+#&gt; 129 region_241 -122.6113 45.51189
+#&gt; 130 region_241 -122.6121 45.50524
+#&gt; 131 region_241 -122.6347 45.52643
+#&gt; 132 region_241 -122.6253 45.50473
+#&gt; 133 region_241 -122.6206 45.53578
+#&gt; 134 region_241 -122.6200 45.53690
+#&gt; 135 region_241 -122.6137 45.54831
+#&gt; 136 region_241 -122.6433 45.53894
+#&gt; 137 region_241 -122.6946 45.56268
+#&gt; 138 region_241 -122.6556 45.53401
+#&gt; 139 region_241 -122.6967 45.54126
+#&gt; 140 region_241 -122.6566 45.52279
+#&gt; 141 region_241 -122.5944 45.56251
+#&gt; 142 region_241 -122.6567 45.51300
+#&gt; 143 region_241 -122.6354 45.49723
+#&gt; 144 region_241 -122.6747 45.52379
+#&gt; 145 region_241 -122.6755 45.51803
+#&gt; 146 region_241 -122.6008 45.55593
+#&gt; 147 region_241 -122.6119 45.53967
+#&gt; 148 region_241 -122.6093 45.52646
+#&gt; 149 region_241 -122.6204 45.55836
+#&gt; 150 region_241 -122.6375 45.49787
+#&gt; 151 region_241 -122.6188 45.53677
+#&gt; 152 region_241 -122.6687 45.53480
+#&gt; 153 region_241 -122.6111 45.50351
+#&gt; 154 region_241 -122.6824 45.55892
+#&gt;                                                                                                                                             address
+#&gt; 1                                                                                                               404 Southwest 10th Avenue, Portland
+#&gt; 2                                                                                                       1201-1241 Southeast Gideon Street, Portland
+#&gt; 3                                                                                                           2615 Southeast Clinton Street, Portland
+#&gt; 4                                                                                                      2454-2498 Southeast Elliott Avenue, Portland
+#&gt; 5                                                                                                        1601-1799 Southeast Water Avenue, Portland
+#&gt; 6                                                                                                           901-915 Southeast 29th Avenue, Portland
+#&gt; 7                                                                                                             1028 Southeast Water Avenue, Portland
+#&gt; 8                                                                                                           531-699 Southeast 14th Avenue, Portland
+#&gt; 9                                                                                                            4350 North Interstate Avenue, Portland
+#&gt; 10                                                                                                      2329-2399 Northeast Glisan Street, Portland
+#&gt; 11                                                                                                     1051-1099 Northeast Wheeler Avenue, Portland
+#&gt; 12                                                                                                          4220 North Mississippi Avenue, Portland
+#&gt; 13                                                                                                                                         Portland
+#&gt; 14                                                                                                        1100-1124 Northwest 13th Avenue, Portland
+#&gt; 15                                                                                                         1801 Northwest Northrup Street, Portland
+#&gt; 16                                                                                                             1315 Southwest Park Avenue, Portland
+#&gt; 17                                                                                                         1200-1238 Southwest 4th Avenue, Portland
+#&gt; 18                                                                                                           1801-1825 Southwest Broadway, Portland
+#&gt; 19                                                                                                       1800 Southwest Montgomery Street, Portland
+#&gt; 20                                                                            TECOTOSH, Southwest 4th Avenue, University District, Portland, Oregon
+#&gt; 21                                                                                                        86-98 Southwest Harrison Street, Portland
+#&gt; 22                                                                                                                                         Portland
+#&gt; 23                                                                                                    1001-1023 Southwest Columbia Street, Portland
+#&gt; 24                                                                                                             1520 Southwest 12th Avenue, Portland
+#&gt; 25                                                                                                          512-586 Southwest Main Street, Portland
+#&gt; 26                                                                                                         1000 Northwest Marshall Street, Portland
+#&gt; 27                                                                                                     2383-2389 Northwest Thurman Street, Portland
+#&gt; 28                                                                                                     2100-2112 Northwest Raleigh Street, Portland
+#&gt; 29                                                                                                    3377-3399 Southeast Division Street, Portland
+#&gt; 30                                                                                                        2501-2523 Southeast 30th Avenue, Portland
+#&gt; 31                                                                                                     2039-2099 Southeast Clinton Street, Portland
+#&gt; 32                                                                                                              415 Southeast 29th Avenue, Portland
+#&gt; 33                                                                                                     1900-1998 Southeast Belmont Street, Portland
+#&gt; 34                                                                                                             1510 Southeast 34th Avenue, Portland
+#&gt; 35                                                                                                             1711 Northeast 15th Avenue, Portland
+#&gt; 36                                                                                                                        2650 Oregon 99E, Portland
+#&gt; 37                                                                                                     2201-2209 Northwest Everett Street, Portland
+#&gt; 38                                                                                                               241 North Alberta Street, Portland
+#&gt; 39                                                                                                             North Killingsworth Street, Portland
+#&gt; 40                                                                                                              718 Northwest 11th Avenue, Portland
+#&gt; 41                                                                                                           700-746 Northwest 6th Avenue, Portland
+#&gt; 42                                                                                                             1310 Northwest 23rd Avenue, Portland
+#&gt; 43                                                                                                              2-90 Northwest 20th Place, Portland
+#&gt; 44                                                                                                           2066 Northwest Glisan Street, Portland
+#&gt; 45                                                                                                              721 Northwest 21st Avenue, Portland
+#&gt; 46                                                                                                              230 Northwest 10th Avenue, Portland
+#&gt; 47                                                                                                             25 Southwest Salmon Street, Portland
+#&gt; 48                                                Portland Sports Bar and Grill, 1800, Southwest River Drive, University District, Portland, Oregon
+#&gt; 49                                                                                                       1250-1298 Southwest Stark Street, Portland
+#&gt; 50                                                                               1234, Southwest 18th Avenue, University District, Portland, Oregon
+#&gt; 51                                                              The St. Francis, 1024, Southwest Main Street, University District, Portland, Oregon
+#&gt; 52                                                                                                           128-198 Southwest 2nd Avenue, Portland
+#&gt; 53                                                                                                                40 Southwest 3rd Avenue, Portland
+#&gt; 54                                                                                                               620 Southwest 5th Avenue, Portland
+#&gt; 55                                                                                                               315 Southwest 5th Avenue, Portland
+#&gt; 56                                                                                                        300-398 Southwest Market Street, Portland
+#&gt; 57                                                           Southwest Morrison &amp; 17th, Southwest Morrison Street, Pearl District, Portland, Oregon
+#&gt; 58                                                                                                             640-698 Southwest Broadway, Portland
+#&gt; 59                                                                                                       800-898 Southwest Yamhill Street, Portland
+#&gt; 60                                                                                                             1315 Northwest 11th Avenue, Portland
+#&gt; 61                                                                                                          300-398 Northwest 18th Avenue, Portland
+#&gt; 62                                                                                                          945-993 Northwest 22nd Avenue, Portland
+#&gt; 63                                                                                                           301-399 Northwest 2nd Avenue, Portland
+#&gt; 64                                                                                                            1037 Northwest Couch Street, Portland
+#&gt; 65                                                                                                    1400-1498 Northwest Flanders Street, Portland
+#&gt; 66                                                                                                                       Tilikum Crossing, Portland
+#&gt; 67                                                                                                     2301-2305 Northwest Kearney Street, Portland
+#&gt; 68                                                                                        Northwest Naito Parkway, Pearl District, Portland, Oregon
+#&gt; 69                                                                                                              1-99 North Failing Street, Portland
+#&gt; 70                                                                                                     3731-3741 North Mississippi Avenue, Portland
+#&gt; 71                                                                                                               955 North Russell Street, Portland
+#&gt; 72                                                                       North Williams at Fremont, North Williams Avenue, Albina, Portland, Oregon
+#&gt; 73                                                                                                             1003 Northeast 11th Avenue, Portland
+#&gt; 74                                                                                                             43 Southwest Naito Parkway, Portland
+#&gt; 75                                                                                                               14 Northeast 22nd Avenue, Portland
+#&gt; 76                                                                                                    1100-1198 Northeast Broadway Street, Portland
+#&gt; 77                                                                           The Dream, Northeast Holladay Street, Lloyd District, Portland, Oregon
+#&gt; 78                                                                                                     796-842 Northeast Multnomah Street, Portland
+#&gt; 79                                                                                                     564-598 Northeast Multnomah Street, Portland
+#&gt; 80                                                                                                    1527-1541 Northeast Sandy Boulevard, Portland
+#&gt; 81                                                                                                       4600-4722 Northeast Grand Avenue, Portland
+#&gt; 82                                                                  2835, Southeast Hawthorne Boulevard, Ladd's Addition, Belmont, Portland, Oregon
+#&gt; 83                                                                                                          2254-2398 Southeast 2nd Place, Portland
+#&gt; 84                                                                                                           900-928 Southeast 9th Avenue, Portland
+#&gt; 85                                                                                                         509-599 Southeast Alder Street, Portland
+#&gt; 86                                                                                                     3301-3333 Southeast Belmont Street, Portland
+#&gt; 87                                                                                                2003-2033 Southeast Hawthorne Boulevard, Portland
+#&gt; 88                                                                                                1202-1210 Southeast Hawthorne Boulevard, Portland
+#&gt; 89                                                            Balfour–Guthrie Building, 733, Southwest Oak Street, Pearl District, Portland, Oregon
+#&gt; 90                                                                                            4073, North Williams Avenue, Albina, Portland, Oregon
+#&gt; 91                                                                                                          801-811 Northwest 19th Avenue, Portland
+#&gt; 92                                                                                                              108 Northeast 28th Avenue, Portland
+#&gt; 93                                                                                                              304 Southeast 28th Avenue, Portland
+#&gt; 94                                                                                                                        Apotheker Plaza, Portland
+#&gt; 95                                                                                                          1006 Northeast Alberta Street, Portland
+#&gt; 96                                                                                                          1413 Northeast Alberta Street, Portland
+#&gt; 97                                                          Courtesy Janitorial Services, 1705, Northeast Alberta Street, Alameda, Portland, Oregon
+#&gt; 98                                                                                                          2209 Northeast Alberta Street, Portland
+#&gt; 99                                                                    Northeast Alberta &amp; 24th, Northeast Alberta Street, Alameda, Portland, Oregon
+#&gt; 100                                                                            Ampersand, 2916, Northeast Alberta Street, Alameda, Portland, Oregon
+#&gt; 101                                                                          Kennedy School, 5736, Northeast 33rd Avenue, Alameda, Portland, Oregon
+#&gt; 102                                                                                                            5320 Northeast 33rd Avenue, Portland
+#&gt; 103                                                                                                             4520 Northeast 14th Place, Portland
+#&gt; 104                                                                                                    1441-1499 Northeast Fremont Street, Portland
+#&gt; 105                                                                                                            5433 North Michigan Avenue, Portland
+#&gt; 106                                                                                                        5410-5498 North Concord Avenue, Portland
+#&gt; 107                                                                                                       2116 North Killingsworth Street, Portland
+#&gt; 108                                                                        Cocotte, 2930, Northeast Killingsworth Street, Alameda, Portland, Oregon
+#&gt; 109                                                                     Podnah's BBQ Pit, Northeast Killingsworth Street, Alameda, Portland, Oregon
+#&gt; 110                                                                                                    4034 Southeast Hawthorne Boulevard, Portland
+#&gt; 111                                                                                                          679-695 Pacific Highway West, Portland
+#&gt; 112                                                 Interstate Firehouse Cultural Center, 5340, North Interstate Avenue, Piedmont, Portland, Oregon
+#&gt; 113                                                                                                      700-748 Northwest Everett Street, Portland
+#&gt; 114                                                                                                 1497-1499 Northwest Pettygrove Street, Portland
+#&gt; 115                                                                                                           4000 Southwest Moody Avenue, Portland
+#&gt; 116 Northeast Martin Luther King &amp; East Burnside, Northeast Martin Luther King, Junior Boulevard, Ladd's Addition, Lloyd District, Portland, Oregon
+#&gt; 117                                                                                                         4220 Southeast Belmont Street, Portland
+#&gt; 118                                                                                                        1760-1798 Northeast 2nd Avenue, Portland
+#&gt; 119                                                                                                             2609 Southwest Park Place, Portland
+#&gt; 120                                                                                                           2035 Northwest Front Avenue, Portland
+#&gt; 121                                                                                                         4505 Southeast Belmont Street, Portland
+#&gt; 122                                                                                                  3816-3824 Southeast Gladstone Street, Portland
+#&gt; 123                                                                                                         5005 Northeast Fremont Street, Portland
+#&gt; 124                                                                                                    5931 Northeast Skidmore Street, Portland, OR
+#&gt; 125                                                                                                       2886 Southeast Gladstone Street, Portland
+#&gt; 126                                                                                                   5008-5022 Southeast Division Street, Portland
+#&gt; 127                                                                                               4638-4698 Southeast Hawthorne Boulevard, Portland
+#&gt; 128                                                                                                          2852 Northeast Glisan Street, Portland
+#&gt; 129                                                                                                    5008 Southeast Hawthorne Boulevard, Portland
+#&gt; 130                                                                                                   4846-4848 Southeast Division Street, Portland
+#&gt; 131                                                                                                          2948 Northeast Glisan Street, Portland
+#&gt; 132                                                                                                        3652 Southeast Division Street, Portland
+#&gt; 133                                                                                                   4144-4152 Northeast Sandy Boulevard, Portland
+#&gt; 134                                                                                                            1969 Northeast 42nd Avenue, Portland
+#&gt; 135                                                                                                        4759B Northeast Fremont Street, Portland
+#&gt; 136                                                                                                   2100-2198 Northeast Thompson Street, Portland
+#&gt; 137                                                                                                        5425-5499 North Burrage Avenue, Portland
+#&gt; 138                                                                                                       1541-1599 Northeast 10th Avenue, Portland
+#&gt; 139                                                                                       Northwest Nicolai Street, Kings Heights, Portland, Oregon
+#&gt; 140                                                                                                             2-98 Southeast 9th Avenue, Portland
+#&gt; 141                                                                                                        5410 Northeast Cully Boulevard, Portland
+#&gt; 142                                                                                                        1325-1399 Southeast 9th Avenue, Portland
+#&gt; 143                                                                                                  2896-2898 Southeast Powell Boulevard, Portland
+#&gt; 144                                                                                                            400 Northwest Couch Street, Portland
+#&gt; 145                                                                                                          708-724 Southwest 3rd Avenue, Portland
+#&gt; 146                                                                                                            4523 Northeast 60th Avenue, Portland
+#&gt; 147                                                                                                            2425 Northeast 50th Avenue, Portland
+#&gt; 148                                                                                                     5258-5298 Northeast Glisan Street, Portland
+#&gt; 149                                                                                                                 Northeast 42nd Avenue, Portland
+#&gt; 150                                                                                                       3474-3498 Southeast 28th Avenue, Portland
+#&gt; 151                                                                                                            2025 Northeast 44th Avenue, Portland
+#&gt; 152                                                                                                        1656-1686 North Wheeler Avenue, Portland
+#&gt; 153                                                                                                    4901-4999 Southeast Clinton Street, Portland
+#&gt; 154                                                                                          1510, North Alberta Street, Piedmont, Portland, Oregon
+#&gt;                                                               rental_methods
+#&gt; 1   KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 2               KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 3               KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 4               KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 5               KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 6               KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 7   KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 8               KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 9               KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 10              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 11              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 12              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 13              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 14  KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 15              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 16              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 17              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 18  KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 19              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 20              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 21              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 22  KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 23              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 24              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 25              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 26              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 27              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 28              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 29              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 30  KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 31              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 32              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 33              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 34              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 35  KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 36  KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 37              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 38              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 39              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 40  KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 41  KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 42              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 43              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 44              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 45              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 46              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 47  KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 48  KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 49  KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 50              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 51              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 52              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 53  KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 54              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 55              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 56              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 57              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 58              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 59              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 60              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 61              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 62              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 63              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 64              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 65              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 66              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 67  KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 68              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 69              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 70  KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 71              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 72  KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 73              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 74              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 75              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 76              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 77              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 78              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 79              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 80              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 81              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 82              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 83              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 84              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 85              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 86              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 87              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 88  KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 89              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 90              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 91              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 92              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 93              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 94              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 95              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 96              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 97              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 98              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 99              KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 100             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 101             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 102             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 103             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 104             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 105             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 106             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 107             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 108             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 109             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 110             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 111             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 112             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 113 KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE, CREDITCARD
+#&gt; 114             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 115             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 116             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 117             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 118             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 119             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 120             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 121             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 122             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 123             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 124             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 125             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 126             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 127             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 128             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 129             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 130             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 131             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 132             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 133             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 134             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 135             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 136             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 137             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 138             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 139             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 140             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 141             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 142             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 143             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 144             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 145             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 146             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 147             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 148             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 149             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 150             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 151             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 152             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 153             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
+#&gt; 154             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

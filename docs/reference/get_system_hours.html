@@ -70,7 +70,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gbfs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0.9000</span>
       </span>
     </div>
 
@@ -119,43 +119,64 @@
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_system_hours</span>(<span class='no'>city</span>, <span class='kw'>directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"system_hours.rds"</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"save"</span>)</pre>
+    <pre class="usage"><span class='fu'>get_system_hours</span>(
+  <span class='no'>city</span>,
+  <span class='kw'>directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"system_hours.rds"</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"save"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>city</th>
-      <td><p>A character string or a url to an active gbfs.json feed. See <code>get_gbfs_cities</code>
-for a current list of available cities.</p></td>
+      <td><p>A character string that can be matched to a city or a url to an 
+active gbfs .json feed. See <code>get_gbfs_cities</code> for a current list of available cities.</p></td>
     </tr>
     <tr>
       <th>directory</th>
       <td><p>The name of an existing folder or folder to be created, where the feed will
-will be saved.</p></td>
+will be saved. This argument will be ignored if <code>output = "return"</code>.</p></td>
     </tr>
     <tr>
       <th>file</th>
-      <td><p>The name of the file to be saved. Must end in .rds.</p></td>
+      <td><p>The name of the file to be saved (if <code>output</code> is set to <code>"save"</code> 
+or <code>"both"</code>), as a character string. Must end in <code>".rds"</code>.</p></td>
     </tr>
     <tr>
       <th>output</th>
-      <td><p>The type of output method. If `output = "save"`, the object will be saved as
-an .rds object at the given path. If `output = "return"`, the output will be returned
-as a dataframe object. Setting `output = "both"` will do both.</p></td>
+      <td><p>The type of output method. If <code>output = "save"</code>, the object will be saved as
+an .rds object at the given path. If <code>output = "return"</code>, the output will be returned
+as a dataframe object. Setting <code>output = "both"</code> will do both.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Depends on argument to `output`: Either a saved .rds object generated from the 
-current system_alerts feed, a dataframe object, or both.</p>
+    <p>Depends on argument to <code>output</code>: Either a saved .rds object generated from the 
+current system_hours feed, a dataframe object, or both.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_system_hours</span>(<span class='kw'>city</span> <span class='kw'>=</span>
-<span class='st'>"http://biketownpdx.socialbicycles.com/opendata/system_hours.json"</span>, <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-<span class='fu'>get_system_hours</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"Phoenix"</span>, <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># we can grab the system hours feed for portland, </span>
+<span class='co'># oregon in one of several ways! first, supply the `city` </span>
+<span class='co'># argument as a URL, and save to file by leaving output </span>
+<span class='co'># set to it's default. usually, we would supply a character </span>
+<span class='co'># string (like "pdx", maybe,) for the `directory` argument </span>
+<span class='co'># instead of `tempdir`.</span>
+<span class='fu'>get_system_hours</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"http://biketownpdx.socialbicycles.com/opendata/system_hours.json"</span>,
+                 <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+
+<span class='co'># or, instead, just supply the name of </span>
+<span class='co'># the city as a string. </span>
+<span class='fu'>get_system_hours</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>,
+                 <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+
+<span class='co'># instead of saving the output as a file, we can </span>
+<span class='co'># just return the output as a dataframe</span>
+<span class='fu'>get_system_hours</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>,
+                 <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"return"</span>)</div><div class='output co'>#&gt;          user_types                              days start_time end_time
+#&gt; 1 member, nonmember mon, tue, wed, thu, fri, sat, sun   00:00:00 23:59:59</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

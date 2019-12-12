@@ -36,9 +36,10 @@
 
 
 <meta property="og:title" content="Save gbfs feeds. — get_gbfs" />
-<meta property="og:description" content="get_gbfs checks for the existence of gbfs feeds for a given city and saves the
-feeds as .rds objects in a directory that can be specified by the user. Go to 
-`https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for each dataset." />
+<meta property="og:description" content="get_gbfs checks for the existence of General Bikeshare Specification
+feeds for a given city and saves the feeds as .rds objects in a directory that
+can be specified by the user. Metadata for each dataset can be found at:
+`https://github.com/NABSA/gbfs/blob/master/gbfs.md`" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -71,7 +72,7 @@ feeds as .rds objects in a directory that can be specified by the user. Go to
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gbfs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0.9000</span>
       </span>
     </div>
 
@@ -116,9 +117,10 @@ feeds as .rds objects in a directory that can be specified by the user. Go to
     </div>
 
     <div class="ref-description">
-    <p><code>get_gbfs</code> checks for the existence of gbfs feeds for a given city and saves the
-feeds as .rds objects in a directory that can be specified by the user. Go to 
-`https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for each dataset.</p>
+    <p><code>get_gbfs</code> checks for the existence of General Bikeshare Specification
+feeds for a given city and saves the feeds as .rds objects in a directory that
+can be specified by the user. Metadata for each dataset can be found at:
+`https://github.com/NABSA/gbfs/blob/master/gbfs.md`</p>
     </div>
 
     <pre class="usage"><span class='fu'>get_gbfs</span>(<span class='no'>city</span>, <span class='kw'>feeds</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='no'>directory</span>)</pre>
@@ -128,13 +130,13 @@ feeds as .rds objects in a directory that can be specified by the user. Go to
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>city</th>
-      <td><p>A character string or a url to an active gbfs.json feed. See <code>get_gbfs_cities</code>
-for a current list of available cities.</p></td>
+      <td><p>A character string that can be matched to a city or a url to an 
+active gbfs.json feed. See <code>get_gbfs_cities</code> for a current list of available cities.</p></td>
     </tr>
     <tr>
       <th>feeds</th>
       <td><p>A character string specifying which feeds should be saved. Options are
-"all", "static", and "dynamic".</p></td>
+<code>"all"</code>, <code>"static"</code>, and <code>"dynamic"</code>.</p></td>
     </tr>
     <tr>
       <th>directory</th>
@@ -148,7 +150,24 @@ will be saved.</p></td>
     <p>A folder containing the specified feeds saved as .rds objects.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_gbfs</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"boise"</span>, <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># to grab all of the feeds released by portland, oregon's</span>
+<span class='co'># bikeshare program "biketown",</span>
+<span class='fu'>get_gbfs</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>, <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+
+<span class='co'># note that, usually, we'd supply a character string </span>
+<span class='co'># (like "pdx", maybe,) to the directory argument </span>
+<span class='co'># instead of `tempdir()`. </span>
+
+<span class='co'># if we're having trouble specifying the correct feed,</span>
+<span class='co'># we can also supply the actual URL to the feed</span>
+<span class='fu'>get_gbfs</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"http://biketownpdx.socialbicycles.com/opendata/gbfs.json"</span>,
+         <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+
+<span class='co'># the examples above grab every feed that portland releases.</span>
+<span class='co'># if, instead, we just wanted the dynamic feeds,</span>
+<span class='fu'>get_gbfs</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>,
+         <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
+         <span class='kw'>feeds</span> <span class='kw'>=</span> <span class='st'>"dynamic"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

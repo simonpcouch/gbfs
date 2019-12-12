@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">gbfs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0.9000</span>
       </span>
     </div>
 
@@ -73,9 +73,10 @@
   <div class="contents col-md-9">
 <div id="general-bikeshare-feed-specification---r-package" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#general-bikeshare-feed-specification---r-package" class="anchor"></a>General Bikeshare Feed Specification - R Package</h1></div>
+<a href="#general-bikeshare-feed-specification---r-package" class="anchor"></a>General Bikeshare Feed Specification - R Package <a href="https://gbfs.netlify.com"><img src="figures/hex.png" align="right" height="200"></a>
+</h1></div>
 <p><em>Developed by Kaelyn M. Rosenberg (author) and Simon P. Couch (author, maintainer)</em></p>
-<p><img src="http://www.r-pkg.org/badges/version/gbfs" alt="CRAN Badge"><a href="https://travis-ci.org/ds-civic-data/gbfs"><img src="https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master" alt="Build Status"></a></p>
+<p><a href="https://cran.r-project.org/package=gbfs"><img src="https://www.r-pkg.org/badges/version/gbfs" alt="CRAN status"></a> <a href="https://travis-ci.org/ds-civic-data/gbfs"><img src="https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master" alt="Build Status"></a></p>
 <p>The <code>gbfs</code> package supplies a set of functions to interface with General Bikeshare Feed Specification .json feeds in R, allowing users to save and accumulate tidy .rds datasets for specified cities/bikeshare programs. The North American Bikeshare Association’s <a href="https://github.com/NABSA/gbfs">gbfs</a> is a standardized data release format for live information on the status of bikeshare programs, as well as metadata, including counts of bikes at stations, ridership costs, and geographic locations of stations and parked bikes.</p>
 <p><strong>Features</strong></p>
 <ul>
@@ -167,7 +168,7 @@
 <a class="sourceLine" id="cb9-11" data-line-number="11"><span class="st">  </span><span class="co"># make aesthetics slightly more cozy</span></a>
 <a class="sourceLine" id="cb9-12" data-line-number="12"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb9-13" data-line-number="13"><span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">type =</span> <span class="st">"qual"</span>)</a></code></pre></div>
-<p><img src="README-plot-1.png"><!-- --></p>
+<p><img src="figures/plot-1.png"><!-- --></p>
 <p>Folks who have spent a significant amount of time in Portland might be able to pick out the Willamette River running Northwest/Southeast through the city. With a few lines of <code>gbfs</code>, <code>dplyr</code>, and <code>ggplot2</code>, we can pick together a meaningful visualization to help us better understand how bikeshare bikes are distributed throughout Portland.</p>
 <p>Some other features worth playing around with in <code>gbfs</code> that weren’t touched on in this example:</p>
 <ul>

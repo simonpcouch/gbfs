@@ -38,7 +38,7 @@
 <meta property="og:title" content="Grab the station_status feed. — get_station_status" />
 <meta property="og:description" content="If the specified file does not exist, get_station_status saves the station_status
 feed for a given city as a .rds object. If the specified file does exist, get_station_status
-appends the current station_status feed to the existing file. Go to 
+appends the new rows from the current station_status feed to the existing file. Go to 
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset." />
 <meta name="twitter:card" content="summary" />
 
@@ -72,7 +72,7 @@ appends the current station_status feed to the existing file. Go to
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gbfs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0.9000</span>
       </span>
     </div>
 
@@ -119,12 +119,16 @@ appends the current station_status feed to the existing file. Go to
     <div class="ref-description">
     <p>If the specified file does not exist, <code>get_station_status</code> saves the station_status
 feed for a given city as a .rds object. If the specified file does exist, <code>get_station_status</code>
-appends the current station_status feed to the existing file. Go to 
+appends the new rows from the current station_status feed to the existing file. Go to 
 `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_station_status</span>(<span class='no'>city</span>, <span class='kw'>directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"station_status.rds"</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"save"</span>)</pre>
+    <pre class="usage"><span class='fu'>get_station_status</span>(
+  <span class='no'>city</span>,
+  <span class='kw'>directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"station_status.rds"</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"save"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,11 +141,13 @@ for a current list of available cities.</p></td>
     <tr>
       <th>directory</th>
       <td><p>The name of an existing folder or folder to be created, where the feed will
-will be saved.</p></td>
+will be saved. This argument is only required if `output = "save"` (the default option.)
+This argument will be ignored, if `output = "return"`</p></td>
     </tr>
     <tr>
       <th>file</th>
-      <td><p>The name of an existing file or new file to be saved. Must end in .rds.</p></td>
+      <td><p>Name of an existing file or a new file to be saved. Must end in .rds.
+This argument will be ignored if `output = "return"`.</p></td>
     </tr>
     <tr>
       <th>output</th>
@@ -153,12 +159,493 @@ as a dataframe object. Setting `output = "both"` will do both.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Depends on argument to `output`: Either a saved .rds object generated from the 
-current station_information feed, a dataframe object, or both.</p>
+    <p>The output of this function depends on argument to `output`: Either 
+a saved .rds object generated from the current station_information feed, 
+a dataframe object, or both.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_station_status</span>(<span class='kw'>city</span> <span class='kw'>=</span>
-<span class='st'>"http://biketownpdx.socialbicycles.com/opendata/station_status.json"</span>, <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># we can grab the station status feed for portland, </span>
+<span class='co'># oregon in one of several ways! first, supply the `city` </span>
+<span class='co'># argument as a URL, and save to file by leaving output </span>
+<span class='co'># set to it's default. usually, we would supply a character </span>
+<span class='co'># string (like "pdx", maybe,) for the `directory` argument </span>
+<span class='co'># instead of `tempdir`.</span>
+<span class='fu'>get_station_status</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"http://biketownpdx.socialbicycles.com/opendata/station_status.json"</span>,
+                   <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+
+<span class='co'># or, instead, just supply the name of </span>
+<span class='co'># the city as a string. </span>
+<span class='fu'>get_station_status</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>,
+                   <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+
+<span class='co'># instead of saving the output as a file, we can </span>
+<span class='co'># just return the output as a dataframe</span>
+<span class='fu'>get_station_status</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>,
+                   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"return"</span>)</div><div class='output co'>#&gt;     station_id num_bikes_available num_bikes_disabled num_docks_available
+#&gt; 1     hub_1512                   2                  0                  15
+#&gt; 2     hub_1513                   5                  0                   3
+#&gt; 3     hub_1514                   5                  0                   7
+#&gt; 4     hub_1515                  10                  0                   8
+#&gt; 5     hub_1516                   2                  0                  14
+#&gt; 6     hub_1517                   4                  0                  10
+#&gt; 7     hub_1518                   7                  0                   9
+#&gt; 8     hub_1519                   4                  0                  14
+#&gt; 9     hub_1521                   8                  0                  10
+#&gt; 10    hub_1522                   2                  0                  10
+#&gt; 11    hub_1523                   3                  0                  14
+#&gt; 12    hub_1524                   6                  0                   6
+#&gt; 13    hub_1527                   2                  0                   6
+#&gt; 14    hub_1528                   7                  0                  10
+#&gt; 15    hub_1529                   4                  0                   7
+#&gt; 16    hub_1535                   7                  0                  11
+#&gt; 17    hub_1536                   3                  0                   5
+#&gt; 18    hub_1537                   5                  0                  16
+#&gt; 19    hub_1538                   4                  0                  12
+#&gt; 20    hub_1539                   7                  0                   3
+#&gt; 21    hub_1540                   2                  0                  16
+#&gt; 22    hub_1541                  13                  0                   4
+#&gt; 23    hub_1542                   8                  0                   3
+#&gt; 24    hub_1543                   6                  0                   4
+#&gt; 25    hub_1544                   2                  0                  15
+#&gt; 26    hub_1545                   4                  0                  14
+#&gt; 27    hub_1546                   7                  0                  10
+#&gt; 28    hub_1547                   5                  0                   9
+#&gt; 29    hub_1548                   1                  0                  16
+#&gt; 30    hub_1549                   2                  0                  16
+#&gt; 31    hub_1550                   2                  0                  16
+#&gt; 32    hub_1551                   0                  0                  18
+#&gt; 33    hub_1552                   5                  0                   7
+#&gt; 34    hub_1554                   5                  0                   7
+#&gt; 35    hub_1555                   2                  0                  10
+#&gt; 36    hub_1556                   5                  0                   9
+#&gt; 37    hub_1558                   9                  0                   9
+#&gt; 38    hub_1559                   3                  0                  15
+#&gt; 39    hub_1560                   6                  0                   9
+#&gt; 40    hub_1561                   4                  0                  10
+#&gt; 41    hub_1562                   8                  0                   3
+#&gt; 42    hub_1563                   4                  0                   9
+#&gt; 43    hub_1564                   5                  0                  13
+#&gt; 44    hub_1566                   2                  0                  10
+#&gt; 45    hub_1567                   3                  0                   8
+#&gt; 46    hub_1568                   5                  0                  11
+#&gt; 47    hub_1569                   7                  0                  11
+#&gt; 48    hub_1570                   6                  0                  21
+#&gt; 49    hub_1571                   1                  0                  17
+#&gt; 50    hub_1572                   6                  0                  10
+#&gt; 51    hub_1573                   0                  0                   6
+#&gt; 52    hub_1574                   5                  0                  13
+#&gt; 53    hub_1575                  11                  0                   7
+#&gt; 54    hub_1577                   1                  0                  19
+#&gt; 55    hub_1578                   7                  0                  11
+#&gt; 56    hub_1579                   4                  0                   8
+#&gt; 57    hub_1580                   2                  0                  16
+#&gt; 58    hub_1581                   7                  0                  11
+#&gt; 59    hub_1582                   5                  0                  15
+#&gt; 60    hub_1583                   4                  0                  14
+#&gt; 61    hub_1584                   3                  0                  14
+#&gt; 62    hub_1585                   3                  0                   7
+#&gt; 63    hub_1586                   4                  0                   9
+#&gt; 64    hub_1588                   3                  0                  15
+#&gt; 65    hub_1590                   6                  0                   7
+#&gt; 66    hub_1591                   4                  0                  15
+#&gt; 67    hub_1592                   5                  0                  11
+#&gt; 68    hub_1593                   4                  0                  13
+#&gt; 69    hub_1594                   1                  0                  11
+#&gt; 70    hub_1595                   3                  0                  15
+#&gt; 71    hub_1597                   1                  0                  11
+#&gt; 72    hub_1598                   8                  0                  10
+#&gt; 73    hub_1599                   2                  0                  10
+#&gt; 74    hub_1600                  11                  0                   6
+#&gt; 75    hub_1601                   0                  0                  11
+#&gt; 76    hub_1602                   5                  0                  13
+#&gt; 77    hub_1603                   0                  0                   8
+#&gt; 78    hub_1604                   2                  0                   6
+#&gt; 79    hub_1605                   2                  0                  13
+#&gt; 80    hub_1606                   5                  0                  12
+#&gt; 81    hub_1607                   2                  0                  16
+#&gt; 82    hub_1608                   1                  0                  17
+#&gt; 83    hub_1609                   4                  0                  14
+#&gt; 84    hub_1611                   2                  0                  16
+#&gt; 85    hub_1612                   9                  0                   9
+#&gt; 86    hub_1613                   6                  0                   5
+#&gt; 87    hub_1614                   3                  0                  10
+#&gt; 88    hub_1615                   4                  0                  13
+#&gt; 89    hub_1616                   0                  0                   6
+#&gt; 90    hub_1617                   4                  0                   8
+#&gt; 91    hub_1713                   0                  0                  15
+#&gt; 92    hub_2275                   0                  0                  18
+#&gt; 93    hub_2276                   0                  0                  24
+#&gt; 94    hub_2598                   2                  0                   6
+#&gt; 95    hub_2677                   1                  0                  17
+#&gt; 96    hub_2678                   0                  0                  12
+#&gt; 97    hub_2679                   0                  0                  18
+#&gt; 98    hub_2680                   0                  0                  18
+#&gt; 99    hub_2681                   0                  0                  18
+#&gt; 100   hub_2682                   0                  0                  18
+#&gt; 101   hub_2683                   0                  0                  14
+#&gt; 102   hub_2684                   0                  0                  20
+#&gt; 103   hub_2685                   0                  0                  12
+#&gt; 104   hub_2686                   0                  0                  10
+#&gt; 105   hub_2687                   3                  0                   5
+#&gt; 106   hub_2688                   1                  0                  17
+#&gt; 107   hub_2689                   0                  0                  18
+#&gt; 108   hub_2695                   0                  0                  18
+#&gt; 109   hub_2696                   0                  0                  12
+#&gt; 110   hub_2698                   5                  0                  13
+#&gt; 111   hub_2707                   8                  0                   9
+#&gt; 112   hub_2708                   2                  0                   6
+#&gt; 113   hub_2789                   8                  0                   8
+#&gt; 114   hub_2798                   9                  0                   9
+#&gt; 115   hub_2875                   3                  0                  12
+#&gt; 116   hub_3240                   3                  0                   3
+#&gt; 117   hub_3929                   4                  0                   7
+#&gt; 118   hub_3957                   2                  0                  10
+#&gt; 119   hub_4034                   2                  0                   8
+#&gt; 120   hub_4050                   3                  0                  11
+#&gt; 121   hub_4312                   0                  0                   6
+#&gt; 122   hub_4313                   0                  0                   6
+#&gt; 123   hub_4315                   0                  0                   6
+#&gt; 124   hub_4316                   0                  0                   6
+#&gt; 125   hub_4317                   1                  0                   8
+#&gt; 126   hub_4318                   0                  0                   6
+#&gt; 127   hub_4319                   1                  0                   5
+#&gt; 128   hub_4320                   0                  0                  15
+#&gt; 129   hub_4321                   0                  0                   9
+#&gt; 130   hub_4322                   0                  0                   6
+#&gt; 131   hub_4323                   0                  0                  12
+#&gt; 132   hub_4324                   0                  0                   6
+#&gt; 133   hub_4325                   0                  0                  12
+#&gt; 134   hub_4326                   1                  0                   6
+#&gt; 135   hub_4327                   1                  0                  11
+#&gt; 136   hub_4328                   2                  0                  10
+#&gt; 137   hub_4329                   1                  0                  11
+#&gt; 138   hub_4368                   1                  0                   7
+#&gt; 139   hub_4381                   4                  0                   0
+#&gt; 140   hub_4482                   1                  0                  13
+#&gt; 141   hub_5277                   1                  0                   5
+#&gt; 142   hub_5311                   2                  0                   3
+#&gt; 143   hub_5316                   0                  0                   6
+#&gt; 144   hub_5357                   5                  0                   0
+#&gt; 145   hub_5414                   6                  0                  12
+#&gt; 146   hub_5470                   3                  0                   5
+#&gt; 147   hub_5473                   0                  0                   8
+#&gt; 148   hub_5474                   0                  0                   7
+#&gt; 149   hub_5476                   3                  0                   5
+#&gt; 150   hub_5491                   1                  0                   3
+#&gt; 151   hub_5493                   0                  0                   4
+#&gt; 152   hub_5498                   3                  0                   9
+#&gt; 153   hub_5567                   1                  0                   4
+#&gt; 154   hub_5597                   7                  0                  12
+#&gt;     is_installed is_renting is_returning        last_updated year month day
+#&gt; 1           TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 2           TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 3           TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 4           TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 5           TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 6           TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 7           TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 8           TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 9           TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 10          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 11          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 12          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 13          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 14          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 15          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 16          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 17          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 18          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 19          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 20          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 21          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 22          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 23          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 24          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 25          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 26          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 27          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 28          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 29          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 30          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 31          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 32          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 33          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 34          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 35          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 36          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 37          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 38          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 39          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 40          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 41          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 42          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 43          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 44          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 45          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 46          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 47          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 48          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 49          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 50          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 51          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 52          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 53          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 54          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 55          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 56          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 57          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 58          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 59          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 60          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 61          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 62          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 63          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 64          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 65          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 66          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 67          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 68          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 69          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 70          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 71          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 72          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 73          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 74          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 75          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 76          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 77          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 78          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 79          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 80          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 81          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 82          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 83          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 84          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 85          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 86          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 87          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 88          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 89          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 90          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 91          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 92          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 93          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 94          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 95          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 96          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 97          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 98          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 99          TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 100         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 101         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 102         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 103         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 104         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 105         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 106         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 107         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 108         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 109         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 110         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 111         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 112         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 113         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 114         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 115         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 116         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 117         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 118         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 119         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 120         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 121         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 122         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 123         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 124         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 125         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 126         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 127         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 128         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 129         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 130         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 131         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 132         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 133         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 134         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 135         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 136         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 137         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 138         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 139         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 140         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 141         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 142         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 143         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 144         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 145         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 146         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 147         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 148         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 149         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 150         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 151         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 152         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 153         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt; 154         TRUE       TRUE         TRUE 2019-12-11 17:45:39 2019    12  11
+#&gt;     hour minute
+#&gt; 1     17     45
+#&gt; 2     17     45
+#&gt; 3     17     45
+#&gt; 4     17     45
+#&gt; 5     17     45
+#&gt; 6     17     45
+#&gt; 7     17     45
+#&gt; 8     17     45
+#&gt; 9     17     45
+#&gt; 10    17     45
+#&gt; 11    17     45
+#&gt; 12    17     45
+#&gt; 13    17     45
+#&gt; 14    17     45
+#&gt; 15    17     45
+#&gt; 16    17     45
+#&gt; 17    17     45
+#&gt; 18    17     45
+#&gt; 19    17     45
+#&gt; 20    17     45
+#&gt; 21    17     45
+#&gt; 22    17     45
+#&gt; 23    17     45
+#&gt; 24    17     45
+#&gt; 25    17     45
+#&gt; 26    17     45
+#&gt; 27    17     45
+#&gt; 28    17     45
+#&gt; 29    17     45
+#&gt; 30    17     45
+#&gt; 31    17     45
+#&gt; 32    17     45
+#&gt; 33    17     45
+#&gt; 34    17     45
+#&gt; 35    17     45
+#&gt; 36    17     45
+#&gt; 37    17     45
+#&gt; 38    17     45
+#&gt; 39    17     45
+#&gt; 40    17     45
+#&gt; 41    17     45
+#&gt; 42    17     45
+#&gt; 43    17     45
+#&gt; 44    17     45
+#&gt; 45    17     45
+#&gt; 46    17     45
+#&gt; 47    17     45
+#&gt; 48    17     45
+#&gt; 49    17     45
+#&gt; 50    17     45
+#&gt; 51    17     45
+#&gt; 52    17     45
+#&gt; 53    17     45
+#&gt; 54    17     45
+#&gt; 55    17     45
+#&gt; 56    17     45
+#&gt; 57    17     45
+#&gt; 58    17     45
+#&gt; 59    17     45
+#&gt; 60    17     45
+#&gt; 61    17     45
+#&gt; 62    17     45
+#&gt; 63    17     45
+#&gt; 64    17     45
+#&gt; 65    17     45
+#&gt; 66    17     45
+#&gt; 67    17     45
+#&gt; 68    17     45
+#&gt; 69    17     45
+#&gt; 70    17     45
+#&gt; 71    17     45
+#&gt; 72    17     45
+#&gt; 73    17     45
+#&gt; 74    17     45
+#&gt; 75    17     45
+#&gt; 76    17     45
+#&gt; 77    17     45
+#&gt; 78    17     45
+#&gt; 79    17     45
+#&gt; 80    17     45
+#&gt; 81    17     45
+#&gt; 82    17     45
+#&gt; 83    17     45
+#&gt; 84    17     45
+#&gt; 85    17     45
+#&gt; 86    17     45
+#&gt; 87    17     45
+#&gt; 88    17     45
+#&gt; 89    17     45
+#&gt; 90    17     45
+#&gt; 91    17     45
+#&gt; 92    17     45
+#&gt; 93    17     45
+#&gt; 94    17     45
+#&gt; 95    17     45
+#&gt; 96    17     45
+#&gt; 97    17     45
+#&gt; 98    17     45
+#&gt; 99    17     45
+#&gt; 100   17     45
+#&gt; 101   17     45
+#&gt; 102   17     45
+#&gt; 103   17     45
+#&gt; 104   17     45
+#&gt; 105   17     45
+#&gt; 106   17     45
+#&gt; 107   17     45
+#&gt; 108   17     45
+#&gt; 109   17     45
+#&gt; 110   17     45
+#&gt; 111   17     45
+#&gt; 112   17     45
+#&gt; 113   17     45
+#&gt; 114   17     45
+#&gt; 115   17     45
+#&gt; 116   17     45
+#&gt; 117   17     45
+#&gt; 118   17     45
+#&gt; 119   17     45
+#&gt; 120   17     45
+#&gt; 121   17     45
+#&gt; 122   17     45
+#&gt; 123   17     45
+#&gt; 124   17     45
+#&gt; 125   17     45
+#&gt; 126   17     45
+#&gt; 127   17     45
+#&gt; 128   17     45
+#&gt; 129   17     45
+#&gt; 130   17     45
+#&gt; 131   17     45
+#&gt; 132   17     45
+#&gt; 133   17     45
+#&gt; 134   17     45
+#&gt; 135   17     45
+#&gt; 136   17     45
+#&gt; 137   17     45
+#&gt; 138   17     45
+#&gt; 139   17     45
+#&gt; 140   17     45
+#&gt; 141   17     45
+#&gt; 142   17     45
+#&gt; 143   17     45
+#&gt; 144   17     45
+#&gt; 145   17     45
+#&gt; 146   17     45
+#&gt; 147   17     45
+#&gt; 148   17     45
+#&gt; 149   17     45
+#&gt; 150   17     45
+#&gt; 151   17     45
+#&gt; 152   17     45
+#&gt; 153   17     45
+#&gt; 154   17     45</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
