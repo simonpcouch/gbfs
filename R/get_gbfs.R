@@ -108,20 +108,38 @@ get_gbfs_feeds <- function(url) {
 
 #' Save gbfs feeds.
 #' 
-#' \code{get_gbfs} checks for the existence of gbfs feeds for a given city and saves the
-#' feeds as .rds objects in a directory that can be specified by the user. Go to 
-#' `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for each dataset.
+#' \code{get_gbfs} checks for the existence of General Bikeshare Specification
+#' feeds for a given city and saves the feeds as .rds objects in a directory that
+#' can be specified by the user. Metadata for each dataset can be found at:
+#' `https://github.com/NABSA/gbfs/blob/master/gbfs.md`
 #' 
-#' @param city A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}
-#' for a current list of available cities.
+#' @param city A character string that can be matched to a city or a url to an 
+#' active gbfs.json feed. See \code{get_gbfs_cities} for a current list of available cities.
 #' @param feeds A character string specifying which feeds should be saved. Options are
-#'   "all", "static", and "dynamic".
+#'   \code{"all"}, \code{"static"}, and \code{"dynamic"}.
 #' @param directory The name of an existing folder or folder to be created, where the feeds
 #'   will be saved.
 #' @return A folder containing the specified feeds saved as .rds objects.
 #' 
 #' @examples
-#' \donttest{get_gbfs(city = "boise", directory = tempdir())}
+#' # to grab all of the feeds released by portland, oregon's
+#' # bikeshare program "biketown",
+#' \donttest{get_gbfs(city = "portland", directory = tempdir())}
+#' 
+#' # note that, usually, we'd supply a character string 
+#' # (like "pdx", maybe,) to the directory argument 
+#' # instead of `tempdir()`. 
+#' 
+#' # if we're having trouble specifying the correct feed,
+#' # we can also supply the actual URL to the feed
+#' \donttest{get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json", 
+#'          directory = tempdir())}
+#'                    
+#' # the examples above grab every feed that portland releases.
+#' # if, instead, we just wanted the dynamic feeds,
+#' \donttest{get_gbfs(city = "portland", 
+#'          directory = tempdir(),
+#'          feeds = "dynamic")}
 #' @export
 
 get_gbfs <- function(city, feeds = "all", directory) {
