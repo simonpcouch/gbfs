@@ -37,16 +37,14 @@
 #' \donttest{get_station_information(city = "portland",  
 #'                         output = "return")}
 #' @export
-get_station_information <- function(city, directory = NULL, file = "station_information.rds", output = "save") {
+get_station_information <- function(city, directory = NULL, file = "station_information.rds", output = NULL) {
 
-  if (!output %in% c("save", "return", "both")) {
-    stop(sprintf("Please supply one of \"save\", \"return\", or \"both\" as arguments to `output`."))
-  }
+  check_return_arguments(directory_ = directory,
+                         file_ = file,
+                         output_ = output)
   
-  if (is.null(directory) & output %in% c("save", "both")) {
-    stop(sprintf("You have not supplied a location to save the resulting file, but the supplied arguments
-    indicate that you'd like to save the dataframe. Please supply a `directory` argument or 
-    set `output = \"return\".`"))
+  if (is.null(output)) {
+    output <- "null"
   }
   
   url <- city_to_url(city)
@@ -91,7 +89,7 @@ get_station_information <- function(city, directory = NULL, file = "station_info
   saveRDS(station_information_data, file = paste(directory, file, sep = "/"))
   } 
   
-  if (output %in% c("return", "both")) {
+  if (output %in% c("return", "both", "null")) {
     station_information_data
   }
 }
@@ -134,17 +132,15 @@ get_station_information <- function(city, directory = NULL, file = "station_info
 #'                   output = "return")}
 #' @export
 
-get_system_alerts <- function (city, directory = NULL, file = "system_alerts.rds", output = "save") {
+get_system_alerts <- function (city, directory = NULL, file = "system_alerts.rds", output = NULL) {
 
-  if (!output %in% c("save", "return", "both")) {
-    stop(sprintf("Please supply one of \"save\", \"return\", or \"both\" as arguments to `output`."))
-  }
+  check_return_arguments(directory_ = directory,
+                         file_ = file,
+                         output_ = output)
   
-  if (is.null(directory) & output %in% c("save", "both")) {
-    stop(sprintf("You have not supplied a location to save the resulting file, but the supplied arguments
-    indicate that you'd like to save the dataframe. Please supply a `directory` argument or 
-    set `output = \"return\".`"))
-  }  
+  if (is.null(output)) {
+    output <- "null"
+  }
   
   url <- city_to_url(city)
   
@@ -181,7 +177,7 @@ get_system_alerts <- function (city, directory = NULL, file = "system_alerts.rds
 
   saveRDS(system_alerts_data, file = paste(directory, file, sep = "/"))
   }
-  if (output %in% c("return", "both")) {
+  if (output %in% c("return", "both", "null")) {
     system_alerts_data
   }
 }
@@ -224,17 +220,15 @@ get_system_alerts <- function (city, directory = NULL, file = "system_alerts.rds
 #'                     output = "return")}
 #' @export
 
-get_system_calendar <- function (city, directory = NULL, file = "system_calendar.rds", output = "save") {
+get_system_calendar <- function (city, directory = NULL, file = "system_calendar.rds", output = NULL) {
 
-  if (!output %in% c("save", "return", "both")) {
-    stop(sprintf("Please supply one of \"save\", \"return\", or \"both\" as arguments to `output`."))
-  }
+  check_return_arguments(directory_ = directory,
+                         file_ = file,
+                         output_ = output)
   
-  if (is.null(directory) & output %in% c("save", "both")) {
-    stop(sprintf("You have not supplied a location to save the resulting file, but the supplied arguments
-    indicate that you'd like to save the dataframe. Please supply a `directory` argument or 
-    set `output = \"return\".`"))
-  }  
+  if (is.null(output)) {
+    output <- "null"
+  }
   
   url <- city_to_url(city)
   
@@ -275,7 +269,7 @@ get_system_calendar <- function (city, directory = NULL, file = "system_calendar
   saveRDS(system_calendar_data, file = paste(directory, file, sep = "/"))
   }
   
-  if (output %in% c("return", "both")) {
+  if (output %in% c("return", "both", "null")) {
     system_calendar_data
   }
 }
@@ -317,16 +311,14 @@ get_system_calendar <- function (city, directory = NULL, file = "system_calendar
 #'                  output = "return")}
 #' @export
 
-get_system_hours <- function (city, directory = NULL, file = "system_hours.rds", output = "save") {
+get_system_hours <- function (city, directory = NULL, file = "system_hours.rds", output = NULL) {
 
-  if (!output %in% c("save", "return", "both")) {
-    stop(sprintf("Please supply one of \"save\", \"return\", or \"both\" as arguments to `output`."))
-  }
+  check_return_arguments(directory_ = directory,
+                         file_ = file,
+                         output_ = output)
   
-  if (is.null(directory) & output %in% c("save", "both")) {
-    stop(sprintf("You have not supplied a location to save the resulting file, but the supplied arguments
-    indicate that you'd like to save the dataframe. Please supply a `directory` argument or 
-    set `output = \"return\".`"))
+  if (is.null(output)) {
+    output <- "null"
   }
   
   url <- city_to_url(city)
@@ -371,7 +363,7 @@ get_system_hours <- function (city, directory = NULL, file = "system_hours.rds",
   saveRDS(system_hours_data, file = paste(directory, file, sep = "/"))
   }
   
-  if (output %in% c("return", "both")) {
+  if (output %in% c("return", "both", "null")) {
    system_hours_data 
   }
   
@@ -414,16 +406,14 @@ get_system_hours <- function (city, directory = NULL, file = "system_hours.rds",
 #'                        output = "return")}
 #' @export
 
-get_system_information <- function(city, directory = NULL, file = "system_information.rds", output = "save"){
+get_system_information <- function(city, directory = NULL, file = "system_information.rds", output = NULL){
 
-  if (!output %in% c("save", "return", "both")) {
-    stop(sprintf("Please supply one of \"save\", \"return\", or \"both\" as arguments to `output`."))
-  }
+  check_return_arguments(directory_ = directory,
+                         file_ = file,
+                         output_ = output)
   
-  if (is.null(directory) & output %in% c("save", "both")) {
-    stop(sprintf("You have not supplied a location to save the resulting file, but the supplied arguments
-    indicate that you'd like to save the dataframe. Please supply a `directory` argument or 
-    set `output = \"return\".`"))
+  if (is.null(output)) {
+    output <- "null"
   }
   
   url <- city_to_url(city)
@@ -463,7 +453,7 @@ get_system_information <- function(city, directory = NULL, file = "system_inform
   saveRDS(system_information_data, file = paste(directory, file, sep = "/"))
   }
   
-  if (output %in% c("return", "both")) {
+  if (output %in% c("return", "both", "null")) {
     system_information_data
   }
     
@@ -507,17 +497,15 @@ get_system_information <- function(city, directory = NULL, file = "system_inform
 #'                          output = "return")}
 #' @export
 
-get_system_pricing_plans <- function(city, directory = NULL, file = "system_pricing_plans.rds", output = "save") {
+get_system_pricing_plans <- function(city, directory = NULL, file = "system_pricing_plans.rds", output = NULL) {
 
-  if (!output %in% c("save", "return", "both")) {
-    stop(sprintf("Please supply one of \"save\", \"return\", or \"both\" as arguments to `output`."))
-  }
+  check_return_arguments(directory_ = directory,
+                         file_ = file,
+                         output_ = output) 
   
-  if (is.null(directory) & output %in% c("save", "both")) {
-    stop(sprintf("You have not supplied a location to save the resulting file, but the supplied arguments
-    indicate that you'd like to save the dataframe. Please supply a `directory` argument or 
-    set `output = \"return\".`"))
-  }  
+  if (is.null(output)) {
+    output <- "null"
+  }
   
   url <- city_to_url(city)
   
@@ -557,7 +545,7 @@ get_system_pricing_plans <- function(city, directory = NULL, file = "system_pric
   saveRDS(system_pricing_plans_data, file = paste(directory, file, sep = "/"))
   }
   
-  if (output %in% c("return", "both")) {
+  if (output %in% c("return", "both", "null")) {
     system_pricing_plans_data 
   }
 }
@@ -600,17 +588,15 @@ get_system_pricing_plans <- function(city, directory = NULL, file = "system_pric
 #'                    output = "return")}
 #' @export
 
-get_system_regions <- function (city, directory = NULL, file = "system_regions.rds", output = "save") {
+get_system_regions <- function (city, directory = NULL, file = "system_regions.rds", output = NULL) {
 
-  if (!output %in% c("save", "return", "both")) {
-    stop(sprintf("Please supply one of \"save\", \"return\", or \"both\" as arguments to `output`."))
-  }
+  check_return_arguments(directory_ = directory,
+                         file_ = file,
+                         output_ = output) 
   
-  if (is.null(directory) & output %in% c("save", "both")) {
-    stop(sprintf("You have not supplied a location to save the resulting file, but the supplied arguments
-    indicate that you'd like to save the dataframe. Please supply a `directory` argument or 
-    set `output = \"return\".`"))
-  }  
+  if (is.null(output)) {
+    output <- "null"
+  }
   
   url <- city_to_url(city)
   
@@ -623,8 +609,7 @@ get_system_regions <- function (city, directory = NULL, file = "system_regions.r
         dplyr::filter(stringr::str_detect(url, "system_regions")) %>%
         as.character()
     }
-  }
-  else {
+  } else {
     system_regions_feed <- url
   }
 
@@ -647,7 +632,7 @@ get_system_regions <- function (city, directory = NULL, file = "system_regions.r
   saveRDS(system_regions_data, file = paste(directory, file, sep = "/"))
   }
   
-  if (output %in% c("return", "both")) {
+  if (output %in% c("return", "both", "null")) {
     system_regions_data 
   }
 }

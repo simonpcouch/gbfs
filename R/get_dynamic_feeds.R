@@ -40,16 +40,14 @@
 #'                      output = "return")}
 #' @export
 
-get_free_bike_status <- function(city, directory = NULL, file = "free_bike_status.rds", output = "save") {
+get_free_bike_status <- function(city, directory = NULL, file = "free_bike_status.rds", output = NULL) {
 
-  if (!output %in% c("save", "return", "both")) {
-    stop(sprintf("Please supply one of \"save\", \"return\", or \"both\" as arguments to `output`."))
-  }
+  check_return_arguments(directory_ = directory,
+                         file_ = file,
+                         output_ = output)
   
-  if (is.null(directory) & output %in% c("save", "both")) {
-    stop(sprintf("You have not supplied a location to save the resulting file, but the supplied arguments
-    indicate that you'd like to save the dataframe. Please supply a `directory` argument or 
-    set `output = \"return\".`"))
+  if (is.null(output)) {
+    output <- "null"
   }
   
   url <- city_to_url(city)
@@ -114,7 +112,7 @@ get_free_bike_status <- function(city, directory = NULL, file = "free_bike_statu
     }
   }
   
-  if (output %in% c("return", "both")) {
+  if (output %in% c("return", "both", "null")) {
     free_bike_status_data
   }
 }
@@ -160,16 +158,14 @@ get_free_bike_status <- function(city, directory = NULL, file = "free_bike_statu
 #'                    output = "return")}
 #' @export
 
-get_station_status <- function(city, directory = NULL, file = "station_status.rds", output = "save") {
+get_station_status <- function(city, directory = NULL, file = "station_status.rds", output = NULL) {
 
-  if (!output %in% c("save", "return", "both")) {
-    stop(sprintf("Please supply one of \"save\", \"return\", or \"both\" as arguments to `output`."))
-  }
+  check_return_arguments(directory_ = directory,
+                         file_ = file,
+                         output_ = output)
   
-  if (is.null(directory) & output %in% c("save", "both")) {
-    stop(sprintf("You have not supplied a location to save the resulting file, but the supplied arguments
-    indicate that you'd like to save the dataframe. Please supply a `directory` argument or 
-    set `output = \"return\".`"))
+  if (is.null(output)) {
+    output <- "null"
   }
   
   url <- city_to_url(city)
@@ -278,7 +274,7 @@ get_station_status <- function(city, directory = NULL, file = "station_status.rd
     }
   }
   
-  if (output %in% c("return", "both")) {
+  if (output %in% c("return", "both", "null")) {
     station_status_data
   }
 }
