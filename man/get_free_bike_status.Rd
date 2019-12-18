@@ -8,7 +8,7 @@ get_free_bike_status(
   city,
   directory = NULL,
   file = "free_bike_status.rds",
-  output = "save"
+  output = NULL
 )
 }
 \arguments{

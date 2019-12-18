@@ -20,27 +20,6 @@
                   col_types = systems_cols)
 }
 
-
-city_to_url <- function(city) {
-  
-  if (1 == length(agrep(x = as.character(city), pattern = ".json"))) {
-    #return the city argument as 'url'
-    url <- city
-    url
-  } else {
-    cities <- get_gbfs_cities() %>%
-      dplyr::select(Name, Location, 'Auto-Discovery URL')
-    city_index <- as.numeric(agrep(x = cities$Location, pattern = city), ignore.case = TRUE)
-    url <- as.data.frame((cities)[city_index, 'Auto-Discovery URL'])
-    if (nrow(url) == 1) { 
-      as.character(url)
-    } else {
-        if(nrow(url) > 1) {
-          stop(sprintf("Several cities matched the string supplied. Consider using `get_gbfs_cities()` to find the desired .json URL."))
-        } else {
-          stop(sprintf("No supported cities matched the string supplied. Consider using `get_gbfs_cities()` to find the desired .json URL."))
-    }}}}
-
 get_gbfs_feeds <- function(url) {
 
   gbfs <- jsonlite::fromJSON(txt = url)

@@ -8,7 +8,7 @@ get_system_regions(
   city,
   directory = NULL,
   file = "system_regions.rds",
-  output = "save"
+  output = NULL
 )
 }
 \arguments{

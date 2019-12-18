@@ -8,7 +8,7 @@ get_station_status(
   city,
   directory = NULL,
   file = "station_status.rds",
-  output = "save"
+  output = NULL
 )
 }
 \arguments{

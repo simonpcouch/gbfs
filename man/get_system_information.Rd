@@ -8,7 +8,7 @@ get_system_information(
   city,
   directory = NULL,
   file = "system_information.rds",
-  output = "save"
+  output = NULL
 )
 }
 \arguments{

@@ -8,7 +8,7 @@ get_system_calendar(
   city,
   directory = NULL,
   file = "system_calendar.rds",
-  output = "save"
+  output = NULL
 )
 }
 \arguments{

@@ -8,7 +8,7 @@ get_system_pricing_plans(
   city,
   directory = NULL,
   file = "system_pricing_plans.rds",
-  output = "save"
+  output = NULL
 )
 }
 \arguments{

@@ -39,34 +39,21 @@
 #' \donttest{get_free_bike_status(city = "portland",  
 #'                      output = "return")}
 #' @export
-
 get_free_bike_status <- function(city, directory = NULL, file = "free_bike_status.rds", output = NULL) {
+
 
   check_return_arguments(directory_ = directory,
                          file_ = file,
                          output_ = output)
   
+  url <- city_to_url(city, "free_bike_status")
+
   if (is.null(output)) {
     output <- "null"
   }
   
-  url <- city_to_url(city)
-  
-  if (url != city) {
-    gbfs <- jsonlite::fromJSON(txt = url)
-    gbfs_feeds <- gbfs$data$en$feeds
-    if ("free_bike_status" %in% gbfs_feeds$name) {
-      free_bike_status_feed <- gbfs_feeds %>%
-        dplyr::select(url) %>%
-        dplyr::filter(stringr::str_detect(url, "free_bike_status")) %>%
-        as.character()
-    }
-  } else {
-    free_bike_status_feed <- url
-  }
-
   #save feed
-  free_bike_status <- jsonlite::fromJSON(txt = free_bike_status_feed)
+  free_bike_status <- jsonlite::fromJSON(txt = url)
 
   #extract data, convert to df
   free_bike_status_data <- free_bike_status$data$bikes
@@ -157,33 +144,21 @@ get_free_bike_status <- function(city, directory = NULL, file = "free_bike_statu
 #' \donttest{get_station_status(city = "portland",  
 #'                    output = "return")}
 #' @export
-
 get_station_status <- function(city, directory = NULL, file = "station_status.rds", output = NULL) {
 
   check_return_arguments(directory_ = directory,
                          file_ = file,
                          output_ = output)
   
+  
+  url <- city_to_url(city, "station_status")
+
   if (is.null(output)) {
     output <- "null"
   }
   
-  url <- city_to_url(city)
-  
-  if (url != city) {
-    gbfs <- jsonlite::fromJSON(txt = url)
-    gbfs_feeds <- gbfs$data$en$feeds
-    station_status_feed <- gbfs_feeds %>%
-      dplyr::select(url) %>%
-      dplyr::filter(stringr::str_detect(url, "station_status")) %>%
-      as.character()
-  }
-  else {
-    station_status_feed <- url
-  }
-
   #save feed
-  station_status <- jsonlite::fromJSON(txt = station_status_feed)
+  station_status <- jsonlite::fromJSON(txt = url)
 
   #extract data, convert to df
   station_status_data <- station_status$data$stations

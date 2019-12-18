@@ -8,7 +8,7 @@ get_station_information(
   city,
   directory = NULL,
   file = "station_information.rds",
-  output = "save"
+  output = NULL
 )
 }
 \arguments{

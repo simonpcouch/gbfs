@@ -8,7 +8,7 @@ get_system_alerts(
   city,
   directory = NULL,
   file = "system_alerts.rds",
-  output = "save"
+  output = NULL
 )
 }
 \arguments{
