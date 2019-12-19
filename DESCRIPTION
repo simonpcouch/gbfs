@@ -15,7 +15,8 @@ Imports:
     readr,
     stringr,
     jsonlite,
-    lubridate
+    lubridate,
+    RCurl
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.0

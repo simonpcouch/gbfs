@@ -123,7 +123,7 @@ get_gbfs_feeds <- function(url) {
 
 get_gbfs <- function(city, feeds = "all", directory) {
 
-  url <- city_to_url(city = city)
+  url <- city_to_url(city, "gbfs")
 
   gbfs <- jsonlite::fromJSON(txt = url)
 
