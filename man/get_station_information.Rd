@@ -15,26 +15,28 @@ get_station_information(
 \item{city}{A character string that can be matched to a city or a url to an active 
 gbfs .json feed. See \code{get_gbfs_cities} for a current list of available cities.}
 
-\item{directory}{The name of an existing folder or folder to be created, where 
-the feed will will be saved. This argument is not required if \code{output = "return"}.}
+\item{directory}{Optional. Path to a folder (or folder to be 
+created) where the feed will be saved.}
 
-\item{file}{The name of the file to be saved (if \code{output} is set to \code{"save"} 
-or \code{"both"}), as a character string. Must end in \code{".rds"}.}
+\item{file}{Optional. The name of the file to be saved (if \code{output} 
+is set to \code{"save"} or \code{"both"}), as a character string. 
+Must end in \code{".rds"}.}
 
-\item{output}{The type of output method. If \code{output = "save"}, the object 
-will be saved as an .rds object at the given path. If \code{output = "return"}, 
-the output will be returned as a dataframe object. Setting 
-\code{output = "both"} will do both.}
+\item{output}{Optional. The type of output method. If left as default, this
+argument is inferred from the \code{directory} argument. If 
+\code{output = "save"}, the object will be saved as an .rds object at 
+# the given path. If \code{output = "return"}, the output will be returned 
+as a dataframe object. Setting \code{output = "both"} will do both.}
 }
 \value{
-The output of this function depends on argument to \code{output}. 
-Either a saved .rds object generated from the current station_information 
-feed, a dataframe object, or both.
+The output of this function depends on argument to \code{output}
+and \code{directory}. Either a saved .rds object generated from the current 
+station_information feed, a dataframe object, or both.
 }
 \description{
 \code{get_station_information} grabs and tidies the station_information feed for a given city. 
 This dataset contains locations, capacity, and other information about bikeshare stations.
-Go to `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
+Go to \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
 }
 \examples{
 # we can grab the station information feed for portland, 

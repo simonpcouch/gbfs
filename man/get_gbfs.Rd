@@ -2,32 +2,50 @@
 % Please edit documentation in R/get_gbfs.R
 \name{get_gbfs}
 \alias{get_gbfs}
-\title{Save gbfs feeds.}
+\title{Grab bikeshare data}
 \usage{
-get_gbfs(city, feeds = "all", directory)
+get_gbfs(city, feeds = "all", directory = NULL, output = NULL)
 }
 \arguments{
 \item{city}{A character string that can be matched to a city or a url to an 
 active gbfs.json feed. See \code{get_gbfs_cities} for a current list of available cities.}
 
-\item{feeds}{A character string specifying which feeds should be saved. Options are
-\code{"all"}, \code{"static"}, and \code{"dynamic"}.}
+\item{feeds}{Optional. A character string specifying which feeds should be saved. 
+Options are \code{"all"}, \code{"static"}, and \code{"dynamic"}.}
 
-\item{directory}{The name of an existing folder or folder to be created, where the feeds
-will be saved.}
+\item{directory}{Optional. Path to a folder (or folder to be created) where 
+the feed will will be saved.}
+
+\item{output}{Optional. The type of output method. By default, output method 
+will be inferred from the \code{directory} argument. If \code{output = "save"}, 
+the dataframes will be saved as .rds objects in the given folder. If 
+\code{output = "return"}, the results will be returned as a named list of 
+dataframes. Setting \code{output = "both"} will do both. If both are left
+as NULL, the result will be returned and not saved to file.}
 }
 \value{
-A folder containing the specified feeds saved as .rds objects.
+The output of this function depends on the arguments supplied to 
+\code{output} and \code{directory}. Either a folder of .rds dataframes saved
+at the given path, a returned named list of dataframes, or both.
+The function will raise an error if the \code{directory} and \code{output} 
+arguments seem to conflict.
 }
 \description{
-\code{get_gbfs} checks for the existence of General Bikeshare Specification
-feeds for a given city and saves the feeds as .rds objects in a directory that
-can be specified by the user. Metadata for each dataset can be found at:
-`https://github.com/NABSA/gbfs/blob/master/gbfs.md`
+\code{get_gbfs} grabs bikeshare data supplied in the General Bikeshare 
+Feed Specification format for a given city. By default, the function returns
+the results as a named list of dataframes, but to make accumulation of
+datasets over time straightforward, the user can also save the results
+as .Rds files that will be automatically row-binded.
+ Metadata for each dataset can be found at:
+\url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 }
 \examples{
-# to grab all of the feeds released by portland, oregon's
-# bikeshare program "biketown",
+# grab all of the feeds released by portland, oregon's 
+# bikeshare program  "biketown", and return them as a 
+# named list of dataframes
+\donttest{get_gbfs(city = "portland")}
+
+# if, rather than returning the data, we wanted to save it:
 \donttest{get_gbfs(city = "portland", directory = tempdir())}
 
 # note that, usually, we'd supply a character string 
@@ -36,12 +54,9 @@ can be specified by the user. Metadata for each dataset can be found at:
 
 # if we're having trouble specifying the correct feed,
 # we can also supply the actual URL to the feed
-\donttest{get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json", 
-         directory = tempdir())}
+\donttest{get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json")}
                    
 # the examples above grab every feed that portland releases.
-# if, instead, we just wanted the dynamic feeds,
-\donttest{get_gbfs(city = "portland", 
-         directory = tempdir(),
-         feeds = "dynamic")}
+# if, instead, we just wanted the dynamic feeds
+\donttest{get_gbfs(city = "portland", feeds = "dynamic")}
 }

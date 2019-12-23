@@ -198,7 +198,7 @@ get_gbfs_dataset_ <- function(city, directory, file, output, feed) {
   if (output_types[1]) {
     # create directory if it doesn't exist
     if (!dir.exists(directory)) {
-      dir.create(directory)
+      dir.create(directory, recursive = TRUE)
     } # and save the data
     saveRDS(data, file = paste(directory, file, sep = "/"))
   }
@@ -222,16 +222,16 @@ get_which_gbfs_feeds <- function(city) {
   
 }
 
-# a tibble containing each possible feed that can be released by a city and
-# the type of feed that it is
-all_feeds <- tibble(name = c("system_information", "station_information", 
+# a data frame containing each possible feed that can be 
+# released by a city and the type of feed that it is
+all_feeds <- data.frame(name = c("system_information", "station_information", 
                              "station_status", "free_bike_status", 
                              "system_hours", "system_calendar",
                              "system_regions", "system_pricing_plans", 
                              "system_alerts"),
-                    type = c(rep("static", 2),
-                             rep("dynamic", 2),
-                             rep("static", 5)))
+                        type = c(rep("static", 2),
+                                 rep("dynamic", 2),
+                                 rep("static", 5)))
 
 
 
