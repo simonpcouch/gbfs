@@ -60,7 +60,7 @@ city_to_url <- function(city_, feed_) {
   # first, check if the city argument is the desired feed. if so, return it!
   if (stringr::str_detect(city_, paste0(feed_, ".json"))) {
     if (RCurl::url.exists(city_)) {
-      return(city)
+      return(city_)
     } else {
       stop(sprintf(c("The supplied argument for \"city\" looks like a URL, ",
                      "but the webpage doesn't seem to exist. Please check",
@@ -148,16 +148,23 @@ find_feed_from_top_level <- function(top_level_, feed_) {
  
 # a function to supply a 2 length logical vector, where the first entry
 # gives whether to save the output, and the second gives whether to output it
-determine_output_types <- function(output_) {
+determine_output_types <- function(directory_, output_) {
   
-  if (is.null(output_)) {
+  if (is.null(output_) & is.null(directory_)) {
     return(c(FALSE, TRUE))
+  } else if (is.null(output_) & (!is.null(directory_))) {
+    return(c(TRUE, FALSE))
   } else if (output_ == "both") {
     return(c(TRUE, TRUE))
   } else if (output_ == "return") {
     return(c(FALSE, TRUE))
   } else if (output_ == "save") {
     return(c(TRUE, FALSE))
+  } else {
+    stop(sprintf(c("The supplied \"output\" argument doesn't match any of",
+                   " the available options. Please leave the argument as", 
+                   " default or supply one of \"return\", \"save\",",
+                   " or \"both\"")))
   }
 
 }
@@ -185,7 +192,7 @@ get_gbfs_dataset_ <- function(city, directory, file, output, feed) {
   }
   
   # make a 2-length logical vector of whether to save and/or return
-  output_types <- determine_output_types(output)
+  output_types <- determine_output_types(directory, output)
   
   # if we should save the data...
   if (output_types[1]) {
@@ -202,3 +209,45 @@ get_gbfs_dataset_ <- function(city, directory, file, output, feed) {
   }
 }
 
+# a function to identify the feeds supplied by a city
+get_which_gbfs_feeds <- function(city) {
+  
+  url <- city_to_url(city, "gbfs")
+  
+  gbfs <- jsonlite::fromJSON(txt = url)
+  
+  gbfs_feeds <- gbfs[[3]][[1]][[1]]
+  
+  return(gbfs_feeds)
+  
+}
+
+# a tibble containing each possible feed that can be released by a city and
+# the type of feed that it is
+all_feeds <- tibble(name = c("system_information", "station_information", 
+                             "station_status", "free_bike_status", 
+                             "system_hours", "system_calendar",
+                             "system_regions", "system_pricing_plans", 
+                             "system_alerts"),
+                    type = c(rep("static", 2),
+                             rep("dynamic", 2),
+                             rep("static", 5)))
+
+
+
+process_feeds_argument <- function(arg_) {
+  # check to make sure that it's one of the available options
+  if (!arg_ %in% c("all", "static", "dynamic")) {
+    stop(sprintf(c("The supplied \"feeds\" argument is \"", as.character(arg_),
+                   "\", but it needs to be one of \"all\", \"static\",", 
+                   " or \"dynamic\". See ?get_gbfs for more information."
+                   )))
+  }
+  
+  # if the argument is "all", return both types
+  if (arg_ == "all") {
+    arg_ <- c("static", "dynamic")
+  }
+  
+  return(arg_)
+}
