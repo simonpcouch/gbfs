@@ -12,19 +12,21 @@ get_station_status(
 )
 }
 \arguments{
-\item{city}{A character string or a url to an active gbfs.json feed. See \code{get_gbfs_cities}
-for a current list of available cities.}
+\item{city}{A character string that can be matched to a city or a url to an active 
+gbfs .json feed. See \code{get_gbfs_cities} for a current list of available cities.}
 
-\item{directory}{The name of an existing folder or folder to be created, where the feed will
-will be saved. This argument is only required if `output = "save"` (the default option.)
-This argument will be ignored, if `output = "return"`}
+\item{directory}{Optional. Path to a folder (or folder to be 
+created) where the feed will be saved.}
 
-\item{file}{Name of an existing file or a new file to be saved. Must end in .rds.
-This argument will be ignored if `output = "return"`.}
+\item{file}{Optional. The name of the file to be saved (if \code{output} 
+is set to \code{"save"} or \code{"both"}), as a character string. 
+Must end in \code{".rds"}.}
 
-\item{output}{The type of output method. If `output = "save"`, the object will be saved as
-an .rds object at the given path. If `output = "return"`, the output will be returned
-as a dataframe object. Setting `output = "both"` will do both.}
+\item{output}{Optional. The type of output method. If left as default, this
+argument is inferred from the \code{directory} argument. If 
+\code{output = "save"}, the object will be saved as an .rds object at 
+# the given path. If \code{output = "return"}, the output will be returned 
+as a dataframe object. Setting \code{output = "both"} will do both.}
 }
 \value{
 The output of this function depends on argument to `output`: Either 
@@ -39,21 +41,27 @@ appends the new rows from the current station_status feed to the existing file. 
 }
 \examples{
 # we can grab the station status feed for portland, 
-# oregon in one of several ways! first, supply the `city` 
-# argument as a URL, and save to file by leaving output 
-# set to it's default. usually, we would supply a character 
-# string (like "pdx", maybe,) for the `directory` argument 
-# instead of `tempdir`.
-\donttest{get_station_status(city = "http://biketownpdx.socialbicycles.com/opendata/station_status.json",  
-                   directory = tempdir())}
-                    
-# or, instead, just supply the name of 
-# the city as a string. 
-\donttest{get_station_status(city = "portland",
-                   directory = tempdir())}
-                    
-# instead of saving the output as a file, we can 
-# just return the output as a dataframe
+# oregon's bikeshare program in  several ways! the most 
+# straightforward way is just to supply the `city` argument
+# as a string:
+\donttest{get_station_status(city = "portland")}
+
+# the `city` argument can also be supplied as an
+# actual URL to an active .json feed
+#' \donttest{get_station_status(city = 
+"http://biketownpdx.socialbicycles.com/opendata/station_status.json",  
+                     directory = tempdir())}
+
+# if you'd like to save the output to file, supply a 
+# `directory` argument. usually, though, we would supply a 
+# character string (like "pdx", maybe,) for the `directory` 
+# argument instead of `tempdir`.
 \donttest{get_station_status(city = "portland",  
-                   output = "return")}
+                     directory = tempdir())}
+                     
+# the output argument can control whether the file is
+# saved and/or returned explicitly
+\donttest{get_station_status(city = "portland",  
+                     directory = tempdir(),
+                     output = "both")} 
 }
