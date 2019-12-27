@@ -45,7 +45,8 @@ dataset can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 # set to it's default. usually, we would supply a character 
 # string (like "pdx", maybe,) for the `directory` argument 
 # instead of `tempdir`.
-\donttest{get_system_alerts(city = "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json",  
+\donttest{get_system_alerts(city = 
+"http://biketownpdx.socialbicycles.com/opendata/system_alerts.json",  
                   directory = tempdir())}
                     
 # or, instead, just supply the name of 

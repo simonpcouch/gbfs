@@ -42,7 +42,7 @@
 #' 
 #' @examples 
 #' # grab all of the feeds released by portland
-#' \donttest{get_which_gbfs_feeds(city = "portland"))}
+#' \donttest{get_which_gbfs_feeds(city = "portland")}
 #' 
 #' @export
 get_which_gbfs_feeds <- function(city) {

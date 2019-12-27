@@ -34,7 +34,8 @@
 #' # set to it's default. usually, we would supply a character 
 #' # string (like "pdx", maybe,) for the `directory` argument 
 #' # instead of `tempdir`.
-#' \donttest{get_station_information(city = "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json",  
+#' \donttest{get_station_information(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json",  
 #'                         directory = tempdir())}
 #'                     
 #' # or, instead, just supply the name of 
@@ -70,7 +71,8 @@ get_station_information <- function(city, directory = NULL, file = "station_info
 #' # set to it's default. usually, we would supply a character 
 #' # string (like "pdx", maybe,) for the `directory` argument 
 #' # instead of `tempdir`.
-#' \donttest{get_system_alerts(city = "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json",  
+#' \donttest{get_system_alerts(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json",  
 #'                   directory = tempdir())}
 #'                     
 #' # or, instead, just supply the name of 
@@ -107,7 +109,8 @@ get_system_alerts <- function (city, directory = NULL, file = "system_alerts.rds
 #' # set to it's default. usually, we would supply a character 
 #' # string (like "pdx", maybe,) for the `directory` argument 
 #' # instead of `tempdir`.
-#' \donttest{get_system_calendar(city = "http://biketownpdx.socialbicycles.com/opendata/system_calendar.json",  
+#' \donttest{get_system_calendar(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/system_calendar.json",  
 #'                     directory = tempdir())}
 #'                     
 #' # or, instead, just supply the name of 
@@ -145,7 +148,8 @@ get_system_calendar <- function (city, directory = NULL, file = "system_calendar
 #' # set to it's default. usually, we would supply a character 
 #' # string (like "pdx", maybe,) for the `directory` argument 
 #' # instead of `tempdir`.
-#' \donttest{get_system_hours(city = "http://biketownpdx.socialbicycles.com/opendata/system_hours.json",  
+#' \donttest{get_system_hours(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/system_hours.json",  
 #'                  directory = tempdir())}
 #'                     
 #' # or, instead, just supply the name of 
@@ -182,7 +186,8 @@ get_system_hours <- function (city, directory = NULL, file = "system_hours.rds",
 #' # set to it's default. usually, we would supply a character 
 #' # string (like "pdx", maybe,) for the `directory` argument 
 #' # instead of `tempdir`.
-#' \donttest{get_system_information(city = "http://biketownpdx.socialbicycles.com/opendata/system_information.json",  
+#' \donttest{get_system_information(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/system_information.json",  
 #'                        directory = tempdir())}
 #'                     
 #' # or, instead, just supply the name of 
@@ -217,7 +222,8 @@ get_system_information <- function(city, directory = NULL, file = "system_inform
 #' # set to it's default. usually, we would supply a character 
 #' # string (like "pdx", maybe,) for the `directory` argument 
 #' # instead of `tempdir`.
-#' \donttest{get_system_pricing_plans(city = "http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json",  
+#' \donttest{get_system_pricing_plans(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json",  
 #'                          directory = tempdir())}
 #'                     
 #' # or, instead, just supply the name of 
@@ -252,7 +258,8 @@ get_system_pricing_plans <- function(city, directory = NULL, file = "system_pric
 #' # set to it's default. usually, we would supply a character 
 #' # string (like "pdx", maybe,) for the `directory` argument 
 #' # instead of `tempdir`.
-#' \donttest{get_system_regions(city = "http://biketownpdx.socialbicycles.com/opendata/system_regions.json",  
+#' \donttest{get_system_regions(city = 
+#' "http://biketownpdx.socialbicycles.com/opendata/system_regions.json",  
 #'                    directory = tempdir())}
 #'                     
 #' # or, instead, just supply the name of 

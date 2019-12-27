@@ -45,7 +45,8 @@ a given city.  Metadata for this dataset can be found at:
 # set to it's default. usually, we would supply a character 
 # string (like "pdx", maybe,) for the `directory` argument 
 # instead of `tempdir`.
-\donttest{get_system_regions(city = "http://biketownpdx.socialbicycles.com/opendata/system_regions.json",  
+\donttest{get_system_regions(city = 
+"http://biketownpdx.socialbicycles.com/opendata/system_regions.json",  
                    directory = tempdir())}
                     
 # or, instead, just supply the name of 

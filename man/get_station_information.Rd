@@ -46,7 +46,8 @@ Metadata for this dataset can be found at:
 # set to it's default. usually, we would supply a character 
 # string (like "pdx", maybe,) for the `directory` argument 
 # instead of `tempdir`.
-\donttest{get_station_information(city = "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json",  
+\donttest{get_station_information(city = 
+"http://biketownpdx.socialbicycles.com/opendata/system_alerts.json",  
                         directory = tempdir())}
                     
 # or, instead, just supply the name of 

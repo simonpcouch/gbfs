@@ -28,6 +28,6 @@ by a given city, as well as the URLs to access them.
 }
 \examples{
 # grab all of the feeds released by portland
-\donttest{get_which_gbfs_feeds(city = "portland"))}
+\donttest{get_which_gbfs_feeds(city = "portland")}
 
 }

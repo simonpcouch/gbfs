@@ -46,7 +46,8 @@ dataset can be found at:
 # set to it's default. usually, we would supply a character 
 # string (like "pdx", maybe,) for the `directory` argument 
 # instead of `tempdir`.
-\donttest{get_system_hours(city = "http://biketownpdx.socialbicycles.com/opendata/system_hours.json",  
+\donttest{get_system_hours(city = 
+"http://biketownpdx.socialbicycles.com/opendata/system_hours.json",  
                  directory = tempdir())}
                     
 # or, instead, just supply the name of 
