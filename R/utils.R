@@ -237,19 +237,6 @@ get_gbfs_dataset_ <- function(city, directory, file, output, feed) {
   }
 }
 
-# a function to identify the feeds supplied by a city
-get_which_gbfs_feeds <- function(city) {
-  
-  url <- city_to_url(city, "gbfs")
-  
-  gbfs <- jsonlite::fromJSON(txt = url)
-  
-  gbfs_feeds <- gbfs[[3]][[1]][[1]]
-  
-  return(gbfs_feeds)
-  
-}
-
 # a data frame containing each possible feed that can be 
 # released by a city and the type of feed that it is
 all_feeds <- data.frame(name = c("system_information", "station_information", 
@@ -262,7 +249,8 @@ all_feeds <- data.frame(name = c("system_information", "station_information",
                                  rep("static", 5)))
 
 
-
+# a function that ensures that the feeds argument (supplied
+# to get_gbfs) is valid
 process_feeds_argument <- function(arg_) {
   # check to make sure that it's one of the available options
   if (!arg_ %in% c("all", "static", "dynamic")) {
@@ -280,12 +268,19 @@ process_feeds_argument <- function(arg_) {
   return(arg_)
 }
 
+# a function that takes in one of the dynamic dataframes,
+# as well as a filepath to an already existing dataframe,
+# row binds them, and then saves the result
 update_dynamic_feed <- function(data, filepath) {
   old_data <- readRDS(filepath)
   updated_data <- rbind(data, old_data)
   saveRDS(updated_data, file = filepath)
 }
 
+
+# a function to check whether two dataframes can
+# be row-binded... if not, diagnostic errors should give
+# clues as to why. if so, return TRUE
 datasets_can_be_row_binded <- function(data, filepath) {
   old_data <- readRDS(filepath)
   

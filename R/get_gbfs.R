@@ -20,6 +20,43 @@
                   col_types = systems_cols)
 }
 
+  
+  
+#' Get dataframe of bikeshare feeds released by a city
+#'
+#' @description Of the different types of feeds supplied by the gbfs,
+#' some are required, some are conditionally required, and some are
+#' optional. This function grabs a list of each of the feeds supplied
+#' by a given city, as well as the URLs to access them.
+#' 
+#' @param city A character string that can be matched to a city or a url to 
+#' an active gbfs .json feed. See [get_gbfs_cities()] for a 
+#' current list of available cities.
+#'
+#' @return A \code{data.frame} containing the feeds supplied by
+#' a city. . The `feed` column supplies the name of the relevant .json feeds, 
+#' while the entries in the `URL` column supply the feeds themselves.
+#' 
+#' @source North American Bikeshare Association, General Bikeshare Feed 
+#' Specification \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
+#' 
+#' @examples 
+#' # grab all of the feeds released by portland
+#' \donttest{get_which_gbfs_feeds(city = "portland"))}
+#' 
+#' @export
+get_which_gbfs_feeds <- function(city) {
+    
+    url <- city_to_url(city, "gbfs")
+    
+    gbfs <- jsonlite::fromJSON(txt = url)
+    
+    gbfs_feeds <- gbfs[[3]][[1]][[1]]
+    
+    return(gbfs_feeds)
+    
+}
+  
 #' Grab bikeshare data
 #' 
 #' \code{get_gbfs} grabs bikeshare data supplied in the General Bikeshare 
