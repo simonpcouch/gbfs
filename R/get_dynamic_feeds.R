@@ -21,7 +21,7 @@
 #' 
 #' # the `city` argument can also be supplied as an
 #' # actual URL to an active .json feed
-#' #' \donttest{get_free_bike_status(city = 
+#' \donttest{get_free_bike_status(city = 
 #' "http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json",  
 #'                      directory = tempdir())}
 #' 
@@ -64,7 +64,7 @@ get_free_bike_status <- function(city, directory = NULL, file = "free_bike_statu
 #' 
 #' # the `city` argument can also be supplied as an
 #' # actual URL to an active .json feed
-#' #' \donttest{get_station_status(city = 
+#' \donttest{get_station_status(city = 
 #' "http://biketownpdx.socialbicycles.com/opendata/station_status.json",  
 #'                      directory = tempdir())}
 #' 
