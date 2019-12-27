@@ -4,9 +4,9 @@
 #' bikeshare bikes not parked at bikeshare stations. Metadata for this dataset
 #' can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
-#' @inheritParams get_station_information
+#' @inherit get_station_information params seealso 
 #' 
-#' @return The output of this function depends on argument to \code{output}
+#' @return The output of this function depends on the argument to \code{output}
 #' and \code{directory}. Either a saved .rds object generated from the current 
 #' station_information feed, a dataframe object, or both. If a saved feed of
 #' the same type already exists at the filepath, the feed will be appended to
@@ -51,11 +51,9 @@ get_free_bike_status <- function(city, directory = NULL, file = "free_bike_statu
 #' bikeshare bikes parked at bikeshare stations. Metadata for this dataset
 #' can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
-#' @inheritParams get_station_information
+#' @inherit get_station_information params seealso 
 #' 
-#' @return The output of this function depends on argument to `output`: Either 
-#' a saved .rds object generated from the current station_information feed, 
-#' a dataframe object, or both.
+#' @inherit get_free_bike_status return
 #' 
 #' @examples
 #' # we can grab the station status feed for portland, 

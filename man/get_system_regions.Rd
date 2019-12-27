@@ -13,7 +13,7 @@ get_system_regions(
 }
 \arguments{
 \item{city}{A character string that can be matched to a city or a url to an active 
-gbfs .json feed. See \code{get_gbfs_cities} for a current list of available cities.}
+gbfs .json feed. See [get_gbfs_cities()]  for a current list of available cities.}
 
 \item{directory}{Optional. Path to a folder (or folder to be 
 created) where the feed will be saved.}
@@ -31,7 +31,7 @@ as a dataframe object. Setting \code{output = "both"} will do both.}
 \value{
 The output of this function depends on argument to \code{output}
 and \code{directory}. Either a saved .rds object generated from the current 
-station_information feed, a dataframe object, or both.
+feed, a dataframe object, or both.
 }
 \description{
 \code{get_system_regions} grabs and tidies the system_regions feed for 
@@ -57,4 +57,10 @@ a given city.  Metadata for this dataset can be found at:
 # just return the output as a dataframe
 \donttest{get_system_regions(city = "portland",  
                    output = "return")}
+}
+\seealso{
+[get_gbfs()] for a wrapper to call each of the \code{get_feed}
+functions, [get_gbfs_cities()] for a dataframe of cities releasing gbfs
+functions, and [get_which_gbfs_feeds()] for a dataframe of which feeds
+are released by a given city.
 }

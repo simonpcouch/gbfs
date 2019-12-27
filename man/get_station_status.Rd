@@ -13,7 +13,7 @@ get_station_status(
 }
 \arguments{
 \item{city}{A character string that can be matched to a city or a url to an active 
-gbfs .json feed. See \code{get_gbfs_cities} for a current list of available cities.}
+gbfs .json feed. See [get_gbfs_cities()]  for a current list of available cities.}
 
 \item{directory}{Optional. Path to a folder (or folder to be 
 created) where the feed will be saved.}
@@ -29,9 +29,11 @@ argument is inferred from the \code{directory} argument. If
 as a dataframe object. Setting \code{output = "both"} will do both.}
 }
 \value{
-The output of this function depends on argument to `output`: Either 
-a saved .rds object generated from the current station_information feed, 
-a dataframe object, or both.
+The output of this function depends on the argument to \code{output}
+and \code{directory}. Either a saved .rds object generated from the current 
+station_information feed, a dataframe object, or both. If a saved feed of
+the same type already exists at the filepath, the feed will be appended to
+rather than overwritten.
 }
 \description{
 Grab a dataframe giving the geographic location and other metadata of
@@ -63,4 +65,10 @@ can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 \donttest{get_station_status(city = "portland",  
                      directory = tempdir(),
                      output = "both")} 
+}
+\seealso{
+[get_gbfs()] for a wrapper to call each of the \code{get_feed}
+functions, [get_gbfs_cities()] for a dataframe of cities releasing gbfs
+functions, and [get_which_gbfs_feeds()] for a dataframe of which feeds
+are released by a given city.
 }

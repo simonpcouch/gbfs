@@ -6,7 +6,7 @@
 #' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
 #' @param city A character string that can be matched to a city or a url to an active 
-#' gbfs .json feed. See \code{get_gbfs_cities} for a current list of available cities.
+#' gbfs .json feed. See [get_gbfs_cities()]  for a current list of available cities.
 #' @param directory Optional. Path to a folder (or folder to be 
 #' created) where the feed will be saved.
 #' @param file Optional. The name of the file to be saved (if \code{output} 
@@ -17,9 +17,16 @@
 #' \code{output = "save"}, the object will be saved as an .rds object at 
 #' # the given path. If \code{output = "return"}, the output will be returned 
 #' as a dataframe object. Setting \code{output = "both"} will do both.
+#' 
 #' @return The output of this function depends on argument to \code{output}
 #' and \code{directory}. Either a saved .rds object generated from the current 
-#' station_information feed, a dataframe object, or both.
+#' feed, a dataframe object, or both.
+#' 
+#' @seealso [get_gbfs()] for a wrapper to call each of the \code{get_feed}
+#' functions, [get_gbfs_cities()] for a dataframe of cities releasing gbfs
+#' functions, and [get_which_gbfs_feeds()] for a dataframe of which feeds
+#' are released by a given city.
+#' 
 #' @examples
 #' # we can grab the station information feed for portland, 
 #' # oregon in one of several ways! first, supply the `city` 
@@ -39,6 +46,8 @@
 #' # just return the output as a dataframe
 #' \donttest{get_station_information(city = "portland",  
 #'                         output = "return")}
+#'
+#' 
 #' @export
 get_station_information <- function(city, directory = NULL, file = "station_information.rds", output = NULL) {
 
@@ -52,11 +61,7 @@ get_station_information <- function(city, directory = NULL, file = "station_info
 #' This feed informs users about changes to normal operation. Metadata for this 
 #' dataset can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
-#' @inheritParams get_station_information
-#' 
-#' @return The output of this function depends on argument to \code{output}
-#' and \code{directory}. Either a saved .rds object generated from the current 
-#' station_information feed, a dataframe object, or both.
+#' @inherit get_station_information params return seealso 
 #' 
 #' @examples
 #' # we can grab the system alerts feed for portland, 
@@ -77,6 +82,8 @@ get_station_information <- function(city, directory = NULL, file = "station_info
 #' # just return the output as a dataframe
 #' \donttest{get_system_alerts(city = "portland",  
 #'                   output = "return")}
+#'  
+#'                   
 #' @export
 
 get_system_alerts <- function (city, directory = NULL, file = "system_alerts.rds", output = NULL) {
@@ -91,11 +98,7 @@ get_system_alerts <- function (city, directory = NULL, file = "system_alerts.rds
 #' for a given city. Metadata for this dataset can be found at: 
 #' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
-#' @inheritParams get_station_information
-#' 
-#' @return The output of this function depends on argument to \code{output}
-#' and \code{directory}. Either a saved .rds object generated from the current 
-#' station_information feed, a dataframe object, or both.
+#' @inherit get_station_information params return seealso 
 #' 
 #' @examples
 #' # we can grab the system calendar feed for portland, 
@@ -116,6 +119,8 @@ get_system_alerts <- function (city, directory = NULL, file = "system_alerts.rds
 #' # just return the output as a dataframe
 #' \donttest{get_system_calendar(city = "portland",  
 #'                     output = "return")}
+#' 
+#' 
 #' @export
 
 get_system_calendar <- function (city, directory = NULL, file = "system_calendar.rds", output = NULL) {
@@ -131,11 +136,7 @@ get_system_calendar <- function (city, directory = NULL, file = "system_calendar
 #' dataset can be found at: 
 #' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
-#' @inheritParams get_station_information
-#' 
-#' @return The output of this function depends on argument to \code{output}
-#' and \code{directory}. Either a saved .rds object generated from the current 
-#' station_information feed, a dataframe object, or both.
+#' @inherit get_station_information params return seealso 
 #' 
 #' @examples
 #' # we can grab the system hours feed for portland, 
@@ -156,6 +157,8 @@ get_system_calendar <- function (city, directory = NULL, file = "system_calendar
 #' # just return the output as a dataframe
 #' \donttest{get_system_hours(city = "portland",  
 #'                  output = "return")}
+#' 
+#' 
 #' @export
 
 get_system_hours <- function (city, directory = NULL, file = "system_hours.rds", output = NULL) {
@@ -170,11 +173,7 @@ get_system_hours <- function (city, directory = NULL, file = "system_hours.rds",
 #' feed for a given city. Metadata for this dataset can be found at: 
 #' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
-#' @inheritParams get_station_information
-#' 
-#' @return The output of this function depends on argument to \code{output}
-#' and \code{directory}. Either a saved .rds object generated from the current 
-#' station_information feed, a dataframe object, or both.
+#' @inherit get_station_information params return seealso 
 #' 
 #' @examples
 #' # we can grab the system information feed for portland, 
@@ -209,11 +208,7 @@ get_system_information <- function(city, directory = NULL, file = "system_inform
 #' feed for a given city. Metadata for this dataset can be found at: 
 #' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
-#' @inheritParams get_station_information
-#' 
-#' @return The output of this function depends on argument to \code{output}
-#' and \code{directory}. Either a saved .rds object generated from the current 
-#' station_information feed, a dataframe object, or both.
+#' @inherit get_station_information params return seealso 
 #' 
 #' @examples
 #' # we can grab the system pricing plans feed for portland, 
@@ -248,11 +243,7 @@ get_system_pricing_plans <- function(city, directory = NULL, file = "system_pric
 #' a given city.  Metadata for this dataset can be found at: 
 #' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
-#' @inheritParams get_station_information
-#' 
-#' @return The output of this function depends on argument to \code{output}
-#' and \code{directory}. Either a saved .rds object generated from the current 
-#' station_information feed, a dataframe object, or both.
+#' @inherit get_station_information params return seealso 
 #' 
 #' @examples
 #' # we can grab the system regions feed for portland, 
