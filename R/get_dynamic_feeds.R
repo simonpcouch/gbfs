@@ -1,10 +1,8 @@
 #' Grab the free_bike_status feed.
 #' 
-#' If the specified file does not exist, \code{get_free_bike_status} saves the free_bike_status
-#' feed for a given city as a .rds object. If the specified file does exist, \code{get_free_bike_status}
-#' appends the current free_bike_status feed to the existing file. The resulting dataframe can
-#' alternatively be returned (rather than saved) using the `output` argument. Go to 
-#' `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
+#' Grab a dataframe giving the geographic location and other metadata of
+#' bikeshare bikes not parked at bikeshare stations. Metadata for this dataset
+#' can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
 #' @inheritParams get_station_information
 #' 
@@ -49,10 +47,9 @@ get_free_bike_status <- function(city, directory = NULL, file = "free_bike_statu
 
 #' Grab the station_status feed.
 #' 
-#' If the specified file does not exist, \code{get_station_status} saves the station_status
-#' feed for a given city as a .rds object. If the specified file does exist, \code{get_station_status}
-#' appends the new rows from the current station_status feed to the existing file. Go to 
-#' `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
+#' Grab a dataframe giving the geographic location and other metadata of
+#' bikeshare bikes parked at bikeshare stations. Metadata for this dataset
+#' can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
 #' @inheritParams get_station_information
 #' 

@@ -34,8 +34,10 @@ and \code{directory}. Either a saved .rds object generated from the current
 station_information feed, a dataframe object, or both.
 }
 \description{
-\code{get_system_hours} grabs and tidies the system_hours feed for a given city. Go to 
-\url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
+\code{get_system_hours} grabs and tidies the system_hours 
+feed for a given city. Metadata for this 
+dataset can be found at: 
+\url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 }
 \examples{
 # we can grab the system hours feed for portland, 

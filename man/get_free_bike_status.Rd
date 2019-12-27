@@ -36,11 +36,9 @@ the same type already exists at the filepath, the feed will be appended to
 rather than overwritten.
 }
 \description{
-If the specified file does not exist, \code{get_free_bike_status} saves the free_bike_status
-feed for a given city as a .rds object. If the specified file does exist, \code{get_free_bike_status}
-appends the current free_bike_status feed to the existing file. The resulting dataframe can
-alternatively be returned (rather than saved) using the `output` argument. Go to 
-`https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
+Grab a dataframe giving the geographic location and other metadata of
+bikeshare bikes not parked at bikeshare stations. Metadata for this dataset
+can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 }
 \examples{
 # we can grab the free bike status feed for portland, 

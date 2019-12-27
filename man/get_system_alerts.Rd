@@ -35,8 +35,8 @@ station_information feed, a dataframe object, or both.
 }
 \description{
 \code{get_system_alerts} grabs and tidies the system_alerts feed for a given city. 
-This feed informs users about changes to normal operation. Go to 
-\url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
+This feed informs users about changes to normal operation. Metadata for this 
+dataset can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 }
 \examples{
 # we can grab the system alerts feed for portland, 

@@ -34,8 +34,9 @@ and \code{directory}. Either a saved .rds object generated from the current
 station_information feed, a dataframe object, or both.
 }
 \description{
-\code{get_system_pricing_plans} grabs and tidies the system_pricing_plans feed for a given city. Go to 
-\url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
+\code{get_system_pricing_plans} grabs and tidies the system_pricing_plans 
+feed for a given city. Metadata for this dataset can be found at: 
+\url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 }
 \examples{
 # we can grab the system pricing plans feed for portland, 

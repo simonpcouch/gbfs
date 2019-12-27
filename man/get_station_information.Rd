@@ -36,7 +36,8 @@ station_information feed, a dataframe object, or both.
 \description{
 \code{get_station_information} grabs and tidies the station_information feed for a given city. 
 This dataset contains locations, capacity, and other information about bikeshare stations.
-Go to \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
+Metadata for this dataset can be found at: 
+\url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 }
 \examples{
 # we can grab the station information feed for portland, 

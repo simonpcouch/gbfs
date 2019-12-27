@@ -34,10 +34,9 @@ a saved .rds object generated from the current station_information feed,
 a dataframe object, or both.
 }
 \description{
-If the specified file does not exist, \code{get_station_status} saves the station_status
-feed for a given city as a .rds object. If the specified file does exist, \code{get_station_status}
-appends the new rows from the current station_status feed to the existing file. Go to 
-`https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.
+Grab a dataframe giving the geographic location and other metadata of
+bikeshare bikes parked at bikeshare stations. Metadata for this dataset
+can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 }
 \examples{
 # we can grab the station status feed for portland, 

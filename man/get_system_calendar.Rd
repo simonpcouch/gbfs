@@ -34,8 +34,9 @@ and \code{directory}. Either a saved .rds object generated from the current
 station_information feed, a dataframe object, or both.
 }
 \description{
-\code{get_system_calendar} grabs and tidies the system_calendar feed for a given city. See
-\url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
+\code{get_system_calendar} grabs and tidies the system_calendar feed 
+for a given city. Metadata for this dataset can be found at: 
+\url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 }
 \examples{
 # we can grab the system calendar feed for portland, 

@@ -2,7 +2,8 @@
 #' 
 #' \code{get_station_information} grabs and tidies the station_information feed for a given city. 
 #' This dataset contains locations, capacity, and other information about bikeshare stations.
-#' Go to \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
+#' Metadata for this dataset can be found at: 
+#' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
 #' @param city A character string that can be matched to a city or a url to an active 
 #' gbfs .json feed. See \code{get_gbfs_cities} for a current list of available cities.
@@ -48,8 +49,8 @@ get_station_information <- function(city, directory = NULL, file = "station_info
 #' Grab the system_alerts feed.
 #' 
 #' \code{get_system_alerts} grabs and tidies the system_alerts feed for a given city. 
-#' This feed informs users about changes to normal operation. Go to 
-#' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
+#' This feed informs users about changes to normal operation. Metadata for this 
+#' dataset can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
 #' @inheritParams get_station_information
 #' 
@@ -86,8 +87,9 @@ get_system_alerts <- function (city, directory = NULL, file = "system_alerts.rds
 
 #' Grab the system_calendar feed.
 #' 
-#' \code{get_system_calendar} grabs and tidies the system_calendar feed for a given city. See
-#' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
+#' \code{get_system_calendar} grabs and tidies the system_calendar feed 
+#' for a given city. Metadata for this dataset can be found at: 
+#' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
 #' @inheritParams get_station_information
 #' 
@@ -124,8 +126,10 @@ get_system_calendar <- function (city, directory = NULL, file = "system_calendar
 
 #' Grab the system_hours feed.
 #' 
-#' \code{get_system_hours} grabs and tidies the system_hours feed for a given city. Go to 
-#' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
+#' \code{get_system_hours} grabs and tidies the system_hours 
+#' feed for a given city. Metadata for this 
+#' dataset can be found at: 
+#' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
 #' @inheritParams get_station_information
 #' 
@@ -162,8 +166,9 @@ get_system_hours <- function (city, directory = NULL, file = "system_hours.rds",
 
 #' Grab the system_information feed.
 #' 
-#' \code{get_system_information} grabs and tidies the system_information feed for a given city. Go to 
-#' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
+#' \code{get_system_information} grabs and tidies the system_information 
+#' feed for a given city. Metadata for this dataset can be found at: 
+#' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
 #' @inheritParams get_station_information
 #' 
@@ -200,8 +205,9 @@ get_system_information <- function(city, directory = NULL, file = "system_inform
 
 #' Grab the system_pricing_plans feed.
 #' 
-#' \code{get_system_pricing_plans} grabs and tidies the system_pricing_plans feed for a given city. Go to 
-#' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
+#' \code{get_system_pricing_plans} grabs and tidies the system_pricing_plans 
+#' feed for a given city. Metadata for this dataset can be found at: 
+#' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
 #' @inheritParams get_station_information
 #' 
@@ -238,8 +244,9 @@ get_system_pricing_plans <- function(city, directory = NULL, file = "system_pric
 
 #' Grab the system_regions feed.
 #' 
-#' \code{get_system_regions} grabs and tidies the system_regions feed for a given city. Go to 
-#' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
+#' \code{get_system_regions} grabs and tidies the system_regions feed for 
+#' a given city.  Metadata for this dataset can be found at: 
+#' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
 #' @inheritParams get_station_information
 #' 
