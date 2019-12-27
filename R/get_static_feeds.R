@@ -51,21 +51,12 @@ get_station_information <- function(city, directory = NULL, file = "station_info
 #' This feed informs users about changes to normal operation. Go to 
 #' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
 #' 
-#' @param city A character string that can be matched to a city or a url to an active 
-#' gbfs .json feed. See \code{get_gbfs_cities} for a current list of available cities.
-#' @param directory Optional. Path to a folder (or folder to be 
-#' created) where the feed will be saved.
-#' @param file Optional. The name of the file to be saved (if \code{output} 
-#' is set to \code{"save"} or \code{"both"}), as a character string. 
-#' Must end in \code{".rds"}.
-#' @param output Optional. The type of output method. If left as default, this
-#' argument is inferred from the \code{directory} argument. If 
-#' \code{output = "save"}, the object will be saved as an .rds object at 
-#' # the given path. If \code{output = "return"}, the output will be returned 
-#' as a dataframe object. Setting \code{output = "both"} will do both.
+#' @inheritParams get_station_information
+#' 
 #' @return The output of this function depends on argument to \code{output}
 #' and \code{directory}. Either a saved .rds object generated from the current 
 #' station_information feed, a dataframe object, or both.
+#' 
 #' @examples
 #' # we can grab the system alerts feed for portland, 
 #' # oregon in one of several ways! first, supply the `city` 
@@ -98,21 +89,12 @@ get_system_alerts <- function (city, directory = NULL, file = "system_alerts.rds
 #' \code{get_system_calendar} grabs and tidies the system_calendar feed for a given city. See
 #' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
 #' 
-#' @param city A character string that can be matched to a city or a url to an active 
-#' gbfs .json feed. See \code{get_gbfs_cities} for a current list of available cities.
-#' @param directory Optional. Path to a folder (or folder to be 
-#' created) where the feed will be saved.
-#' @param file Optional. The name of the file to be saved (if \code{output} 
-#' is set to \code{"save"} or \code{"both"}), as a character string. 
-#' Must end in \code{".rds"}.
-#' @param output Optional. The type of output method. If left as default, this
-#' argument is inferred from the \code{directory} argument. If 
-#' \code{output = "save"}, the object will be saved as an .rds object at 
-#' # the given path. If \code{output = "return"}, the output will be returned 
-#' as a dataframe object. Setting \code{output = "both"} will do both.
+#' @inheritParams get_station_information
+#' 
 #' @return The output of this function depends on argument to \code{output}
 #' and \code{directory}. Either a saved .rds object generated from the current 
 #' station_information feed, a dataframe object, or both.
+#' 
 #' @examples
 #' # we can grab the system calendar feed for portland, 
 #' # oregon in one of several ways! first, supply the `city` 
@@ -145,21 +127,12 @@ get_system_calendar <- function (city, directory = NULL, file = "system_calendar
 #' \code{get_system_hours} grabs and tidies the system_hours feed for a given city. Go to 
 #' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
 #' 
-#' @param city A character string that can be matched to a city or a url to an active 
-#' gbfs .json feed. See \code{get_gbfs_cities} for a current list of available cities.
-#' @param directory Optional. Path to a folder (or folder to be 
-#' created) where the feed will be saved.
-#' @param file Optional. The name of the file to be saved (if \code{output} 
-#' is set to \code{"save"} or \code{"both"}), as a character string. 
-#' Must end in \code{".rds"}.
-#' @param output Optional. The type of output method. If left as default, this
-#' argument is inferred from the \code{directory} argument. If 
-#' \code{output = "save"}, the object will be saved as an .rds object at 
-#' # the given path. If \code{output = "return"}, the output will be returned 
-#' as a dataframe object. Setting \code{output = "both"} will do both.
+#' @inheritParams get_station_information
+#' 
 #' @return The output of this function depends on argument to \code{output}
 #' and \code{directory}. Either a saved .rds object generated from the current 
 #' station_information feed, a dataframe object, or both.
+#' 
 #' @examples
 #' # we can grab the system hours feed for portland, 
 #' # oregon in one of several ways! first, supply the `city` 
@@ -192,21 +165,12 @@ get_system_hours <- function (city, directory = NULL, file = "system_hours.rds",
 #' \code{get_system_information} grabs and tidies the system_information feed for a given city. Go to 
 #' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
 #' 
-#' @param city A character string that can be matched to a city or a url to an active 
-#' gbfs .json feed. See \code{get_gbfs_cities} for a current list of available cities.
-#' @param directory Optional. Path to a folder (or folder to be 
-#' created) where the feed will be saved.
-#' @param file Optional. The name of the file to be saved (if \code{output} 
-#' is set to \code{"save"} or \code{"both"}), as a character string. 
-#' Must end in \code{".rds"}.
-#' @param output Optional. The type of output method. If left as default, this
-#' argument is inferred from the \code{directory} argument. If 
-#' \code{output = "save"}, the object will be saved as an .rds object at 
-#' # the given path. If \code{output = "return"}, the output will be returned 
-#' as a dataframe object. Setting \code{output = "both"} will do both.
+#' @inheritParams get_station_information
+#' 
 #' @return The output of this function depends on argument to \code{output}
 #' and \code{directory}. Either a saved .rds object generated from the current 
 #' station_information feed, a dataframe object, or both.
+#' 
 #' @examples
 #' # we can grab the system information feed for portland, 
 #' # oregon in one of several ways! first, supply the `city` 
@@ -239,21 +203,12 @@ get_system_information <- function(city, directory = NULL, file = "system_inform
 #' \code{get_system_pricing_plans} grabs and tidies the system_pricing_plans feed for a given city. Go to 
 #' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
 #' 
-#' @param city A character string that can be matched to a city or a url to an active 
-#' gbfs .json feed. See \code{get_gbfs_cities} for a current list of available cities.
-#' @param directory Optional. Path to a folder (or folder to be 
-#' created) where the feed will be saved.
-#' @param file Optional. The name of the file to be saved (if \code{output} 
-#' is set to \code{"save"} or \code{"both"}), as a character string. 
-#' Must end in \code{".rds"}.
-#' @param output Optional. The type of output method. If left as default, this
-#' argument is inferred from the \code{directory} argument. If 
-#' \code{output = "save"}, the object will be saved as an .rds object at 
-#' # the given path. If \code{output = "return"}, the output will be returned 
-#' as a dataframe object. Setting \code{output = "both"} will do both.
+#' @inheritParams get_station_information
+#' 
 #' @return The output of this function depends on argument to \code{output}
 #' and \code{directory}. Either a saved .rds object generated from the current 
 #' station_information feed, a dataframe object, or both.
+#' 
 #' @examples
 #' # we can grab the system pricing plans feed for portland, 
 #' # oregon in one of several ways! first, supply the `city` 
@@ -286,21 +241,12 @@ get_system_pricing_plans <- function(city, directory = NULL, file = "system_pric
 #' \code{get_system_regions} grabs and tidies the system_regions feed for a given city. Go to 
 #' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md} to see metadata for this dataset.
 #' 
-#' @param city A character string that can be matched to a city or a url to an active 
-#' gbfs .json feed. See \code{get_gbfs_cities} for a current list of available cities.
-#' @param directory Optional. Path to a folder (or folder to be 
-#' created) where the feed will be saved.
-#' @param file Optional. The name of the file to be saved (if \code{output} 
-#' is set to \code{"save"} or \code{"both"}), as a character string. 
-#' Must end in \code{".rds"}.
-#' @param output Optional. The type of output method. If left as default, this
-#' argument is inferred from the \code{directory} argument. If 
-#' \code{output = "save"}, the object will be saved as an .rds object at 
-#' # the given path. If \code{output = "return"}, the output will be returned 
-#' as a dataframe object. Setting \code{output = "both"} will do both.
+#' @inheritParams get_station_information
+#' 
 #' @return The output of this function depends on argument to \code{output}
 #' and \code{directory}. Either a saved .rds object generated from the current 
 #' station_information feed, a dataframe object, or both.
+#' 
 #' @examples
 #' # we can grab the system regions feed for portland, 
 #' # oregon in one of several ways! first, supply the `city` 
