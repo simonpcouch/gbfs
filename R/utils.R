@@ -183,12 +183,26 @@ get_gbfs_dataset_ <- function(city, directory, file, output, feed) {
   
   # save feed
   data <- jsonlite::fromJSON(txt = url)[[3]]
+  last_updated <- jsonlite::fromJSON(txt = url)[[1]] %>%
+    as.POSIXct(., origin = "1970-01-01")
   
   # for some feeds, the data is nested one more level down
   if (length(data) == 1) {
     data <- data[[1]]
   } else {
     data <- as.data.frame(data)
+  }
+  
+  
+  # some feeds have mutated columns to make working with datetimes easier
+  if (feed %in% c("free_bike_status", "station_status")) {
+    data <- data %>%
+      dplyr::mutate(last_updated = last_updated) %>%
+      dplyr::mutate(year = lubridate::year(last_updated),
+                    month = lubridate::month(last_updated),
+                    day = lubridate::day(last_updated),
+                    hour = lubridate::hour(last_updated),
+                    minute = lubridate::minute(last_updated))
   }
   
   # make a 2-length logical vector of whether to save and/or return
@@ -199,8 +213,22 @@ get_gbfs_dataset_ <- function(city, directory, file, output, feed) {
     # create directory if it doesn't exist
     if (!dir.exists(directory)) {
       dir.create(directory, recursive = TRUE)
-    } # and save the data
-    saveRDS(data, file = paste(directory, file, sep = "/"))
+    } # and save the data...
+    # if the feed is static, or feed isn't static but there's no
+    # existing file, just save it
+    if (!feed %in% c("station_status", "free_bike_status") |
+        (feed %in% c("station_status", "free_bike_status") &
+         (!file.exists(paste(directory, file, sep = "/")))
+        )) {
+      saveRDS(data, file = paste(directory, file, sep = "/"))
+    } else if (feed %in% c("station_status", "free_bike_status") &
+               file.exists(paste(directory, file, sep = "/"))) {
+    # if the feed isn't static and there _is_ a file there,
+    # append to it rather than overwriting it
+      if (datasets_can_be_row_binded(data, paste(directory, file, sep = "/"))) {
+        update_dynamic_feed(data, paste(directory, file, sep = "/"))
+      }
+    }
   }
   
   # if we should output the data...
@@ -251,3 +279,55 @@ process_feeds_argument <- function(arg_) {
   
   return(arg_)
 }
+
+update_dynamic_feed <- function(data, filepath) {
+  old_data <- readRDS(filepath)
+  updated_data <- rbind(data, old_data)
+  saveRDS(updated_data, file = filepath)
+}
+
+datasets_can_be_row_binded <- function(data, filepath) {
+  old_data <- readRDS(filepath)
+  
+  ncol_matches <- (ncol(data) == ncol(old_data))
+  
+  if (!ncol_matches) {
+    stop(sprintf(c("The bikeshare data just pulled has ", ncol(data),
+                   " while the already stored bikeshare data, at file path ",
+                   filepath, ", has ", ncol(old_data), 
+                   " columns, so they can not be row-binded.")
+                 )
+         )
+  }
+  
+  column_names_match <- (colnames(data) == colnames(old_data))
+
+  if (FALSE %in% column_names_match) {
+    stop(sprintf(c("The bikeshare data just pulled has different column names", 
+                   " than the already stored bikeshare data at ", filepath,
+                   ", so they can not be row-binded.")
+                 )
+         )
+  }  
+  
+  new_column_types <- sapply(data, class) %>% 
+                      unname() %>% 
+                      as.character()
+  old_column_types <- sapply(old_data, class) %>% 
+                      unname() %>% 
+                      as.character()
+                             
+  column_types_match <- (new_column_types == old_column_types)
+  
+  if (FALSE %in% column_types_match) {
+    stop(sprintf(c("The bikeshare data just pulled has different column types", 
+                   " than the already stored bikeshare data at ", filepath,
+                   ", so they can not be row-binded.")
+    )
+    )
+  }  
+  
+  return(TRUE)
+  
+}
+
