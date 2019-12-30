@@ -1,7 +1,25 @@
 
 # News
 
-### 1.20
+### 1.3.0
+
+  - The main wrapper function, `get_gbfs`, can now return its output as
+    a named list, where each entry is a GBFS dataframe.
+  - Results will now be returned by default (note that these changes are
+    non-breaking–the new default settings would error out in previous
+    versions, and previously valid arguments still return results in the
+    same way.)
+  - Added a `get_which_gbfs_feeds` function, which supplies a table
+    giving all of the available feeds for a city\!
+  - Extended flexibility of the `city` argument–in addition to a string
+    that matches the city name, the package can now find the appropriate
+    feed given any subfeed of a bikeshare system.
+  - Extend argument checking.
+  - Make error messages more informative.
+  - Documentation improvements.
+  - Code refactoring.
+
+### 1.2.0
 
   - Addressed errors arising from new columns types introduced in the
     new NABSA GBFS guidelines.  
@@ -11,7 +29,7 @@
     = "return"`
   - Minor bug fixes and documentation improvements
 
-### 1.10
+### 1.1.0
 
   - Thanks to Mark Padgham (@mpadge), we’ve introduced a new function
     `get_gbfs_cities` that lists all of the cities currently releasing
