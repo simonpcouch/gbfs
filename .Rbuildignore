@@ -5,5 +5,6 @@ cran-comments.md
 ^\.travis\.yml$
 docs/
 ^README.Rmd
+^README.md
 NEWS.Rmd
 figures/
