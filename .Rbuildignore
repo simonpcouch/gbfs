@@ -6,4 +6,5 @@ cran-comments.md
 docs/
 ^README.Rmd
 NEWS.Rmd
-figures/
+figures/hex.psd
+figures/plot-1.png
