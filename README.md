@@ -1,9 +1,6 @@
 
 # General Bikeshare Feed Specification - R Package <a href='https://gbfs.netlify.com'><img src='figures/hex.png' align="right" height="200" /></a>
 
-*Developed by Kaelyn M. Rosenberg (author) and Simon P. Couch (author,
-maintainer)*
-
 [![CRAN
 status](https://www.r-pkg.org/badges/version/gbfs)](https://cran.r-project.org/package=gbfs)
 [![Build
@@ -27,14 +24,14 @@ geographic locations of stations and parked bikes.
 
 ## Installation
 
-We’re now on CRAN\! Install the latest release, 1.2.0, with:
+We’re on CRAN\! Install the latest release with:
 
 ``` r
 install.packages("gbfs")
 library(gbfs)
 ```
 
-You can install the development version of `gbfs` from github with:
+You can install the developmental version of `gbfs` from GitHub with:
 
 ``` r
 # install.packages("devtools")
@@ -88,15 +85,51 @@ First, we’ll grab some information on the stations.
 
 ``` r
 # grab portland station information and return it as a dataframe
-pdx_station_info <- get_station_information("portland", output = "return")
+pdx_station_info <- get_station_information("portland")
+#> Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.
+
+# check it out!
+glimpse(pdx_station_info)
+#> Observations: 154
+#> Variables: 7
+#> $ station_id     <chr> "hub_1512", "hub_1513", "hub_1514", "hub_1515", "…
+#> $ name           <chr> "SW 10th at Harvey Milk ", "SE Gideon at 12th Ave…
+#> $ region_id      <chr> "region_241", "region_241", "region_241", "region…
+#> $ lon            <dbl> -122.6811, -122.6535, -122.6395, -122.6534, -122.…
+#> $ lat            <dbl> 45.52175, 45.50281, 45.50357, 45.50513, 45.51148,…
+#> $ address        <chr> "404 Southwest 10th Avenue, Portland", "1201-1241…
+#> $ rental_methods <list> [<"KEY", "APPLEPAY", "ANDROIDPAY", "TRANSITCARD"…
 ```
 
 …as well as the number of bikes at each station.
 
 ``` r
 # grab current capacity at each station and return it as a dataframe
-pdx_station_status <- get_station_status("portland", output = "return")
+pdx_station_status <- get_station_status("portland")
+#> Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.
+
+# check it out!
+glimpse(pdx_station_status)
+#> Observations: 154
+#> Variables: 14
+#> $ station_id          <chr> "hub_1512", "hub_1513", "hub_1514", "hub_151…
+#> $ num_bikes_available <int> 8, 2, 0, 10, 2, 0, 6, 6, 4, 4, 7, 6, 1, 5, 5…
+#> $ num_bikes_disabled  <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+#> $ num_docks_available <int> 9, 8, 12, 8, 14, 14, 9, 12, 14, 8, 11, 6, 7,…
+#> $ is_installed        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+#> $ is_renting          <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+#> $ is_returning        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+#> $ last_reported       <int> 1577724813, 1577724813, 1577724813, 15777248…
+#> $ last_updated        <dttm> 2019-12-30 10:53:33, 2019-12-30 10:53:33, 2…
+#> $ year                <dbl> 2019, 2019, 2019, 2019, 2019, 2019, 2019, 20…
+#> $ month               <dbl> 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, …
+#> $ day                 <int> 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, …
+#> $ hour                <int> 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, …
+#> $ minute              <int> 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, …
 ```
+
+Just like that, we have two tidy datasets containing information about
+Portland’s bikeshare program.
 
 Joining these datasets, we can get the capacity at each station, along
 with each station’s metadata.
@@ -159,8 +192,8 @@ pdx_full %>%
 Folks who have spent a significant amount of time in Portland might be
 able to pick out the Willamette River running Northwest/Southeast
 through the city. With a few lines of `gbfs`, `dplyr`, and `ggplot2`, we
-can pick together a meaningful visualization to help us better
-understand how bikeshare bikes are distributed throughout Portland.
+can put together a meaningful visualization to help us better understand
+how bikeshare bikes are distributed throughout Portland.
 
 Some other features worth playing around with in `gbfs` that weren’t
 touched on in this example:
@@ -168,11 +201,14 @@ touched on in this example:
   - The main wrapper function in the package, `get_gbfs`, will grab
     every dataset for a given city. (We call the functions to grab
     individual datasets above for clarity.)
-  - We set `output = "return"` in all of the above calls—if you leave
-    the output argument as default and supply a directory, `gbfs` will
-    save the dataframes in your local files.  
+  - In the above lines, we output the datasets as returned dataframes.
+    If you’d rather save the output to your local files, check out the
+    `directory` and `return` arguments.
   - When the `output` argument is left as default in
     `get_free_bike_status` and `get_station_status` (the functions for
     the `dynamic` dataframes,) and a dataframe already exists at the
     given path, `gbfs` will row bind the dataframes, allowing for the
     capability to accumulate large datasets over time.
+  - If you’re not sure if your city supplies `gbfs` feeds, you might
+    find the `get_gbfs_cities` and `get_which_gbfs_feeds` functions
+    useful.
