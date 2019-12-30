@@ -16,7 +16,7 @@ Imports:
     stringr,
     jsonlite,
     lubridate,
-    RCurl,
+    httr,
     purrr
 Encoding: UTF-8
 LazyData: true

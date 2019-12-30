@@ -59,7 +59,7 @@ city_to_url <- function(city_, feed_) {
   
   # first, check if the city argument is the desired feed. if so, return it!
   if (stringr::str_detect(city_, paste0(feed_, ".json"))) {
-    if (RCurl::url.exists(city_)) {
+    if (url_exists(city_)) {
       return(city_)
     } else {
       stop(sprintf(c("The supplied argument for \"city\" looks like a URL, ",
@@ -72,7 +72,7 @@ city_to_url <- function(city_, feed_) {
   if (stringr::str_detect(city_, "gbfs.json")) {
     
     # if the supplied string contains gbfs.json, check that it exists
-    if (RCurl::url.exists(city_)) {
+    if (url_exists(city_)) {
       # try to construct the link from the top-level one
       city_ <- find_feed_from_top_level(city_, feed_)
     } else {
@@ -81,7 +81,7 @@ city_to_url <- function(city_, feed_) {
     }
     
     # then, if it exists, return it
-    if (RCurl::url.exists(city_)) {
+    if (url_exists(city_)) {
       return(city_)
     } else {
       stop(sprintf(c("The supplied \"city\" argument looks like the top-level",
@@ -124,6 +124,11 @@ city_to_url <- function(city_, feed_) {
 # a function that takes in a top-level gbfs.json URL, the name of the desired 
 # feed and tries to find the desired feed stored inside of it
 find_feed_from_top_level <- function(top_level_, feed_) {
+  
+  # if the supplied feed is the top-level feed, then just return it
+  if (feed_ == "gbfs" & url_exists(top_level_)) {
+    return(top_level_)
+  }
   
   # grab the gbfs.json feed
   gbfs <- jsonlite::fromJSON(txt = top_level_)
@@ -246,7 +251,10 @@ all_feeds <- data.frame(name = c("system_information", "station_information",
                              "system_alerts"),
                         type = c(rep("static", 2),
                                  rep("dynamic", 2),
-                                 rep("static", 5)))
+                                 rep("static", 5)),
+                        stringsAsFactors = FALSE)
+
+
 
 
 # a function that ensures that the feeds argument (supplied
@@ -326,3 +334,49 @@ datasets_can_be_row_binded <- function(data, filepath) {
   
 }
 
+# thank you to hrbrmstr on 
+# https://stackoverflow.com/questions/52911812/check-if-url-exists-in-r
+# for this function---more extensive url existence checking since
+# json feeds seem to trip up RCurl::url.exists quite a bit
+url_exists <- function(x, quiet = FALSE, ...) {
+
+  capture_error <- function(code, otherwise = NULL, quiet = TRUE) {
+    tryCatch(
+      list(result = code, error = NULL),
+      error = function(e) {
+        if (!quiet)
+          message("Error: ", e$message)
+        
+        list(result = otherwise, error = e)
+      },
+      interrupt = function(e) {
+        stop("Terminated by user", call. = FALSE)
+      }
+    )
+  }
+  
+  safely <- function(.f, otherwise = NULL, quiet = TRUE) {
+    function(...) capture_error(.f(...), otherwise, quiet)
+  }
+  
+  sHEAD <- safely(httr::HEAD)
+  sGET <- safely(httr::GET)
+  
+  res <- sHEAD(x, ...)
+  
+  if (is.null(res$result) || 
+      ((httr::status_code(res$result) %/% 200) != 1)) {
+    
+    res <- sGET(x, ...)
+    
+    if (is.null(res$result)) { 
+      return(FALSE)
+    }
+      
+    return(TRUE)
+    
+  } else {
+    return(TRUE)
+  }
+  
+}
