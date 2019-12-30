@@ -38,7 +38,8 @@
 <meta property="og:title" content="Grab the station_information feed. — get_station_information" />
 <meta property="og:description" content="get_station_information grabs and tidies the station_information feed for a given city. 
 This dataset contains locations, capacity, and other information about bikeshare stations.
-Go to `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset." />
+Metadata for this dataset can be found at: 
+https://github.com/NABSA/gbfs/blob/master/gbfs.md" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -71,7 +72,7 @@ Go to `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for th
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gbfs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
       </span>
     </div>
 
@@ -118,14 +119,15 @@ Go to `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for th
     <div class="ref-description">
     <p><code>get_station_information</code> grabs and tidies the station_information feed for a given city. 
 This dataset contains locations, capacity, and other information about bikeshare stations.
-Go to `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for this dataset.</p>
+Metadata for this dataset can be found at: 
+<a href='https://github.com/NABSA/gbfs/blob/master/gbfs.md'>https://github.com/NABSA/gbfs/blob/master/gbfs.md</a></p>
     </div>
 
     <pre class="usage"><span class='fu'>get_station_information</span>(
   <span class='no'>city</span>,
   <span class='kw'>directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"station_information.rds"</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"save"</span>
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -134,32 +136,40 @@ Go to `https://github.com/NABSA/gbfs/blob/master/gbfs.md` to see metadata for th
     <tr>
       <th>city</th>
       <td><p>A character string that can be matched to a city or a url to an active 
-gbfs .json feed. See <code>get_gbfs_cities</code> for a current list of available cities.</p></td>
+gbfs .json feed. See [get_gbfs_cities()]  for a current list of available cities.</p></td>
     </tr>
     <tr>
       <th>directory</th>
-      <td><p>The name of an existing folder or folder to be created, where 
-the feed will will be saved. This argument is not required if <code>output = "return"</code>.</p></td>
+      <td><p>Optional. Path to a folder (or folder to be 
+created) where the feed will be saved.</p></td>
     </tr>
     <tr>
       <th>file</th>
-      <td><p>The name of the file to be saved (if <code>output</code> is set to <code>"save"</code> 
-or <code>"both"</code>), as a character string. Must end in <code>".rds"</code>.</p></td>
+      <td><p>Optional. The name of the file to be saved (if <code>output</code> 
+is set to <code>"save"</code> or <code>"both"</code>), as a character string. 
+Must end in <code>".rds"</code>.</p></td>
     </tr>
     <tr>
       <th>output</th>
-      <td><p>The type of output method. If <code>output = "save"</code>, the object 
-will be saved as an .rds object at the given path. If <code>output = "return"</code>, 
-the output will be returned as a dataframe object. Setting 
-<code>output = "both"</code> will do both.</p></td>
+      <td><p>Optional. The type of output method. If left as default, this
+argument is inferred from the <code>directory</code> argument. If 
+<code>output = "save"</code>, the object will be saved as an .rds object at 
+# the given path. If <code>output = "return"</code>, the output will be returned 
+as a dataframe object. Setting <code>output = "both"</code> will do both.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The output of this function depends on argument to <code>output</code>. 
-Either a saved .rds object generated from the current station_information 
+    <p>The output of this function depends on argument to <code>output</code>
+and <code>directory</code>. Either a saved .rds object generated from the current 
 feed, a dataframe object, or both.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>[get_gbfs()] for a wrapper to call each of the <code>get_feed</code>
+functions, [get_gbfs_cities()] for a dataframe of cities releasing gbfs
+functions, and [get_which_gbfs_feeds()] for a dataframe of which feeds
+are released by a given city.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># we can grab the station information feed for portland, </span>
@@ -168,7 +178,8 @@ feed, a dataframe object, or both.</p>
 <span class='co'># set to it's default. usually, we would supply a character </span>
 <span class='co'># string (like "pdx", maybe,) for the `directory` argument </span>
 <span class='co'># instead of `tempdir`.</span>
-<span class='fu'>get_station_information</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"http://biketownpdx.socialbicycles.com/opendata/system_alerts.json"</span>,
+<span class='fu'>get_station_information</span>(<span class='kw'>city</span> <span class='kw'>=</span>
+<span class='st'>"http://biketownpdx.socialbicycles.com/opendata/station_information.json"</span>,
                         <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
 
 <span class='co'># or, instead, just supply the name of </span>
@@ -953,13 +964,16 @@ feed, a dataframe object, or both.</p>
 #&gt; 151             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
 #&gt; 152             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
 #&gt; 153             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE
-#&gt; 154             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE</div></pre>
+#&gt; 154             KEY, APPLEPAY, ANDROIDPAY, TRANSITCARD, ACCOUNTNUMBER, PHONE</div><div class='input'>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

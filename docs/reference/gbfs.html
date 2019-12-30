@@ -36,7 +36,10 @@
 
 
 <meta property="og:title" content="Package: gbfs — gbfs" />
-<meta property="og:description" content="General Bikeshare Feed Specification" />
+<meta property="og:description" content="The gbfs package allows users to query tidy datasets about bikeshare 
+programs around the world by supplying a set of functions to interface with 
+.json feeds following the General Bikeshare Feed Specification, a standard 
+data release format developed by the North American Bikeshare Association." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gbfs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
       </span>
     </div>
 
@@ -114,24 +117,44 @@
     </div>
 
     <div class="ref-description">
-    <p>General Bikeshare Feed Specification</p>
+    <p>The <code>gbfs</code> package allows users to query tidy datasets about bikeshare 
+programs around the world by supplying a set of functions to interface with 
+.json feeds following the General Bikeshare Feed Specification, a standard 
+data release format developed by the North American Bikeshare Association.</p>
     </div>
 
 
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The `gbfs` package supplies a set of functions to interface with General
-Bikeshare Feed Specification .json feeds in R, allowing users to save
-and accumulate tidy .rds datasets for specified cities/bikeshare programs.</p>
-    <h2 class="hasAnchor" id="gbfs-functions"><a class="anchor" href="#gbfs-functions"></a>gbfs Functions</h2>
+    <p><img src='figures/hex.png' align='right' alt='hex' width='120' /></p>
+<p>The main function exported by this package is <code><a href='get_gbfs.html'>get_gbfs()</a></code>, which
+grabs every feed released by a city. Alternatively, the user can just
+grab information on specific feeds (or groups of feeds).</p>
+<p>Each of the feeds described below can be queried with the <code>get_suffix()</code> 
+function, where <code>suffix</code> is replaced with the name of the relevant feed.</p>
+<p>Although all of the feeds are livestreamed, only a few of the datasets 
+change often:</p>
+<ul>
+<li><p><code>station_status:</code> Supplies the number of available bikes and 
+ docks at each station as well as station availability</p></li>
+<li><p><code>free_bike_status:</code> Gives the coordinates and metadata on 
+ available bikes that are parked, but not at a station.</p></li>
+</ul>
 
-    
+<p>In this package, these two datasets are considered "dynamic", and can be 
+specified as desired datasets by setting `<code>feeds = "dynamic"</code> in the 
+main wrapper function in the package, <code>get_gbfs</code>.</p>
+<p>Much of the data supplied in this specification can be considered static. 
+ If you want to grab all of these for a given city, set <code>feeds = "static"</code>
+ when calling <code>get_gbfs</code>. Static feeds include:</p>
+<ul>
+<li><p><code>system_information:</code> Basic metadata about the bikeshare program</p></li>
+<li><p><code>station_information:</code> Information on the capacity and coordinates of stations</p></li>
+<li><p>Several optional feeds: <code>system_hours</code>, <code>system_calendar</code>, 
+ <code>system_regions</code>, <code>system_pricing_plans</code>, and <code>system_alerts</code></p></li>
+</ul>
 
-<p>get_gbfs(), get_free_bike_status(), get_station_information(),
-get_station_status(), get_system_alerts(), get_system_calendar(),
-get_system_hours(), get_system_information(),
-get_system_pricing_plans(), get_system_regions()</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Useful links:</p><ul>
@@ -146,7 +169,6 @@ get_system_pricing_plans(), get_system_regions()</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#details">Details</a></li>
-      <li><a href="#gbfs-functions">gbfs Functions</a></li>
       <li><a href="#see-also">See also</a></li>
     </ul>
 

@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">gbfs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
       </span>
     </div>
 
@@ -75,8 +75,7 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#general-bikeshare-feed-specification---r-package" class="anchor"></a>General Bikeshare Feed Specification - R Package <a href="https://gbfs.netlify.com"><img src="figures/hex.png" align="right" height="200"></a>
 </h1></div>
-<p><em>Developed by Kaelyn M. Rosenberg (author) and Simon P. Couch (author, maintainer)</em></p>
-<p><a href="https://cran.r-project.org/package=gbfs"><img src="https://www.r-pkg.org/badges/version/gbfs" alt="CRAN status"></a> <a href="https://travis-ci.org/ds-civic-data/gbfs"><img src="https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master" alt="Build Status"></a></p>
+
 <p>The <code>gbfs</code> package supplies a set of functions to interface with General Bikeshare Feed Specification .json feeds in R, allowing users to save and accumulate tidy .rds datasets for specified cities/bikeshare programs. The North American Bikeshare Association’s <a href="https://github.com/NABSA/gbfs">gbfs</a> is a standardized data release format for live information on the status of bikeshare programs, as well as metadata, including counts of bikes at stations, ridership costs, and geographic locations of stations and parked bikes.</p>
 <p><strong>Features</strong></p>
 <ul>
@@ -87,10 +86,10 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>We’re now on CRAN! Install the latest release, 1.2.0, with:</p>
+<p>We’re on CRAN! Install the latest release with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"gbfs"</span>)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gbfs)</a></code></pre></div>
-<p>You can install the development version of <code>gbfs</code> from github with:</p>
+<p>You can install the developmental version of <code>gbfs</code> from GitHub with:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"ds-civic-data/gbfs"</span>)</a></code></pre></div>
 </div>
@@ -126,10 +125,44 @@
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse)</a></code></pre></div>
 <p>First, we’ll grab some information on the stations.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># grab portland station information and return it as a dataframe</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">pdx_station_info &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_station_information.html">get_station_information</a></span>(<span class="st">"portland"</span>, <span class="dt">output =</span> <span class="st">"return"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb4-2" data-line-number="2">pdx_station_info &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_station_information.html">get_station_information</a></span>(<span class="st">"portland"</span>)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co"># check it out!</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw">glimpse</span>(pdx_station_info)</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; Observations: 154</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; Variables: 7</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; $ station_id     &lt;chr&gt; "hub_1512", "hub_1513", "hub_1514", "hub_1515", "…</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt; $ name           &lt;chr&gt; "SW 10th at Harvey Milk ", "SE Gideon at 12th Ave…</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; $ region_id      &lt;chr&gt; "region_241", "region_241", "region_241", "region…</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; $ lon            &lt;dbl&gt; -122.6811, -122.6535, -122.6395, -122.6534, -122.…</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; $ lat            &lt;dbl&gt; 45.52175, 45.50281, 45.50357, 45.50513, 45.51148,…</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; $ address        &lt;chr&gt; "404 Southwest 10th Avenue, Portland", "1201-1241…</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; $ rental_methods &lt;list&gt; [&lt;"KEY", "APPLEPAY", "ANDROIDPAY", "TRANSITCARD"…</span></a></code></pre></div>
 <p>…as well as the number of bikes at each station.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># grab current capacity at each station and return it as a dataframe</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">pdx_station_status &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_station_status.html">get_station_status</a></span>(<span class="st">"portland"</span>, <span class="dt">output =</span> <span class="st">"return"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb5-2" data-line-number="2">pdx_station_status &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_station_status.html">get_station_status</a></span>(<span class="st">"portland"</span>)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co"># check it out!</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="kw">glimpse</span>(pdx_station_status)</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; Observations: 154</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; Variables: 14</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; $ station_id          &lt;chr&gt; "hub_1512", "hub_1513", "hub_1514", "hub_151…</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; $ num_bikes_available &lt;int&gt; 8, 2, 0, 10, 2, 0, 6, 6, 4, 4, 7, 6, 1, 5, 5…</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; $ num_bikes_disabled  &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; $ num_docks_available &lt;int&gt; 9, 8, 12, 8, 14, 14, 9, 12, 14, 8, 11, 6, 7,…</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; $ is_installed        &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; $ is_renting          &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; $ is_returning        &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; $ last_reported       &lt;int&gt; 1577724813, 1577724813, 1577724813, 15777248…</span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt; $ last_updated        &lt;dttm&gt; 2019-12-30 10:53:33, 2019-12-30 10:53:33, 2…</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt; $ year                &lt;dbl&gt; 2019, 2019, 2019, 2019, 2019, 2019, 2019, 20…</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; $ month               &lt;dbl&gt; 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, …</span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt; $ day                 &lt;int&gt; 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, …</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; $ hour                &lt;int&gt; 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, …</span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt; $ minute              &lt;int&gt; 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, …</span></a></code></pre></div>
+<p>Just like that, we have two tidy datasets containing information about Portland’s bikeshare program.</p>
 <p>Joining these datasets, we can get the capacity at each station, along with each station’s metadata.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># full join these two datasets on station_id and select a few columns</span></a>
 <a class="sourceLine" id="cb6-2" data-line-number="2">pdx_stations &lt;-<span class="st"> </span><span class="kw">full_join</span>(pdx_station_info, </a>
@@ -169,13 +202,13 @@
 <a class="sourceLine" id="cb9-12" data-line-number="12"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb9-13" data-line-number="13"><span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">type =</span> <span class="st">"qual"</span>)</a></code></pre></div>
 <p><img src="figures/plot-1.png"><!-- --></p>
-<p>Folks who have spent a significant amount of time in Portland might be able to pick out the Willamette River running Northwest/Southeast through the city. With a few lines of <code>gbfs</code>, <code>dplyr</code>, and <code>ggplot2</code>, we can pick together a meaningful visualization to help us better understand how bikeshare bikes are distributed throughout Portland.</p>
+<p>Folks who have spent a significant amount of time in Portland might be able to pick out the Willamette River running Northwest/Southeast through the city. With a few lines of <code>gbfs</code>, <code>dplyr</code>, and <code>ggplot2</code>, we can put together a meaningful visualization to help us better understand how bikeshare bikes are distributed throughout Portland.</p>
 <p>Some other features worth playing around with in <code>gbfs</code> that weren’t touched on in this example:</p>
 <ul>
 <li>The main wrapper function in the package, <code>get_gbfs</code>, will grab every dataset for a given city. (We call the functions to grab individual datasets above for clarity.)</li>
-<li>We set <code>output = "return"</code> in all of the above calls—if you leave the output argument as default and supply a directory, <code>gbfs</code> will save the dataframes in your local files.<br>
-</li>
+<li>In the above lines, we output the datasets as returned dataframes. If you’d rather save the output to your local files, check out the <code>directory</code> and <code>return</code> arguments.</li>
 <li>When the <code>output</code> argument is left as default in <code>get_free_bike_status</code> and <code>get_station_status</code> (the functions for the <code>dynamic</code> dataframes,) and a dataframe already exists at the given path, <code>gbfs</code> will row bind the dataframes, allowing for the capability to accumulate large datasets over time.</li>
+<li>If you’re not sure if your city supplies <code>gbfs</code> feeds, you might find the <code>get_gbfs_cities</code> and <code>get_which_gbfs_feeds</code> functions useful.</li>
 </ul>
 </div>
 </div>
@@ -208,7 +241,14 @@
 </ul>
 </div>
 
-  </div>
+  <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/package=gbfs"><img src="https://www.r-pkg.org/badges/version/gbfs" alt="CRAN status"></a></li>
+<li><a href="https://travis-ci.org/ds-civic-data/gbfs"><img src="https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master" alt="Build Status"></a></li>
+</ul>
+</div>
+</div>
 </div>
 
 
