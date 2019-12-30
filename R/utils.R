@@ -33,9 +33,9 @@ check_return_arguments <- function(directory_, file_, output_) {
   # requiring users to switch their argument to `output`, though, they can just
   # not supply a `dir` argument.
   if (directory_ == "null" & output_ == "null") {
-    message(c("Returning the output data as an object, rather than saving it, ",
-              "since the `dir` argument was not specified. Setting ",
-              "output = \"return\" will silence this message."))
+    message(c("Message: Returning the output data as an object, rather than",
+              " saving it, since the `directory` argument was not specified. ",
+              "Setting `output = \"return\"` will silence this message."))
   }
 }
 
@@ -97,10 +97,10 @@ city_to_url <- function(city_, feed_) {
   cities <- get_gbfs_cities() %>%
     dplyr::select(Name, Location, 'Auto-Discovery URL')
     
-  # find the indi(x/ces) of cities matched the supplied string
-  city_index <- as.numeric(agrep(x = cities$Location, 
-                                 pattern = city_), 
-                           ignore.case = TRUE)
+  # find the ind(ex/ices) of cities matching the supplied string
+  city_index <- stringr::str_detect(string = tolower(cities$Location), 
+                                    pattern = city_) %>%
+                which()
     
   # grab data each of the relevant indices
   url <- as.data.frame((cities)[city_index, 'Auto-Discovery URL'])
