@@ -11,21 +11,23 @@ test_that("dynamic feeds work", {
 
 test_that("file saving and overwriting works", {
   
-  # make a temporary directory
-  dir <- tempdir()
+  # pull up the working directory
+  dir <- getwd()
   
   # save the file to a subdirectory of it
-  get_station_status("portland", paste0(dir, "/test"))
+  get_station_status("portland", paste0(dir, "/testthatTests"))
   
   # ...and then append to it
-  get_station_status("portland", paste0(dir, "/test"))
+  get_station_status("portland", paste0(dir, "/testthatTests"))
+  
+  unlink(paste0(dir, "/testthatTests"), recursive = TRUE)
   
 })
 
 test_that("row binding checks work", {
 
-  # make a temporary directory
-  dir <- tempdir()
+  # make a folder in the working directory
+  dir <- paste0(getwd(), "/testthatTests")
   
   # grab some data to work with
   pdx_status <- get_station_status("portland", dir, output = "both")
@@ -59,4 +61,6 @@ test_that("row binding checks work", {
                  paste0(dir, "/station_status.Rds")),
                "has different column types")  
   
+  # get rid of the test files
+  unlink(paste0(dir, "/testthatTests"), recursive = TRUE)
 })
