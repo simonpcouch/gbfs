@@ -280,7 +280,8 @@ datasets_can_be_row_binded <- function(data, filepath) {
   ncol_matches <- (ncol(data) == ncol(old_data))
   
   if (!ncol_matches) {
-    stop(sprintf(c("The bikeshare data just pulled has ", ncol(data),
+    stop(sprintf(c("The bikeshare data just pulled has ", 
+                   ncol(data), " columns,",
                    " while the already stored bikeshare data, at file path ",
                    filepath, ", has ", ncol(old_data), 
                    " columns, so they can not be row-binded.")
