@@ -8,3 +8,4 @@ docs/
 ^README.md
 NEWS.Rmd
 figures/
+^codecov\.yml$
