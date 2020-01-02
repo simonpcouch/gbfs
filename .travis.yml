@@ -1,5 +1,5 @@
-# R for travis -- automatically build website based on commits to master
-
 language: R
 sudo: false
 cache: packages
+after_success:
+  - Rscript -e 'covr::codecov()'

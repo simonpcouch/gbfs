@@ -39,20 +39,6 @@ check_return_arguments <- function(directory_, file_, output_) {
   }
 }
 
-# this is a function that, if the user supplies a URL ending in "gbfs.json"
-# to a function that is supposed to grab a specific feed, finds the URL
-# of the actual relevant feed
-grab_subfeed <- function(url_, feed_) {
-  main_gbfs <- jsonlite::fromJSON(txt = url_)
-  feeds <- main_gbfs$data$en$feeds
-  if (feed_ %in% gbfs_feeds$name) {
-    free_bike_status_feed <- gbfs_feeds %>%
-      dplyr::select(url) %>%
-      dplyr::filter(stringr::str_detect(url, feed_)) %>%
-      as.character()
-  }
-}
-
 # this function checks the `city` argument, and converts the names of
 # cities to their appropriate URL
 city_to_url <- function(city_, feed_) {
@@ -71,25 +57,13 @@ city_to_url <- function(city_, feed_) {
   # next, check if the city argument is the top-level gbfs.json feed
   if (stringr::str_detect(city_, "gbfs.json")) {
     
-    # if the supplied string contains gbfs.json, check that it exists
-    if (url_exists(city_)) {
+    if (feed_ != "gbfs") {
       # try to construct the link from the top-level one
       city_ <- find_feed_from_top_level(city_, feed_)
-    } else {
-      sprintf(c("The supplied URL doesn't seem to exist. Please consider ",
-                "using `get_gbfs_cities()` to find the desired .json URL."))
     }
     
-    # then, if it exists, return it
-    if (url_exists(city_)) {
-      return(city_)
-    } else {
-      stop(sprintf(c("The supplied \"city\" argument looks like the top-level",
-                     "\"gbfs.json\" URL, but the webpage for the",
-                     paste(feed_, ".json"), "feed doesn't seem to exist.",
-                     "Please supply the actual URL or the name of the",
-                     "city as a string.")))
-    }
+    return(city_)
+    
   }
   
   # lastly, then, try to match the string argument to a cities URL...
@@ -99,15 +73,19 @@ city_to_url <- function(city_, feed_) {
     
   # find the ind(ex/ices) of cities matching the supplied string
   city_index <- stringr::str_detect(string = tolower(cities$Location), 
-                                    pattern = city_) %>%
+                                    pattern = tolower(city_)) %>%
                 which()
     
   # grab data each of the relevant indices
   url <- as.data.frame((cities)[city_index, 'Auto-Discovery URL'])
   
-  # if there's just one url, return the relevant sub-feed
+  # if there's just one url, return the relevant feed
   if (nrow(url) == 1) { 
-    return(find_feed_from_top_level(dplyr::pull(url), feed_))
+    if (feed_ == "gbfs") {
+      return(dplyr::pull(url))
+    } else {
+      return(find_feed_from_top_level(dplyr::pull(url), feed_))
+    }
   }
   
   # if more than one city matched the supplied one...
@@ -162,7 +140,14 @@ determine_output_types <- function(directory_, output_) {
   } else if (output_ == "both") {
     return(c(TRUE, TRUE))
   } else if (output_ == "return") {
-    return(c(FALSE, TRUE))
+    if (is.null(directory_)) {
+      return(c(FALSE, TRUE))
+    } else {
+      message(c("The argument to \"output\" is \"return\", but a non-null",
+                "\"directory\" argument has been supplied. Ignoring the",
+                "\"directory\" argument and only returning the output."))
+      return(c(FALSE, TRUE))
+    }
   } else if (output_ == "save") {
     return(c(TRUE, FALSE))
   } else {
@@ -295,7 +280,8 @@ datasets_can_be_row_binded <- function(data, filepath) {
   ncol_matches <- (ncol(data) == ncol(old_data))
   
   if (!ncol_matches) {
-    stop(sprintf(c("The bikeshare data just pulled has ", ncol(data),
+    stop(sprintf(c("The bikeshare data just pulled has ", 
+                   ncol(data), " columns,",
                    " while the already stored bikeshare data, at file path ",
                    filepath, ", has ", ncol(old_data), 
                    " columns, so they can not be row-binded.")
@@ -344,13 +330,7 @@ url_exists <- function(x, quiet = FALSE, ...) {
     tryCatch(
       list(result = code, error = NULL),
       error = function(e) {
-        if (!quiet)
-          message("Error: ", e$message)
-        
         list(result = otherwise, error = e)
-      },
-      interrupt = function(e) {
-        stop("Terminated by user", call. = FALSE)
       }
     )
   }
@@ -372,11 +352,8 @@ url_exists <- function(x, quiet = FALSE, ...) {
     if (is.null(res$result)) { 
       return(FALSE)
     }
-      
-    return(TRUE)
-    
-  } else {
-    return(TRUE)
   }
+  
+  return(TRUE)
   
 }

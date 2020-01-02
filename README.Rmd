@@ -14,7 +14,8 @@ devtools::load_all()
 # General Bikeshare Feed Specification - R Package <a href='https://gbfs.netlify.com'><img src='figures/hex.png' align="right" height="200" /></a>
 
 [![CRAN status](https://www.r-pkg.org/badges/version/gbfs)](https://cran.r-project.org/package=gbfs)
-[![Build Status](https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master)](https://travis-ci.org/ds-civic-data/gbfs)
+[![Travis-CI Build Status](https://travis-ci.org/ds-civic-data/gbfs.svg?branch=master)](https://travis-ci.org/ds-civic-data/gbfs)
+[![Testing Coverage](https://codecov.io/gh/ds-civic-data/gbfs/branch/master/graph/badge.svg)](https://codecov.io/gh/ds-civic-data/gbfs?branch=master)
 
 The `gbfs` package supplies a set of functions to interface with General
 Bikeshare Feed Specification .json feeds in R, allowing users to save
