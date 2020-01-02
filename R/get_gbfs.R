@@ -135,12 +135,6 @@ get_gbfs <- function(city, feeds = "all", directory = NULL, output = NULL) {
     dplyr::filter(type %in% feeds) %>%
     dplyr::select(name) %>%
     dplyr::pull()
-
-  # if there aren't any feeds left, raise an error
-  if (length(relevant_feeds) == 0) {
-    stop(sprintf(c("Couldn't find any feeds that match the specified",
-                   " criteria. Try setting feeds = \"all\".")))
-  }
   
   # grab all of the relevant feeds! note that this will save each
   # of the datasets in the directory folder if directory is
