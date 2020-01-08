@@ -9,4 +9,3 @@ docs/
 NEWS.Rmd
 figures/
 ^codecov\.yml$
-CRAN-RELEASE.txt
