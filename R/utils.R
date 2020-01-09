@@ -162,6 +162,11 @@ determine_output_types <- function(directory_, output_) {
 # a function that grabs a gbfs formatted dataset
 get_gbfs_dataset_ <- function(city, directory, file, output, feed) {
   
+  # test internet connection
+  if (!curl::has_internet()) {
+    return(message_no_internet())
+  }
+  
   # check arguments to make sure the putput method makes sense
   check_return_arguments(directory_ = directory,
                          file_ = file,
@@ -356,4 +361,12 @@ url_exists <- function(x, quiet = FALSE, ...) {
   
   return(TRUE)
   
+}
+
+# a function to alert the user of no internet connection in a
+# more informative/helpful way
+message_no_internet <- function() {
+  message(c("You don't seem to have an active internet connection. Please", 
+            "connect to the internet to use the gbfs package."))
+  return(list())
 }

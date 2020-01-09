@@ -17,7 +17,8 @@ Imports:
     jsonlite,
     lubridate,
     httr,
-    purrr
+    purrr,
+    curl
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
