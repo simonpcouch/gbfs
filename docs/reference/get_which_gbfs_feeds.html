@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • gbfs</title>
+<title>Get dataframe of bikeshare feeds released by a city — get_which_gbfs_feeds • gbfs</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,12 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Get dataframe of bikeshare feeds released by a city — get_which_gbfs_feeds" />
+<meta property="og:description" content="Of the different types of feeds supplied by the gbfs,
+some are required, some are conditionally required, and some are
+optional. This function grabs a list of each of the feeds supplied
+by a given city, as well as the URLs to access them." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -54,7 +59,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -104,114 +109,78 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Get dataframe of bikeshare feeds released by a city</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ds-civic-data/gbfs/blob/master/R/get_gbfs.R'><code>R/get_gbfs.R</code></a></small>
+    <div class="hidden name"><code>get_which_gbfs_feeds.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Of the different types of feeds supplied by the gbfs,
+some are required, some are conditionally required, and some are
+optional. This function grabs a list of each of the feeds supplied
+by a given city, as well as the URLs to access them.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>get_which_gbfs_feeds</span>(<span class='no'>city</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="gbfs.html">gbfs</a></code> </p>
-        </td>
-        <td><p>Package: gbfs</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_free_bike_status.html">get_free_bike_status()</a></code> </p>
-        </td>
-        <td><p>Grab the free_bike_status feed.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_gbfs.html">get_gbfs()</a></code> </p>
-        </td>
-        <td><p>Grab bikeshare data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_gbfs_cities.html">get_gbfs_cities()</a></code> </p>
-        </td>
-        <td><p>Get table of all cities releasing GBFS feeds</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_station_information.html">get_station_information()</a></code> </p>
-        </td>
-        <td><p>Grab the station_information feed.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_station_status.html">get_station_status()</a></code> </p>
-        </td>
-        <td><p>Grab the station_status feed.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_system_alerts.html">get_system_alerts()</a></code> </p>
-        </td>
-        <td><p>Grab the system_alerts feed.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_system_calendar.html">get_system_calendar()</a></code> </p>
-        </td>
-        <td><p>Grab the system_calendar feed.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_system_hours.html">get_system_hours()</a></code> </p>
-        </td>
-        <td><p>Grab the system_hours feed.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_system_information.html">get_system_information()</a></code> </p>
-        </td>
-        <td><p>Grab the system_information feed.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_system_pricing_plans.html">get_system_pricing_plans()</a></code> </p>
-        </td>
-        <td><p>Grab the system_pricing_plans feed.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_system_regions.html">get_system_regions()</a></code> </p>
-        </td>
-        <td><p>Grab the system_regions feed.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_which_gbfs_feeds.html">get_which_gbfs_feeds()</a></code> </p>
-        </td>
-        <td><p>Get dataframe of bikeshare feeds released by a city</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>city</th>
+      <td><p>A character string that can be matched to a city or a url to 
+an active gbfs .json feed. See [get_gbfs_cities()] for a 
+current list of available cities.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p>North American Bikeshare Association, General Bikeshare Feed 
+Specification <a href='https://github.com/NABSA/gbfs/blob/master/gbfs.md'>https://github.com/NABSA/gbfs/blob/master/gbfs.md</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A <code>data.frame</code> containing the feeds supplied by
+a city. . The `feed` column supplies the name of the relevant .json feeds, 
+while the entries in the `URL` column supply the feeds themselves.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># grab all of the feeds released by portland</span>
+<span class='fu'>get_which_gbfs_feeds</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>)</div><div class='output co'>#&gt;                    name
+#&gt; 1                  gbfs
+#&gt; 2    system_information
+#&gt; 3   station_information
+#&gt; 4        station_status
+#&gt; 5      free_bike_status
+#&gt; 6          system_hours
+#&gt; 7       system_calendar
+#&gt; 8        system_regions
+#&gt; 9  system_pricing_plans
+#&gt; 10        system_alerts
+#&gt;                                                                         url
+#&gt; 1                  http://biketownpdx.socialbicycles.com/opendata/gbfs.json
+#&gt; 2    http://biketownpdx.socialbicycles.com/opendata/system_information.json
+#&gt; 3   http://biketownpdx.socialbicycles.com/opendata/station_information.json
+#&gt; 4        http://biketownpdx.socialbicycles.com/opendata/station_status.json
+#&gt; 5      http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json
+#&gt; 6          http://biketownpdx.socialbicycles.com/opendata/system_hours.json
+#&gt; 7       http://biketownpdx.socialbicycles.com/opendata/system_calendar.json
+#&gt; 8        http://biketownpdx.socialbicycles.com/opendata/system_regions.json
+#&gt; 9  http://biketownpdx.socialbicycles.com/opendata/system_pricing_plans.json
+#&gt; 10        http://biketownpdx.socialbicycles.com/opendata/system_alerts.json</div><div class='input'>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#source">Source</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 
