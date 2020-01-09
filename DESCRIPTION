@@ -1,7 +1,7 @@
 Package: gbfs
 Type: Package
 Title: Interface with General Bikeshare Feed Specification Files
-Version: 1.3.0
+Version: 1.3.1
 Authors@R: c(
     person("Kaelyn", "Rosenberg", , "kaerosenberg@gmail.com", c("aut")),
     person("Simon P.", "Couch", , "simonpatrickcouch@gmail.com", c("aut", "cre")),
