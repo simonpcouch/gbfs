@@ -9,7 +9,7 @@
 get_gbfs_cities <- function() {
   
   # test internet connection
-  if (!curl::has_internet()) {
+  if (!connected_to_internet()) {
     return(message_no_internet())
   }
   
@@ -56,7 +56,7 @@ get_gbfs_cities <- function() {
 get_which_gbfs_feeds <- function(city) {
     
   # test internet connection
-  if (!curl::has_internet()) {
+  if (!connected_to_internet()) {
     return(message_no_internet())
   }
   
@@ -125,7 +125,7 @@ get_which_gbfs_feeds <- function(city) {
 get_gbfs <- function(city, feeds = "all", directory = NULL, output = NULL) {
 
   # test internet connection
-  if (!curl::has_internet()) {
+  if (!connected_to_internet()) {
     return(message_no_internet())
   }
   

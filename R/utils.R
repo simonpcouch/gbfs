@@ -49,7 +49,7 @@ city_to_url <- function(city_, feed_) {
       return(city_)
     } else {
       stop(sprintf(c("The supplied argument for \"city\" looks like a URL, ",
-                     "but the webpage doesn't seem to exist. Please check",
+                     "but the webpage doesn't seem to exist. Please check ",
                      "the URL provided or provide the city name as a string.")))
     }
   }
@@ -163,7 +163,7 @@ determine_output_types <- function(directory_, output_) {
 get_gbfs_dataset_ <- function(city, directory, file, output, feed) {
   
   # test internet connection
-  if (!curl::has_internet()) {
+  if (!connected_to_internet()) {
     return(message_no_internet())
   }
   
@@ -347,10 +347,13 @@ url_exists <- function(x, quiet = FALSE, ...) {
   sHEAD <- safely(httr::HEAD)
   sGET <- safely(httr::GET)
   
+  if (!stringr::str_detect(x, "http")) {
+    x <- paste0("https://", x)
+  }
+  
   res <- sHEAD(x, ...)
   
-  if (is.null(res$result) || 
-      ((httr::status_code(res$result) %/% 200) != 1)) {
+  if (is.null(res$result)) {
     
     res <- sGET(x, ...)
     
@@ -369,4 +372,9 @@ message_no_internet <- function() {
   message(c("You don't seem to have an active internet connection. Please", 
             "connect to the internet to use the gbfs package."))
   return(list())
+}
+
+# a wrapper around has internet so that with_mock can be used in tests
+connected_to_internet <- function() {
+  curl::has_internet()
 }

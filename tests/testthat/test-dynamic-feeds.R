@@ -3,6 +3,8 @@ context("dynamic feeds")
 
 test_that("dynamic feeds work", {
   
+  skip_if_offline(host = "r-project.org")
+  
   get_station_status("portland")
   
   get_free_bike_status("portland")
@@ -10,6 +12,8 @@ test_that("dynamic feeds work", {
 })
 
 test_that("file saving and overwriting works", {
+  
+  skip_if_offline(host = "r-project.org")
   
   # make a temporary directory
   dir <- tempdir()
@@ -23,6 +27,8 @@ test_that("file saving and overwriting works", {
 })
 
 test_that("row binding checks work", {
+  
+  skip_if_offline(host = "r-project.org")
   
   # make a temporary directory
   dir <- tempdir()

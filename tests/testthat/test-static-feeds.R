@@ -3,6 +3,8 @@ context("static feeds")
 
 test_that("static feeds work", {
   
+  skip_if_offline(host = "r-project.org")
+  
   get_station_information("portland")
   
   get_system_alerts("portland")

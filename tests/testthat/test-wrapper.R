@@ -9,12 +9,16 @@ biketown <- get_gbfs("portland")
 
 test_that("main wrapper works", {
  
+  skip_if_offline(host = "r-project.org")
+  
   expect_equal(class(biketown), "list")
   
 })
 
 test_that("argument checking works", {
 
+  skip_if_offline(host = "r-project.org")
+  
   # no directory supplied but user wants to save
   expect_error(get_gbfs("portland", 
                         output = "save"),
