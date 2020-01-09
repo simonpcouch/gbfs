@@ -1,6 +1,13 @@
 
 # News
 
+### 1.3.1
+
+  - All package functions requiring internet access now immediately
+    check the internet connection upon being called, raising a message
+    and returning an empty list if an internet connection is not
+    available.
+
 ### 1.3.0
 
   - The main wrapper function, `get_gbfs`, can now return its output as

@@ -3,6 +3,8 @@ context("utils")
 
 test_that("argument checking works", {
   
+  skip_if_offline(host = "r-project.org")
+  
   # bad argument to `output`
   expect_error(check_return_arguments(directory_ = NULL,
                                       file_ = "gbfs.Rds",
@@ -44,11 +46,13 @@ test_that("argument checking works", {
   # feeds argument is valid
   expect_error(process_feeds_argument("bop"),
                "argument is \"bop\", but it needs")
-  
     
 })
 
 test_that("find feed from top level works", {
+  
+  skip_if_offline(host = "r-project.org")
+  
   expect_equal(find_feed_from_top_level(
                  "http://biketownpdx.socialbicycles.com/opendata/gbfs.json",
                  "station_information"),
@@ -89,3 +93,27 @@ test_that("determine output type works", {
   
 })
 
+test_that("no internet connection message works", {
+  
+  # "pretend" that the internet connection doesn't work
+  with_mock("gbfs::connected_to_internet" = function() FALSE,
+  
+  # try it on all of the different functions that test internet connection
+    expect_message(get_gbfs("portland")),
+  
+    expect_message(get_gbfs_dataset_("portland", 
+                                   NULL, 
+                                   NULL, 
+                                   "return", 
+                                   "station_information")),
+  
+    expect_message(get_which_gbfs_feeds("portland")),
+  
+    expect_message(get_gbfs_cities()),
+  
+    expect_equal(get_gbfs_cities(),
+                 list())
+  
+  
+  )
+})

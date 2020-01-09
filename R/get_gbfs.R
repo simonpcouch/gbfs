@@ -6,7 +6,14 @@
 #' @source North American Bikeshare Association, General Bikeshare Feed Specification
 #'  \url{https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv}
 #' @export
-  get_gbfs_cities <- function() {
+get_gbfs_cities <- function() {
+  
+  # test internet connection
+  if (!connected_to_internet()) {
+    return(message_no_internet())
+  }
+  
+  # specify column types
   systems_cols <- readr::cols(
     `Country Code` = readr::col_character(),
     "Name" = readr::col_character(),
@@ -16,6 +23,7 @@
     `Auto-Discovery URL` = readr::col_character()
   )
   
+  # grab the data
   readr::read_csv("https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv",
                   col_types = systems_cols)
 }
@@ -47,13 +55,22 @@
 #' @export
 get_which_gbfs_feeds <- function(city) {
     
-    url <- city_to_url(city, "gbfs")
+  # test internet connection
+  if (!connected_to_internet()) {
+    return(message_no_internet())
+  }
+  
+  # convert the city argument to a URL
+  url <- city_to_url(city, "gbfs")
     
-    gbfs <- jsonlite::fromJSON(txt = url)
+  # grab the relevant data
+  gbfs <- jsonlite::fromJSON(txt = url)
     
-    gbfs_feeds <- gbfs[[3]][[1]][[1]]
+  # pull out the dataset
+  gbfs_feeds <- gbfs[[3]][[1]][[1]]
     
-    return(gbfs_feeds)
+  # ...and return it!
+  return(gbfs_feeds)
     
 }
   
@@ -107,6 +124,11 @@ get_which_gbfs_feeds <- function(city) {
 #' @export
 get_gbfs <- function(city, feeds = "all", directory = NULL, output = NULL) {
 
+  # test internet connection
+  if (!connected_to_internet()) {
+    return(message_no_internet())
+  }
+  
   # check the "feeds" argument
   feeds <- process_feeds_argument(feeds)
   
