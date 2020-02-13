@@ -90,8 +90,11 @@ city_to_url <- function(city_, feed_) {
   
   # if more than one city matched the supplied one...
   if (nrow(url) > 1) {
-    stop(sprintf(c("Several cities matched the string supplied. Consider ",
-                    "using `get_gbfs_cities()` to find the desired .json URL.")))
+    stop(sprintf(c("Several cities matched the supplied string. Please ",
+                   "consider supplying a .json URL to specify your city of ",
+                   "interest. The .json ",
+                   "URLs for the cities matching the string are: \n    ",
+                   paste0(dplyr::pull(url), sep = " \n    "))))
   }
   
   # otherwise, the string didn't match any cities... 
