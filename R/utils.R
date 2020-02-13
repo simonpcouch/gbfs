@@ -186,9 +186,12 @@ get_gbfs_dataset_ <- function(city, directory, file, output, feed) {
   
   # for some feeds, the data is nested one more level down
   if (length(data) == 1) {
-    data <- data[[1]]
+    data <- data[[1]] %>%
+      as.data.frame() %>%
+      jsonlite::flatten()
   } else {
-    data <- as.data.frame(data[!unlist(lapply(data, is.null))])
+    data <- as.data.frame(data[!unlist(lapply(data, is.null))]) %>%
+      jsonlite::flatten()
   }
   
   
