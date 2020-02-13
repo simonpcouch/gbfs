@@ -64,6 +64,24 @@ city_to_url <- function(city_, feed_) {
     
     return(city_)
     
+    # the argument might actually be a valid json url without an explicit
+    # gbfs .json extension
+  } else if (url_exists(city_)) {
+    
+    is_top_level_json <- tryCatch(expr = {
+      
+        # check if the columns in the data match the spec
+        colnames_match <- TRUE %in% (
+          jsonlite::fromJSON(city_)[["data"]][[1]][[1]] %>%
+          colnames() == c("name", "url"))
+        },
+                                  error = function(e) {FALSE}
+      )
+    
+    if (is_top_level_json) {
+      return(city_)
+    }
+    
   }
   
   # lastly, then, try to match the string argument to a cities URL...
@@ -180,8 +198,16 @@ get_gbfs_dataset_ <- function(city, directory, file, output, feed) {
                      feed)
   
   # save feed
-  data <- jsonlite::fromJSON(txt = url)[["data"]]
-  last_updated <- jsonlite::fromJSON(txt = url)[["last_updated"]] %>%
+  data_raw <- jsonlite::fromJSON(txt = url)
+  
+  data <- data_raw[["data"]]
+  
+  last_updated_index <- names(data_raw) %>%
+    tolower() %>%
+    stringr::str_detect("last") %>%
+    which()
+  
+  last_updated <- data_raw[[last_updated_index]] %>%
     as.POSIXct(., origin = "1970-01-01")
   
   # for some feeds, the data is nested one more level down

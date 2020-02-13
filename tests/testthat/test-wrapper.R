@@ -7,6 +7,7 @@ context("wrapper")
 biketown <- get_gbfs("portland")
 bike_itau <- get_gbfs("santiago")
 greenville_bcycle <- get_gbfs("greenville")
+veoride <- get_gbfs("https://share.veoride.com/api/share/gbfs")
 
 
 
@@ -17,6 +18,7 @@ test_that("main wrapper works", {
   expect_equal(class(biketown), "list")
   expect_equal(class(bike_itau), "list")
   expect_equal(class(greenville_bcycle), "list")
+  expect_equal(class(veoride), "list")
   
 })
 
