@@ -67,7 +67,7 @@ get_which_gbfs_feeds <- function(city) {
   gbfs <- jsonlite::fromJSON(txt = url)
     
   # pull out the dataset
-  gbfs_feeds <- gbfs[[3]][[1]][[1]]
+  gbfs_feeds <- gbfs[["data"]][[1]][[1]]
     
   # ...and return it!
   return(gbfs_feeds)

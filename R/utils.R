@@ -177,15 +177,15 @@ get_gbfs_dataset_ <- function(city, directory, file, output, feed) {
                      feed)
   
   # save feed
-  data <- jsonlite::fromJSON(txt = url)[[3]]
-  last_updated <- jsonlite::fromJSON(txt = url)[[1]] %>%
+  data <- jsonlite::fromJSON(txt = url)[["data"]]
+  last_updated <- jsonlite::fromJSON(txt = url)[["last_updated"]] %>%
     as.POSIXct(., origin = "1970-01-01")
   
   # for some feeds, the data is nested one more level down
   if (length(data) == 1) {
     data <- data[[1]]
   } else {
-    data <- as.data.frame(data)
+    data <- as.data.frame(data[!unlist(lapply(data, is.null))])
   }
   
   
