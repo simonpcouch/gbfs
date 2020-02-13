@@ -26,7 +26,7 @@ test_that("argument checking works", {
   hon <- "https://hon.publicbikesystem.net/ube/gbfs/v1/en/system_pricing_plans"
   expect_error(city_to_url(city_ = hon,
                            feed_ = "gbfs"),
-               "no supported cities")
+               "No supported cities")
   
   # bad url for top-level
   expect_error(city_to_url(city_ = "beep_bop_gbfs.json",
