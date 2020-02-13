@@ -22,6 +22,12 @@ test_that("argument checking works", {
                            feed_ = "station_information"),
                "but the webpage doesn")
   
+  # lower-level url for top-level feed with non-json file extension
+  hon <- "https://hon.publicbikesystem.net/ube/gbfs/v1/en/system_pricing_plans"
+  expect_equal(city_to_url(city_ = hon,
+                           feed_ = "gbfs"),
+               "no supported cities")
+  
   # bad url for top-level
   expect_error(city_to_url(city_ = "beep_bop_gbfs.json",
                            feed_ = "gbfs"),
