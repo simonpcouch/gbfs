@@ -1,6 +1,14 @@
 
 # News
 
+### 1.3.2
+
+  - Several fixes for bugs arising from NABSA’s update to the gbfs spec
+    (1.1-RC)
+  - Improved error message for multiple cities matching the supplied
+    string
+  - Accomodate valid json URLs with no .json file extension
+
 ### 1.3.1
 
   - All package functions requiring internet access now immediately

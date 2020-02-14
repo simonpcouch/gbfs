@@ -64,6 +64,24 @@ city_to_url <- function(city_, feed_) {
     
     return(city_)
     
+    # the argument might actually be a valid json url without an explicit
+    # gbfs .json extension
+  } else if (url_exists(city_)) {
+    
+    is_top_level_json <- tryCatch(expr = {
+      
+        # check if the columns in the data match the spec
+        colnames_match <- TRUE %in% (
+          jsonlite::fromJSON(city_)[["data"]][[1]][[1]] %>%
+          colnames() == c("name", "url"))
+        },
+                                  error = function(e) {FALSE}
+      )
+    
+    if (is_top_level_json) {
+      return(city_)
+    }
+    
   }
   
   # lastly, then, try to match the string argument to a cities URL...
@@ -90,8 +108,11 @@ city_to_url <- function(city_, feed_) {
   
   # if more than one city matched the supplied one...
   if (nrow(url) > 1) {
-    stop(sprintf(c("Several cities matched the string supplied. Consider ",
-                    "using `get_gbfs_cities()` to find the desired .json URL.")))
+    stop(sprintf(c("Several cities matched the supplied string. Please ",
+                   "consider supplying a .json URL to specify your city of ",
+                   "interest. The .json ",
+                   "URLs for the cities matching the string are: \n    ",
+                   paste0(dplyr::pull(url), sep = " \n    "))))
   }
   
   # otherwise, the string didn't match any cities... 
@@ -177,15 +198,26 @@ get_gbfs_dataset_ <- function(city, directory, file, output, feed) {
                      feed)
   
   # save feed
-  data <- jsonlite::fromJSON(txt = url)[[3]]
-  last_updated <- jsonlite::fromJSON(txt = url)[[1]] %>%
+  data_raw <- jsonlite::fromJSON(txt = url)
+  
+  data <- data_raw[["data"]]
+  
+  last_updated_index <- names(data_raw) %>%
+    tolower() %>%
+    stringr::str_detect("last") %>%
+    which()
+  
+  last_updated <- data_raw[[last_updated_index]] %>%
     as.POSIXct(., origin = "1970-01-01")
   
   # for some feeds, the data is nested one more level down
   if (length(data) == 1) {
-    data <- data[[1]]
+    data <- data[[1]] %>%
+      as.data.frame() %>%
+      jsonlite::flatten()
   } else {
-    data <- as.data.frame(data)
+    data <- as.data.frame(data[!unlist(lapply(data, is.null))]) %>%
+      jsonlite::flatten()
   }
   
   
