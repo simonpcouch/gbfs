@@ -191,4 +191,6 @@ dataframes, allowing for the capability to accumulate large datasets over time.
 * If you're not sure if your city supplies `gbfs` feeds, you might find the
 `get_gbfs_cities` and `get_which_gbfs_feeds` functions useful.
 
+## Contributing
 
+Please note that the `gbfs` R package is released with a [Contributor Code of Conduct](CONTRIBUTING.md). By contributing to this project, you agree to abide by its terms.

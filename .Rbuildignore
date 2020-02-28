@@ -10,3 +10,4 @@ NEWS.Rmd
 figures/
 ^codecov\.yml$
 ^CRAN-RELEASE$
+CONTRIBUTING.md
