@@ -11,3 +11,4 @@ figures/
 ^codecov\.yml$
 ^CRAN-RELEASE$
 CONTRIBUTING.md
+^pkgdown
