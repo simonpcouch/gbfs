@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
 devtools::load_all()
 ```
 
-# General Bikeshare Feed Specification - R Package <a href='https://gbfs.netlify.com'><img src='figures/hex.png' align="right" height="200" /></a>
+# General Bikeshare Feed Specification - R Package <a href='https://gbfs.netlify.com'><img src='https://raw.githubusercontent.com/simonpcouch/gbfs/master/figures/hex.png' align="right" height="200" /></a>
 
 [![CRAN status](https://www.r-pkg.org/badges/version/gbfs)](https://cran.r-project.org/package=gbfs)
 [![Travis-CI Build Status](https://travis-ci.org/simonpcouch/gbfs.svg?branch=master)](https://travis-ci.org/simonpcouch/gbfs)
@@ -28,7 +28,7 @@ parked bikes.
 
 __Features__
 
-* Get bikeshare data by specifying city or supplying url of feed
+* Get bikeshare data by specifying city name or supplying url of feed
 * All feeds for a city can be saved with a single function
 * New information from dynamic feeds can be appended to existing datasets
 
@@ -155,7 +155,7 @@ Now, plotting,
 
 ```{r plot}
 # filter out stations with 0 available bikes
-pdx_full %>%
+pdx_plot <- pdx_full %>%
   filter(num_bikes_available > 0) %>%
   # plot the geospatial distribution of bike counts
   ggplot() + 
@@ -168,6 +168,12 @@ pdx_full %>%
   theme_minimal() +
   scale_color_brewer(type = "qual")
 ```
+
+```{r print-plot, eval = FALSE}
+pdx_plot
+```
+
+<a href='https://github.com/simonpcouch/gbfs'><img src='https://raw.githubusercontent.com/simonpcouch/gbfs/master/figures/plot-1.png' height="500" /></a>
 
 Folks who have spent a significant amount of time in Portland might be able to
 pick out the Willamette River running Northwest/Southeast through the city.
