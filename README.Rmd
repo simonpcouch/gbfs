@@ -16,6 +16,7 @@ devtools::load_all()
 [![CRAN status](https://www.r-pkg.org/badges/version/gbfs)](https://cran.r-project.org/package=gbfs)
 [![Travis-CI Build Status](https://travis-ci.org/simonpcouch/gbfs.svg?branch=master)](https://travis-ci.org/simonpcouch/gbfs)
 [![Testing Coverage](https://codecov.io/gh/simonpcouch/gbfs/branch/master/graph/badge.svg)](https://codecov.io/gh/simonpcouch/gbfs?branch=master)
+[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/gbfs)](https://cran.r-project.org/package=gbfs)
 
 The `gbfs` package supplies a set of functions to interface with General
 Bikeshare Feed Specification .json feeds in R, allowing users to save
