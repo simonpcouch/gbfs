@@ -8,25 +8,36 @@
 
 <title>Grab the station_status feed. — get_station_status • gbfs</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -39,7 +50,6 @@
 <meta property="og:description" content="Grab a dataframe giving the geographic location and other metadata of
 bikeshare bikes parked at bikeshare stations. Metadata for this dataset
 can be found at: https://github.com/NABSA/gbfs/blob/master/gbfs.md" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -57,7 +67,7 @@ can be found at: https://github.com/NABSA/gbfs/blob/master/gbfs.md" />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -71,7 +81,7 @@ can be found at: https://github.com/NABSA/gbfs/blob/master/gbfs.md" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gbfs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.2</span>
       </span>
     </div>
 
@@ -92,7 +102,7 @@ can be found at: https://github.com/NABSA/gbfs/blob/master/gbfs.md" />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/ds-civic-data/gbfs">
+  <a href="https://github.com/simonpcouch/gbfs/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -111,7 +121,7 @@ can be found at: https://github.com/NABSA/gbfs/blob/master/gbfs.md" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Grab the station_status feed.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ds-civic-data/gbfs/blob/master/R/get_dynamic_feeds.R'><code>R/get_dynamic_feeds.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/simonpcouch/gbfs/blob/master/R/get_dynamic_feeds.R'><code>R/get_dynamic_feeds.R</code></a></small>
     <div class="hidden name"><code>get_station_status.Rd</code></div>
     </div>
 
@@ -177,473 +187,482 @@ are released by a given city.</p></div>
 <span class='co'># straightforward way is just to supply the `city` argument</span>
 <span class='co'># as a string:</span>
 <span class='fu'>get_station_status</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>)</div><div class='output co'>#&gt; <span class='message'>Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.</span></div><div class='output co'>#&gt;     station_id num_bikes_available num_bikes_disabled num_docks_available
-#&gt; 1     hub_1512                   5                  0                  12
-#&gt; 2     hub_1513                   0                  0                  10
-#&gt; 3     hub_1514                   4                  0                   7
-#&gt; 4     hub_1515                   1                  0                  15
-#&gt; 5     hub_1516                   5                  0                  11
-#&gt; 6     hub_1517                   5                  0                   9
-#&gt; 7     hub_1518                   7                  0                   8
-#&gt; 8     hub_1519                   4                  0                  14
-#&gt; 9     hub_1521                   8                  0                  10
-#&gt; 10    hub_1522                   2                  0                  10
-#&gt; 11    hub_1523                   5                  0                  13
+#&gt; 1     hub_1512                   3                  0                  14
+#&gt; 2     hub_1513                   8                  0                   2
+#&gt; 3     hub_1514                   8                  0                   4
+#&gt; 4     hub_1515                   5                  0                  13
+#&gt; 5     hub_1516                   9                  0                   7
+#&gt; 6     hub_1517                   4                  0                  10
+#&gt; 7     hub_1518                   8                  0                   8
+#&gt; 8     hub_1519                   4                  0                  13
+#&gt; 9     hub_1521                   6                  0                  12
+#&gt; 10    hub_1522                   0                  0                  12
+#&gt; 11    hub_1523                   9                  0                   8
 #&gt; 12    hub_1524                   6                  0                   6
-#&gt; 13    hub_1527                   0                  0                   8
-#&gt; 14    hub_1528                   9                  0                   7
-#&gt; 15    hub_1529                   7                  0                   4
-#&gt; 16    hub_1535                   6                  0                  12
-#&gt; 17    hub_1536                   1                  0                   7
-#&gt; 18    hub_1537                  10                  0                  13
-#&gt; 19    hub_1538                   0                  0                  16
-#&gt; 20    hub_1539                   4                  0                   7
-#&gt; 21    hub_1540                   5                  0                  13
-#&gt; 22    hub_1541                  15                  0                   2
-#&gt; 23    hub_1542                   6                  0                   5
+#&gt; 13    hub_1527                   1                  0                   7
+#&gt; 14    hub_1528                   8                  0                   8
+#&gt; 15    hub_1529                   6                  0                   6
+#&gt; 16    hub_1535                   5                  0                  13
+#&gt; 17    hub_1536                   0                  0                   8
+#&gt; 18    hub_1537                   3                  0                  20
+#&gt; 19    hub_1538                   2                  0                  14
+#&gt; 20    hub_1539                   1                  0                  11
+#&gt; 21    hub_1540                   1                  0                  16
+#&gt; 22    hub_1541                   7                  0                  11
+#&gt; 23    hub_1542                   4                  0                   7
 #&gt; 24    hub_1543                   7                  0                   3
-#&gt; 25    hub_1544                  10                  0                   8
-#&gt; 26    hub_1545                   1                  0                  17
-#&gt; 27    hub_1546                   6                  0                  10
-#&gt; 28    hub_1547                   1                  0                  12
-#&gt; 29    hub_1548                   2                  0                  15
-#&gt; 30    hub_1549                   6                  0                  12
-#&gt; 31    hub_1550                   1                  0                  17
-#&gt; 32    hub_1551                   5                  0                  13
-#&gt; 33    hub_1552                   5                  0                   7
-#&gt; 34    hub_1554                   5                  0                   7
-#&gt; 35    hub_1555                   5                  0                   7
-#&gt; 36    hub_1556                   4                  0                  13
-#&gt; 37    hub_1558                   9                  0                   8
-#&gt; 38    hub_1559                   4                  0                  14
-#&gt; 39    hub_1560                   5                  0                  10
-#&gt; 40    hub_1561                   4                  0                  10
+#&gt; 25    hub_1544                   4                  0                  14
+#&gt; 26    hub_1545                   6                  0                  12
+#&gt; 27    hub_1546                  12                  0                   6
+#&gt; 28    hub_1547                   4                  0                  10
+#&gt; 29    hub_1548                   7                  0                  10
+#&gt; 30    hub_1549                   2                  0                  14
+#&gt; 31    hub_1550                  10                  0                   8
+#&gt; 32    hub_1551                   1                  0                  17
+#&gt; 33    hub_1552                   6                  0                   6
+#&gt; 34    hub_1554                   6                  0                   6
+#&gt; 35    hub_1555                   5                  0                   6
+#&gt; 36    hub_1556                   7                  0                  11
+#&gt; 37    hub_1558                   6                  0                  12
+#&gt; 38    hub_1559                   5                  0                  13
+#&gt; 39    hub_1560                   8                  0                   7
+#&gt; 40    hub_1561                   5                  0                   8
 #&gt; 41    hub_1562                   2                  0                  10
-#&gt; 42    hub_1563                   6                  0                   7
-#&gt; 43    hub_1564                   0                  0                  16
-#&gt; 44    hub_1566                   4                  0                   8
+#&gt; 42    hub_1563                  11                  0                   3
+#&gt; 43    hub_1564                   5                  0                  13
+#&gt; 44    hub_1566                   2                  0                  10
 #&gt; 45    hub_1567                   4                  0                   8
-#&gt; 46    hub_1568                   1                  0                  15
-#&gt; 47    hub_1569                   5                  0                  13
-#&gt; 48    hub_1570                   5                  0                  22
-#&gt; 49    hub_1571                   3                  0                  15
-#&gt; 50    hub_1572                   3                  0                  13
-#&gt; 51    hub_1573                   0                  0                   6
-#&gt; 52    hub_1574                   4                  0                  14
-#&gt; 53    hub_1575                   7                  0                  11
-#&gt; 54    hub_1577                  10                  0                  10
-#&gt; 55    hub_1578                   5                  0                  12
-#&gt; 56    hub_1579                   6                  0                   6
-#&gt; 57    hub_1580                   1                  0                  17
-#&gt; 58    hub_1581                   8                  0                   8
-#&gt; 59    hub_1582                   3                  0                  17
-#&gt; 60    hub_1583                   2                  0                  16
-#&gt; 61    hub_1584                   2                  0                  16
-#&gt; 62    hub_1585                   7                  0                   3
-#&gt; 63    hub_1586                   8                  0                   6
-#&gt; 64    hub_1588                   6                  0                  12
-#&gt; 65    hub_1590                   5                  0                   8
-#&gt; 66    hub_1591                  12                  0                   6
-#&gt; 67    hub_1592                   6                  0                  12
-#&gt; 68    hub_1593                   4                  0                  14
-#&gt; 69    hub_1594                   3                  0                   9
-#&gt; 70    hub_1595                   5                  0                  13
-#&gt; 71    hub_1596                   4                  0                   3
-#&gt; 72    hub_1597                   1                  0                  11
-#&gt; 73    hub_1598                   2                  0                  16
-#&gt; 74    hub_1599                   4                  0                   8
-#&gt; 75    hub_1600                   4                  0                  14
-#&gt; 76    hub_1601                   4                  0                   7
-#&gt; 77    hub_1602                   4                  0                  12
-#&gt; 78    hub_1603                   0                  0                   8
-#&gt; 79    hub_1604                   7                  0                   1
-#&gt; 80    hub_1605                   1                  0                  15
-#&gt; 81    hub_1606                   0                  0                  18
-#&gt; 82    hub_1607                   2                  0                  16
-#&gt; 83    hub_1608                   5                  0                  13
-#&gt; 84    hub_1609                   0                  0                  18
-#&gt; 85    hub_1611                   4                  0                  14
-#&gt; 86    hub_1612                   1                  0                  17
-#&gt; 87    hub_1613                   4                  0                   6
-#&gt; 88    hub_1614                   4                  0                   9
-#&gt; 89    hub_1615                   7                  0                  10
-#&gt; 90    hub_1616                   0                  0                   6
-#&gt; 91    hub_1617                   2                  0                   9
-#&gt; 92    hub_1713                   3                  0                  12
-#&gt; 93    hub_2275                   0                  0                  18
-#&gt; 94    hub_2276                   0                  0                  24
-#&gt; 95    hub_2598                   3                  0                   5
-#&gt; 96    hub_2677                   1                  0                  17
-#&gt; 97    hub_2678                   0                  0                  12
-#&gt; 98    hub_2679                   2                  0                  16
-#&gt; 99    hub_2680                   2                  0                  16
-#&gt; 100   hub_2681                   1                  0                  17
-#&gt; 101   hub_2682                   1                  0                  17
-#&gt; 102   hub_2683                   0                  0                  14
-#&gt; 103   hub_2684                   1                  0                  19
-#&gt; 104   hub_2685                   0                  0                  12
-#&gt; 105   hub_2686                   0                  0                  10
-#&gt; 106   hub_2687                   0                  0                   8
-#&gt; 107   hub_2688                   2                  0                  16
-#&gt; 108   hub_2689                   0                  0                  18
-#&gt; 109   hub_2695                   0                  0                  18
-#&gt; 110   hub_2696                   1                  0                  11
-#&gt; 111   hub_2698                   7                  0                  11
-#&gt; 112   hub_2707                   7                  0                  11
-#&gt; 113   hub_2708                   0                  0                   8
-#&gt; 114   hub_2789                   3                  0                  15
-#&gt; 115   hub_2798                   3                  0                  15
-#&gt; 116   hub_2875                   5                  0                  10
-#&gt; 117   hub_3240                   0                  0                   5
-#&gt; 118   hub_3929                   5                  0                   6
-#&gt; 119   hub_3957                   3                  0                   9
-#&gt; 120   hub_4034                   0                  0                  10
-#&gt; 121   hub_4050                   8                  0                   7
-#&gt; 122   hub_4312                   1                  0                   5
-#&gt; 123   hub_4313                   2                  0                   3
-#&gt; 124   hub_4315                   0                  0                   6
-#&gt; 125   hub_4316                   0                  0                   6
-#&gt; 126   hub_4317                   1                  0                   8
-#&gt; 127   hub_4318                   0                  0                   6
-#&gt; 128   hub_4319                   0                  0                   6
-#&gt; 129   hub_4320                   0                  0                  15
-#&gt; 130   hub_4321                   1                  0                   8
-#&gt; 131   hub_4322                   0                  0                   6
-#&gt; 132   hub_4323                   0                  0                  12
-#&gt; 133   hub_4324                   1                  0                   5
-#&gt; 134   hub_4325                   0                  0                  12
-#&gt; 135   hub_4326                   2                  0                   3
-#&gt; 136   hub_4327                   0                  0                  12
-#&gt; 137   hub_4328                   2                  0                  10
-#&gt; 138   hub_4329                   4                  0                   8
-#&gt; 139   hub_4368                   2                  0                   6
-#&gt; 140   hub_4381                   1                  0                   3
-#&gt; 141   hub_4482                   2                  0                  12
-#&gt; 142   hub_5277                   0                  0                   6
-#&gt; 143   hub_5311                   2                  0                   4
-#&gt; 144   hub_5316                   0                  0                   6
-#&gt; 145   hub_5357                   5                  0                   2
-#&gt; 146   hub_5414                   6                  0                  12
-#&gt; 147   hub_5470                   4                  0                   4
-#&gt; 148   hub_5473                   2                  0                   6
-#&gt; 149   hub_5474                   1                  0                   5
-#&gt; 150   hub_5476                   3                  0                   5
-#&gt; 151   hub_5491                   5                  0                   1
-#&gt; 152   hub_5493                   1                  0                   2
-#&gt; 153   hub_5498                   0                  0                  12
-#&gt; 154   hub_5567                   0                  0                   5
-#&gt; 155   hub_5597                  10                  0                   9
+#&gt; 46    hub_1569                   8                  0                  10
+#&gt; 47    hub_1570                  10                  0                  17
+#&gt; 48    hub_1571                   1                  0                  16
+#&gt; 49    hub_1572                   4                  0                  11
+#&gt; 50    hub_1573                   0                  0                   6
+#&gt; 51    hub_1574                   3                  0                  15
+#&gt; 52    hub_1575                  10                  0                   8
+#&gt; 53    hub_1577                  14                  0                   5
+#&gt; 54    hub_1578                   4                  0                  14
+#&gt; 55    hub_1579                   4                  0                   8
+#&gt; 56    hub_1580                   2                  0                  16
+#&gt; 57    hub_1581                  10                  0                   8
+#&gt; 58    hub_1582                   5                  0                  15
+#&gt; 59    hub_1583                  10                  0                   8
+#&gt; 60    hub_1584                   3                  0                  15
+#&gt; 61    hub_1585                   7                  0                   3
+#&gt; 62    hub_1586                   5                  0                   9
+#&gt; 63    hub_1588                   7                  0                  11
+#&gt; 64    hub_1590                   4                  0                  10
+#&gt; 65    hub_1591                   4                  0                  14
+#&gt; 66    hub_1592                   5                  0                  13
+#&gt; 67    hub_1593                   8                  0                  10
+#&gt; 68    hub_1594                   6                  0                   6
+#&gt; 69    hub_1595                   9                  0                   9
+#&gt; 70    hub_1596                   5                  0                   3
+#&gt; 71    hub_1597                   0                  0                  12
+#&gt; 72    hub_1598                   7                  0                  11
+#&gt; 73    hub_1599                   4                  0                   8
+#&gt; 74    hub_1600                   8                  0                  10
+#&gt; 75    hub_1601                   0                  0                  11
+#&gt; 76    hub_1602                   8                  0                  10
+#&gt; 77    hub_1603                   0                  0                   8
+#&gt; 78    hub_1604                   1                  0                   7
+#&gt; 79    hub_1605                   3                  0                  13
+#&gt; 80    hub_1606                   3                  0                  15
+#&gt; 81    hub_1607                   6                  0                  12
+#&gt; 82    hub_1608                   6                  0                  12
+#&gt; 83    hub_1609                   7                  0                  11
+#&gt; 84    hub_1611                   5                  0                  13
+#&gt; 85    hub_1612                   2                  0                  16
+#&gt; 86    hub_1613                   4                  0                   8
+#&gt; 87    hub_1614                   1                  0                  12
+#&gt; 88    hub_1615                   8                  0                   8
+#&gt; 89    hub_1616                   1                  0                   5
+#&gt; 90    hub_1617                   6                  0                   6
+#&gt; 91    hub_1713                   8                  0                   7
+#&gt; 92    hub_2275                   0                  0                  18
+#&gt; 93    hub_2276                   0                  0                  24
+#&gt; 94    hub_2598                   0                  0                   8
+#&gt; 95    hub_2677                   1                  0                  17
+#&gt; 96    hub_2678                   1                  0                  11
+#&gt; 97    hub_2679                   1                  0                  17
+#&gt; 98    hub_2680                   0                  0                  18
+#&gt; 99    hub_2681                   1                  0                  17
+#&gt; 100   hub_2682                   0                  0                  18
+#&gt; 101   hub_2683                   2                  0                  12
+#&gt; 102   hub_2684                   0                  0                  20
+#&gt; 103   hub_2685                   0                  0                  12
+#&gt; 104   hub_2686                   0                  0                  10
+#&gt; 105   hub_2687                   1                  0                   7
+#&gt; 106   hub_2688                   0                  0                  18
+#&gt; 107   hub_2689                   1                  0                  17
+#&gt; 108   hub_2695                   0                  0                  18
+#&gt; 109   hub_2696                   1                  0                  11
+#&gt; 110   hub_2698                   9                  0                   9
+#&gt; 111   hub_2707                   8                  0                   9
+#&gt; 112   hub_2708                   0                  0                   8
+#&gt; 113   hub_2789                   8                  0                  10
+#&gt; 114   hub_2798                   9                  0                   9
+#&gt; 115   hub_2875                   4                  0                  11
+#&gt; 116   hub_3240                   4                  0                   2
+#&gt; 117   hub_3929                   3                  0                   7
+#&gt; 118   hub_3957                   1                  0                  11
+#&gt; 119   hub_4034                   0                  0                  10
+#&gt; 120   hub_4050                   4                  0                  11
+#&gt; 121   hub_4312                   0                  0                   6
+#&gt; 122   hub_4313                   1                  0                   5
+#&gt; 123   hub_4315                   0                  0                   6
+#&gt; 124   hub_4316                   0                  0                   6
+#&gt; 125   hub_4318                   0                  0                   6
+#&gt; 126   hub_4319                   0                  0                   6
+#&gt; 127   hub_4320                   3                  0                  11
+#&gt; 128   hub_4321                   1                  0                   8
+#&gt; 129   hub_4322                   0                  0                   6
+#&gt; 130   hub_4323                   3                  0                   9
+#&gt; 131   hub_4324                   1                  0                   5
+#&gt; 132   hub_4325                   0                  0                  12
+#&gt; 133   hub_4326                   0                  0                   7
+#&gt; 134   hub_4327                   0                  0                  12
+#&gt; 135   hub_4328                   1                  0                  11
+#&gt; 136   hub_4329                   0                  0                  12
+#&gt; 137   hub_4368                   0                  0                   8
+#&gt; 138   hub_4381                   1                  0                   3
+#&gt; 139   hub_4482                  10                  0                   4
+#&gt; 140   hub_5277                   3                  0                   3
+#&gt; 141   hub_5311                   2                  0                   4
+#&gt; 142   hub_5316                   0                  0                   6
+#&gt; 143   hub_5357                   3                  0                   4
+#&gt; 144   hub_5414                   5                  0                  13
+#&gt; 145   hub_5470                   2                  0                   6
+#&gt; 146   hub_5473                   1                  0                   7
+#&gt; 147   hub_5474                   2                  0                   6
+#&gt; 148   hub_5476                   2                  0                   6
+#&gt; 149   hub_5491                   3                  0                   3
+#&gt; 150   hub_5493                   1                  0                   3
+#&gt; 151   hub_5498                   2                  0                  10
+#&gt; 152   hub_5567                   0                  0                   4
+#&gt; 153   hub_5597                   9                  0                   9
+#&gt; 154   hub_5629                   0                  0                   5
+#&gt; 155   hub_5633                   2                  0                   3
+#&gt; 156   hub_5638                   0                  0                   9
+#&gt; 157   hub_5652                   0                  0                   6
+#&gt; 158   hub_5666                   6                  0                   3
 #&gt;     is_installed is_renting is_returning last_reported        last_updated year
-#&gt; 1              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 2              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 3              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 4              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 5              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 6              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 7              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 8              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 9              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 10             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 11             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 12             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 13             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 14             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 15             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 16             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 17             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 18             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 19             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 20             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 21             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 22             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 23             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 24             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 25             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 26             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 27             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 28             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 29             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 30             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 31             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 32             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 33             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 34             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 35             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 36             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 37             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 38             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 39             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 40             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 41             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 42             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 43             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 44             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 45             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 46             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 47             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 48             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 49             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 50             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 51             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 52             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 53             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 54             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 55             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 56             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 57             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 58             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 59             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 60             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 61             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 62             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 63             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 64             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 65             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 66             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 67             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 68             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 69             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 70             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 71             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 72             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 73             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 74             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 75             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 76             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 77             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 78             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 79             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 80             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 81             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 82             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 83             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 84             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 85             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 86             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 87             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 88             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 89             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 90             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 91             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 92             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 93             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 94             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 95             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 96             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 97             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 98             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 99             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 100            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 101            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 102            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 103            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 104            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 105            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 106            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 107            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 108            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 109            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 110            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 111            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 112            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 113            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 114            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 115            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 116            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 117            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 118            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 119            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 120            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 121            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 122            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 123            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 124            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 125            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 126            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 127            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 128            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 129            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 130            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 131            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 132            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 133            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 134            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 135            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 136            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 137            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 138            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 139            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 140            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 141            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 142            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 143            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 144            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 145            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 146            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 147            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 148            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 149            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 150            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 151            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 152            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 153            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 154            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 155            1          1            1    1578606640 2020-01-09 15:50:40 2020
+#&gt; 1              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 2              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 3              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 4              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 5              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 6              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 7              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 8              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 9              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 10             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 11             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 12             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 13             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 14             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 15             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 16             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 17             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 18             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 19             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 20             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 21             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 22             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 23             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 24             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 25             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 26             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 27             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 28             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 29             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 30             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 31             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 32             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 33             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 34             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 35             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 36             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 37             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 38             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 39             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 40             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 41             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 42             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 43             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 44             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 45             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 46             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 47             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 48             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 49             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 50             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 51             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 52             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 53             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 54             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 55             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 56             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 57             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 58             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 59             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 60             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 61             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 62             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 63             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 64             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 65             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 66             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 67             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 68             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 69             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 70             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 71             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 72             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 73             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 74             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 75             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 76             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 77             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 78             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 79             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 80             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 81             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 82             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 83             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 84             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 85             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 86             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 87             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 88             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 89             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 90             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 91             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 92             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 93             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 94             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 95             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 96             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 97             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 98             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 99             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 100            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 101            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 102            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 103            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 104            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 105            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 106            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 107            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 108            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 109            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 110            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 111            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 112            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 113            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 114            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 115            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 116            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 117            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 118            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 119            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 120            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 121            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 122            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 123            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 124            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 125            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 126            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 127            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 128            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 129            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 130            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 131            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 132            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 133            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 134            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 135            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 136            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 137            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 138            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 139            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 140            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 141            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 142            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 143            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 144            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 145            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 146            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 147            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 148            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 149            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 150            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 151            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 152            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 153            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 154            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 155            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 156            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 157            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 158            1          1            1    1585250053 2020-03-26 12:14:13 2020
 #&gt;     month day hour minute
-#&gt; 1       1   9   15     50
-#&gt; 2       1   9   15     50
-#&gt; 3       1   9   15     50
-#&gt; 4       1   9   15     50
-#&gt; 5       1   9   15     50
-#&gt; 6       1   9   15     50
-#&gt; 7       1   9   15     50
-#&gt; 8       1   9   15     50
-#&gt; 9       1   9   15     50
-#&gt; 10      1   9   15     50
-#&gt; 11      1   9   15     50
-#&gt; 12      1   9   15     50
-#&gt; 13      1   9   15     50
-#&gt; 14      1   9   15     50
-#&gt; 15      1   9   15     50
-#&gt; 16      1   9   15     50
-#&gt; 17      1   9   15     50
-#&gt; 18      1   9   15     50
-#&gt; 19      1   9   15     50
-#&gt; 20      1   9   15     50
-#&gt; 21      1   9   15     50
-#&gt; 22      1   9   15     50
-#&gt; 23      1   9   15     50
-#&gt; 24      1   9   15     50
-#&gt; 25      1   9   15     50
-#&gt; 26      1   9   15     50
-#&gt; 27      1   9   15     50
-#&gt; 28      1   9   15     50
-#&gt; 29      1   9   15     50
-#&gt; 30      1   9   15     50
-#&gt; 31      1   9   15     50
-#&gt; 32      1   9   15     50
-#&gt; 33      1   9   15     50
-#&gt; 34      1   9   15     50
-#&gt; 35      1   9   15     50
-#&gt; 36      1   9   15     50
-#&gt; 37      1   9   15     50
-#&gt; 38      1   9   15     50
-#&gt; 39      1   9   15     50
-#&gt; 40      1   9   15     50
-#&gt; 41      1   9   15     50
-#&gt; 42      1   9   15     50
-#&gt; 43      1   9   15     50
-#&gt; 44      1   9   15     50
-#&gt; 45      1   9   15     50
-#&gt; 46      1   9   15     50
-#&gt; 47      1   9   15     50
-#&gt; 48      1   9   15     50
-#&gt; 49      1   9   15     50
-#&gt; 50      1   9   15     50
-#&gt; 51      1   9   15     50
-#&gt; 52      1   9   15     50
-#&gt; 53      1   9   15     50
-#&gt; 54      1   9   15     50
-#&gt; 55      1   9   15     50
-#&gt; 56      1   9   15     50
-#&gt; 57      1   9   15     50
-#&gt; 58      1   9   15     50
-#&gt; 59      1   9   15     50
-#&gt; 60      1   9   15     50
-#&gt; 61      1   9   15     50
-#&gt; 62      1   9   15     50
-#&gt; 63      1   9   15     50
-#&gt; 64      1   9   15     50
-#&gt; 65      1   9   15     50
-#&gt; 66      1   9   15     50
-#&gt; 67      1   9   15     50
-#&gt; 68      1   9   15     50
-#&gt; 69      1   9   15     50
-#&gt; 70      1   9   15     50
-#&gt; 71      1   9   15     50
-#&gt; 72      1   9   15     50
-#&gt; 73      1   9   15     50
-#&gt; 74      1   9   15     50
-#&gt; 75      1   9   15     50
-#&gt; 76      1   9   15     50
-#&gt; 77      1   9   15     50
-#&gt; 78      1   9   15     50
-#&gt; 79      1   9   15     50
-#&gt; 80      1   9   15     50
-#&gt; 81      1   9   15     50
-#&gt; 82      1   9   15     50
-#&gt; 83      1   9   15     50
-#&gt; 84      1   9   15     50
-#&gt; 85      1   9   15     50
-#&gt; 86      1   9   15     50
-#&gt; 87      1   9   15     50
-#&gt; 88      1   9   15     50
-#&gt; 89      1   9   15     50
-#&gt; 90      1   9   15     50
-#&gt; 91      1   9   15     50
-#&gt; 92      1   9   15     50
-#&gt; 93      1   9   15     50
-#&gt; 94      1   9   15     50
-#&gt; 95      1   9   15     50
-#&gt; 96      1   9   15     50
-#&gt; 97      1   9   15     50
-#&gt; 98      1   9   15     50
-#&gt; 99      1   9   15     50
-#&gt; 100     1   9   15     50
-#&gt; 101     1   9   15     50
-#&gt; 102     1   9   15     50
-#&gt; 103     1   9   15     50
-#&gt; 104     1   9   15     50
-#&gt; 105     1   9   15     50
-#&gt; 106     1   9   15     50
-#&gt; 107     1   9   15     50
-#&gt; 108     1   9   15     50
-#&gt; 109     1   9   15     50
-#&gt; 110     1   9   15     50
-#&gt; 111     1   9   15     50
-#&gt; 112     1   9   15     50
-#&gt; 113     1   9   15     50
-#&gt; 114     1   9   15     50
-#&gt; 115     1   9   15     50
-#&gt; 116     1   9   15     50
-#&gt; 117     1   9   15     50
-#&gt; 118     1   9   15     50
-#&gt; 119     1   9   15     50
-#&gt; 120     1   9   15     50
-#&gt; 121     1   9   15     50
-#&gt; 122     1   9   15     50
-#&gt; 123     1   9   15     50
-#&gt; 124     1   9   15     50
-#&gt; 125     1   9   15     50
-#&gt; 126     1   9   15     50
-#&gt; 127     1   9   15     50
-#&gt; 128     1   9   15     50
-#&gt; 129     1   9   15     50
-#&gt; 130     1   9   15     50
-#&gt; 131     1   9   15     50
-#&gt; 132     1   9   15     50
-#&gt; 133     1   9   15     50
-#&gt; 134     1   9   15     50
-#&gt; 135     1   9   15     50
-#&gt; 136     1   9   15     50
-#&gt; 137     1   9   15     50
-#&gt; 138     1   9   15     50
-#&gt; 139     1   9   15     50
-#&gt; 140     1   9   15     50
-#&gt; 141     1   9   15     50
-#&gt; 142     1   9   15     50
-#&gt; 143     1   9   15     50
-#&gt; 144     1   9   15     50
-#&gt; 145     1   9   15     50
-#&gt; 146     1   9   15     50
-#&gt; 147     1   9   15     50
-#&gt; 148     1   9   15     50
-#&gt; 149     1   9   15     50
-#&gt; 150     1   9   15     50
-#&gt; 151     1   9   15     50
-#&gt; 152     1   9   15     50
-#&gt; 153     1   9   15     50
-#&gt; 154     1   9   15     50
-#&gt; 155     1   9   15     50</div><div class='input'>
+#&gt; 1       3  26   12     14
+#&gt; 2       3  26   12     14
+#&gt; 3       3  26   12     14
+#&gt; 4       3  26   12     14
+#&gt; 5       3  26   12     14
+#&gt; 6       3  26   12     14
+#&gt; 7       3  26   12     14
+#&gt; 8       3  26   12     14
+#&gt; 9       3  26   12     14
+#&gt; 10      3  26   12     14
+#&gt; 11      3  26   12     14
+#&gt; 12      3  26   12     14
+#&gt; 13      3  26   12     14
+#&gt; 14      3  26   12     14
+#&gt; 15      3  26   12     14
+#&gt; 16      3  26   12     14
+#&gt; 17      3  26   12     14
+#&gt; 18      3  26   12     14
+#&gt; 19      3  26   12     14
+#&gt; 20      3  26   12     14
+#&gt; 21      3  26   12     14
+#&gt; 22      3  26   12     14
+#&gt; 23      3  26   12     14
+#&gt; 24      3  26   12     14
+#&gt; 25      3  26   12     14
+#&gt; 26      3  26   12     14
+#&gt; 27      3  26   12     14
+#&gt; 28      3  26   12     14
+#&gt; 29      3  26   12     14
+#&gt; 30      3  26   12     14
+#&gt; 31      3  26   12     14
+#&gt; 32      3  26   12     14
+#&gt; 33      3  26   12     14
+#&gt; 34      3  26   12     14
+#&gt; 35      3  26   12     14
+#&gt; 36      3  26   12     14
+#&gt; 37      3  26   12     14
+#&gt; 38      3  26   12     14
+#&gt; 39      3  26   12     14
+#&gt; 40      3  26   12     14
+#&gt; 41      3  26   12     14
+#&gt; 42      3  26   12     14
+#&gt; 43      3  26   12     14
+#&gt; 44      3  26   12     14
+#&gt; 45      3  26   12     14
+#&gt; 46      3  26   12     14
+#&gt; 47      3  26   12     14
+#&gt; 48      3  26   12     14
+#&gt; 49      3  26   12     14
+#&gt; 50      3  26   12     14
+#&gt; 51      3  26   12     14
+#&gt; 52      3  26   12     14
+#&gt; 53      3  26   12     14
+#&gt; 54      3  26   12     14
+#&gt; 55      3  26   12     14
+#&gt; 56      3  26   12     14
+#&gt; 57      3  26   12     14
+#&gt; 58      3  26   12     14
+#&gt; 59      3  26   12     14
+#&gt; 60      3  26   12     14
+#&gt; 61      3  26   12     14
+#&gt; 62      3  26   12     14
+#&gt; 63      3  26   12     14
+#&gt; 64      3  26   12     14
+#&gt; 65      3  26   12     14
+#&gt; 66      3  26   12     14
+#&gt; 67      3  26   12     14
+#&gt; 68      3  26   12     14
+#&gt; 69      3  26   12     14
+#&gt; 70      3  26   12     14
+#&gt; 71      3  26   12     14
+#&gt; 72      3  26   12     14
+#&gt; 73      3  26   12     14
+#&gt; 74      3  26   12     14
+#&gt; 75      3  26   12     14
+#&gt; 76      3  26   12     14
+#&gt; 77      3  26   12     14
+#&gt; 78      3  26   12     14
+#&gt; 79      3  26   12     14
+#&gt; 80      3  26   12     14
+#&gt; 81      3  26   12     14
+#&gt; 82      3  26   12     14
+#&gt; 83      3  26   12     14
+#&gt; 84      3  26   12     14
+#&gt; 85      3  26   12     14
+#&gt; 86      3  26   12     14
+#&gt; 87      3  26   12     14
+#&gt; 88      3  26   12     14
+#&gt; 89      3  26   12     14
+#&gt; 90      3  26   12     14
+#&gt; 91      3  26   12     14
+#&gt; 92      3  26   12     14
+#&gt; 93      3  26   12     14
+#&gt; 94      3  26   12     14
+#&gt; 95      3  26   12     14
+#&gt; 96      3  26   12     14
+#&gt; 97      3  26   12     14
+#&gt; 98      3  26   12     14
+#&gt; 99      3  26   12     14
+#&gt; 100     3  26   12     14
+#&gt; 101     3  26   12     14
+#&gt; 102     3  26   12     14
+#&gt; 103     3  26   12     14
+#&gt; 104     3  26   12     14
+#&gt; 105     3  26   12     14
+#&gt; 106     3  26   12     14
+#&gt; 107     3  26   12     14
+#&gt; 108     3  26   12     14
+#&gt; 109     3  26   12     14
+#&gt; 110     3  26   12     14
+#&gt; 111     3  26   12     14
+#&gt; 112     3  26   12     14
+#&gt; 113     3  26   12     14
+#&gt; 114     3  26   12     14
+#&gt; 115     3  26   12     14
+#&gt; 116     3  26   12     14
+#&gt; 117     3  26   12     14
+#&gt; 118     3  26   12     14
+#&gt; 119     3  26   12     14
+#&gt; 120     3  26   12     14
+#&gt; 121     3  26   12     14
+#&gt; 122     3  26   12     14
+#&gt; 123     3  26   12     14
+#&gt; 124     3  26   12     14
+#&gt; 125     3  26   12     14
+#&gt; 126     3  26   12     14
+#&gt; 127     3  26   12     14
+#&gt; 128     3  26   12     14
+#&gt; 129     3  26   12     14
+#&gt; 130     3  26   12     14
+#&gt; 131     3  26   12     14
+#&gt; 132     3  26   12     14
+#&gt; 133     3  26   12     14
+#&gt; 134     3  26   12     14
+#&gt; 135     3  26   12     14
+#&gt; 136     3  26   12     14
+#&gt; 137     3  26   12     14
+#&gt; 138     3  26   12     14
+#&gt; 139     3  26   12     14
+#&gt; 140     3  26   12     14
+#&gt; 141     3  26   12     14
+#&gt; 142     3  26   12     14
+#&gt; 143     3  26   12     14
+#&gt; 144     3  26   12     14
+#&gt; 145     3  26   12     14
+#&gt; 146     3  26   12     14
+#&gt; 147     3  26   12     14
+#&gt; 148     3  26   12     14
+#&gt; 149     3  26   12     14
+#&gt; 150     3  26   12     14
+#&gt; 151     3  26   12     14
+#&gt; 152     3  26   12     14
+#&gt; 153     3  26   12     14
+#&gt; 154     3  26   12     14
+#&gt; 155     3  26   12     14
+#&gt; 156     3  26   12     14
+#&gt; 157     3  26   12     14
+#&gt; 158     3  26   12     14</div><div class='input'>
 <span class='co'># the `city` argument can also be supplied as an</span>
 <span class='co'># actual URL to an active .json feed</span>
 <span class='fu'>get_station_status</span>(<span class='kw'>city</span> <span class='kw'>=</span>
@@ -662,494 +681,498 @@ are released by a given city.</p></div>
 <span class='fu'>get_station_status</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>,
                      <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
                      <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"both"</span>)</div><div class='output co'>#&gt;     station_id num_bikes_available num_bikes_disabled num_docks_available
-#&gt; 1     hub_1512                   5                  0                  12
-#&gt; 2     hub_1513                   0                  0                  10
-#&gt; 3     hub_1514                   4                  0                   7
-#&gt; 4     hub_1515                   1                  0                  15
-#&gt; 5     hub_1516                   5                  0                  11
-#&gt; 6     hub_1517                   5                  0                   9
-#&gt; 7     hub_1518                   7                  0                   8
-#&gt; 8     hub_1519                   4                  0                  14
-#&gt; 9     hub_1521                   8                  0                  10
-#&gt; 10    hub_1522                   2                  0                  10
-#&gt; 11    hub_1523                   5                  0                  13
+#&gt; 1     hub_1512                   3                  0                  14
+#&gt; 2     hub_1513                   8                  0                   2
+#&gt; 3     hub_1514                   8                  0                   4
+#&gt; 4     hub_1515                   5                  0                  13
+#&gt; 5     hub_1516                   9                  0                   7
+#&gt; 6     hub_1517                   4                  0                  10
+#&gt; 7     hub_1518                   8                  0                   8
+#&gt; 8     hub_1519                   4                  0                  13
+#&gt; 9     hub_1521                   6                  0                  12
+#&gt; 10    hub_1522                   0                  0                  12
+#&gt; 11    hub_1523                   9                  0                   8
 #&gt; 12    hub_1524                   6                  0                   6
-#&gt; 13    hub_1527                   0                  0                   8
-#&gt; 14    hub_1528                   9                  0                   7
-#&gt; 15    hub_1529                   7                  0                   4
-#&gt; 16    hub_1535                   6                  0                  12
-#&gt; 17    hub_1536                   1                  0                   7
-#&gt; 18    hub_1537                  10                  0                  13
-#&gt; 19    hub_1538                   0                  0                  16
-#&gt; 20    hub_1539                   4                  0                   7
-#&gt; 21    hub_1540                   5                  0                  13
-#&gt; 22    hub_1541                  15                  0                   2
-#&gt; 23    hub_1542                   6                  0                   5
+#&gt; 13    hub_1527                   1                  0                   7
+#&gt; 14    hub_1528                   8                  0                   8
+#&gt; 15    hub_1529                   6                  0                   6
+#&gt; 16    hub_1535                   5                  0                  13
+#&gt; 17    hub_1536                   0                  0                   8
+#&gt; 18    hub_1537                   3                  0                  20
+#&gt; 19    hub_1538                   2                  0                  14
+#&gt; 20    hub_1539                   1                  0                  11
+#&gt; 21    hub_1540                   1                  0                  16
+#&gt; 22    hub_1541                   7                  0                  11
+#&gt; 23    hub_1542                   4                  0                   7
 #&gt; 24    hub_1543                   7                  0                   3
-#&gt; 25    hub_1544                  10                  0                   8
-#&gt; 26    hub_1545                   1                  0                  17
-#&gt; 27    hub_1546                   6                  0                  10
-#&gt; 28    hub_1547                   1                  0                  12
-#&gt; 29    hub_1548                   2                  0                  15
-#&gt; 30    hub_1549                   6                  0                  12
-#&gt; 31    hub_1550                   1                  0                  17
-#&gt; 32    hub_1551                   5                  0                  13
-#&gt; 33    hub_1552                   5                  0                   7
-#&gt; 34    hub_1554                   5                  0                   7
-#&gt; 35    hub_1555                   5                  0                   7
-#&gt; 36    hub_1556                   4                  0                  13
-#&gt; 37    hub_1558                   9                  0                   8
-#&gt; 38    hub_1559                   4                  0                  14
-#&gt; 39    hub_1560                   5                  0                  10
-#&gt; 40    hub_1561                   4                  0                  10
+#&gt; 25    hub_1544                   4                  0                  14
+#&gt; 26    hub_1545                   6                  0                  12
+#&gt; 27    hub_1546                  12                  0                   6
+#&gt; 28    hub_1547                   4                  0                  10
+#&gt; 29    hub_1548                   7                  0                  10
+#&gt; 30    hub_1549                   2                  0                  14
+#&gt; 31    hub_1550                  10                  0                   8
+#&gt; 32    hub_1551                   1                  0                  17
+#&gt; 33    hub_1552                   6                  0                   6
+#&gt; 34    hub_1554                   6                  0                   6
+#&gt; 35    hub_1555                   5                  0                   6
+#&gt; 36    hub_1556                   7                  0                  11
+#&gt; 37    hub_1558                   6                  0                  12
+#&gt; 38    hub_1559                   5                  0                  13
+#&gt; 39    hub_1560                   8                  0                   7
+#&gt; 40    hub_1561                   5                  0                   8
 #&gt; 41    hub_1562                   2                  0                  10
-#&gt; 42    hub_1563                   6                  0                   7
-#&gt; 43    hub_1564                   0                  0                  16
-#&gt; 44    hub_1566                   4                  0                   8
+#&gt; 42    hub_1563                  11                  0                   3
+#&gt; 43    hub_1564                   5                  0                  13
+#&gt; 44    hub_1566                   2                  0                  10
 #&gt; 45    hub_1567                   4                  0                   8
-#&gt; 46    hub_1568                   1                  0                  15
-#&gt; 47    hub_1569                   5                  0                  13
-#&gt; 48    hub_1570                   5                  0                  22
-#&gt; 49    hub_1571                   3                  0                  15
-#&gt; 50    hub_1572                   3                  0                  13
-#&gt; 51    hub_1573                   0                  0                   6
-#&gt; 52    hub_1574                   4                  0                  14
-#&gt; 53    hub_1575                   7                  0                  11
-#&gt; 54    hub_1577                  10                  0                  10
-#&gt; 55    hub_1578                   5                  0                  12
-#&gt; 56    hub_1579                   6                  0                   6
-#&gt; 57    hub_1580                   1                  0                  17
-#&gt; 58    hub_1581                   8                  0                   8
-#&gt; 59    hub_1582                   3                  0                  17
-#&gt; 60    hub_1583                   2                  0                  16
-#&gt; 61    hub_1584                   2                  0                  16
-#&gt; 62    hub_1585                   7                  0                   3
-#&gt; 63    hub_1586                   8                  0                   6
-#&gt; 64    hub_1588                   6                  0                  12
-#&gt; 65    hub_1590                   5                  0                   8
-#&gt; 66    hub_1591                  12                  0                   6
-#&gt; 67    hub_1592                   6                  0                  12
-#&gt; 68    hub_1593                   4                  0                  14
-#&gt; 69    hub_1594                   3                  0                   9
-#&gt; 70    hub_1595                   5                  0                  13
-#&gt; 71    hub_1596                   4                  0                   3
-#&gt; 72    hub_1597                   1                  0                  11
-#&gt; 73    hub_1598                   2                  0                  16
-#&gt; 74    hub_1599                   4                  0                   8
-#&gt; 75    hub_1600                   4                  0                  14
-#&gt; 76    hub_1601                   4                  0                   7
-#&gt; 77    hub_1602                   4                  0                  12
-#&gt; 78    hub_1603                   0                  0                   8
-#&gt; 79    hub_1604                   7                  0                   1
-#&gt; 80    hub_1605                   1                  0                  15
-#&gt; 81    hub_1606                   0                  0                  18
-#&gt; 82    hub_1607                   2                  0                  16
-#&gt; 83    hub_1608                   5                  0                  13
-#&gt; 84    hub_1609                   0                  0                  18
-#&gt; 85    hub_1611                   4                  0                  14
-#&gt; 86    hub_1612                   1                  0                  17
-#&gt; 87    hub_1613                   4                  0                   6
-#&gt; 88    hub_1614                   4                  0                   9
-#&gt; 89    hub_1615                   7                  0                  10
-#&gt; 90    hub_1616                   0                  0                   6
-#&gt; 91    hub_1617                   2                  0                   9
-#&gt; 92    hub_1713                   3                  0                  12
-#&gt; 93    hub_2275                   0                  0                  18
-#&gt; 94    hub_2276                   0                  0                  24
-#&gt; 95    hub_2598                   3                  0                   5
-#&gt; 96    hub_2677                   1                  0                  17
-#&gt; 97    hub_2678                   0                  0                  12
-#&gt; 98    hub_2679                   2                  0                  16
-#&gt; 99    hub_2680                   2                  0                  16
-#&gt; 100   hub_2681                   1                  0                  17
-#&gt; 101   hub_2682                   1                  0                  17
-#&gt; 102   hub_2683                   0                  0                  14
-#&gt; 103   hub_2684                   1                  0                  19
-#&gt; 104   hub_2685                   0                  0                  12
-#&gt; 105   hub_2686                   0                  0                  10
-#&gt; 106   hub_2687                   0                  0                   8
-#&gt; 107   hub_2688                   2                  0                  16
-#&gt; 108   hub_2689                   0                  0                  18
-#&gt; 109   hub_2695                   0                  0                  18
-#&gt; 110   hub_2696                   1                  0                  11
-#&gt; 111   hub_2698                   7                  0                  11
-#&gt; 112   hub_2707                   7                  0                  11
-#&gt; 113   hub_2708                   0                  0                   8
-#&gt; 114   hub_2789                   3                  0                  15
-#&gt; 115   hub_2798                   3                  0                  15
-#&gt; 116   hub_2875                   5                  0                  10
-#&gt; 117   hub_3240                   0                  0                   5
-#&gt; 118   hub_3929                   5                  0                   6
-#&gt; 119   hub_3957                   3                  0                   9
-#&gt; 120   hub_4034                   0                  0                  10
-#&gt; 121   hub_4050                   8                  0                   7
-#&gt; 122   hub_4312                   1                  0                   5
-#&gt; 123   hub_4313                   2                  0                   3
-#&gt; 124   hub_4315                   0                  0                   6
-#&gt; 125   hub_4316                   0                  0                   6
-#&gt; 126   hub_4317                   1                  0                   8
-#&gt; 127   hub_4318                   0                  0                   6
-#&gt; 128   hub_4319                   0                  0                   6
-#&gt; 129   hub_4320                   0                  0                  15
-#&gt; 130   hub_4321                   1                  0                   8
-#&gt; 131   hub_4322                   0                  0                   6
-#&gt; 132   hub_4323                   0                  0                  12
-#&gt; 133   hub_4324                   1                  0                   5
-#&gt; 134   hub_4325                   0                  0                  12
-#&gt; 135   hub_4326                   2                  0                   3
-#&gt; 136   hub_4327                   0                  0                  12
-#&gt; 137   hub_4328                   2                  0                  10
-#&gt; 138   hub_4329                   4                  0                   8
-#&gt; 139   hub_4368                   2                  0                   6
-#&gt; 140   hub_4381                   1                  0                   3
-#&gt; 141   hub_4482                   2                  0                  12
-#&gt; 142   hub_5277                   0                  0                   6
-#&gt; 143   hub_5311                   2                  0                   4
-#&gt; 144   hub_5316                   0                  0                   6
-#&gt; 145   hub_5357                   5                  0                   2
-#&gt; 146   hub_5414                   6                  0                  12
-#&gt; 147   hub_5470                   4                  0                   4
-#&gt; 148   hub_5473                   2                  0                   6
-#&gt; 149   hub_5474                   1                  0                   5
-#&gt; 150   hub_5476                   3                  0                   5
-#&gt; 151   hub_5491                   5                  0                   1
-#&gt; 152   hub_5493                   1                  0                   2
-#&gt; 153   hub_5498                   0                  0                  12
-#&gt; 154   hub_5567                   0                  0                   5
-#&gt; 155   hub_5597                  10                  0                   9
+#&gt; 46    hub_1569                   8                  0                  10
+#&gt; 47    hub_1570                  10                  0                  17
+#&gt; 48    hub_1571                   1                  0                  16
+#&gt; 49    hub_1572                   4                  0                  11
+#&gt; 50    hub_1573                   0                  0                   6
+#&gt; 51    hub_1574                   3                  0                  15
+#&gt; 52    hub_1575                  10                  0                   8
+#&gt; 53    hub_1577                  14                  0                   5
+#&gt; 54    hub_1578                   4                  0                  14
+#&gt; 55    hub_1579                   4                  0                   8
+#&gt; 56    hub_1580                   2                  0                  16
+#&gt; 57    hub_1581                  10                  0                   8
+#&gt; 58    hub_1582                   5                  0                  15
+#&gt; 59    hub_1583                  10                  0                   8
+#&gt; 60    hub_1584                   3                  0                  15
+#&gt; 61    hub_1585                   7                  0                   3
+#&gt; 62    hub_1586                   5                  0                   9
+#&gt; 63    hub_1588                   7                  0                  11
+#&gt; 64    hub_1590                   4                  0                  10
+#&gt; 65    hub_1591                   4                  0                  14
+#&gt; 66    hub_1592                   5                  0                  13
+#&gt; 67    hub_1593                   8                  0                  10
+#&gt; 68    hub_1594                   6                  0                   6
+#&gt; 69    hub_1595                   9                  0                   9
+#&gt; 70    hub_1596                   5                  0                   3
+#&gt; 71    hub_1597                   0                  0                  12
+#&gt; 72    hub_1598                   7                  0                  11
+#&gt; 73    hub_1599                   4                  0                   8
+#&gt; 74    hub_1600                   8                  0                  10
+#&gt; 75    hub_1601                   0                  0                  11
+#&gt; 76    hub_1602                   8                  0                  10
+#&gt; 77    hub_1603                   0                  0                   8
+#&gt; 78    hub_1604                   1                  0                   7
+#&gt; 79    hub_1605                   3                  0                  13
+#&gt; 80    hub_1606                   3                  0                  15
+#&gt; 81    hub_1607                   6                  0                  12
+#&gt; 82    hub_1608                   6                  0                  12
+#&gt; 83    hub_1609                   7                  0                  11
+#&gt; 84    hub_1611                   5                  0                  13
+#&gt; 85    hub_1612                   2                  0                  16
+#&gt; 86    hub_1613                   4                  0                   8
+#&gt; 87    hub_1614                   1                  0                  12
+#&gt; 88    hub_1615                   8                  0                   8
+#&gt; 89    hub_1616                   1                  0                   5
+#&gt; 90    hub_1617                   6                  0                   6
+#&gt; 91    hub_1713                   8                  0                   7
+#&gt; 92    hub_2275                   0                  0                  18
+#&gt; 93    hub_2276                   0                  0                  24
+#&gt; 94    hub_2598                   0                  0                   8
+#&gt; 95    hub_2677                   1                  0                  17
+#&gt; 96    hub_2678                   1                  0                  11
+#&gt; 97    hub_2679                   1                  0                  17
+#&gt; 98    hub_2680                   0                  0                  18
+#&gt; 99    hub_2681                   1                  0                  17
+#&gt; 100   hub_2682                   0                  0                  18
+#&gt; 101   hub_2683                   2                  0                  12
+#&gt; 102   hub_2684                   0                  0                  20
+#&gt; 103   hub_2685                   0                  0                  12
+#&gt; 104   hub_2686                   0                  0                  10
+#&gt; 105   hub_2687                   1                  0                   7
+#&gt; 106   hub_2688                   0                  0                  18
+#&gt; 107   hub_2689                   1                  0                  17
+#&gt; 108   hub_2695                   0                  0                  18
+#&gt; 109   hub_2696                   1                  0                  11
+#&gt; 110   hub_2698                   9                  0                   9
+#&gt; 111   hub_2707                   8                  0                   9
+#&gt; 112   hub_2708                   0                  0                   8
+#&gt; 113   hub_2789                   8                  0                  10
+#&gt; 114   hub_2798                   9                  0                   9
+#&gt; 115   hub_2875                   4                  0                  11
+#&gt; 116   hub_3240                   4                  0                   2
+#&gt; 117   hub_3929                   3                  0                   7
+#&gt; 118   hub_3957                   1                  0                  11
+#&gt; 119   hub_4034                   0                  0                  10
+#&gt; 120   hub_4050                   4                  0                  11
+#&gt; 121   hub_4312                   0                  0                   6
+#&gt; 122   hub_4313                   1                  0                   5
+#&gt; 123   hub_4315                   0                  0                   6
+#&gt; 124   hub_4316                   0                  0                   6
+#&gt; 125   hub_4318                   0                  0                   6
+#&gt; 126   hub_4319                   0                  0                   6
+#&gt; 127   hub_4320                   3                  0                  11
+#&gt; 128   hub_4321                   1                  0                   8
+#&gt; 129   hub_4322                   0                  0                   6
+#&gt; 130   hub_4323                   3                  0                   9
+#&gt; 131   hub_4324                   1                  0                   5
+#&gt; 132   hub_4325                   0                  0                  12
+#&gt; 133   hub_4326                   0                  0                   7
+#&gt; 134   hub_4327                   0                  0                  12
+#&gt; 135   hub_4328                   1                  0                  11
+#&gt; 136   hub_4329                   0                  0                  12
+#&gt; 137   hub_4368                   0                  0                   8
+#&gt; 138   hub_4381                   1                  0                   3
+#&gt; 139   hub_4482                  10                  0                   4
+#&gt; 140   hub_5277                   3                  0                   3
+#&gt; 141   hub_5311                   2                  0                   4
+#&gt; 142   hub_5316                   0                  0                   6
+#&gt; 143   hub_5357                   3                  0                   4
+#&gt; 144   hub_5414                   5                  0                  13
+#&gt; 145   hub_5470                   2                  0                   6
+#&gt; 146   hub_5473                   1                  0                   7
+#&gt; 147   hub_5474                   2                  0                   6
+#&gt; 148   hub_5476                   2                  0                   6
+#&gt; 149   hub_5491                   3                  0                   3
+#&gt; 150   hub_5493                   1                  0                   3
+#&gt; 151   hub_5498                   2                  0                  10
+#&gt; 152   hub_5567                   0                  0                   4
+#&gt; 153   hub_5597                   9                  0                   9
+#&gt; 154   hub_5629                   0                  0                   5
+#&gt; 155   hub_5633                   2                  0                   3
+#&gt; 156   hub_5638                   0                  0                   9
+#&gt; 157   hub_5652                   0                  0                   6
+#&gt; 158   hub_5666                   6                  0                   3
 #&gt;     is_installed is_renting is_returning last_reported        last_updated year
-#&gt; 1              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 2              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 3              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 4              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 5              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 6              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 7              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 8              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 9              1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 10             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 11             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 12             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 13             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 14             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 15             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 16             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 17             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 18             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 19             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 20             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 21             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 22             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 23             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 24             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 25             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 26             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 27             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 28             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 29             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 30             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 31             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 32             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 33             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 34             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 35             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 36             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 37             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 38             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 39             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 40             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 41             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 42             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 43             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 44             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 45             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 46             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 47             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 48             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 49             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 50             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 51             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 52             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 53             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 54             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 55             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 56             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 57             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 58             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 59             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 60             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 61             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 62             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 63             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 64             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 65             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 66             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 67             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 68             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 69             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 70             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 71             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 72             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 73             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 74             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 75             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 76             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 77             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 78             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 79             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 80             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 81             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 82             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 83             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 84             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 85             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 86             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 87             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 88             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 89             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 90             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 91             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 92             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 93             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 94             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 95             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 96             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 97             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 98             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 99             1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 100            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 101            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 102            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 103            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 104            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 105            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 106            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 107            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 108            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 109            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 110            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 111            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 112            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 113            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 114            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 115            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 116            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 117            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 118            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 119            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 120            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 121            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 122            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 123            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 124            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 125            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 126            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 127            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 128            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 129            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 130            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 131            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 132            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 133            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 134            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 135            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 136            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 137            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 138            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 139            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 140            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 141            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 142            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 143            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 144            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 145            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 146            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 147            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 148            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 149            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 150            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 151            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 152            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 153            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 154            1          1            1    1578606640 2020-01-09 15:50:40 2020
-#&gt; 155            1          1            1    1578606640 2020-01-09 15:50:40 2020
+#&gt; 1              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 2              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 3              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 4              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 5              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 6              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 7              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 8              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 9              1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 10             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 11             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 12             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 13             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 14             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 15             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 16             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 17             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 18             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 19             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 20             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 21             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 22             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 23             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 24             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 25             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 26             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 27             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 28             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 29             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 30             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 31             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 32             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 33             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 34             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 35             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 36             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 37             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 38             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 39             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 40             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 41             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 42             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 43             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 44             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 45             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 46             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 47             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 48             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 49             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 50             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 51             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 52             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 53             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 54             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 55             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 56             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 57             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 58             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 59             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 60             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 61             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 62             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 63             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 64             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 65             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 66             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 67             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 68             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 69             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 70             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 71             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 72             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 73             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 74             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 75             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 76             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 77             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 78             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 79             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 80             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 81             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 82             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 83             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 84             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 85             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 86             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 87             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 88             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 89             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 90             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 91             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 92             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 93             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 94             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 95             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 96             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 97             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 98             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 99             1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 100            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 101            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 102            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 103            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 104            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 105            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 106            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 107            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 108            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 109            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 110            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 111            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 112            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 113            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 114            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 115            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 116            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 117            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 118            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 119            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 120            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 121            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 122            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 123            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 124            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 125            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 126            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 127            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 128            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 129            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 130            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 131            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 132            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 133            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 134            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 135            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 136            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 137            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 138            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 139            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 140            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 141            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 142            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 143            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 144            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 145            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 146            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 147            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 148            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 149            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 150            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 151            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 152            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 153            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 154            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 155            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 156            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 157            1          1            1    1585250053 2020-03-26 12:14:13 2020
+#&gt; 158            1          1            1    1585250053 2020-03-26 12:14:13 2020
 #&gt;     month day hour minute
-#&gt; 1       1   9   15     50
-#&gt; 2       1   9   15     50
-#&gt; 3       1   9   15     50
-#&gt; 4       1   9   15     50
-#&gt; 5       1   9   15     50
-#&gt; 6       1   9   15     50
-#&gt; 7       1   9   15     50
-#&gt; 8       1   9   15     50
-#&gt; 9       1   9   15     50
-#&gt; 10      1   9   15     50
-#&gt; 11      1   9   15     50
-#&gt; 12      1   9   15     50
-#&gt; 13      1   9   15     50
-#&gt; 14      1   9   15     50
-#&gt; 15      1   9   15     50
-#&gt; 16      1   9   15     50
-#&gt; 17      1   9   15     50
-#&gt; 18      1   9   15     50
-#&gt; 19      1   9   15     50
-#&gt; 20      1   9   15     50
-#&gt; 21      1   9   15     50
-#&gt; 22      1   9   15     50
-#&gt; 23      1   9   15     50
-#&gt; 24      1   9   15     50
-#&gt; 25      1   9   15     50
-#&gt; 26      1   9   15     50
-#&gt; 27      1   9   15     50
-#&gt; 28      1   9   15     50
-#&gt; 29      1   9   15     50
-#&gt; 30      1   9   15     50
-#&gt; 31      1   9   15     50
-#&gt; 32      1   9   15     50
-#&gt; 33      1   9   15     50
-#&gt; 34      1   9   15     50
-#&gt; 35      1   9   15     50
-#&gt; 36      1   9   15     50
-#&gt; 37      1   9   15     50
-#&gt; 38      1   9   15     50
-#&gt; 39      1   9   15     50
-#&gt; 40      1   9   15     50
-#&gt; 41      1   9   15     50
-#&gt; 42      1   9   15     50
-#&gt; 43      1   9   15     50
-#&gt; 44      1   9   15     50
-#&gt; 45      1   9   15     50
-#&gt; 46      1   9   15     50
-#&gt; 47      1   9   15     50
-#&gt; 48      1   9   15     50
-#&gt; 49      1   9   15     50
-#&gt; 50      1   9   15     50
-#&gt; 51      1   9   15     50
-#&gt; 52      1   9   15     50
-#&gt; 53      1   9   15     50
-#&gt; 54      1   9   15     50
-#&gt; 55      1   9   15     50
-#&gt; 56      1   9   15     50
-#&gt; 57      1   9   15     50
-#&gt; 58      1   9   15     50
-#&gt; 59      1   9   15     50
-#&gt; 60      1   9   15     50
-#&gt; 61      1   9   15     50
-#&gt; 62      1   9   15     50
-#&gt; 63      1   9   15     50
-#&gt; 64      1   9   15     50
-#&gt; 65      1   9   15     50
-#&gt; 66      1   9   15     50
-#&gt; 67      1   9   15     50
-#&gt; 68      1   9   15     50
-#&gt; 69      1   9   15     50
-#&gt; 70      1   9   15     50
-#&gt; 71      1   9   15     50
-#&gt; 72      1   9   15     50
-#&gt; 73      1   9   15     50
-#&gt; 74      1   9   15     50
-#&gt; 75      1   9   15     50
-#&gt; 76      1   9   15     50
-#&gt; 77      1   9   15     50
-#&gt; 78      1   9   15     50
-#&gt; 79      1   9   15     50
-#&gt; 80      1   9   15     50
-#&gt; 81      1   9   15     50
-#&gt; 82      1   9   15     50
-#&gt; 83      1   9   15     50
-#&gt; 84      1   9   15     50
-#&gt; 85      1   9   15     50
-#&gt; 86      1   9   15     50
-#&gt; 87      1   9   15     50
-#&gt; 88      1   9   15     50
-#&gt; 89      1   9   15     50
-#&gt; 90      1   9   15     50
-#&gt; 91      1   9   15     50
-#&gt; 92      1   9   15     50
-#&gt; 93      1   9   15     50
-#&gt; 94      1   9   15     50
-#&gt; 95      1   9   15     50
-#&gt; 96      1   9   15     50
-#&gt; 97      1   9   15     50
-#&gt; 98      1   9   15     50
-#&gt; 99      1   9   15     50
-#&gt; 100     1   9   15     50
-#&gt; 101     1   9   15     50
-#&gt; 102     1   9   15     50
-#&gt; 103     1   9   15     50
-#&gt; 104     1   9   15     50
-#&gt; 105     1   9   15     50
-#&gt; 106     1   9   15     50
-#&gt; 107     1   9   15     50
-#&gt; 108     1   9   15     50
-#&gt; 109     1   9   15     50
-#&gt; 110     1   9   15     50
-#&gt; 111     1   9   15     50
-#&gt; 112     1   9   15     50
-#&gt; 113     1   9   15     50
-#&gt; 114     1   9   15     50
-#&gt; 115     1   9   15     50
-#&gt; 116     1   9   15     50
-#&gt; 117     1   9   15     50
-#&gt; 118     1   9   15     50
-#&gt; 119     1   9   15     50
-#&gt; 120     1   9   15     50
-#&gt; 121     1   9   15     50
-#&gt; 122     1   9   15     50
-#&gt; 123     1   9   15     50
-#&gt; 124     1   9   15     50
-#&gt; 125     1   9   15     50
-#&gt; 126     1   9   15     50
-#&gt; 127     1   9   15     50
-#&gt; 128     1   9   15     50
-#&gt; 129     1   9   15     50
-#&gt; 130     1   9   15     50
-#&gt; 131     1   9   15     50
-#&gt; 132     1   9   15     50
-#&gt; 133     1   9   15     50
-#&gt; 134     1   9   15     50
-#&gt; 135     1   9   15     50
-#&gt; 136     1   9   15     50
-#&gt; 137     1   9   15     50
-#&gt; 138     1   9   15     50
-#&gt; 139     1   9   15     50
-#&gt; 140     1   9   15     50
-#&gt; 141     1   9   15     50
-#&gt; 142     1   9   15     50
-#&gt; 143     1   9   15     50
-#&gt; 144     1   9   15     50
-#&gt; 145     1   9   15     50
-#&gt; 146     1   9   15     50
-#&gt; 147     1   9   15     50
-#&gt; 148     1   9   15     50
-#&gt; 149     1   9   15     50
-#&gt; 150     1   9   15     50
-#&gt; 151     1   9   15     50
-#&gt; 152     1   9   15     50
-#&gt; 153     1   9   15     50
-#&gt; 154     1   9   15     50
-#&gt; 155     1   9   15     50</div></pre>
+#&gt; 1       3  26   12     14
+#&gt; 2       3  26   12     14
+#&gt; 3       3  26   12     14
+#&gt; 4       3  26   12     14
+#&gt; 5       3  26   12     14
+#&gt; 6       3  26   12     14
+#&gt; 7       3  26   12     14
+#&gt; 8       3  26   12     14
+#&gt; 9       3  26   12     14
+#&gt; 10      3  26   12     14
+#&gt; 11      3  26   12     14
+#&gt; 12      3  26   12     14
+#&gt; 13      3  26   12     14
+#&gt; 14      3  26   12     14
+#&gt; 15      3  26   12     14
+#&gt; 16      3  26   12     14
+#&gt; 17      3  26   12     14
+#&gt; 18      3  26   12     14
+#&gt; 19      3  26   12     14
+#&gt; 20      3  26   12     14
+#&gt; 21      3  26   12     14
+#&gt; 22      3  26   12     14
+#&gt; 23      3  26   12     14
+#&gt; 24      3  26   12     14
+#&gt; 25      3  26   12     14
+#&gt; 26      3  26   12     14
+#&gt; 27      3  26   12     14
+#&gt; 28      3  26   12     14
+#&gt; 29      3  26   12     14
+#&gt; 30      3  26   12     14
+#&gt; 31      3  26   12     14
+#&gt; 32      3  26   12     14
+#&gt; 33      3  26   12     14
+#&gt; 34      3  26   12     14
+#&gt; 35      3  26   12     14
+#&gt; 36      3  26   12     14
+#&gt; 37      3  26   12     14
+#&gt; 38      3  26   12     14
+#&gt; 39      3  26   12     14
+#&gt; 40      3  26   12     14
+#&gt; 41      3  26   12     14
+#&gt; 42      3  26   12     14
+#&gt; 43      3  26   12     14
+#&gt; 44      3  26   12     14
+#&gt; 45      3  26   12     14
+#&gt; 46      3  26   12     14
+#&gt; 47      3  26   12     14
+#&gt; 48      3  26   12     14
+#&gt; 49      3  26   12     14
+#&gt; 50      3  26   12     14
+#&gt; 51      3  26   12     14
+#&gt; 52      3  26   12     14
+#&gt; 53      3  26   12     14
+#&gt; 54      3  26   12     14
+#&gt; 55      3  26   12     14
+#&gt; 56      3  26   12     14
+#&gt; 57      3  26   12     14
+#&gt; 58      3  26   12     14
+#&gt; 59      3  26   12     14
+#&gt; 60      3  26   12     14
+#&gt; 61      3  26   12     14
+#&gt; 62      3  26   12     14
+#&gt; 63      3  26   12     14
+#&gt; 64      3  26   12     14
+#&gt; 65      3  26   12     14
+#&gt; 66      3  26   12     14
+#&gt; 67      3  26   12     14
+#&gt; 68      3  26   12     14
+#&gt; 69      3  26   12     14
+#&gt; 70      3  26   12     14
+#&gt; 71      3  26   12     14
+#&gt; 72      3  26   12     14
+#&gt; 73      3  26   12     14
+#&gt; 74      3  26   12     14
+#&gt; 75      3  26   12     14
+#&gt; 76      3  26   12     14
+#&gt; 77      3  26   12     14
+#&gt; 78      3  26   12     14
+#&gt; 79      3  26   12     14
+#&gt; 80      3  26   12     14
+#&gt; 81      3  26   12     14
+#&gt; 82      3  26   12     14
+#&gt; 83      3  26   12     14
+#&gt; 84      3  26   12     14
+#&gt; 85      3  26   12     14
+#&gt; 86      3  26   12     14
+#&gt; 87      3  26   12     14
+#&gt; 88      3  26   12     14
+#&gt; 89      3  26   12     14
+#&gt; 90      3  26   12     14
+#&gt; 91      3  26   12     14
+#&gt; 92      3  26   12     14
+#&gt; 93      3  26   12     14
+#&gt; 94      3  26   12     14
+#&gt; 95      3  26   12     14
+#&gt; 96      3  26   12     14
+#&gt; 97      3  26   12     14
+#&gt; 98      3  26   12     14
+#&gt; 99      3  26   12     14
+#&gt; 100     3  26   12     14
+#&gt; 101     3  26   12     14
+#&gt; 102     3  26   12     14
+#&gt; 103     3  26   12     14
+#&gt; 104     3  26   12     14
+#&gt; 105     3  26   12     14
+#&gt; 106     3  26   12     14
+#&gt; 107     3  26   12     14
+#&gt; 108     3  26   12     14
+#&gt; 109     3  26   12     14
+#&gt; 110     3  26   12     14
+#&gt; 111     3  26   12     14
+#&gt; 112     3  26   12     14
+#&gt; 113     3  26   12     14
+#&gt; 114     3  26   12     14
+#&gt; 115     3  26   12     14
+#&gt; 116     3  26   12     14
+#&gt; 117     3  26   12     14
+#&gt; 118     3  26   12     14
+#&gt; 119     3  26   12     14
+#&gt; 120     3  26   12     14
+#&gt; 121     3  26   12     14
+#&gt; 122     3  26   12     14
+#&gt; 123     3  26   12     14
+#&gt; 124     3  26   12     14
+#&gt; 125     3  26   12     14
+#&gt; 126     3  26   12     14
+#&gt; 127     3  26   12     14
+#&gt; 128     3  26   12     14
+#&gt; 129     3  26   12     14
+#&gt; 130     3  26   12     14
+#&gt; 131     3  26   12     14
+#&gt; 132     3  26   12     14
+#&gt; 133     3  26   12     14
+#&gt; 134     3  26   12     14
+#&gt; 135     3  26   12     14
+#&gt; 136     3  26   12     14
+#&gt; 137     3  26   12     14
+#&gt; 138     3  26   12     14
+#&gt; 139     3  26   12     14
+#&gt; 140     3  26   12     14
+#&gt; 141     3  26   12     14
+#&gt; 142     3  26   12     14
+#&gt; 143     3  26   12     14
+#&gt; 144     3  26   12     14
+#&gt; 145     3  26   12     14
+#&gt; 146     3  26   12     14
+#&gt; 147     3  26   12     14
+#&gt; 148     3  26   12     14
+#&gt; 149     3  26   12     14
+#&gt; 150     3  26   12     14
+#&gt; 151     3  26   12     14
+#&gt; 152     3  26   12     14
+#&gt; 153     3  26   12     14
+#&gt; 154     3  26   12     14
+#&gt; 155     3  26   12     14
+#&gt; 156     3  26   12     14
+#&gt; 157     3  26   12     14
+#&gt; 158     3  26   12     14</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kaelyn Rosenberg, Simon P. Couch.</p>
+  <p>Developed by Simon P. Couch, Kaelyn Rosenberg.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>

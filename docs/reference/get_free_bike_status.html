@@ -8,25 +8,36 @@
 
 <title>Grab the free_bike_status feed. — get_free_bike_status • gbfs</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -39,7 +50,6 @@
 <meta property="og:description" content="Grab a dataframe giving the geographic location and other metadata of
 bikeshare bikes not parked at bikeshare stations. Metadata for this dataset
 can be found at: https://github.com/NABSA/gbfs/blob/master/gbfs.md" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -57,7 +67,7 @@ can be found at: https://github.com/NABSA/gbfs/blob/master/gbfs.md" />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -71,7 +81,7 @@ can be found at: https://github.com/NABSA/gbfs/blob/master/gbfs.md" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gbfs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.2</span>
       </span>
     </div>
 
@@ -92,7 +102,7 @@ can be found at: https://github.com/NABSA/gbfs/blob/master/gbfs.md" />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/ds-civic-data/gbfs">
+  <a href="https://github.com/simonpcouch/gbfs/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -111,7 +121,7 @@ can be found at: https://github.com/NABSA/gbfs/blob/master/gbfs.md" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Grab the free_bike_status feed.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ds-civic-data/gbfs/blob/master/R/get_dynamic_feeds.R'><code>R/get_dynamic_feeds.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/simonpcouch/gbfs/blob/master/R/get_dynamic_feeds.R'><code>R/get_dynamic_feeds.R</code></a></small>
     <div class="hidden name"><code>get_free_bike_status.Rd</code></div>
     </div>
 
@@ -176,783 +186,254 @@ are released by a given city.</p></div>
 <span class='co'># oregon's bikeshare program in  several ways! the most </span>
 <span class='co'># straightforward way is just to supply the `city` argument</span>
 <span class='co'># as a string:</span>
-<span class='fu'>get_free_bike_status</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>)</div><div class='output co'>#&gt; <span class='message'>Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.</span></div><div class='output co'>#&gt;        bike_id                                      name       lon      lat
-#&gt; 1    bike_7103                             0783 BIKETOWN -122.6154 45.51199
-#&gt; 2    bike_6543                             0344 BIKETOWN -122.6588 45.53701
-#&gt; 3    bike_6438                             0295 BIKETOWN -122.6064 45.56264
-#&gt; 4    bike_7208                             0021 BIKETOWN -122.6970 45.53059
-#&gt; 5    bike_7397                             0497 BIKETOWN -122.6786 45.52699
-#&gt; 6    bike_6051                             0054 BIKETOWN -122.6203 45.53347
-#&gt; 7    bike_6049                             0346 BIKETOWN -122.6748 45.52598
-#&gt; 8    bike_6198                             0739 BIKETOWN -122.6953 45.56134
-#&gt; 9    bike_6572                             0665 BIKETOWN -122.6202 45.49323
-#&gt; 10   bike_7252                             0845 BIKETOWN -122.6205 45.53453
-#&gt; 11   bike_7323           0965 DESIGN BIKE, N PAUL BUNYAN -122.6882 45.52661
-#&gt; 12   bike_6404                             0799 BIKETOWN -122.6318 45.56147
-#&gt; 13   bike_7355         1006 DESIGN BIKE, NE CYCLING LIFE -122.6147 45.51132
-#&gt; 14   bike_6626                             0547 BIKETOWN -122.6495 45.52672
-#&gt; 15   bike_6389                             0176 BIKETOWN -122.6966 45.53061
-#&gt; 16   bike_6623                             0079 BIKETOWN -122.6466 45.53579
-#&gt; 17   bike_6473                             0656 BIKETOWN -122.6422 45.51167
-#&gt; 18   bike_7205                             0458 BIKETOWN -122.6822 45.54787
-#&gt; 19   bike_7117                             0762 BIKETOWN -122.6509 45.50991
-#&gt; 20   bike_6390                             0107 BIKETOWN -122.6739 45.56406
-#&gt; 21   bike_7170                             0019 BIKETOWN -122.6838 45.52927
-#&gt; 22   bike_6210                            0821 BIKETOWN  -122.6722 45.52600
-#&gt; 23   bike_6305                             0111 BIKETOWN -122.6756 45.55234
-#&gt; 24   bike_6847                             0716 BIKETOWN -122.6443 45.52865
-#&gt; 25   bike_6450                            0556 BIKETOWN  -122.6804 45.53219
-#&gt; 26   bike_6867                             0192 BIKETOWN -122.6447 45.49723
-#&gt; 27   bike_7349                    1009 BLAZERS 50th BIKE -122.6202 45.52304
-#&gt; 28  bike_29251                             0135 BIKETOWN -122.6305 45.53313
-#&gt; 29   bike_7158                            0324 BIKETOWN  -122.6841 45.50816
-#&gt; 30   bike_7104                             0824 BIKETOWN -122.6865 45.53435
-#&gt; 31   bike_6232                             0870 BIKETOWN -122.6596 45.52386
-#&gt; 32   bike_6574                             0666 BIKETOWN -122.6729 45.52391
-#&gt; 33   bike_7345         1004 DESIGN BIKE, NE CYCLING LIFE -122.6909 45.53350
-#&gt; 34   bike_6281                             0213 BIKETOWN -122.6711 45.52294
-#&gt; 35   bike_7116                             0399 BIKETOWN -122.6231 45.52882
-#&gt; 36   bike_6578                             0065 BIKETOWN -122.6606 45.51528
-#&gt; 37   bike_6257                            0636 BIKETOWN  -122.6539 45.51251
-#&gt; 38   bike_6559                             0394 BIKETOWN -122.6089 45.52267
-#&gt; 39  bike_24810                             0146 BIKETOWN -122.6627 45.53325
-#&gt; 40   bike_6225                             0313 BIKETOWN -122.6765 45.52027
-#&gt; 41   bike_7241                             0002 BIKETOWN -122.6579 45.50370
-#&gt; 42   bike_7206                             0553 BIKETOWN -122.6732 45.52517
-#&gt; 43   bike_7145                             0572 BIKETOWN -122.6944 45.52717
-#&gt; 44   bike_6840                             0080 BIKETOWN -122.6549 45.51644
-#&gt; 45   bike_6540                             0420 BIKETOWN -122.6545 45.55903
-#&gt; 46   bike_6292                             0328 BIKETOWN -122.6719 45.52031
-#&gt; 47   bike_6807                             0510 BIKETOWN -122.6539 45.53440
-#&gt; 48   bike_7202                             0251 BIKETOWN -122.6637 45.54086
-#&gt; 49   bike_7250                             0742 BIKETOWN -122.6774 45.52734
-#&gt; 50   bike_6463                             0731 BIKETOWN -122.6694 45.53288
-#&gt; 51   bike_6114                             0516 BIKETOWN -122.6341 45.55904
-#&gt; 52   bike_6534                             0922 BIKETOWN -122.6411 45.55318
-#&gt; 53   bike_6878                            0141 BIKETOWN  -122.6351 45.53376
-#&gt; 54   bike_6219                            0477 BIKETOWN  -122.6893 45.53011
-#&gt; 55   bike_6386                             0654 BIKETOWN -122.6895 45.52335
-#&gt; 56   bike_6576                             0797 BIKETOWN -122.6474 45.52716
-#&gt; 57  bike_23242                             0893 BIKETOWN -122.6339 45.50486
-#&gt; 58   bike_6177                            0367 BIKETOWN  -122.6112 45.49703
-#&gt; 59   bike_7361                    0931 BLAZERS 50th BIKE -122.6823 45.52995
-#&gt; 60   bike_6391                             0113 BIKETOWN -122.6713 45.52544
-#&gt; 61   bike_7161                            0171 BIKETOWN  -122.6318 45.56164
-#&gt; 62   bike_6457                            0285 BIKETOWN  -122.6770 45.52628
-#&gt; 63   bike_6495                             0702 BIKETOWN -122.6801 45.51855
-#&gt; 64   bike_5991                             0509 BIKETOWN -122.6391 45.49785
-#&gt; 65   bike_6024                             0634 BIKETOWN -122.6654 45.51111
-#&gt; 66   bike_7353                        1019 VETERANS BIKE -122.6837 45.53311
-#&gt; 67   bike_6558                             0906 BIKETOWN -122.6679 45.51385
-#&gt; 68   bike_6593                             0738 BIKETOWN -122.6787 45.51765
-#&gt; 69   bike_6156                             0615 BIKETOWN -122.6607 45.51961
-#&gt; 70   bike_7311                0991 WOMEN'S HISTORY MONTH -122.6725 45.52018
-#&gt; 71   bike_6230                             0605 BIKETOWN -122.6438 45.52888
-#&gt; 72   bike_7328                          1000 AIR SAFARI  -122.6594 45.52292
-#&gt; 73   bike_6528                             0646 BIKETOWN -122.6328 45.50487
-#&gt; 74   bike_7246                             0292 BIKETOWN -122.6834 45.50912
-#&gt; 75   bike_6221                             0093 BIKETOWN -122.6783 45.52591
-#&gt; 76   bike_6671                           0852 BIKETOWN   -122.6788 45.52322
-#&gt; 77   bike_6279                             0049 BIKETOWN -122.6774 45.52253
-#&gt; 78   bike_6284                             0878 BIKETOWN -122.6883 45.52654
-#&gt; 79   bike_6832                             0407 BIKETOWN -122.6601 45.51723
-#&gt; 80   bike_6659                             0154 BIKETOWN -122.6861 45.52790
-#&gt; 81   bike_6373                             0581 BIKETOWN -122.6933 45.51798
-#&gt; 82  bike_24814                             0398 BIKETOWN -122.6730 45.51707
-#&gt; 83   bike_7494                             0532 BIKETOWN -122.6736 45.52395
-#&gt; 84  bike_21157                         0947 ABILITY BIKE -122.6842 45.51750
-#&gt; 85   bike_6667                             0352 BIKETOWN -122.6093 45.50809
-#&gt; 86   bike_6301                             0247 BIKETOWN -122.6844 45.52726
-#&gt; 87   bike_7280                            0026 BIKETOWN  -122.6484 45.52278
-#&gt; 88   bike_6546                             0719 BIKETOWN -122.6689 45.53014
-#&gt; 89   bike_6241                             0599 BIKETOWN -122.6820 45.52578
-#&gt; 90   bike_7244                             0243 BIKETOWN -122.6589 45.51091
-#&gt; 91   bike_7114                             0371 BIKETOWN -122.6664 45.51504
-#&gt; 92   bike_6096                             0445 BIKETOWN -122.6498 45.50338
-#&gt; 93   bike_6304                             0330 BIKETOWN -122.6560 45.52294
-#&gt; 94   bike_6548                             0591 BIKETOWN -122.6689 45.53015
-#&gt; 95   bike_6191                             0430 BIKETOWN -122.6775 45.51067
-#&gt; 96   bike_7191                             0813 BIKETOWN -122.6727 45.50334
-#&gt; 97   bike_6639                             0833 BIKETOWN -122.6810 45.54588
-#&gt; 98   bike_5993                             0676 BIKETOWN -122.6637 45.52161
-#&gt; 99   bike_6188                            0378 BIKETOWN  -122.6426 45.51227
-#&gt; 100  bike_6105                             0200 BIKETOWN -122.6297 45.49315
-#&gt; 101 bike_29453           0970 DESIGN BIKE, N PAUL BUNYAN -122.6656 45.51232
-#&gt; 102  bike_6226                             0070 BIKETOWN -122.6660 45.50865
-#&gt; 103  bike_7188                             0024 BIKETOWN -122.6758 45.51486
-#&gt; 104  bike_6484                             0351 BIKETOWN -122.6551 45.50315
-#&gt; 105  bike_6552                             0849 BIKETOWN -122.6557 45.50676
-#&gt; 106  bike_7266                             0775 BIKETOWN -122.6725 45.52371
-#&gt; 107  bike_6057                             0212 BIKETOWN -122.6423 45.50139
-#&gt; 108  bike_7146                             0262 BIKETOWN -122.6543 45.53070
-#&gt; 109  bike_6186                             0737 BIKETOWN -122.6628 45.52352
-#&gt; 110  bike_6806                           0761 BIKETOWN   -122.6633 45.52228
-#&gt; 111  bike_7172                             0540 BIKETOWN -122.6723 45.51625
-#&gt; 112  bike_6477                             0883 BIKETOWN -122.6745 45.51783
-#&gt; 113  bike_6197                             0372 BIKETOWN -122.6757 45.52976
-#&gt; 114  bike_6338                            0046 BIKETOWN  -122.6604 45.51704
-#&gt; 115  bike_6202                             0891 BIKETOWN -122.6552 45.56455
-#&gt; 116 bike_24828                             0248 BIKETOWN -122.6610 45.51881
-#&gt; 117  bike_7113                             0602 BIKETOWN -122.6739 45.51884
-#&gt; 118  bike_6519                             0195 BIKETOWN -122.6755 45.52689
-#&gt; 119  bike_6095                             0073 BIKETOWN -122.6721 45.52041
-#&gt; 120  bike_7135                             0303 BIKETOWN -122.6689 45.53016
-#&gt; 121  bike_6462                            0275 BIKETOWN  -122.6724 45.52338
-#&gt; 122  bike_6428                             0058 BIKETOWN -122.6765 45.51497
-#&gt; 123  bike_6487                             0429 BIKETOWN -122.6825 45.53003
-#&gt; 124  bike_6335                             0034 BIKETOWN -122.6893 45.52313
-#&gt; 125  bike_7301                0971 WOMEN’S HISTORY MONTH -122.6786 45.53227
-#&gt; 126  bike_6326                             0748 BIKETOWN -122.6740 45.52302
-#&gt; 127  bike_6022                            0415 BIKETOWN  -122.6794 45.52587
-#&gt; 128  bike_6396                             0707 BIKETOWN -122.6613 45.55339
-#&gt; 129  bike_6228                             0580 BIKETOWN -122.6963 45.52549
-#&gt; 130  bike_6313                             0930 BIKETOWN -122.6813 45.51217
-#&gt; 131  bike_6831                             0357 BIKETOWN -122.6615 45.56106
-#&gt; 132  bike_6053                             0882 BIKETOWN -122.6792 45.51372
-#&gt; 133  bike_6189                             0139 BIKETOWN -122.6826 45.52654
-#&gt; 134  bike_6050                            0290 BIKETOWN  -122.6846 45.52499
-#&gt; 135  bike_7367  0941 DESIGN BIKE, WATERFRONT WANDERER SW -122.6773 45.52730
-#&gt; 136  bike_6170                             0336 BIKETOWN -122.6909 45.52344
-#&gt; 137  bike_6640                            0214 BIKETOWN  -122.6792 45.52634
-#&gt; 138  bike_7150                            0460 BIKETOWN  -122.6536 45.51444
-#&gt; 139  bike_6787                             0483 BIKETOWN -122.6732 45.52020
-#&gt; 140  bike_7125                             0172 BIKETOWN -122.6436 45.53496
-#&gt; 141  bike_6398                             0375 BIKETOWN -122.6750 45.52152
-#&gt; 142  bike_6166                             0036 BIKETOWN -122.6732 45.52040
-#&gt; 143  bike_7299                  0986 BLACK HISTORY MONTH -122.6738 45.52007
-#&gt; 144  bike_6054                             0744 BIKETOWN -122.6177 45.53502
-#&gt; 145  bike_6192                             0414 BIKETOWN -122.6836 45.52996
-#&gt; 146  bike_6541                             0839 BIKETOWN -122.6755 45.51450
-#&gt; 147  bike_6455                            0274 BIKETOWN  -122.6635 45.52363
-#&gt; 148  bike_6500                             0136 BIKETOWN -122.6723 45.52412
-#&gt; 149  bike_6328                             0127 BIKETOWN -122.7059 45.53298
-#&gt; 150  bike_6816                             0706 BIKETOWN -122.6556 45.51540
-#&gt; 151  bike_6564                             0903 BIKETOWN -122.6765 45.52316
-#&gt; 152  bike_6070                             0847 BIKETOWN -122.6889 45.52604
-#&gt; 153  bike_6354                             0374 BIKETOWN -122.6763 45.51702
-#&gt; 154  bike_7325                          0969 ASCEND BIKE -122.6609 45.51755
-#&gt; 155  bike_6249                             0300 BIKETOWN -122.6554 45.51214
-#&gt; 156  bike_6618                             0663 BIKETOWN -122.6801 45.51933
-#&gt; 157  bike_7230                             0003 BIKETOWN -122.6802 45.52933
-#&gt; 158  bike_6820                            0700 BIKETOWN  -122.6774 45.51615
-#&gt; 159  bike_6315                             0678 BIKETOWN -122.6525 45.49406
-#&gt; 160  bike_6094                            0531  BIKETOWN -122.6736 45.52042
-#&gt; 161  bike_7383       0964 NATIVE AMERICAN HERITAGE MONTH -122.6803 45.50804
-#&gt; 162  bike_6855                             0539 BIKETOWN -122.6817 45.52006
-#&gt; 163  bike_7147                             0170 BIKETOWN -122.6714 45.52366
-#&gt; 164  bike_6367                             0908 BIKETOWN -122.6811 45.52119
-#&gt; 165  bike_6102                             0083 BIKETOWN -122.6776 45.51488
-#&gt; 166  bike_6036                             0784 BIKETOWN -122.6869 45.52001
-#&gt; 167  bike_7309                  0995 BETRUE 2018 TRAINER -122.6320 45.51501
-#&gt; 168  bike_6100                             0616 BIKETOWN -122.6751 45.51597
-#&gt; 169  bike_6265                             0188 BIKETOWN -122.6971 45.53833
-#&gt; 170  bike_7278                             0208 BIKETOWN -122.6816 45.52108
-#&gt; 171  bike_7108                             0235 BIKETOWN -122.6606 45.51364
-#&gt; 172  bike_6631                             0332 BIKETOWN -122.6784 45.52287
-#&gt; 173  bike_6317                             0854 BIKETOWN -122.6937 45.52415
-#&gt; 174  bike_6362                             0066 BIKETOWN -122.6746 45.52182
-#&gt; 175  bike_6035                             0575 BIKETOWN -122.6892 45.51602
-#&gt; 176  bike_6817                             0088 BIKETOWN -122.6985 45.52886
-#&gt; 177  bike_7101                            0496 BIKETOWN  -122.6893 45.52341
-#&gt; 178  bike_7304                 0994 BETRUE 2018 TRAINER  -122.6903 45.52457
-#&gt; 179  bike_6414                             0363 BIKETOWN -122.6558 45.51964
-#&gt; 180  bike_6636                             0825 BIKETOWN -122.6166 45.53751
-#&gt; 181  bike_6544                             0321 BIKETOWN -122.6922 45.51873
-#&gt; 182  bike_7393                         0932 ABILITY BIKE -122.6756 45.51351
-#&gt; 183  bike_7157                            0389 BIKETOWN  -122.6584 45.54142
-#&gt; 184  bike_6043                             0639 BIKETOWN -122.6610 45.51866
-#&gt; 185  bike_6634                            0583 BIKETOWN  -122.6566 45.51850
-#&gt; 186  bike_6065                             0584 BIKETOWN -122.6054 45.54238
-#&gt; 187  bike_6884                             0086 BIKETOWN -122.6766 45.53120
-#&gt; 188  bike_6431                             0174 BIKETOWN -122.6804 45.52950
-#&gt; 189  bike_6052                             0494 BIKETOWN -122.6598 45.53427
-#&gt; 190  bike_6270                             0050 BIKETOWN -122.6841 45.52936
-#&gt; 191  bike_7390 0961 DESIGN BIKE, WATERFRONT WANDERER SW  -122.6766 45.51925
-#&gt; 192  bike_7497                             0576 BIKETOWN -122.6757 45.52977
-#&gt; 193  bike_6666                             0349 BIKETOWN -122.6724 45.51632
-#&gt; 194  bike_7247                             0254 BIKETOWN -122.6808 45.54861
-#&gt; 195  bike_6808                             0408 BIKETOWN -122.6803 45.52117
-#&gt; 196  bike_7124                             0222 BIKETOWN -122.6625 45.52259
-#&gt; 197  bike_6594                             0772 BIKETOWN -122.6605 45.51228
-#&gt; 198  bike_6274                             0819 BIKETOWN -122.6810 45.52956
-#&gt; 199  bike_5989                             0872 BIKETOWN -122.6231 45.51781
-#&gt; 200  bike_6203                             0611 BIKETOWN -122.6783 45.51971
-#&gt; 201  bike_6273                             0057 BIKETOWN -122.6638 45.51310
-#&gt; 202  bike_6865                            0455 BIKETOWN  -122.6710 45.52390
-#&gt; 203  bike_6429                             0650 BIKETOWN -122.6795 45.51371
-#&gt; 204  bike_6661                             0768 BIKETOWN -122.6632 45.52996
-#&gt; 205  bike_6392                            0306 BIKETOWN  -122.6774 45.51334
-#&gt; 206  bike_7396                             0069 BIKETOWN -122.6415 45.52728
-#&gt; 207  bike_7302                 0967 BETRUE 2018 TRAINER  -122.6813 45.51140
-#&gt; 208  bike_7285                             0025 BIKETOWN -122.6811 45.50871
-#&gt; 209  bike_6887                             0450 BIKETOWN -122.6869 45.53576
-#&gt; 210  bike_6097                             0439 BIKETOWN -122.6572 45.51218
-#&gt; 211  bike_7310                       0968 BETRUE TRAINER -122.6677 45.51148
-#&gt; 212  bike_7317                          9890 ASCEND BIKE -122.6919 45.52917
-#&gt; 213  bike_6266                             0162 BIKETOWN -122.6821 45.52457
-#&gt; 214  bike_7288                             0401 BIKETOWN -122.6793 45.52597
-#&gt; 215  bike_6199                             0437 BIKETOWN -122.6832 45.53581
-#&gt; 216  bike_7138                             0245 BIKETOWN -122.6616 45.56358
-#&gt; 217 bike_19864                             0023 BIKETOWN -122.6722 45.52021
-#&gt; 218  bike_7295                          0982 AIR TRAINER -122.6719 45.52031
-#&gt; 219  bike_6506                             0210 BIKETOWN -122.7095 45.54425
-#&gt; 220  bike_6034                             0899 BIKETOWN -122.6983 45.53477
-#&gt; 221  bike_7409                             0209 BIKETOWN -122.6970 45.53809
-#&gt; 222  bike_6033                             0525 BIKETOWN -122.6823 45.52524
-#&gt; 223  bike_7127                             0158 BIKETOWN -122.6617 45.55193
-#&gt; 224  bike_6638                             0334 BIKETOWN -122.6781 45.52743
-#&gt; 225  bike_6502                             0105 BIKETOWN -122.6692 45.49355
-#&gt; 226  bike_6385                            0443 BIKETOWN  -122.6919 45.52871
-#&gt; 227  bike_6069                             0890 BIKETOWN -122.6865 45.53437
-#&gt; 228  bike_7366                         0953 ABILITY BIKE -122.6747 45.52107
-#&gt; 229  bike_6294                             0434 BIKETOWN -122.6833 45.52972
-#&gt; 230  bike_6403                             0830 BIKETOWN -122.6757 45.51357
-#&gt; 231  bike_6394                             0743 BIKETOWN -122.6780 45.51195
-#&gt; 232  bike_6309                             0419 BIKETOWN -122.6717 45.52024
-#&gt; 233  bike_6646                             0644 BIKETOWN -122.6597 45.52877
-#&gt; 234  bike_6364                             0618 BIKETOWN -122.6486 45.50212
-#&gt; 235  bike_6494                            0734 BIKETOWN  -122.6751 45.51930
-#&gt; 236  bike_6492                            0625 BIKETOWN  -122.6608 45.51757
-#&gt; 237  bike_6452                             0219 BIKETOWN -122.6737 45.53773
-#&gt; 238  bike_7388                         0945 ABILITY BIKE -122.6703 45.49631
-#&gt; 239  bike_6253                             0753 BIKETOWN -122.6769 45.51580
-#&gt; 240  bike_6811                             0675 BIKETOWN -122.6772 45.51274
-#&gt; 241  bike_6669                             0746 BIKETOWN -122.6559 45.50495
-#&gt; 242  bike_6665                             0246 BIKETOWN -122.6852 45.52779
-#&gt; 243  bike_6212                             0286 BIKETOWN -122.6636 45.51578
-#&gt; 244  bike_6838                            0358 BIKETOWN  -122.6759 45.49804
-#&gt; 245  bike_6311                             0535 BIKETOWN -122.6543 45.50084
-#&gt; 246  bike_6346                             0044 BIKETOWN -122.6534 45.51512
-#&gt; 247  bike_7178                             0672 BIKETOWN -122.6765 45.53128
-#&gt; 248  bike_7394                1029 LATINX HERITAGE MONTH -122.6627 45.52239
-#&gt; 249  bike_6295                             0393 BIKETOWN -122.6578 45.51344
-#&gt; 250  bike_7238                             0558 BIKETOWN -122.6698 45.52534
-#&gt; 251  bike_6516                             0060 BIKETOWN -122.6640 45.51931
-#&gt; 252  bike_6533                             0610 BIKETOWN -122.6758 45.51922
-#&gt; 253  bike_7270                             0104 BIKETOWN -122.6615 45.52413
-#&gt; 254  bike_6125                             0900 BIKETOWN -122.6751 45.51602
-#&gt; 255  bike_6040                             0901 BIKETOWN -122.6196 45.51003
-#&gt; 256  bike_6424                             0466 BIKETOWN -122.6722 45.52382
-#&gt; 257  bike_6474                             0608 BIKETOWN -122.6656 45.51596
-#&gt; 258 bike_29385                             0568 BIKETOWN -122.6780 45.52747
-#&gt;     is_reserved is_disabled jump_ebike_battery_level        last_updated year
-#&gt; 1             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 2             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 3             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 4             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 5             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 6             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 7             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 8             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 9             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 10            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 11            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 12            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 13            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 14            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 15            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 16            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 17            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 18            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 19            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 20            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 21            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 22            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 23            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 24            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 25            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 26            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 27            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 28            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 29            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 30            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 31            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 32            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 33            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 34            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 35            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 36            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 37            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 38            0           0                      86% 2020-01-09 15:51:42 2020
-#&gt; 39            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 40            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 41            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 42            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 43            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 44            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 45            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 46            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 47            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 48            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 49            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 50            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 51            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 52            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 53            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 54            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 55            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 56            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 57            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 58            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 59            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 60            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 61            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 62            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 63            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 64            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 65            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 66            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 67            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 68            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 69            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 70            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 71            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 72            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 73            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 74            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 75            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 76            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 77            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 78            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 79            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 80            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 81            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 82            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 83            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 84            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 85            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 86            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 87            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 88            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 89            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 90            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 91            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 92            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 93            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 94            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 95            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 96            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 97            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 98            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 99            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 100           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 101           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 102           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 103           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 104           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 105           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 106           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 107           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 108           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 109           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 110           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 111           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 112           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 113           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 114           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 115           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 116           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 117           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 118           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 119           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 120           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 121           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 122           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 123           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 124           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 125           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 126           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 127           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 128           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 129           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 130           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 131           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 132           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 133           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 134           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 135           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 136           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 137           0           0                      93% 2020-01-09 15:51:42 2020
-#&gt; 138           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 139           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 140           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 141           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 142           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 143           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 144           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 145           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 146           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 147           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 148           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 149           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 150           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 151           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 152           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 153           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 154           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 155           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 156           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 157           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 158           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 159           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 160           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 161           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 162           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 163           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 164           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 165           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 166           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 167           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 168           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 169           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 170           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 171           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 172           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 173           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 174           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 175           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 176           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 177           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 178           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 179           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 180           0           0                      55% 2020-01-09 15:51:42 2020
-#&gt; 181           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 182           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 183           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 184           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 185           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 186           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 187           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 188           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 189           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 190           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 191           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 192           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 193           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 194           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 195           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 196           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 197           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 198           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 199           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 200           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 201           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 202           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 203           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 204           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 205           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 206           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 207           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 208           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 209           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 210           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 211           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 212           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 213           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 214           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 215           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 216           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 217           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 218           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 219           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 220           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 221           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 222           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 223           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 224           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 225           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 226           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 227           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 228           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 229           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 230           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 231           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 232           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 233           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 234           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 235           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 236           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 237           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 238           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 239           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 240           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 241           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 242           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 243           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 244           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 245           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 246           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 247           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 248           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 249           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 250           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 251           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 252           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 253           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 254           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 255           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 256           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 257           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 258           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt;     month day hour minute
-#&gt; 1       1   9   15     51
-#&gt; 2       1   9   15     51
-#&gt; 3       1   9   15     51
-#&gt; 4       1   9   15     51
-#&gt; 5       1   9   15     51
-#&gt; 6       1   9   15     51
-#&gt; 7       1   9   15     51
-#&gt; 8       1   9   15     51
-#&gt; 9       1   9   15     51
-#&gt; 10      1   9   15     51
-#&gt; 11      1   9   15     51
-#&gt; 12      1   9   15     51
-#&gt; 13      1   9   15     51
-#&gt; 14      1   9   15     51
-#&gt; 15      1   9   15     51
-#&gt; 16      1   9   15     51
-#&gt; 17      1   9   15     51
-#&gt; 18      1   9   15     51
-#&gt; 19      1   9   15     51
-#&gt; 20      1   9   15     51
-#&gt; 21      1   9   15     51
-#&gt; 22      1   9   15     51
-#&gt; 23      1   9   15     51
-#&gt; 24      1   9   15     51
-#&gt; 25      1   9   15     51
-#&gt; 26      1   9   15     51
-#&gt; 27      1   9   15     51
-#&gt; 28      1   9   15     51
-#&gt; 29      1   9   15     51
-#&gt; 30      1   9   15     51
-#&gt; 31      1   9   15     51
-#&gt; 32      1   9   15     51
-#&gt; 33      1   9   15     51
-#&gt; 34      1   9   15     51
-#&gt; 35      1   9   15     51
-#&gt; 36      1   9   15     51
-#&gt; 37      1   9   15     51
-#&gt; 38      1   9   15     51
-#&gt; 39      1   9   15     51
-#&gt; 40      1   9   15     51
-#&gt; 41      1   9   15     51
-#&gt; 42      1   9   15     51
-#&gt; 43      1   9   15     51
-#&gt; 44      1   9   15     51
-#&gt; 45      1   9   15     51
-#&gt; 46      1   9   15     51
-#&gt; 47      1   9   15     51
-#&gt; 48      1   9   15     51
-#&gt; 49      1   9   15     51
-#&gt; 50      1   9   15     51
-#&gt; 51      1   9   15     51
-#&gt; 52      1   9   15     51
-#&gt; 53      1   9   15     51
-#&gt; 54      1   9   15     51
-#&gt; 55      1   9   15     51
-#&gt; 56      1   9   15     51
-#&gt; 57      1   9   15     51
-#&gt; 58      1   9   15     51
-#&gt; 59      1   9   15     51
-#&gt; 60      1   9   15     51
-#&gt; 61      1   9   15     51
-#&gt; 62      1   9   15     51
-#&gt; 63      1   9   15     51
-#&gt; 64      1   9   15     51
-#&gt; 65      1   9   15     51
-#&gt; 66      1   9   15     51
-#&gt; 67      1   9   15     51
-#&gt; 68      1   9   15     51
-#&gt; 69      1   9   15     51
-#&gt; 70      1   9   15     51
-#&gt; 71      1   9   15     51
-#&gt; 72      1   9   15     51
-#&gt; 73      1   9   15     51
-#&gt; 74      1   9   15     51
-#&gt; 75      1   9   15     51
-#&gt; 76      1   9   15     51
-#&gt; 77      1   9   15     51
-#&gt; 78      1   9   15     51
-#&gt; 79      1   9   15     51
-#&gt; 80      1   9   15     51
-#&gt; 81      1   9   15     51
-#&gt; 82      1   9   15     51
-#&gt; 83      1   9   15     51
-#&gt; 84      1   9   15     51
-#&gt; 85      1   9   15     51
-#&gt; 86      1   9   15     51
-#&gt; 87      1   9   15     51
-#&gt; 88      1   9   15     51
-#&gt; 89      1   9   15     51
-#&gt; 90      1   9   15     51
-#&gt; 91      1   9   15     51
-#&gt; 92      1   9   15     51
-#&gt; 93      1   9   15     51
-#&gt; 94      1   9   15     51
-#&gt; 95      1   9   15     51
-#&gt; 96      1   9   15     51
-#&gt; 97      1   9   15     51
-#&gt; 98      1   9   15     51
-#&gt; 99      1   9   15     51
-#&gt; 100     1   9   15     51
-#&gt; 101     1   9   15     51
-#&gt; 102     1   9   15     51
-#&gt; 103     1   9   15     51
-#&gt; 104     1   9   15     51
-#&gt; 105     1   9   15     51
-#&gt; 106     1   9   15     51
-#&gt; 107     1   9   15     51
-#&gt; 108     1   9   15     51
-#&gt; 109     1   9   15     51
-#&gt; 110     1   9   15     51
-#&gt; 111     1   9   15     51
-#&gt; 112     1   9   15     51
-#&gt; 113     1   9   15     51
-#&gt; 114     1   9   15     51
-#&gt; 115     1   9   15     51
-#&gt; 116     1   9   15     51
-#&gt; 117     1   9   15     51
-#&gt; 118     1   9   15     51
-#&gt; 119     1   9   15     51
-#&gt; 120     1   9   15     51
-#&gt; 121     1   9   15     51
-#&gt; 122     1   9   15     51
-#&gt; 123     1   9   15     51
-#&gt; 124     1   9   15     51
-#&gt; 125     1   9   15     51
-#&gt; 126     1   9   15     51
-#&gt; 127     1   9   15     51
-#&gt; 128     1   9   15     51
-#&gt; 129     1   9   15     51
-#&gt; 130     1   9   15     51
-#&gt; 131     1   9   15     51
-#&gt; 132     1   9   15     51
-#&gt; 133     1   9   15     51
-#&gt; 134     1   9   15     51
-#&gt; 135     1   9   15     51
-#&gt; 136     1   9   15     51
-#&gt; 137     1   9   15     51
-#&gt; 138     1   9   15     51
-#&gt; 139     1   9   15     51
-#&gt; 140     1   9   15     51
-#&gt; 141     1   9   15     51
-#&gt; 142     1   9   15     51
-#&gt; 143     1   9   15     51
-#&gt; 144     1   9   15     51
-#&gt; 145     1   9   15     51
-#&gt; 146     1   9   15     51
-#&gt; 147     1   9   15     51
-#&gt; 148     1   9   15     51
-#&gt; 149     1   9   15     51
-#&gt; 150     1   9   15     51
-#&gt; 151     1   9   15     51
-#&gt; 152     1   9   15     51
-#&gt; 153     1   9   15     51
-#&gt; 154     1   9   15     51
-#&gt; 155     1   9   15     51
-#&gt; 156     1   9   15     51
-#&gt; 157     1   9   15     51
-#&gt; 158     1   9   15     51
-#&gt; 159     1   9   15     51
-#&gt; 160     1   9   15     51
-#&gt; 161     1   9   15     51
-#&gt; 162     1   9   15     51
-#&gt; 163     1   9   15     51
-#&gt; 164     1   9   15     51
-#&gt; 165     1   9   15     51
-#&gt; 166     1   9   15     51
-#&gt; 167     1   9   15     51
-#&gt; 168     1   9   15     51
-#&gt; 169     1   9   15     51
-#&gt; 170     1   9   15     51
-#&gt; 171     1   9   15     51
-#&gt; 172     1   9   15     51
-#&gt; 173     1   9   15     51
-#&gt; 174     1   9   15     51
-#&gt; 175     1   9   15     51
-#&gt; 176     1   9   15     51
-#&gt; 177     1   9   15     51
-#&gt; 178     1   9   15     51
-#&gt; 179     1   9   15     51
-#&gt; 180     1   9   15     51
-#&gt; 181     1   9   15     51
-#&gt; 182     1   9   15     51
-#&gt; 183     1   9   15     51
-#&gt; 184     1   9   15     51
-#&gt; 185     1   9   15     51
-#&gt; 186     1   9   15     51
-#&gt; 187     1   9   15     51
-#&gt; 188     1   9   15     51
-#&gt; 189     1   9   15     51
-#&gt; 190     1   9   15     51
-#&gt; 191     1   9   15     51
-#&gt; 192     1   9   15     51
-#&gt; 193     1   9   15     51
-#&gt; 194     1   9   15     51
-#&gt; 195     1   9   15     51
-#&gt; 196     1   9   15     51
-#&gt; 197     1   9   15     51
-#&gt; 198     1   9   15     51
-#&gt; 199     1   9   15     51
-#&gt; 200     1   9   15     51
-#&gt; 201     1   9   15     51
-#&gt; 202     1   9   15     51
-#&gt; 203     1   9   15     51
-#&gt; 204     1   9   15     51
-#&gt; 205     1   9   15     51
-#&gt; 206     1   9   15     51
-#&gt; 207     1   9   15     51
-#&gt; 208     1   9   15     51
-#&gt; 209     1   9   15     51
-#&gt; 210     1   9   15     51
-#&gt; 211     1   9   15     51
-#&gt; 212     1   9   15     51
-#&gt; 213     1   9   15     51
-#&gt; 214     1   9   15     51
-#&gt; 215     1   9   15     51
-#&gt; 216     1   9   15     51
-#&gt; 217     1   9   15     51
-#&gt; 218     1   9   15     51
-#&gt; 219     1   9   15     51
-#&gt; 220     1   9   15     51
-#&gt; 221     1   9   15     51
-#&gt; 222     1   9   15     51
-#&gt; 223     1   9   15     51
-#&gt; 224     1   9   15     51
-#&gt; 225     1   9   15     51
-#&gt; 226     1   9   15     51
-#&gt; 227     1   9   15     51
-#&gt; 228     1   9   15     51
-#&gt; 229     1   9   15     51
-#&gt; 230     1   9   15     51
-#&gt; 231     1   9   15     51
-#&gt; 232     1   9   15     51
-#&gt; 233     1   9   15     51
-#&gt; 234     1   9   15     51
-#&gt; 235     1   9   15     51
-#&gt; 236     1   9   15     51
-#&gt; 237     1   9   15     51
-#&gt; 238     1   9   15     51
-#&gt; 239     1   9   15     51
-#&gt; 240     1   9   15     51
-#&gt; 241     1   9   15     51
-#&gt; 242     1   9   15     51
-#&gt; 243     1   9   15     51
-#&gt; 244     1   9   15     51
-#&gt; 245     1   9   15     51
-#&gt; 246     1   9   15     51
-#&gt; 247     1   9   15     51
-#&gt; 248     1   9   15     51
-#&gt; 249     1   9   15     51
-#&gt; 250     1   9   15     51
-#&gt; 251     1   9   15     51
-#&gt; 252     1   9   15     51
-#&gt; 253     1   9   15     51
-#&gt; 254     1   9   15     51
-#&gt; 255     1   9   15     51
-#&gt; 256     1   9   15     51
-#&gt; 257     1   9   15     51
-#&gt; 258     1   9   15     51</div><div class='input'>
+<span class='fu'>get_free_bike_status</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>)</div><div class='output co'>#&gt; <span class='message'>Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.</span></div><div class='output co'>#&gt;        bike_id                                name       lon      lat
+#&gt; 1    bike_6887                       0450 BIKETOWN -122.6836 45.51919
+#&gt; 2    bike_6101                       0190 BIKETOWN -122.6889 45.52931
+#&gt; 3    bike_6058                       0259 BIKETOWN -122.6736 45.51789
+#&gt; 4    bike_6109                       0894 BIKETOWN -122.6818 45.51987
+#&gt; 5    bike_6106                       0669 BIKETOWN -122.6660 45.52719
+#&gt; 6    bike_7266                       0775 BIKETOWN -122.6860 45.52787
+#&gt; 7    bike_6610                       0818 BIKETOWN -122.6757 45.52972
+#&gt; 8    bike_5987                       0487 BIKETOWN -122.6959 45.53336
+#&gt; 9    bike_7144                       0224 BIKETOWN -122.6818 45.51993
+#&gt; 10   bike_6313                       0930 BIKETOWN -122.6553 45.50863
+#&gt; 11   bike_6464                       0559 BIKETOWN -122.6427 45.49896
+#&gt; 12   bike_7253                       0177 BIKETOWN -122.7103 45.53857
+#&gt; 13   bike_6102                      0083 BIKETOWN  -122.6709 45.52506
+#&gt; 14   bike_7101                      0496 BIKETOWN  -122.6765 45.53113
+#&gt; 15   bike_7238                       0558 BIKETOWN -122.6488 45.50124
+#&gt; 16   bike_7327   1005 DESIGN BIKE, NE CYCLING LIFE -122.6781 45.52314
+#&gt; 17   bike_7325                    0969 ASCEND BIKE -122.6822 45.52025
+#&gt; 18   bike_6889                       0063 BIKETOWN -122.6715 45.52486
+#&gt; 19   bike_7300            0996 BLACK HISTORY MONTH -122.6781 45.52741
+#&gt; 20   bike_6527                       0801 BIKETOWN -122.6900 45.53897
+#&gt; 21   bike_6104                       0624 BIKETOWN -122.6768 45.52737
+#&gt; 22   bike_7149                       0207 BIKETOWN -122.6804 45.52652
+#&gt; 23   bike_7497                       0576 BIKETOWN -122.6833 45.53036
+#&gt; 24   bike_6550                       0918 BIKETOWN -122.6979 45.52980
+#&gt; 25   bike_7280                      0026 BIKETOWN  -122.6408 45.49833
+#&gt; 26   bike_6089                       0837 BIKETOWN -122.6826 45.52121
+#&gt; 27   bike_7348                 1018 RIP CITY RIDER -122.6648 45.55692
+#&gt; 28   bike_7309            0995 BETRUE 2018 TRAINER -122.6496 45.52581
+#&gt; 29   bike_6636                       0825 BIKETOWN -122.6594 45.53196
+#&gt; 30   bike_6186                       0737 BIKETOWN -122.6716 45.52503
+#&gt; 31   bike_6168                       0888 BIKETOWN -122.6374 45.50842
+#&gt; 32   bike_7383 0964 NATIVE AMERICAN HERITAGE MONTH -122.6987 45.52763
+#&gt; 33   bike_6098                       0454 BIKETOWN -122.6403 45.52815
+#&gt; 34   bike_7125                       0172 BIKETOWN -122.6601 45.55598
+#&gt; 35   bike_6870                       0779 BIKETOWN -122.6606 45.53593
+#&gt; 36   bike_6240                     0216 BIKETOWN   -122.6784 45.52081
+#&gt; 37   bike_6777                       0266 BIKETOWN -122.6651 45.52296
+#&gt; 38   bike_6034                       0899 BIKETOWN -122.6592 45.56184
+#&gt; 39   bike_7205                       0458 BIKETOWN -122.6617 45.51780
+#&gt; 40   bike_6573                       0843 BIKETOWN -122.6553 45.50859
+#&gt; 41   bike_6238                      0774 BIKETOWN  -122.6537 45.52150
+#&gt; 42   bike_6536                       0704 BIKETOWN -122.6656 45.53554
+#&gt; 43   bike_7294                    0997 ASCEND BIKE -122.6839 45.52797
+#&gt; 44   bike_6193                       0153 BIKETOWN -122.6488 45.50122
+#&gt; 45  bike_24814                       0398 BIKETOWN -122.6330 45.56158
+#&gt; 46   bike_6279                       0049 BIKETOWN -122.6831 45.52178
+#&gt; 47   bike_7211                       0004 BIKETOWN -122.6880 45.51325
+#&gt; 48  bike_19527                       0305 BIKETOWN -122.6810 45.51725
+#&gt; 49   bike_6503                       0326 BIKETOWN -122.6637 45.52161
+#&gt; 50   bike_7334                  0999 VETERANS BIKE -122.7065 45.53177
+#&gt; 51  bike_28387                       0689 BIKETOWN -122.6639 45.51302
+#&gt; 52   bike_7126                       0220 BIKETOWN -122.6852 45.53441
+#&gt; 53   bike_7275                       0264 BIKETOWN -122.6779 45.52303
+#&gt; 54   bike_6500                       0136 BIKETOWN -122.6606 45.51993
+#&gt; 55   bike_6246                      0511 BIKETOWN  -122.6209 45.53547
+#&gt; 56   bike_6878                      0141 BIKETOWN  -122.6368 45.50972
+#&gt; 57   bike_7163                       0173 BIKETOWN -122.6768 45.53093
+#&gt; 58  bike_19238                       0495 BIKETOWN -122.6709 45.52460
+#&gt; 59   bike_6494                      0734 BIKETOWN  -122.6767 45.52320
+#&gt; 60   bike_6377                       0110 BIKETOWN -122.6447 45.49957
+#&gt; 61   bike_6482                       0308 BIKETOWN -122.6802 45.52501
+#&gt; 62   bike_6195                     0662 BIKETOWN   -122.6690 45.53013
+#&gt; 63   bike_6786                     0529 BIKETOWN   -122.6488 45.52280
+#&gt; 64   bike_7297             0973 BLAZERS 50th BIKE  -122.6750 45.52999
+#&gt; 65   bike_6591                       0432 BIKETOWN -122.6089 45.52266
+#&gt; 66   bike_7255                       0013 BIKETOWN -122.6555 45.54357
+#&gt; 67   bike_6318                       0919 BIKETOWN -122.6393 45.51814
+#&gt; 68   bike_7138                       0245 BIKETOWN -122.6536 45.49886
+#&gt; 69   bike_6249                       0300 BIKETOWN -122.6446 45.49977
+#&gt; 70   bike_6838                      0358 BIKETOWN  -122.6218 45.53520
+#&gt; 71   bike_6600                      0923 BIKETOWN  -122.6099 45.50526
+#&gt; 72   bike_6155                       0032 BIKETOWN -122.6484 45.49667
+#&gt; 73   bike_6064                       0732 BIKETOWN -122.6799 45.51591
+#&gt; 74   bike_7313                   0985 ASCEND BIKE  -122.6568 45.51711
+#&gt; 75   bike_6065                       0584 BIKETOWN -122.6510 45.52220
+#&gt; 76   bike_7121                       0117 BIKETOWN -122.6350 45.50346
+#&gt; 77   bike_5997                       0150 BIKETOWN -122.6543 45.50087
+#&gt; 78   bike_6649                       0778 BIKETOWN -122.6823 45.52708
+#&gt; 79   bike_7298    0980 DESIGN BIKE, N PAUL BUNYAN  -122.6854 45.52636
+#&gt; 80   bike_7181                      0128 BIKETOWN  -122.6177 45.53500
+#&gt; 81   bike_7328                    1000 AIR SAFARI  -122.6409 45.50660
+#&gt; 82   bike_7394          1029 LATINX HERITAGE MONTH -122.6587 45.53401
+#&gt; 83   bike_6275                       0826 BIKETOWN -122.6618 45.55210
+#&gt; 84   bike_6026                       0442 BIKETOWN -122.6835 45.51909
+#&gt; 85  bike_24817                       0630 BIKETOWN -122.6615 45.54739
+#&gt; 86  bike_28106                       0319 BIKETOWN -122.6360 45.52583
+#&gt; 87   bike_7342          1016 LATINX HERITAGE MONTH -122.6545 45.52215
+#&gt; 88   bike_6223                       0353 BIKETOWN -122.6845 45.51691
+#&gt; 89  bike_24823                      0557 BIKETOWN  -122.6339 45.52204
+#&gt; 90  bike_19237                       0133 BIKETOWN -122.6768 45.53083
+#&gt; 91   bike_6892                       0206 BIKETOWN -122.6802 45.52506
+#&gt; 92  bike_19242                      0009 BIKETOWN  -122.6853 45.52802
+#&gt; 93   bike_7318            0993 BETRUE 2018 TRAINER -122.6602 45.51732
+#&gt; 94   bike_6861                       0541 BIKETOWN -122.6488 45.52279
+#&gt; 95  bike_29251                       0135 BIKETOWN -122.6316 45.52437
+#&gt; 96   bike_6354                       0374 BIKETOWN -122.6789 45.51560
+#&gt; 97   bike_6837                       0538 BIKETOWN -122.6840 45.51531
+#&gt; 98   bike_7343   1011 DESIGN BIKE, NE CYCLING LIFE -122.6689 45.53012
+#&gt; 99   bike_7319     0975 DESIGN BIKE, N PAUL BUNYAN -122.6860 45.51483
+#&gt; 100  bike_7236                      0006 BIKETOWN  -122.6054 45.53044
+#&gt; 101  bike_6272                      0685 BIKETOWN  -122.6402 45.51285
+#&gt; 102  bike_6061                       0165 BIKETOWN -122.6517 45.51996
+#&gt; 103  bike_6595                       0822 BIKETOWN -122.6781 45.52585
+#&gt; 104  bike_6170                       0336 BIKETOWN -122.6545 45.51579
+#&gt; 105  bike_6533                       0610 BIKETOWN -122.6756 45.52083
+#&gt; 106  bike_6165                       0613 BIKETOWN -122.6902 45.53142
+#&gt; 107  bike_7341              1021 BLAZERS 50th BIKE -122.6781 45.52738
+#&gt; 108  bike_7245                       0551 BIKETOWN -122.6547 45.51568
+#&gt; 109  bike_7333          1022 LATINX HERITAGE MONTH -122.6809 45.54586
+#&gt; 110 bike_29385                       0568 BIKETOWN -122.6910 45.53358
+#&gt; 111  bike_6420                       0283 BIKETOWN -122.6640 45.51937
+#&gt; 112  bike_6432                       0660 BIKETOWN -122.6607 45.51948
+#&gt; 113  bike_6113                       0227 BIKETOWN -122.6322 45.50475
+#&gt; 114  bike_6083                      0468 BIKETOWN  -122.6966 45.52759
+#&gt; 115  bike_6379                       0225 BIKETOWN -122.6548 45.50468
+#&gt; 116  bike_6793                       0703 BIKETOWN -122.6908 45.53209
+#&gt; 117  bike_7197                       0014 BIKETOWN -122.6668 45.53800
+#&gt; 118  bike_6381                       0842 BIKETOWN -122.6535 45.50375
+#&gt; 119  bike_7178                       0672 BIKETOWN -122.6620 45.56055
+#&gt; 120  bike_7351                     1003 AIR SAFARI -122.6610 45.52303
+#&gt; 121  bike_7498                      0181 BIKETOWN  -122.6538 45.55078
+#&gt; 122  bike_7122                       0276 BIKETOWN -122.6619 45.50634
+#&gt; 123  bike_7187                       0155 BIKETOWN -122.6690 45.53010
+#&gt;     is_reserved is_disabled        last_updated year month day hour minute
+#&gt; 1             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 2             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 3             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 4             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 5             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 6             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 7             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 8             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 9             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 10            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 11            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 12            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 13            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 14            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 15            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 16            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 17            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 18            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 19            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 20            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 21            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 22            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 23            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 24            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 25            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 26            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 27            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 28            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 29            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 30            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 31            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 32            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 33            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 34            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 35            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 36            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 37            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 38            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 39            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 40            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 41            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 42            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 43            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 44            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 45            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 46            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 47            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 48            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 49            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 50            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 51            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 52            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 53            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 54            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 55            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 56            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 57            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 58            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 59            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 60            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 61            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 62            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 63            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 64            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 65            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 66            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 67            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 68            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 69            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 70            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 71            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 72            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 73            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 74            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 75            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 76            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 77            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 78            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 79            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 80            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 81            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 82            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 83            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 84            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 85            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 86            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 87            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 88            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 89            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 90            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 91            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 92            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 93            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 94            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 95            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 96            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 97            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 98            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 99            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 100           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 101           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 102           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 103           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 104           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 105           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 106           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 107           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 108           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 109           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 110           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 111           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 112           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 113           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 114           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 115           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 116           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 117           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 118           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 119           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 120           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 121           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 122           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 123           0           0 2020-03-26 12:13:11 2020     3  26   12     13</div><div class='input'>
 <span class='co'># the `city` argument can also be supplied as an</span>
 <span class='co'># actual URL to an active .json feed</span>
 <span class='fu'>get_free_bike_status</span>(<span class='kw'>city</span> <span class='kw'>=</span>
@@ -970,805 +451,271 @@ are released by a given city.</p></div>
 <span class='co'># saved and/or returned explicitly</span>
 <span class='fu'>get_free_bike_status</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>,
                      <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
-                     <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"both"</span>)</div><div class='output co'>#&gt;        bike_id                                      name       lon      lat
-#&gt; 1    bike_7103                             0783 BIKETOWN -122.6154 45.51199
-#&gt; 2    bike_6543                             0344 BIKETOWN -122.6588 45.53701
-#&gt; 3    bike_6438                             0295 BIKETOWN -122.6064 45.56264
-#&gt; 4    bike_7208                             0021 BIKETOWN -122.6970 45.53059
-#&gt; 5    bike_7397                             0497 BIKETOWN -122.6786 45.52699
-#&gt; 6    bike_6051                             0054 BIKETOWN -122.6203 45.53347
-#&gt; 7    bike_6049                             0346 BIKETOWN -122.6748 45.52598
-#&gt; 8    bike_6198                             0739 BIKETOWN -122.6953 45.56134
-#&gt; 9    bike_6572                             0665 BIKETOWN -122.6202 45.49323
-#&gt; 10   bike_7252                             0845 BIKETOWN -122.6205 45.53453
-#&gt; 11   bike_7323           0965 DESIGN BIKE, N PAUL BUNYAN -122.6882 45.52661
-#&gt; 12   bike_6404                             0799 BIKETOWN -122.6318 45.56147
-#&gt; 13   bike_7355         1006 DESIGN BIKE, NE CYCLING LIFE -122.6147 45.51132
-#&gt; 14   bike_6626                             0547 BIKETOWN -122.6495 45.52672
-#&gt; 15   bike_6389                             0176 BIKETOWN -122.6966 45.53061
-#&gt; 16   bike_6623                             0079 BIKETOWN -122.6466 45.53579
-#&gt; 17   bike_6473                             0656 BIKETOWN -122.6422 45.51167
-#&gt; 18   bike_7205                             0458 BIKETOWN -122.6822 45.54787
-#&gt; 19   bike_7117                             0762 BIKETOWN -122.6509 45.50991
-#&gt; 20   bike_6390                             0107 BIKETOWN -122.6739 45.56406
-#&gt; 21   bike_7170                             0019 BIKETOWN -122.6838 45.52927
-#&gt; 22   bike_6210                            0821 BIKETOWN  -122.6722 45.52600
-#&gt; 23   bike_6305                             0111 BIKETOWN -122.6756 45.55234
-#&gt; 24   bike_6847                             0716 BIKETOWN -122.6443 45.52865
-#&gt; 25   bike_6450                            0556 BIKETOWN  -122.6804 45.53219
-#&gt; 26   bike_6867                             0192 BIKETOWN -122.6447 45.49723
-#&gt; 27   bike_7349                    1009 BLAZERS 50th BIKE -122.6202 45.52304
-#&gt; 28  bike_29251                             0135 BIKETOWN -122.6305 45.53313
-#&gt; 29   bike_7158                            0324 BIKETOWN  -122.6841 45.50816
-#&gt; 30   bike_7104                             0824 BIKETOWN -122.6865 45.53435
-#&gt; 31   bike_6232                             0870 BIKETOWN -122.6596 45.52386
-#&gt; 32   bike_6574                             0666 BIKETOWN -122.6729 45.52391
-#&gt; 33   bike_7345         1004 DESIGN BIKE, NE CYCLING LIFE -122.6909 45.53350
-#&gt; 34   bike_6281                             0213 BIKETOWN -122.6711 45.52294
-#&gt; 35   bike_7116                             0399 BIKETOWN -122.6231 45.52882
-#&gt; 36   bike_6578                             0065 BIKETOWN -122.6606 45.51528
-#&gt; 37   bike_6257                            0636 BIKETOWN  -122.6539 45.51251
-#&gt; 38   bike_6559                             0394 BIKETOWN -122.6089 45.52267
-#&gt; 39  bike_24810                             0146 BIKETOWN -122.6627 45.53325
-#&gt; 40   bike_6225                             0313 BIKETOWN -122.6765 45.52027
-#&gt; 41   bike_7241                             0002 BIKETOWN -122.6579 45.50370
-#&gt; 42   bike_7206                             0553 BIKETOWN -122.6732 45.52517
-#&gt; 43   bike_7145                             0572 BIKETOWN -122.6944 45.52717
-#&gt; 44   bike_6840                             0080 BIKETOWN -122.6549 45.51644
-#&gt; 45   bike_6540                             0420 BIKETOWN -122.6545 45.55903
-#&gt; 46   bike_6292                             0328 BIKETOWN -122.6719 45.52031
-#&gt; 47   bike_6807                             0510 BIKETOWN -122.6539 45.53440
-#&gt; 48   bike_7202                             0251 BIKETOWN -122.6637 45.54086
-#&gt; 49   bike_7250                             0742 BIKETOWN -122.6774 45.52734
-#&gt; 50   bike_6463                             0731 BIKETOWN -122.6694 45.53288
-#&gt; 51   bike_6114                             0516 BIKETOWN -122.6341 45.55904
-#&gt; 52   bike_6534                             0922 BIKETOWN -122.6411 45.55318
-#&gt; 53   bike_6878                            0141 BIKETOWN  -122.6351 45.53376
-#&gt; 54   bike_6219                            0477 BIKETOWN  -122.6893 45.53011
-#&gt; 55   bike_6386                             0654 BIKETOWN -122.6895 45.52335
-#&gt; 56   bike_6576                             0797 BIKETOWN -122.6474 45.52716
-#&gt; 57  bike_23242                             0893 BIKETOWN -122.6339 45.50486
-#&gt; 58   bike_6177                            0367 BIKETOWN  -122.6112 45.49703
-#&gt; 59   bike_7361                    0931 BLAZERS 50th BIKE -122.6823 45.52995
-#&gt; 60   bike_6391                             0113 BIKETOWN -122.6713 45.52544
-#&gt; 61   bike_7161                            0171 BIKETOWN  -122.6318 45.56164
-#&gt; 62   bike_6457                            0285 BIKETOWN  -122.6770 45.52628
-#&gt; 63   bike_6495                             0702 BIKETOWN -122.6801 45.51855
-#&gt; 64   bike_5991                             0509 BIKETOWN -122.6391 45.49785
-#&gt; 65   bike_6024                             0634 BIKETOWN -122.6654 45.51111
-#&gt; 66   bike_7353                        1019 VETERANS BIKE -122.6837 45.53311
-#&gt; 67   bike_6558                             0906 BIKETOWN -122.6679 45.51385
-#&gt; 68   bike_6593                             0738 BIKETOWN -122.6787 45.51765
-#&gt; 69   bike_6156                             0615 BIKETOWN -122.6607 45.51961
-#&gt; 70   bike_7311                0991 WOMEN'S HISTORY MONTH -122.6725 45.52018
-#&gt; 71   bike_6230                             0605 BIKETOWN -122.6438 45.52888
-#&gt; 72   bike_7328                          1000 AIR SAFARI  -122.6594 45.52292
-#&gt; 73   bike_6528                             0646 BIKETOWN -122.6328 45.50487
-#&gt; 74   bike_7246                             0292 BIKETOWN -122.6834 45.50912
-#&gt; 75   bike_6221                             0093 BIKETOWN -122.6783 45.52591
-#&gt; 76   bike_6671                           0852 BIKETOWN   -122.6788 45.52322
-#&gt; 77   bike_6279                             0049 BIKETOWN -122.6774 45.52253
-#&gt; 78   bike_6284                             0878 BIKETOWN -122.6883 45.52654
-#&gt; 79   bike_6832                             0407 BIKETOWN -122.6601 45.51723
-#&gt; 80   bike_6659                             0154 BIKETOWN -122.6861 45.52790
-#&gt; 81   bike_6373                             0581 BIKETOWN -122.6933 45.51798
-#&gt; 82  bike_24814                             0398 BIKETOWN -122.6730 45.51707
-#&gt; 83   bike_7494                             0532 BIKETOWN -122.6736 45.52395
-#&gt; 84  bike_21157                         0947 ABILITY BIKE -122.6842 45.51750
-#&gt; 85   bike_6667                             0352 BIKETOWN -122.6093 45.50809
-#&gt; 86   bike_6301                             0247 BIKETOWN -122.6844 45.52726
-#&gt; 87   bike_7280                            0026 BIKETOWN  -122.6484 45.52278
-#&gt; 88   bike_6546                             0719 BIKETOWN -122.6689 45.53014
-#&gt; 89   bike_6241                             0599 BIKETOWN -122.6820 45.52578
-#&gt; 90   bike_7244                             0243 BIKETOWN -122.6589 45.51091
-#&gt; 91   bike_7114                             0371 BIKETOWN -122.6664 45.51504
-#&gt; 92   bike_6096                             0445 BIKETOWN -122.6498 45.50338
-#&gt; 93   bike_6304                             0330 BIKETOWN -122.6560 45.52294
-#&gt; 94   bike_6548                             0591 BIKETOWN -122.6689 45.53015
-#&gt; 95   bike_6191                             0430 BIKETOWN -122.6775 45.51067
-#&gt; 96   bike_7191                             0813 BIKETOWN -122.6727 45.50334
-#&gt; 97   bike_6639                             0833 BIKETOWN -122.6810 45.54588
-#&gt; 98   bike_5993                             0676 BIKETOWN -122.6637 45.52161
-#&gt; 99   bike_6188                            0378 BIKETOWN  -122.6426 45.51227
-#&gt; 100  bike_6105                             0200 BIKETOWN -122.6297 45.49315
-#&gt; 101 bike_29453           0970 DESIGN BIKE, N PAUL BUNYAN -122.6656 45.51232
-#&gt; 102  bike_6226                             0070 BIKETOWN -122.6660 45.50865
-#&gt; 103  bike_7188                             0024 BIKETOWN -122.6758 45.51486
-#&gt; 104  bike_6484                             0351 BIKETOWN -122.6551 45.50315
-#&gt; 105  bike_6552                             0849 BIKETOWN -122.6557 45.50676
-#&gt; 106  bike_7266                             0775 BIKETOWN -122.6725 45.52371
-#&gt; 107  bike_6057                             0212 BIKETOWN -122.6423 45.50139
-#&gt; 108  bike_7146                             0262 BIKETOWN -122.6543 45.53070
-#&gt; 109  bike_6186                             0737 BIKETOWN -122.6628 45.52352
-#&gt; 110  bike_6806                           0761 BIKETOWN   -122.6633 45.52228
-#&gt; 111  bike_7172                             0540 BIKETOWN -122.6723 45.51625
-#&gt; 112  bike_6477                             0883 BIKETOWN -122.6745 45.51783
-#&gt; 113  bike_6197                             0372 BIKETOWN -122.6757 45.52976
-#&gt; 114  bike_6338                            0046 BIKETOWN  -122.6604 45.51704
-#&gt; 115  bike_6202                             0891 BIKETOWN -122.6552 45.56455
-#&gt; 116 bike_24828                             0248 BIKETOWN -122.6610 45.51881
-#&gt; 117  bike_7113                             0602 BIKETOWN -122.6739 45.51884
-#&gt; 118  bike_6519                             0195 BIKETOWN -122.6755 45.52689
-#&gt; 119  bike_6095                             0073 BIKETOWN -122.6721 45.52041
-#&gt; 120  bike_7135                             0303 BIKETOWN -122.6689 45.53016
-#&gt; 121  bike_6462                            0275 BIKETOWN  -122.6724 45.52338
-#&gt; 122  bike_6428                             0058 BIKETOWN -122.6765 45.51497
-#&gt; 123  bike_6487                             0429 BIKETOWN -122.6825 45.53003
-#&gt; 124  bike_6335                             0034 BIKETOWN -122.6893 45.52313
-#&gt; 125  bike_7301                0971 WOMEN’S HISTORY MONTH -122.6786 45.53227
-#&gt; 126  bike_6326                             0748 BIKETOWN -122.6740 45.52302
-#&gt; 127  bike_6022                            0415 BIKETOWN  -122.6794 45.52587
-#&gt; 128  bike_6396                             0707 BIKETOWN -122.6613 45.55339
-#&gt; 129  bike_6228                             0580 BIKETOWN -122.6963 45.52549
-#&gt; 130  bike_6313                             0930 BIKETOWN -122.6813 45.51217
-#&gt; 131  bike_6831                             0357 BIKETOWN -122.6615 45.56106
-#&gt; 132  bike_6053                             0882 BIKETOWN -122.6792 45.51372
-#&gt; 133  bike_6189                             0139 BIKETOWN -122.6826 45.52654
-#&gt; 134  bike_6050                            0290 BIKETOWN  -122.6846 45.52499
-#&gt; 135  bike_7367  0941 DESIGN BIKE, WATERFRONT WANDERER SW -122.6773 45.52730
-#&gt; 136  bike_6170                             0336 BIKETOWN -122.6909 45.52344
-#&gt; 137  bike_6640                            0214 BIKETOWN  -122.6792 45.52634
-#&gt; 138  bike_7150                            0460 BIKETOWN  -122.6536 45.51444
-#&gt; 139  bike_6787                             0483 BIKETOWN -122.6732 45.52020
-#&gt; 140  bike_7125                             0172 BIKETOWN -122.6436 45.53496
-#&gt; 141  bike_6398                             0375 BIKETOWN -122.6750 45.52152
-#&gt; 142  bike_6166                             0036 BIKETOWN -122.6732 45.52040
-#&gt; 143  bike_7299                  0986 BLACK HISTORY MONTH -122.6738 45.52007
-#&gt; 144  bike_6054                             0744 BIKETOWN -122.6177 45.53502
-#&gt; 145  bike_6192                             0414 BIKETOWN -122.6836 45.52996
-#&gt; 146  bike_6541                             0839 BIKETOWN -122.6755 45.51450
-#&gt; 147  bike_6455                            0274 BIKETOWN  -122.6635 45.52363
-#&gt; 148  bike_6500                             0136 BIKETOWN -122.6723 45.52412
-#&gt; 149  bike_6328                             0127 BIKETOWN -122.7059 45.53298
-#&gt; 150  bike_6816                             0706 BIKETOWN -122.6556 45.51540
-#&gt; 151  bike_6564                             0903 BIKETOWN -122.6765 45.52316
-#&gt; 152  bike_6070                             0847 BIKETOWN -122.6889 45.52604
-#&gt; 153  bike_6354                             0374 BIKETOWN -122.6763 45.51702
-#&gt; 154  bike_7325                          0969 ASCEND BIKE -122.6609 45.51755
-#&gt; 155  bike_6249                             0300 BIKETOWN -122.6554 45.51214
-#&gt; 156  bike_6618                             0663 BIKETOWN -122.6801 45.51933
-#&gt; 157  bike_7230                             0003 BIKETOWN -122.6802 45.52933
-#&gt; 158  bike_6820                            0700 BIKETOWN  -122.6774 45.51615
-#&gt; 159  bike_6315                             0678 BIKETOWN -122.6525 45.49406
-#&gt; 160  bike_6094                            0531  BIKETOWN -122.6736 45.52042
-#&gt; 161  bike_7383       0964 NATIVE AMERICAN HERITAGE MONTH -122.6803 45.50804
-#&gt; 162  bike_6855                             0539 BIKETOWN -122.6817 45.52006
-#&gt; 163  bike_7147                             0170 BIKETOWN -122.6714 45.52366
-#&gt; 164  bike_6367                             0908 BIKETOWN -122.6811 45.52119
-#&gt; 165  bike_6102                             0083 BIKETOWN -122.6776 45.51488
-#&gt; 166  bike_6036                             0784 BIKETOWN -122.6869 45.52001
-#&gt; 167  bike_7309                  0995 BETRUE 2018 TRAINER -122.6320 45.51501
-#&gt; 168  bike_6100                             0616 BIKETOWN -122.6751 45.51597
-#&gt; 169  bike_6265                             0188 BIKETOWN -122.6971 45.53833
-#&gt; 170  bike_7278                             0208 BIKETOWN -122.6816 45.52108
-#&gt; 171  bike_7108                             0235 BIKETOWN -122.6606 45.51364
-#&gt; 172  bike_6631                             0332 BIKETOWN -122.6784 45.52287
-#&gt; 173  bike_6317                             0854 BIKETOWN -122.6937 45.52415
-#&gt; 174  bike_6362                             0066 BIKETOWN -122.6746 45.52182
-#&gt; 175  bike_6035                             0575 BIKETOWN -122.6892 45.51602
-#&gt; 176  bike_6817                             0088 BIKETOWN -122.6985 45.52886
-#&gt; 177  bike_7101                            0496 BIKETOWN  -122.6893 45.52341
-#&gt; 178  bike_7304                 0994 BETRUE 2018 TRAINER  -122.6903 45.52457
-#&gt; 179  bike_6414                             0363 BIKETOWN -122.6558 45.51964
-#&gt; 180  bike_6636                             0825 BIKETOWN -122.6166 45.53751
-#&gt; 181  bike_6544                             0321 BIKETOWN -122.6922 45.51873
-#&gt; 182  bike_7393                         0932 ABILITY BIKE -122.6756 45.51351
-#&gt; 183  bike_7157                            0389 BIKETOWN  -122.6584 45.54142
-#&gt; 184  bike_6043                             0639 BIKETOWN -122.6610 45.51866
-#&gt; 185  bike_6634                            0583 BIKETOWN  -122.6566 45.51850
-#&gt; 186  bike_6065                             0584 BIKETOWN -122.6054 45.54238
-#&gt; 187  bike_6884                             0086 BIKETOWN -122.6766 45.53120
-#&gt; 188  bike_6431                             0174 BIKETOWN -122.6804 45.52950
-#&gt; 189  bike_6052                             0494 BIKETOWN -122.6598 45.53427
-#&gt; 190  bike_6270                             0050 BIKETOWN -122.6841 45.52936
-#&gt; 191  bike_7390 0961 DESIGN BIKE, WATERFRONT WANDERER SW  -122.6766 45.51925
-#&gt; 192  bike_7497                             0576 BIKETOWN -122.6757 45.52977
-#&gt; 193  bike_6666                             0349 BIKETOWN -122.6724 45.51632
-#&gt; 194  bike_7247                             0254 BIKETOWN -122.6808 45.54861
-#&gt; 195  bike_6808                             0408 BIKETOWN -122.6803 45.52117
-#&gt; 196  bike_7124                             0222 BIKETOWN -122.6625 45.52259
-#&gt; 197  bike_6594                             0772 BIKETOWN -122.6605 45.51228
-#&gt; 198  bike_6274                             0819 BIKETOWN -122.6810 45.52956
-#&gt; 199  bike_5989                             0872 BIKETOWN -122.6231 45.51781
-#&gt; 200  bike_6203                             0611 BIKETOWN -122.6783 45.51971
-#&gt; 201  bike_6273                             0057 BIKETOWN -122.6638 45.51310
-#&gt; 202  bike_6865                            0455 BIKETOWN  -122.6710 45.52390
-#&gt; 203  bike_6429                             0650 BIKETOWN -122.6795 45.51371
-#&gt; 204  bike_6661                             0768 BIKETOWN -122.6632 45.52996
-#&gt; 205  bike_6392                            0306 BIKETOWN  -122.6774 45.51334
-#&gt; 206  bike_7396                             0069 BIKETOWN -122.6415 45.52728
-#&gt; 207  bike_7302                 0967 BETRUE 2018 TRAINER  -122.6813 45.51140
-#&gt; 208  bike_7285                             0025 BIKETOWN -122.6811 45.50871
-#&gt; 209  bike_6887                             0450 BIKETOWN -122.6869 45.53576
-#&gt; 210  bike_6097                             0439 BIKETOWN -122.6572 45.51218
-#&gt; 211  bike_7310                       0968 BETRUE TRAINER -122.6677 45.51148
-#&gt; 212  bike_7317                          9890 ASCEND BIKE -122.6919 45.52917
-#&gt; 213  bike_6266                             0162 BIKETOWN -122.6821 45.52457
-#&gt; 214  bike_7288                             0401 BIKETOWN -122.6793 45.52597
-#&gt; 215  bike_6199                             0437 BIKETOWN -122.6832 45.53581
-#&gt; 216  bike_7138                             0245 BIKETOWN -122.6616 45.56358
-#&gt; 217 bike_19864                             0023 BIKETOWN -122.6722 45.52021
-#&gt; 218  bike_7295                          0982 AIR TRAINER -122.6719 45.52031
-#&gt; 219  bike_6506                             0210 BIKETOWN -122.7095 45.54425
-#&gt; 220  bike_6034                             0899 BIKETOWN -122.6983 45.53477
-#&gt; 221  bike_7409                             0209 BIKETOWN -122.6970 45.53809
-#&gt; 222  bike_6033                             0525 BIKETOWN -122.6823 45.52524
-#&gt; 223  bike_7127                             0158 BIKETOWN -122.6617 45.55193
-#&gt; 224  bike_6638                             0334 BIKETOWN -122.6781 45.52743
-#&gt; 225  bike_6502                             0105 BIKETOWN -122.6692 45.49355
-#&gt; 226  bike_6385                            0443 BIKETOWN  -122.6919 45.52871
-#&gt; 227  bike_6069                             0890 BIKETOWN -122.6865 45.53437
-#&gt; 228  bike_7366                         0953 ABILITY BIKE -122.6747 45.52107
-#&gt; 229  bike_6294                             0434 BIKETOWN -122.6833 45.52972
-#&gt; 230  bike_6403                             0830 BIKETOWN -122.6757 45.51357
-#&gt; 231  bike_6394                             0743 BIKETOWN -122.6780 45.51195
-#&gt; 232  bike_6309                             0419 BIKETOWN -122.6717 45.52024
-#&gt; 233  bike_6646                             0644 BIKETOWN -122.6597 45.52877
-#&gt; 234  bike_6364                             0618 BIKETOWN -122.6486 45.50212
-#&gt; 235  bike_6494                            0734 BIKETOWN  -122.6751 45.51930
-#&gt; 236  bike_6492                            0625 BIKETOWN  -122.6608 45.51757
-#&gt; 237  bike_6452                             0219 BIKETOWN -122.6737 45.53773
-#&gt; 238  bike_7388                         0945 ABILITY BIKE -122.6703 45.49631
-#&gt; 239  bike_6253                             0753 BIKETOWN -122.6769 45.51580
-#&gt; 240  bike_6811                             0675 BIKETOWN -122.6772 45.51274
-#&gt; 241  bike_6669                             0746 BIKETOWN -122.6559 45.50495
-#&gt; 242  bike_6665                             0246 BIKETOWN -122.6852 45.52779
-#&gt; 243  bike_6212                             0286 BIKETOWN -122.6636 45.51578
-#&gt; 244  bike_6838                            0358 BIKETOWN  -122.6759 45.49804
-#&gt; 245  bike_6311                             0535 BIKETOWN -122.6543 45.50084
-#&gt; 246  bike_6346                             0044 BIKETOWN -122.6534 45.51512
-#&gt; 247  bike_7178                             0672 BIKETOWN -122.6765 45.53128
-#&gt; 248  bike_7394                1029 LATINX HERITAGE MONTH -122.6627 45.52239
-#&gt; 249  bike_6295                             0393 BIKETOWN -122.6578 45.51344
-#&gt; 250  bike_7238                             0558 BIKETOWN -122.6698 45.52534
-#&gt; 251  bike_6516                             0060 BIKETOWN -122.6640 45.51931
-#&gt; 252  bike_6533                             0610 BIKETOWN -122.6758 45.51922
-#&gt; 253  bike_7270                             0104 BIKETOWN -122.6615 45.52413
-#&gt; 254  bike_6125                             0900 BIKETOWN -122.6751 45.51602
-#&gt; 255  bike_6040                             0901 BIKETOWN -122.6196 45.51003
-#&gt; 256  bike_6424                             0466 BIKETOWN -122.6722 45.52382
-#&gt; 257  bike_6474                             0608 BIKETOWN -122.6656 45.51596
-#&gt; 258 bike_29385                             0568 BIKETOWN -122.6780 45.52747
-#&gt;     is_reserved is_disabled jump_ebike_battery_level        last_updated year
-#&gt; 1             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 2             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 3             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 4             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 5             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 6             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 7             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 8             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 9             0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 10            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 11            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 12            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 13            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 14            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 15            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 16            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 17            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 18            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 19            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 20            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 21            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 22            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 23            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 24            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 25            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 26            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 27            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 28            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 29            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 30            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 31            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 32            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 33            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 34            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 35            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 36            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 37            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 38            0           0                      86% 2020-01-09 15:51:42 2020
-#&gt; 39            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 40            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 41            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 42            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 43            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 44            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 45            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 46            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 47            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 48            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 49            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 50            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 51            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 52            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 53            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 54            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 55            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 56            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 57            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 58            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 59            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 60            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 61            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 62            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 63            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 64            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 65            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 66            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 67            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 68            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 69            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 70            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 71            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 72            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 73            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 74            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 75            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 76            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 77            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 78            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 79            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 80            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 81            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 82            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 83            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 84            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 85            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 86            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 87            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 88            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 89            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 90            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 91            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 92            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 93            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 94            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 95            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 96            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 97            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 98            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 99            0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 100           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 101           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 102           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 103           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 104           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 105           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 106           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 107           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 108           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 109           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 110           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 111           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 112           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 113           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 114           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 115           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 116           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 117           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 118           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 119           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 120           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 121           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 122           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 123           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 124           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 125           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 126           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 127           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 128           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 129           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 130           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 131           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 132           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 133           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 134           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 135           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 136           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 137           0           0                      93% 2020-01-09 15:51:42 2020
-#&gt; 138           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 139           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 140           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 141           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 142           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 143           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 144           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 145           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 146           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 147           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 148           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 149           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 150           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 151           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 152           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 153           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 154           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 155           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 156           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 157           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 158           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 159           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 160           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 161           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 162           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 163           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 164           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 165           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 166           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 167           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 168           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 169           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 170           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 171           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 172           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 173           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 174           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 175           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 176           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 177           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 178           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 179           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 180           0           0                      55% 2020-01-09 15:51:42 2020
-#&gt; 181           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 182           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 183           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 184           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 185           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 186           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 187           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 188           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 189           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 190           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 191           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 192           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 193           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 194           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 195           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 196           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 197           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 198           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 199           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 200           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 201           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 202           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 203           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 204           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 205           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 206           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 207           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 208           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 209           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 210           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 211           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 212           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 213           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 214           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 215           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 216           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 217           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 218           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 219           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 220           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 221           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 222           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 223           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 224           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 225           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 226           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 227           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 228           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 229           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 230           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 231           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 232           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 233           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 234           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 235           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 236           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 237           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 238           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 239           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 240           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 241           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 242           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 243           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 244           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 245           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 246           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 247           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 248           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 249           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 250           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 251           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 252           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 253           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 254           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 255           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 256           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 257           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt; 258           0           0                     &lt;NA&gt; 2020-01-09 15:51:42 2020
-#&gt;     month day hour minute
-#&gt; 1       1   9   15     51
-#&gt; 2       1   9   15     51
-#&gt; 3       1   9   15     51
-#&gt; 4       1   9   15     51
-#&gt; 5       1   9   15     51
-#&gt; 6       1   9   15     51
-#&gt; 7       1   9   15     51
-#&gt; 8       1   9   15     51
-#&gt; 9       1   9   15     51
-#&gt; 10      1   9   15     51
-#&gt; 11      1   9   15     51
-#&gt; 12      1   9   15     51
-#&gt; 13      1   9   15     51
-#&gt; 14      1   9   15     51
-#&gt; 15      1   9   15     51
-#&gt; 16      1   9   15     51
-#&gt; 17      1   9   15     51
-#&gt; 18      1   9   15     51
-#&gt; 19      1   9   15     51
-#&gt; 20      1   9   15     51
-#&gt; 21      1   9   15     51
-#&gt; 22      1   9   15     51
-#&gt; 23      1   9   15     51
-#&gt; 24      1   9   15     51
-#&gt; 25      1   9   15     51
-#&gt; 26      1   9   15     51
-#&gt; 27      1   9   15     51
-#&gt; 28      1   9   15     51
-#&gt; 29      1   9   15     51
-#&gt; 30      1   9   15     51
-#&gt; 31      1   9   15     51
-#&gt; 32      1   9   15     51
-#&gt; 33      1   9   15     51
-#&gt; 34      1   9   15     51
-#&gt; 35      1   9   15     51
-#&gt; 36      1   9   15     51
-#&gt; 37      1   9   15     51
-#&gt; 38      1   9   15     51
-#&gt; 39      1   9   15     51
-#&gt; 40      1   9   15     51
-#&gt; 41      1   9   15     51
-#&gt; 42      1   9   15     51
-#&gt; 43      1   9   15     51
-#&gt; 44      1   9   15     51
-#&gt; 45      1   9   15     51
-#&gt; 46      1   9   15     51
-#&gt; 47      1   9   15     51
-#&gt; 48      1   9   15     51
-#&gt; 49      1   9   15     51
-#&gt; 50      1   9   15     51
-#&gt; 51      1   9   15     51
-#&gt; 52      1   9   15     51
-#&gt; 53      1   9   15     51
-#&gt; 54      1   9   15     51
-#&gt; 55      1   9   15     51
-#&gt; 56      1   9   15     51
-#&gt; 57      1   9   15     51
-#&gt; 58      1   9   15     51
-#&gt; 59      1   9   15     51
-#&gt; 60      1   9   15     51
-#&gt; 61      1   9   15     51
-#&gt; 62      1   9   15     51
-#&gt; 63      1   9   15     51
-#&gt; 64      1   9   15     51
-#&gt; 65      1   9   15     51
-#&gt; 66      1   9   15     51
-#&gt; 67      1   9   15     51
-#&gt; 68      1   9   15     51
-#&gt; 69      1   9   15     51
-#&gt; 70      1   9   15     51
-#&gt; 71      1   9   15     51
-#&gt; 72      1   9   15     51
-#&gt; 73      1   9   15     51
-#&gt; 74      1   9   15     51
-#&gt; 75      1   9   15     51
-#&gt; 76      1   9   15     51
-#&gt; 77      1   9   15     51
-#&gt; 78      1   9   15     51
-#&gt; 79      1   9   15     51
-#&gt; 80      1   9   15     51
-#&gt; 81      1   9   15     51
-#&gt; 82      1   9   15     51
-#&gt; 83      1   9   15     51
-#&gt; 84      1   9   15     51
-#&gt; 85      1   9   15     51
-#&gt; 86      1   9   15     51
-#&gt; 87      1   9   15     51
-#&gt; 88      1   9   15     51
-#&gt; 89      1   9   15     51
-#&gt; 90      1   9   15     51
-#&gt; 91      1   9   15     51
-#&gt; 92      1   9   15     51
-#&gt; 93      1   9   15     51
-#&gt; 94      1   9   15     51
-#&gt; 95      1   9   15     51
-#&gt; 96      1   9   15     51
-#&gt; 97      1   9   15     51
-#&gt; 98      1   9   15     51
-#&gt; 99      1   9   15     51
-#&gt; 100     1   9   15     51
-#&gt; 101     1   9   15     51
-#&gt; 102     1   9   15     51
-#&gt; 103     1   9   15     51
-#&gt; 104     1   9   15     51
-#&gt; 105     1   9   15     51
-#&gt; 106     1   9   15     51
-#&gt; 107     1   9   15     51
-#&gt; 108     1   9   15     51
-#&gt; 109     1   9   15     51
-#&gt; 110     1   9   15     51
-#&gt; 111     1   9   15     51
-#&gt; 112     1   9   15     51
-#&gt; 113     1   9   15     51
-#&gt; 114     1   9   15     51
-#&gt; 115     1   9   15     51
-#&gt; 116     1   9   15     51
-#&gt; 117     1   9   15     51
-#&gt; 118     1   9   15     51
-#&gt; 119     1   9   15     51
-#&gt; 120     1   9   15     51
-#&gt; 121     1   9   15     51
-#&gt; 122     1   9   15     51
-#&gt; 123     1   9   15     51
-#&gt; 124     1   9   15     51
-#&gt; 125     1   9   15     51
-#&gt; 126     1   9   15     51
-#&gt; 127     1   9   15     51
-#&gt; 128     1   9   15     51
-#&gt; 129     1   9   15     51
-#&gt; 130     1   9   15     51
-#&gt; 131     1   9   15     51
-#&gt; 132     1   9   15     51
-#&gt; 133     1   9   15     51
-#&gt; 134     1   9   15     51
-#&gt; 135     1   9   15     51
-#&gt; 136     1   9   15     51
-#&gt; 137     1   9   15     51
-#&gt; 138     1   9   15     51
-#&gt; 139     1   9   15     51
-#&gt; 140     1   9   15     51
-#&gt; 141     1   9   15     51
-#&gt; 142     1   9   15     51
-#&gt; 143     1   9   15     51
-#&gt; 144     1   9   15     51
-#&gt; 145     1   9   15     51
-#&gt; 146     1   9   15     51
-#&gt; 147     1   9   15     51
-#&gt; 148     1   9   15     51
-#&gt; 149     1   9   15     51
-#&gt; 150     1   9   15     51
-#&gt; 151     1   9   15     51
-#&gt; 152     1   9   15     51
-#&gt; 153     1   9   15     51
-#&gt; 154     1   9   15     51
-#&gt; 155     1   9   15     51
-#&gt; 156     1   9   15     51
-#&gt; 157     1   9   15     51
-#&gt; 158     1   9   15     51
-#&gt; 159     1   9   15     51
-#&gt; 160     1   9   15     51
-#&gt; 161     1   9   15     51
-#&gt; 162     1   9   15     51
-#&gt; 163     1   9   15     51
-#&gt; 164     1   9   15     51
-#&gt; 165     1   9   15     51
-#&gt; 166     1   9   15     51
-#&gt; 167     1   9   15     51
-#&gt; 168     1   9   15     51
-#&gt; 169     1   9   15     51
-#&gt; 170     1   9   15     51
-#&gt; 171     1   9   15     51
-#&gt; 172     1   9   15     51
-#&gt; 173     1   9   15     51
-#&gt; 174     1   9   15     51
-#&gt; 175     1   9   15     51
-#&gt; 176     1   9   15     51
-#&gt; 177     1   9   15     51
-#&gt; 178     1   9   15     51
-#&gt; 179     1   9   15     51
-#&gt; 180     1   9   15     51
-#&gt; 181     1   9   15     51
-#&gt; 182     1   9   15     51
-#&gt; 183     1   9   15     51
-#&gt; 184     1   9   15     51
-#&gt; 185     1   9   15     51
-#&gt; 186     1   9   15     51
-#&gt; 187     1   9   15     51
-#&gt; 188     1   9   15     51
-#&gt; 189     1   9   15     51
-#&gt; 190     1   9   15     51
-#&gt; 191     1   9   15     51
-#&gt; 192     1   9   15     51
-#&gt; 193     1   9   15     51
-#&gt; 194     1   9   15     51
-#&gt; 195     1   9   15     51
-#&gt; 196     1   9   15     51
-#&gt; 197     1   9   15     51
-#&gt; 198     1   9   15     51
-#&gt; 199     1   9   15     51
-#&gt; 200     1   9   15     51
-#&gt; 201     1   9   15     51
-#&gt; 202     1   9   15     51
-#&gt; 203     1   9   15     51
-#&gt; 204     1   9   15     51
-#&gt; 205     1   9   15     51
-#&gt; 206     1   9   15     51
-#&gt; 207     1   9   15     51
-#&gt; 208     1   9   15     51
-#&gt; 209     1   9   15     51
-#&gt; 210     1   9   15     51
-#&gt; 211     1   9   15     51
-#&gt; 212     1   9   15     51
-#&gt; 213     1   9   15     51
-#&gt; 214     1   9   15     51
-#&gt; 215     1   9   15     51
-#&gt; 216     1   9   15     51
-#&gt; 217     1   9   15     51
-#&gt; 218     1   9   15     51
-#&gt; 219     1   9   15     51
-#&gt; 220     1   9   15     51
-#&gt; 221     1   9   15     51
-#&gt; 222     1   9   15     51
-#&gt; 223     1   9   15     51
-#&gt; 224     1   9   15     51
-#&gt; 225     1   9   15     51
-#&gt; 226     1   9   15     51
-#&gt; 227     1   9   15     51
-#&gt; 228     1   9   15     51
-#&gt; 229     1   9   15     51
-#&gt; 230     1   9   15     51
-#&gt; 231     1   9   15     51
-#&gt; 232     1   9   15     51
-#&gt; 233     1   9   15     51
-#&gt; 234     1   9   15     51
-#&gt; 235     1   9   15     51
-#&gt; 236     1   9   15     51
-#&gt; 237     1   9   15     51
-#&gt; 238     1   9   15     51
-#&gt; 239     1   9   15     51
-#&gt; 240     1   9   15     51
-#&gt; 241     1   9   15     51
-#&gt; 242     1   9   15     51
-#&gt; 243     1   9   15     51
-#&gt; 244     1   9   15     51
-#&gt; 245     1   9   15     51
-#&gt; 246     1   9   15     51
-#&gt; 247     1   9   15     51
-#&gt; 248     1   9   15     51
-#&gt; 249     1   9   15     51
-#&gt; 250     1   9   15     51
-#&gt; 251     1   9   15     51
-#&gt; 252     1   9   15     51
-#&gt; 253     1   9   15     51
-#&gt; 254     1   9   15     51
-#&gt; 255     1   9   15     51
-#&gt; 256     1   9   15     51
-#&gt; 257     1   9   15     51
-#&gt; 258     1   9   15     51</div><div class='input'>
+                     <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"both"</span>)</div><div class='output co'>#&gt;        bike_id                                name       lon      lat
+#&gt; 1    bike_6887                       0450 BIKETOWN -122.6836 45.51919
+#&gt; 2    bike_6101                       0190 BIKETOWN -122.6889 45.52931
+#&gt; 3    bike_6058                       0259 BIKETOWN -122.6736 45.51789
+#&gt; 4    bike_6109                       0894 BIKETOWN -122.6818 45.51987
+#&gt; 5    bike_6106                       0669 BIKETOWN -122.6660 45.52719
+#&gt; 6    bike_7266                       0775 BIKETOWN -122.6860 45.52787
+#&gt; 7    bike_6610                       0818 BIKETOWN -122.6757 45.52972
+#&gt; 8    bike_5987                       0487 BIKETOWN -122.6959 45.53336
+#&gt; 9    bike_7144                       0224 BIKETOWN -122.6818 45.51993
+#&gt; 10   bike_6313                       0930 BIKETOWN -122.6553 45.50863
+#&gt; 11   bike_6464                       0559 BIKETOWN -122.6427 45.49896
+#&gt; 12   bike_7253                       0177 BIKETOWN -122.7103 45.53857
+#&gt; 13   bike_6102                      0083 BIKETOWN  -122.6709 45.52506
+#&gt; 14   bike_7101                      0496 BIKETOWN  -122.6765 45.53113
+#&gt; 15   bike_7238                       0558 BIKETOWN -122.6488 45.50124
+#&gt; 16   bike_7327   1005 DESIGN BIKE, NE CYCLING LIFE -122.6781 45.52314
+#&gt; 17   bike_7325                    0969 ASCEND BIKE -122.6822 45.52025
+#&gt; 18   bike_6889                       0063 BIKETOWN -122.6715 45.52486
+#&gt; 19   bike_7300            0996 BLACK HISTORY MONTH -122.6781 45.52741
+#&gt; 20   bike_6527                       0801 BIKETOWN -122.6900 45.53897
+#&gt; 21   bike_6104                       0624 BIKETOWN -122.6768 45.52737
+#&gt; 22   bike_7149                       0207 BIKETOWN -122.6804 45.52652
+#&gt; 23   bike_7497                       0576 BIKETOWN -122.6833 45.53036
+#&gt; 24   bike_6550                       0918 BIKETOWN -122.6979 45.52980
+#&gt; 25   bike_7280                      0026 BIKETOWN  -122.6408 45.49833
+#&gt; 26   bike_6089                       0837 BIKETOWN -122.6826 45.52121
+#&gt; 27   bike_7348                 1018 RIP CITY RIDER -122.6648 45.55692
+#&gt; 28   bike_7309            0995 BETRUE 2018 TRAINER -122.6496 45.52581
+#&gt; 29   bike_6636                       0825 BIKETOWN -122.6594 45.53196
+#&gt; 30   bike_6186                       0737 BIKETOWN -122.6716 45.52503
+#&gt; 31   bike_6168                       0888 BIKETOWN -122.6374 45.50842
+#&gt; 32   bike_7383 0964 NATIVE AMERICAN HERITAGE MONTH -122.6987 45.52763
+#&gt; 33   bike_6098                       0454 BIKETOWN -122.6403 45.52815
+#&gt; 34   bike_7125                       0172 BIKETOWN -122.6601 45.55598
+#&gt; 35   bike_6870                       0779 BIKETOWN -122.6606 45.53593
+#&gt; 36   bike_6240                     0216 BIKETOWN   -122.6784 45.52081
+#&gt; 37   bike_6777                       0266 BIKETOWN -122.6651 45.52296
+#&gt; 38   bike_6034                       0899 BIKETOWN -122.6592 45.56184
+#&gt; 39   bike_7205                       0458 BIKETOWN -122.6617 45.51780
+#&gt; 40   bike_6573                       0843 BIKETOWN -122.6553 45.50859
+#&gt; 41   bike_6238                      0774 BIKETOWN  -122.6537 45.52150
+#&gt; 42   bike_6536                       0704 BIKETOWN -122.6656 45.53554
+#&gt; 43   bike_7294                    0997 ASCEND BIKE -122.6839 45.52797
+#&gt; 44   bike_6193                       0153 BIKETOWN -122.6488 45.50122
+#&gt; 45  bike_24814                       0398 BIKETOWN -122.6330 45.56158
+#&gt; 46   bike_6279                       0049 BIKETOWN -122.6831 45.52178
+#&gt; 47   bike_7211                       0004 BIKETOWN -122.6880 45.51325
+#&gt; 48  bike_19527                       0305 BIKETOWN -122.6810 45.51725
+#&gt; 49   bike_6503                       0326 BIKETOWN -122.6637 45.52161
+#&gt; 50   bike_7334                  0999 VETERANS BIKE -122.7065 45.53177
+#&gt; 51  bike_28387                       0689 BIKETOWN -122.6639 45.51302
+#&gt; 52   bike_7126                       0220 BIKETOWN -122.6852 45.53441
+#&gt; 53   bike_7275                       0264 BIKETOWN -122.6779 45.52303
+#&gt; 54   bike_6500                       0136 BIKETOWN -122.6606 45.51993
+#&gt; 55   bike_6246                      0511 BIKETOWN  -122.6209 45.53547
+#&gt; 56   bike_6878                      0141 BIKETOWN  -122.6368 45.50972
+#&gt; 57   bike_7163                       0173 BIKETOWN -122.6768 45.53093
+#&gt; 58  bike_19238                       0495 BIKETOWN -122.6709 45.52460
+#&gt; 59   bike_6494                      0734 BIKETOWN  -122.6767 45.52320
+#&gt; 60   bike_6377                       0110 BIKETOWN -122.6447 45.49957
+#&gt; 61   bike_6482                       0308 BIKETOWN -122.6802 45.52501
+#&gt; 62   bike_6195                     0662 BIKETOWN   -122.6690 45.53013
+#&gt; 63   bike_6786                     0529 BIKETOWN   -122.6488 45.52280
+#&gt; 64   bike_7297             0973 BLAZERS 50th BIKE  -122.6750 45.52999
+#&gt; 65   bike_6591                       0432 BIKETOWN -122.6089 45.52266
+#&gt; 66   bike_7255                       0013 BIKETOWN -122.6555 45.54357
+#&gt; 67   bike_6318                       0919 BIKETOWN -122.6393 45.51814
+#&gt; 68   bike_7138                       0245 BIKETOWN -122.6536 45.49886
+#&gt; 69   bike_6249                       0300 BIKETOWN -122.6446 45.49977
+#&gt; 70   bike_6838                      0358 BIKETOWN  -122.6218 45.53520
+#&gt; 71   bike_6600                      0923 BIKETOWN  -122.6099 45.50526
+#&gt; 72   bike_6155                       0032 BIKETOWN -122.6484 45.49667
+#&gt; 73   bike_6064                       0732 BIKETOWN -122.6799 45.51591
+#&gt; 74   bike_7313                   0985 ASCEND BIKE  -122.6568 45.51711
+#&gt; 75   bike_6065                       0584 BIKETOWN -122.6510 45.52220
+#&gt; 76   bike_7121                       0117 BIKETOWN -122.6350 45.50346
+#&gt; 77   bike_5997                       0150 BIKETOWN -122.6543 45.50087
+#&gt; 78   bike_6649                       0778 BIKETOWN -122.6823 45.52708
+#&gt; 79   bike_7298    0980 DESIGN BIKE, N PAUL BUNYAN  -122.6854 45.52636
+#&gt; 80   bike_7181                      0128 BIKETOWN  -122.6177 45.53500
+#&gt; 81   bike_7328                    1000 AIR SAFARI  -122.6409 45.50660
+#&gt; 82   bike_7394          1029 LATINX HERITAGE MONTH -122.6587 45.53401
+#&gt; 83   bike_6275                       0826 BIKETOWN -122.6618 45.55210
+#&gt; 84   bike_6026                       0442 BIKETOWN -122.6835 45.51909
+#&gt; 85  bike_24817                       0630 BIKETOWN -122.6615 45.54739
+#&gt; 86  bike_28106                       0319 BIKETOWN -122.6360 45.52583
+#&gt; 87   bike_7342          1016 LATINX HERITAGE MONTH -122.6545 45.52215
+#&gt; 88   bike_6223                       0353 BIKETOWN -122.6845 45.51691
+#&gt; 89  bike_24823                      0557 BIKETOWN  -122.6339 45.52204
+#&gt; 90  bike_19237                       0133 BIKETOWN -122.6768 45.53083
+#&gt; 91   bike_6892                       0206 BIKETOWN -122.6802 45.52506
+#&gt; 92  bike_19242                      0009 BIKETOWN  -122.6853 45.52802
+#&gt; 93   bike_7318            0993 BETRUE 2018 TRAINER -122.6602 45.51732
+#&gt; 94   bike_6861                       0541 BIKETOWN -122.6488 45.52279
+#&gt; 95  bike_29251                       0135 BIKETOWN -122.6316 45.52437
+#&gt; 96   bike_6354                       0374 BIKETOWN -122.6789 45.51560
+#&gt; 97   bike_6837                       0538 BIKETOWN -122.6840 45.51531
+#&gt; 98   bike_7343   1011 DESIGN BIKE, NE CYCLING LIFE -122.6689 45.53012
+#&gt; 99   bike_7319     0975 DESIGN BIKE, N PAUL BUNYAN -122.6860 45.51483
+#&gt; 100  bike_7236                      0006 BIKETOWN  -122.6054 45.53044
+#&gt; 101  bike_6272                      0685 BIKETOWN  -122.6402 45.51285
+#&gt; 102  bike_6061                       0165 BIKETOWN -122.6517 45.51996
+#&gt; 103  bike_6595                       0822 BIKETOWN -122.6781 45.52585
+#&gt; 104  bike_6170                       0336 BIKETOWN -122.6545 45.51579
+#&gt; 105  bike_6533                       0610 BIKETOWN -122.6756 45.52083
+#&gt; 106  bike_6165                       0613 BIKETOWN -122.6902 45.53142
+#&gt; 107  bike_7341              1021 BLAZERS 50th BIKE -122.6781 45.52738
+#&gt; 108  bike_7245                       0551 BIKETOWN -122.6547 45.51568
+#&gt; 109  bike_7333          1022 LATINX HERITAGE MONTH -122.6809 45.54586
+#&gt; 110 bike_29385                       0568 BIKETOWN -122.6910 45.53358
+#&gt; 111  bike_6420                       0283 BIKETOWN -122.6640 45.51937
+#&gt; 112  bike_6432                       0660 BIKETOWN -122.6607 45.51948
+#&gt; 113  bike_6113                       0227 BIKETOWN -122.6322 45.50475
+#&gt; 114  bike_6083                      0468 BIKETOWN  -122.6966 45.52759
+#&gt; 115  bike_6379                       0225 BIKETOWN -122.6548 45.50468
+#&gt; 116  bike_6793                       0703 BIKETOWN -122.6908 45.53209
+#&gt; 117  bike_7197                       0014 BIKETOWN -122.6668 45.53800
+#&gt; 118  bike_6381                       0842 BIKETOWN -122.6535 45.50375
+#&gt; 119  bike_7178                       0672 BIKETOWN -122.6620 45.56055
+#&gt; 120  bike_7351                     1003 AIR SAFARI -122.6610 45.52303
+#&gt; 121  bike_7498                      0181 BIKETOWN  -122.6538 45.55078
+#&gt; 122  bike_7122                       0276 BIKETOWN -122.6619 45.50634
+#&gt; 123  bike_7187                       0155 BIKETOWN -122.6690 45.53010
+#&gt;     is_reserved is_disabled        last_updated year month day hour minute
+#&gt; 1             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 2             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 3             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 4             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 5             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 6             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 7             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 8             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 9             0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 10            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 11            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 12            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 13            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 14            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 15            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 16            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 17            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 18            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 19            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 20            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 21            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 22            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 23            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 24            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 25            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 26            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 27            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 28            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 29            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 30            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 31            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 32            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 33            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 34            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 35            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 36            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 37            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 38            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 39            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 40            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 41            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 42            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 43            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 44            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 45            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 46            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 47            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 48            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 49            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 50            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 51            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 52            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 53            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 54            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 55            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 56            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 57            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 58            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 59            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 60            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 61            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 62            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 63            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 64            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 65            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 66            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 67            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 68            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 69            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 70            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 71            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 72            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 73            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 74            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 75            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 76            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 77            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 78            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 79            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 80            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 81            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 82            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 83            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 84            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 85            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 86            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 87            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 88            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 89            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 90            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 91            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 92            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 93            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 94            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 95            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 96            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 97            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 98            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 99            0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 100           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 101           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 102           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 103           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 104           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 105           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 106           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 107           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 108           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 109           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 110           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 111           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 112           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 113           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 114           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 115           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 116           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 117           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 118           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 119           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 120           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 121           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 122           0           0 2020-03-26 12:13:11 2020     3  26   12     13
+#&gt; 123           0           0 2020-03-26 12:13:11 2020     3  26   12     13</div><div class='input'>
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kaelyn Rosenberg, Simon P. Couch.</p>
+  <p>Developed by Simon P. Couch, Kaelyn Rosenberg.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>
