@@ -27,5 +27,5 @@ Suggests:
     rmarkdown,
     testthat (>= 2.1.0),
     covr
-URL: https://github.com/ds-civic-data/gbfs
-BugReports: https://github.com/ds-civic-data/gbfs/issues
+URL: https://github.com/simonpcouch/gbfs
+BugReports: https://github.com/simonpcouch/gbfs/issues
