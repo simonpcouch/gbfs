@@ -1,6 +1,12 @@
 
 # News
 
+### 1.3.3
+
+  - Catch errors while fetching .json data and return a more informative
+    message on timeout and HTTP 400 errors
+  - Update unit testing URLs to replace closed bikeshare systems
+
 ### 1.3.2
 
   - Several fixes for bugs arising from NABSA’s update to the gbfs spec

@@ -130,7 +130,8 @@ find_feed_from_top_level <- function(top_level_, feed_) {
   }
   
   # grab the gbfs.json feed
-  gbfs <- jsonlite::fromJSON(txt = top_level_)
+  gbfs <- tryCatch(jsonlite::fromJSON(txt = top_level_),
+                   error = message_connection_issue)
   
   # pull out the names of the supplied sub-feeds
   gbfs_feeds <- gbfs$data$en$feeds
@@ -198,7 +199,8 @@ get_gbfs_dataset_ <- function(city, directory, file, output, feed) {
                      feed)
   
   # save feed
-  data_raw <- jsonlite::fromJSON(txt = url)
+  data_raw <- tryCatch(jsonlite::fromJSON(txt = url),
+                       error = message_connection_issue)
   
   data <- data_raw[["data"]]
   
@@ -403,6 +405,12 @@ url_exists <- function(x, quiet = FALSE, ...) {
 message_no_internet <- function() {
   message(c("You don't seem to have an active internet connection. Please", 
             "connect to the internet to use the gbfs package."))
+  return(list())
+}
+
+message_connection_issue <- function(e) {
+  message(c("There was an issue connecting with the given gbfs provider. ", 
+            "The response is printed below: \n", e))
   return(list())
 }
 

@@ -64,8 +64,9 @@ get_which_gbfs_feeds <- function(city) {
   url <- city_to_url(city, "gbfs")
     
   # grab the relevant data
-  gbfs <- jsonlite::fromJSON(txt = url)
-    
+  gbfs <- tryCatch(jsonlite::fromJSON(txt = url),
+                   error = message_connection_issue)
+  
   # pull out the dataset
   gbfs_feeds <- gbfs[["data"]][[1]][[1]]
     
