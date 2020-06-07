@@ -46,7 +46,7 @@ You can install the developmental version of `gbfs` from GitHub with:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("ds-civic-data/gbfs")
+devtools::install_github("simonpcouch/gbfs")
 ```
 
 ## Background
