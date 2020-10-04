@@ -1,5 +1,9 @@
 # News
 
+### 1.3.4
+
+  - Update URLs in examples and unit tests to reflect closed bikeshare systems
+  
 ### 1.3.3
 
   - Catch errors while fetching .json data and return a more informative

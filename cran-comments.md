@@ -1,9 +1,13 @@
+### gbfs
+
+The 1.3.4 release update URLs in examples and unit tests to reflect 
+bikeshare systems that closed due to COVID-19.
 
 ## Test environments
 
   - local OS X install, R 3.6.3
   - ubuntu 16.04.6 (on travis-ci), oldrel, release, devel
-  - win-builder (devel and release)
+  - win-builder (devel)
 
 ## R CMD check results
 
