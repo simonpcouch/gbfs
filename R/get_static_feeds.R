@@ -65,25 +65,10 @@ get_station_information <- function(city, directory = NULL, file = "station_info
 #' @inherit get_station_information params return seealso 
 #' 
 #' @examples
-#' # we can grab the system alerts feed for portland, oregon
-#' # in one of several ways! first, supply the `city` 
-#' # argument as a URL, and save to file by leaving output 
-#' # set to it's default. usually, we would supply a character 
-#' # string (like "pdx", maybe,) for the `directory` argument 
-#' # instead of `tempdir`.
+#' # grab the system alerts feed for portland, oregon
 #' \donttest{get_system_alerts(city = 
 #' "http://biketownpdx.socialbicycles.com/opendata/system_alerts.json",  
 #'                   directory = tempdir())}
-#'                     
-#' # or, instead, just supply the name of 
-#' # a city as a string. 
-#'\donttest{get_system_alerts(city = "memphis",
-#'                   directory = tempdir())}
-#'                     
-#' # instead of saving the output as a file, we can 
-#' # just return the output as a dataframe
-#' \donttest{get_system_alerts(city = "memphis",  
-#'                   output = "return")}
 #'  
 #'                   
 #' @export
@@ -103,25 +88,10 @@ get_system_alerts <- function (city, directory = NULL, file = "system_alerts.rds
 #' @inherit get_station_information params return seealso 
 #' 
 #' @examples
-#' # we can grab the system calendar feed for portland, oregon
-#' #  in one of several ways! first, supply the `city` 
-#' # argument as a URL, and save to file by leaving output 
-#' # set to it's default. usually, we would supply a character 
-#' # string (like "pdx", maybe,) for the `directory` argument 
-#' # instead of `tempdir`.
+#' # grab the system calendar feed for portland, oregon
 #' \donttest{get_system_calendar(city = 
 #' "http://biketownpdx.socialbicycles.com/opendata/system_calendar.json",  
 #'                     directory = tempdir())}
-#'                     
-#' # or, instead, just supply the name of 
-#' # a city as a string. 
-#'\donttest{get_system_calendar(city = "memphis",
-#'                     directory = tempdir())}
-#'                     
-#' # instead of saving the output as a file, we can 
-#' # just return the output as a dataframe
-#' \donttest{get_system_calendar(city = "memphis",  
-#'                     output = "return")}
 #' 
 #' 
 #' @export
@@ -142,26 +112,10 @@ get_system_calendar <- function (city, directory = NULL, file = "system_calendar
 #' @inherit get_station_information params return seealso 
 #' 
 #' @examples
-#' # we can grab the system hours feed for memphis, 
-#' # tennessee in one of several ways! first, supply the `city` 
-#' # argument as a URL, and save to file by leaving output 
-#' # set to it's default. usually, we would supply a character 
-#' # string (like "memphis", maybe,) for the `directory` argument 
-#' # instead of `tempdir`.
+#' # grab the system hours feed for portland, oregon
 #' \donttest{get_system_hours(city = 
-#' "https://gbfs.bcycle.com/bcycle_memphis/system_hours.json",  
+#' "http://biketownpdx.socialbicycles.com/opendata/system_hours.json",  
 #'                  directory = tempdir())}
-#'                     
-#' # or, instead, just supply the name of 
-#' # the city as a string. 
-#'\donttest{get_system_hours(city = "memphis",
-#'                  directory = tempdir())}
-#'                     
-#' # instead of saving the output as a file, we can 
-#' # just return the output as a dataframe
-#' \donttest{get_system_hours(city = "memphis",  
-#'                  output = "return")}
-#' 
 #' 
 #' @export
 
