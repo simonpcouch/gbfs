@@ -41,28 +41,28 @@ bikeshare bikes parked at bikeshare stations. Metadata for this dataset
 can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 }
 \examples{
-# we can grab the station status feed for portland, 
-# oregon's bikeshare program in  several ways! the most 
+# we can grab the station status feed for memphis, 
+# tennessee's bikeshare program in  several ways! the most 
 # straightforward way is just to supply the `city` argument
 # as a string:
-\donttest{get_station_status(city = "portland")}
+\donttest{get_station_status(city = "memphis")}
 
 # the `city` argument can also be supplied as an
 # actual URL to an active .json feed
 \donttest{get_station_status(city = 
-"http://biketownpdx.socialbicycles.com/opendata/station_status.json",  
+"https://gbfs.bcycle.com/bcycle_memphis/station_status.json",  
                      directory = tempdir())}
 
 # if you'd like to save the output to file, supply a 
 # `directory` argument. usually, though, we would supply a 
-# character string (like "pdx", maybe,) for the `directory` 
+# character string (like "memphis", maybe,) for the `directory` 
 # argument instead of `tempdir`.
-\donttest{get_station_status(city = "portland",  
+\donttest{get_station_status(city = "memphis",  
                      directory = tempdir())}
                      
 # the output argument can control whether the file is
 # saved and/or returned explicitly
-\donttest{get_station_status(city = "portland",  
+\donttest{get_station_status(city = "memphis",  
                      directory = tempdir(),
                      output = "both")} 
 }

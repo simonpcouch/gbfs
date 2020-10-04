@@ -49,8 +49,8 @@ get_gbfs_cities <- function() {
 #' Specification \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 #' 
 #' @examples 
-#' # grab all of the feeds released by portland
-#' \donttest{get_which_gbfs_feeds(city = "portland")}
+#' # grab all of the feeds released by memphis
+#' \donttest{get_which_gbfs_feeds(city = "memphis")}
 #' 
 #' @export
 get_which_gbfs_feeds <- function(city) {
@@ -103,25 +103,25 @@ get_which_gbfs_feeds <- function(city) {
 #' The function will raise an error if the \code{directory} and \code{output} 
 #' arguments seem to conflict.
 #' @examples
-#' # grab all of the feeds released by portland, oregon's 
-#' # bikeshare program  "biketown", and return them as a 
+#' # grab all of the feeds released by memphis' 
+#' # bikeshare program  and return them as a 
 #' # named list of dataframes
-#' \donttest{get_gbfs(city = "portland")}
+#' \donttest{get_gbfs(city = "memphis")}
 #' 
 #' # if, rather than returning the data, we wanted to save it:
-#' \donttest{get_gbfs(city = "portland", directory = tempdir())}
+#' \donttest{get_gbfs(city = "memphis", directory = tempdir())}
 #' 
 #' # note that, usually, we'd supply a character string 
-#' # (like "pdx", maybe,) to the directory argument 
+#' # (like "memphis", maybe,) to the directory argument 
 #' # instead of `tempdir()`. 
 #' 
 #' # if we're having trouble specifying the correct feed,
 #' # we can also supply the actual URL to the feed
-#' \donttest{get_gbfs(city = "http://biketownpdx.socialbicycles.com/opendata/gbfs.json")}
+#' \donttest{get_gbfs(city = "https://gbfs.bcycle.com/bcycle_memphis/gbfs.json")}
 #'                    
-#' # the examples above grab every feed that portland releases.
+#' # the examples above grab every feed that memphis releases.
 #' # if, instead, we just wanted the dynamic feeds
-#' \donttest{get_gbfs(city = "portland", feeds = "dynamic")}
+#' \donttest{get_gbfs(city = "memphis", feeds = "dynamic")}
 #' @export
 get_gbfs <- function(city, feeds = "all", directory = NULL, output = NULL) {
 

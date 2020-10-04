@@ -49,8 +49,8 @@ main wrapper function in the package, \code{get_gbfs}.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/ds-civic-data/gbfs}
-  \item Report bugs at \url{https://github.com/ds-civic-data/gbfs/issues}
+  \item \url{https://github.com/simonpcouch/gbfs}
+  \item Report bugs at \url{https://github.com/simonpcouch/gbfs/issues}
 }
 
 }

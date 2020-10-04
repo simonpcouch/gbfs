@@ -39,8 +39,8 @@ This feed informs users about changes to normal operation. Metadata for this
 dataset can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 }
 \examples{
-# we can grab the system alerts feed for portland, 
-# oregon in one of several ways! first, supply the `city` 
+# we can grab the system alerts feed for portland, oregon
+# in one of several ways! first, supply the `city` 
 # argument as a URL, and save to file by leaving output 
 # set to it's default. usually, we would supply a character 
 # string (like "pdx", maybe,) for the `directory` argument 
@@ -50,13 +50,13 @@ dataset can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
                   directory = tempdir())}
                     
 # or, instead, just supply the name of 
-# the city as a string. 
-\donttest{get_system_alerts(city = "portland",
+# a city as a string. 
+\donttest{get_system_alerts(city = "memphis",
                   directory = tempdir())}
                     
 # instead of saving the output as a file, we can 
 # just return the output as a dataframe
-\donttest{get_system_alerts(city = "portland",  
+\donttest{get_system_alerts(city = "memphis",  
                   output = "return")}
  
                   

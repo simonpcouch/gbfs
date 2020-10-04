@@ -66,7 +66,7 @@ specified as desired datasets by setting `feeds = "dynamic"` in the
 main wrapper function in the package, `get_gbfs`.
 
 Much of the data supplied in this specification can be considered static. If you
-want to grab all of these for a given city, set `feeds = "static'` when calling
+want to grab all of these for a given city, set `feeds = "static"` when calling
 `get_gbfs`. Static feeds include:
 
 * `system_information`: Basic metadata about the bikeshare program
@@ -95,7 +95,8 @@ First, we'll grab some information on the stations.
 
 ```{r}
 # grab portland station information and return it as a dataframe
-pdx_station_info <- get_station_information("portland")
+pdx_station_info <- 
+  get_station_information("https://gbfs.biketownpdx.com/gbfs/gbfs.json")
 
 # check it out!
 glimpse(pdx_station_info)
@@ -105,7 +106,8 @@ glimpse(pdx_station_info)
 
 ```{r}
 # grab current capacity at each station and return it as a dataframe
-pdx_station_status <- get_station_status("portland")
+pdx_station_status <- 
+  get_station_status("https://gbfs.biketownpdx.com/gbfs/gbfs.json")
 
 # check it out!
 glimpse(pdx_station_status)
@@ -136,7 +138,9 @@ Portland that are not docked at a station,
 
 ```{r}
 # grab data on free bike status and save it as a dataframe
-pdx_free_bikes <- get_free_bike_status("portland", output = "return") %>%
+pdx_free_bikes <- 
+  get_free_bike_status("https://gbfs.biketownpdx.com/gbfs/gbfs.json", 
+                       output = "return") %>%
   # just select columns we're interested in visualizing
   select(id = bike_id, lon, lat) %>%
   # make columns analogous to station_status for row binding

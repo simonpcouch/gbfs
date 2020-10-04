@@ -5,9 +5,9 @@ test_that("dynamic feeds work", {
   
   skip_if_offline(host = "r-project.org")
   
-  get_station_status("portland")
+  get_station_status("memphis")
   
-  get_free_bike_status("portland")
+  get_free_bike_status("memphis")
   
 })
 
@@ -19,10 +19,10 @@ test_that("file saving and overwriting works", {
   dir <- tempdir()
   
   # save the file to a subdirectory of it
-  get_station_status("portland", paste0(dir, "/test"))
+  get_station_status("memphis", paste0(dir, "/test"))
   
   # ...and then append to it
-  get_station_status("portland", paste0(dir, "/test"))
+  get_station_status("memphis", paste0(dir, "/test"))
   
 })
 
@@ -34,7 +34,7 @@ test_that("row binding checks work", {
   dir <- tempdir()
   
   # grab some data to work with
-  pdx_status <- get_station_status("portland", dir, output = "both")
+  pdx_status <- get_station_status("memphis", dir, output = "both")
   
   # try to overwrite it, but...
   

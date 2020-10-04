@@ -40,24 +40,24 @@ dataset can be found at:
 \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 }
 \examples{
-# we can grab the system hours feed for portland, 
-# oregon in one of several ways! first, supply the `city` 
+# we can grab the system hours feed for memphis, 
+# tennessee in one of several ways! first, supply the `city` 
 # argument as a URL, and save to file by leaving output 
 # set to it's default. usually, we would supply a character 
-# string (like "pdx", maybe,) for the `directory` argument 
+# string (like "memphis", maybe,) for the `directory` argument 
 # instead of `tempdir`.
 \donttest{get_system_hours(city = 
-"http://biketownpdx.socialbicycles.com/opendata/system_hours.json",  
+"https://gbfs.bcycle.com/bcycle_memphis/system_hours.json",  
                  directory = tempdir())}
                     
 # or, instead, just supply the name of 
 # the city as a string. 
-\donttest{get_system_hours(city = "portland",
+\donttest{get_system_hours(city = "memphis",
                  directory = tempdir())}
                     
 # instead of saving the output as a file, we can 
 # just return the output as a dataframe
-\donttest{get_system_hours(city = "portland",  
+\donttest{get_system_hours(city = "memphis",  
                  output = "return")}
 
 

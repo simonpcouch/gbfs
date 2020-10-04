@@ -81,7 +81,7 @@ can be found at: https://github.com/NABSA/gbfs/blob/master/gbfs.md" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gbfs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.4</span>
       </span>
     </div>
 
@@ -132,10 +132,10 @@ can be found at: <a href='https://github.com/NABSA/gbfs/blob/master/gbfs.md'>htt
     </div>
 
     <pre class="usage"><span class='fu'>get_free_bike_status</span>(
-  <span class='no'>city</span>,
-  <span class='kw'>directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"free_bike_status.rds"</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>city</span>,
+  directory = <span class='kw'>NULL</span>,
+  file = <span class='st'>"free_bike_status.rds"</span>,
+  output = <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -182,523 +182,45 @@ functions, and [get_which_gbfs_feeds()] for a dataframe of which feeds
 are released by a given city.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># we can grab the free bike status feed for portland, </span>
-<span class='co'># oregon's bikeshare program in  several ways! the most </span>
+    <pre class="examples"><div class='input'><span class='co'># we can grab the free bike status feed for memphis, </span>
+<span class='co'># tennessee's bikeshare program in  several ways! the most </span>
 <span class='co'># straightforward way is just to supply the `city` argument</span>
 <span class='co'># as a string:</span>
-<span class='fu'>get_free_bike_status</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>)</div><div class='output co'>#&gt; <span class='message'>Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.</span></div><div class='output co'>#&gt;        bike_id                                name       lon      lat
-#&gt; 1    bike_6887                       0450 BIKETOWN -122.6836 45.51919
-#&gt; 2    bike_6101                       0190 BIKETOWN -122.6889 45.52931
-#&gt; 3    bike_6058                       0259 BIKETOWN -122.6736 45.51789
-#&gt; 4    bike_6109                       0894 BIKETOWN -122.6818 45.51987
-#&gt; 5    bike_6106                       0669 BIKETOWN -122.6660 45.52719
-#&gt; 6    bike_7266                       0775 BIKETOWN -122.6860 45.52787
-#&gt; 7    bike_6610                       0818 BIKETOWN -122.6757 45.52972
-#&gt; 8    bike_5987                       0487 BIKETOWN -122.6959 45.53336
-#&gt; 9    bike_7144                       0224 BIKETOWN -122.6818 45.51993
-#&gt; 10   bike_6313                       0930 BIKETOWN -122.6553 45.50863
-#&gt; 11   bike_6464                       0559 BIKETOWN -122.6427 45.49896
-#&gt; 12   bike_7253                       0177 BIKETOWN -122.7103 45.53857
-#&gt; 13   bike_6102                      0083 BIKETOWN  -122.6709 45.52506
-#&gt; 14   bike_7101                      0496 BIKETOWN  -122.6765 45.53113
-#&gt; 15   bike_7238                       0558 BIKETOWN -122.6488 45.50124
-#&gt; 16   bike_7327   1005 DESIGN BIKE, NE CYCLING LIFE -122.6781 45.52314
-#&gt; 17   bike_7325                    0969 ASCEND BIKE -122.6822 45.52025
-#&gt; 18   bike_6889                       0063 BIKETOWN -122.6715 45.52486
-#&gt; 19   bike_7300            0996 BLACK HISTORY MONTH -122.6781 45.52741
-#&gt; 20   bike_6527                       0801 BIKETOWN -122.6900 45.53897
-#&gt; 21   bike_6104                       0624 BIKETOWN -122.6768 45.52737
-#&gt; 22   bike_7149                       0207 BIKETOWN -122.6804 45.52652
-#&gt; 23   bike_7497                       0576 BIKETOWN -122.6833 45.53036
-#&gt; 24   bike_6550                       0918 BIKETOWN -122.6979 45.52980
-#&gt; 25   bike_7280                      0026 BIKETOWN  -122.6408 45.49833
-#&gt; 26   bike_6089                       0837 BIKETOWN -122.6826 45.52121
-#&gt; 27   bike_7348                 1018 RIP CITY RIDER -122.6648 45.55692
-#&gt; 28   bike_7309            0995 BETRUE 2018 TRAINER -122.6496 45.52581
-#&gt; 29   bike_6636                       0825 BIKETOWN -122.6594 45.53196
-#&gt; 30   bike_6186                       0737 BIKETOWN -122.6716 45.52503
-#&gt; 31   bike_6168                       0888 BIKETOWN -122.6374 45.50842
-#&gt; 32   bike_7383 0964 NATIVE AMERICAN HERITAGE MONTH -122.6987 45.52763
-#&gt; 33   bike_6098                       0454 BIKETOWN -122.6403 45.52815
-#&gt; 34   bike_7125                       0172 BIKETOWN -122.6601 45.55598
-#&gt; 35   bike_6870                       0779 BIKETOWN -122.6606 45.53593
-#&gt; 36   bike_6240                     0216 BIKETOWN   -122.6784 45.52081
-#&gt; 37   bike_6777                       0266 BIKETOWN -122.6651 45.52296
-#&gt; 38   bike_6034                       0899 BIKETOWN -122.6592 45.56184
-#&gt; 39   bike_7205                       0458 BIKETOWN -122.6617 45.51780
-#&gt; 40   bike_6573                       0843 BIKETOWN -122.6553 45.50859
-#&gt; 41   bike_6238                      0774 BIKETOWN  -122.6537 45.52150
-#&gt; 42   bike_6536                       0704 BIKETOWN -122.6656 45.53554
-#&gt; 43   bike_7294                    0997 ASCEND BIKE -122.6839 45.52797
-#&gt; 44   bike_6193                       0153 BIKETOWN -122.6488 45.50122
-#&gt; 45  bike_24814                       0398 BIKETOWN -122.6330 45.56158
-#&gt; 46   bike_6279                       0049 BIKETOWN -122.6831 45.52178
-#&gt; 47   bike_7211                       0004 BIKETOWN -122.6880 45.51325
-#&gt; 48  bike_19527                       0305 BIKETOWN -122.6810 45.51725
-#&gt; 49   bike_6503                       0326 BIKETOWN -122.6637 45.52161
-#&gt; 50   bike_7334                  0999 VETERANS BIKE -122.7065 45.53177
-#&gt; 51  bike_28387                       0689 BIKETOWN -122.6639 45.51302
-#&gt; 52   bike_7126                       0220 BIKETOWN -122.6852 45.53441
-#&gt; 53   bike_7275                       0264 BIKETOWN -122.6779 45.52303
-#&gt; 54   bike_6500                       0136 BIKETOWN -122.6606 45.51993
-#&gt; 55   bike_6246                      0511 BIKETOWN  -122.6209 45.53547
-#&gt; 56   bike_6878                      0141 BIKETOWN  -122.6368 45.50972
-#&gt; 57   bike_7163                       0173 BIKETOWN -122.6768 45.53093
-#&gt; 58  bike_19238                       0495 BIKETOWN -122.6709 45.52460
-#&gt; 59   bike_6494                      0734 BIKETOWN  -122.6767 45.52320
-#&gt; 60   bike_6377                       0110 BIKETOWN -122.6447 45.49957
-#&gt; 61   bike_6482                       0308 BIKETOWN -122.6802 45.52501
-#&gt; 62   bike_6195                     0662 BIKETOWN   -122.6690 45.53013
-#&gt; 63   bike_6786                     0529 BIKETOWN   -122.6488 45.52280
-#&gt; 64   bike_7297             0973 BLAZERS 50th BIKE  -122.6750 45.52999
-#&gt; 65   bike_6591                       0432 BIKETOWN -122.6089 45.52266
-#&gt; 66   bike_7255                       0013 BIKETOWN -122.6555 45.54357
-#&gt; 67   bike_6318                       0919 BIKETOWN -122.6393 45.51814
-#&gt; 68   bike_7138                       0245 BIKETOWN -122.6536 45.49886
-#&gt; 69   bike_6249                       0300 BIKETOWN -122.6446 45.49977
-#&gt; 70   bike_6838                      0358 BIKETOWN  -122.6218 45.53520
-#&gt; 71   bike_6600                      0923 BIKETOWN  -122.6099 45.50526
-#&gt; 72   bike_6155                       0032 BIKETOWN -122.6484 45.49667
-#&gt; 73   bike_6064                       0732 BIKETOWN -122.6799 45.51591
-#&gt; 74   bike_7313                   0985 ASCEND BIKE  -122.6568 45.51711
-#&gt; 75   bike_6065                       0584 BIKETOWN -122.6510 45.52220
-#&gt; 76   bike_7121                       0117 BIKETOWN -122.6350 45.50346
-#&gt; 77   bike_5997                       0150 BIKETOWN -122.6543 45.50087
-#&gt; 78   bike_6649                       0778 BIKETOWN -122.6823 45.52708
-#&gt; 79   bike_7298    0980 DESIGN BIKE, N PAUL BUNYAN  -122.6854 45.52636
-#&gt; 80   bike_7181                      0128 BIKETOWN  -122.6177 45.53500
-#&gt; 81   bike_7328                    1000 AIR SAFARI  -122.6409 45.50660
-#&gt; 82   bike_7394          1029 LATINX HERITAGE MONTH -122.6587 45.53401
-#&gt; 83   bike_6275                       0826 BIKETOWN -122.6618 45.55210
-#&gt; 84   bike_6026                       0442 BIKETOWN -122.6835 45.51909
-#&gt; 85  bike_24817                       0630 BIKETOWN -122.6615 45.54739
-#&gt; 86  bike_28106                       0319 BIKETOWN -122.6360 45.52583
-#&gt; 87   bike_7342          1016 LATINX HERITAGE MONTH -122.6545 45.52215
-#&gt; 88   bike_6223                       0353 BIKETOWN -122.6845 45.51691
-#&gt; 89  bike_24823                      0557 BIKETOWN  -122.6339 45.52204
-#&gt; 90  bike_19237                       0133 BIKETOWN -122.6768 45.53083
-#&gt; 91   bike_6892                       0206 BIKETOWN -122.6802 45.52506
-#&gt; 92  bike_19242                      0009 BIKETOWN  -122.6853 45.52802
-#&gt; 93   bike_7318            0993 BETRUE 2018 TRAINER -122.6602 45.51732
-#&gt; 94   bike_6861                       0541 BIKETOWN -122.6488 45.52279
-#&gt; 95  bike_29251                       0135 BIKETOWN -122.6316 45.52437
-#&gt; 96   bike_6354                       0374 BIKETOWN -122.6789 45.51560
-#&gt; 97   bike_6837                       0538 BIKETOWN -122.6840 45.51531
-#&gt; 98   bike_7343   1011 DESIGN BIKE, NE CYCLING LIFE -122.6689 45.53012
-#&gt; 99   bike_7319     0975 DESIGN BIKE, N PAUL BUNYAN -122.6860 45.51483
-#&gt; 100  bike_7236                      0006 BIKETOWN  -122.6054 45.53044
-#&gt; 101  bike_6272                      0685 BIKETOWN  -122.6402 45.51285
-#&gt; 102  bike_6061                       0165 BIKETOWN -122.6517 45.51996
-#&gt; 103  bike_6595                       0822 BIKETOWN -122.6781 45.52585
-#&gt; 104  bike_6170                       0336 BIKETOWN -122.6545 45.51579
-#&gt; 105  bike_6533                       0610 BIKETOWN -122.6756 45.52083
-#&gt; 106  bike_6165                       0613 BIKETOWN -122.6902 45.53142
-#&gt; 107  bike_7341              1021 BLAZERS 50th BIKE -122.6781 45.52738
-#&gt; 108  bike_7245                       0551 BIKETOWN -122.6547 45.51568
-#&gt; 109  bike_7333          1022 LATINX HERITAGE MONTH -122.6809 45.54586
-#&gt; 110 bike_29385                       0568 BIKETOWN -122.6910 45.53358
-#&gt; 111  bike_6420                       0283 BIKETOWN -122.6640 45.51937
-#&gt; 112  bike_6432                       0660 BIKETOWN -122.6607 45.51948
-#&gt; 113  bike_6113                       0227 BIKETOWN -122.6322 45.50475
-#&gt; 114  bike_6083                      0468 BIKETOWN  -122.6966 45.52759
-#&gt; 115  bike_6379                       0225 BIKETOWN -122.6548 45.50468
-#&gt; 116  bike_6793                       0703 BIKETOWN -122.6908 45.53209
-#&gt; 117  bike_7197                       0014 BIKETOWN -122.6668 45.53800
-#&gt; 118  bike_6381                       0842 BIKETOWN -122.6535 45.50375
-#&gt; 119  bike_7178                       0672 BIKETOWN -122.6620 45.56055
-#&gt; 120  bike_7351                     1003 AIR SAFARI -122.6610 45.52303
-#&gt; 121  bike_7498                      0181 BIKETOWN  -122.6538 45.55078
-#&gt; 122  bike_7122                       0276 BIKETOWN -122.6619 45.50634
-#&gt; 123  bike_7187                       0155 BIKETOWN -122.6690 45.53010
-#&gt;     is_reserved is_disabled        last_updated year month day hour minute
-#&gt; 1             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 2             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 3             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 4             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 5             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 6             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 7             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 8             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 9             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 10            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 11            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 12            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 13            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 14            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 15            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 16            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 17            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 18            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 19            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 20            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 21            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 22            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 23            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 24            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 25            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 26            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 27            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 28            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 29            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 30            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 31            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 32            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 33            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 34            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 35            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 36            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 37            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 38            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 39            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 40            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 41            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 42            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 43            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 44            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 45            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 46            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 47            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 48            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 49            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 50            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 51            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 52            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 53            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 54            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 55            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 56            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 57            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 58            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 59            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 60            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 61            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 62            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 63            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 64            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 65            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 66            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 67            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 68            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 69            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 70            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 71            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 72            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 73            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 74            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 75            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 76            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 77            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 78            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 79            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 80            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 81            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 82            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 83            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 84            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 85            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 86            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 87            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 88            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 89            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 90            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 91            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 92            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 93            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 94            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 95            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 96            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 97            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 98            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 99            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 100           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 101           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 102           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 103           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 104           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 105           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 106           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 107           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 108           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 109           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 110           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 111           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 112           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 113           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 114           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 115           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 116           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 117           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 118           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 119           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 120           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 121           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 122           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 123           0           0 2020-03-26 12:13:11 2020     3  26   12     13</div><div class='input'>
+<span class='fu'>get_free_bike_status</span>(city = <span class='st'>"memphis"</span>)
+</div><div class='output co'>#&gt; <span class='message'>Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.</span></div><div class='output co'>#&gt;         lon      lat is_disabled is_reserved
+#&gt; 1 -90.05036 35.15098           0           0
+#&gt; 2 -90.05038 35.15092           0           0
+#&gt;                                bike_id
+#&gt; 1 bc3d391b-5cdc-4879-9da0-1603766b63e8
+#&gt; 2 d3477755-98b0-45f2-bfec-80c09c989250
+#&gt;                                           rental_uris.ios
+#&gt; 1 https://www.bcycle.com/applink?system_id=bcycle_memphis
+#&gt; 2 https://www.bcycle.com/applink?system_id=bcycle_memphis
+#&gt;                                       rental_uris.android        last_updated
+#&gt; 1 https://www.bcycle.com/applink?system_id=bcycle_memphis 2020-10-04 12:42:16
+#&gt; 2 https://www.bcycle.com/applink?system_id=bcycle_memphis 2020-10-04 12:42:16
+#&gt;   year month day hour minute
+#&gt; 1 2020    10   4   12     42
+#&gt; 2 2020    10   4   12     42</div><div class='input'>
 <span class='co'># the `city` argument can also be supplied as an</span>
 <span class='co'># actual URL to an active .json feed</span>
-<span class='fu'>get_free_bike_status</span>(<span class='kw'>city</span> <span class='kw'>=</span>
-<span class='st'>"http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json"</span>,
-                     <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+<span class='fu'>get_free_bike_status</span>(city = 
+<span class='st'>"https://gbfs.bcycle.com/bcycle_memphis/free_bike_status.json"</span>,  
+                     directory = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
 
 <span class='co'># if you'd like to save the output to file, supply a </span>
 <span class='co'># `directory` argument. usually, though, we would supply a </span>
-<span class='co'># character string (like "pdx", maybe,) for the `directory` </span>
+<span class='co'># character string (like "memphis", maybe,) for the `directory` </span>
 <span class='co'># argument instead of `tempdir`.</span>
-<span class='fu'>get_free_bike_status</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>,
-                     <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-
+<span class='fu'>get_free_bike_status</span>(city = <span class='st'>"memphis"</span>,  
+                     directory = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+</div><div class='output co'>#&gt; <span class='error'>Error in datasets_can_be_row_binded(data, paste(directory, file, sep = "/")): The bikeshare data just pulled has 13 columns, while the already stored bikeshare data, at file path /var/folders/qz/jqpclkqn0l9fkr5fr11xrzlh0000gn/T//RtmpkpZ3IW/free_bike_status.rds, has 6 columns, so they can not be row-binded.</span></div><div class='input'>                     
 <span class='co'># the output argument can control whether the file is</span>
 <span class='co'># saved and/or returned explicitly</span>
-<span class='fu'>get_free_bike_status</span>(<span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"portland"</span>,
-                     <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
-                     <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"both"</span>)</div><div class='output co'>#&gt;        bike_id                                name       lon      lat
-#&gt; 1    bike_6887                       0450 BIKETOWN -122.6836 45.51919
-#&gt; 2    bike_6101                       0190 BIKETOWN -122.6889 45.52931
-#&gt; 3    bike_6058                       0259 BIKETOWN -122.6736 45.51789
-#&gt; 4    bike_6109                       0894 BIKETOWN -122.6818 45.51987
-#&gt; 5    bike_6106                       0669 BIKETOWN -122.6660 45.52719
-#&gt; 6    bike_7266                       0775 BIKETOWN -122.6860 45.52787
-#&gt; 7    bike_6610                       0818 BIKETOWN -122.6757 45.52972
-#&gt; 8    bike_5987                       0487 BIKETOWN -122.6959 45.53336
-#&gt; 9    bike_7144                       0224 BIKETOWN -122.6818 45.51993
-#&gt; 10   bike_6313                       0930 BIKETOWN -122.6553 45.50863
-#&gt; 11   bike_6464                       0559 BIKETOWN -122.6427 45.49896
-#&gt; 12   bike_7253                       0177 BIKETOWN -122.7103 45.53857
-#&gt; 13   bike_6102                      0083 BIKETOWN  -122.6709 45.52506
-#&gt; 14   bike_7101                      0496 BIKETOWN  -122.6765 45.53113
-#&gt; 15   bike_7238                       0558 BIKETOWN -122.6488 45.50124
-#&gt; 16   bike_7327   1005 DESIGN BIKE, NE CYCLING LIFE -122.6781 45.52314
-#&gt; 17   bike_7325                    0969 ASCEND BIKE -122.6822 45.52025
-#&gt; 18   bike_6889                       0063 BIKETOWN -122.6715 45.52486
-#&gt; 19   bike_7300            0996 BLACK HISTORY MONTH -122.6781 45.52741
-#&gt; 20   bike_6527                       0801 BIKETOWN -122.6900 45.53897
-#&gt; 21   bike_6104                       0624 BIKETOWN -122.6768 45.52737
-#&gt; 22   bike_7149                       0207 BIKETOWN -122.6804 45.52652
-#&gt; 23   bike_7497                       0576 BIKETOWN -122.6833 45.53036
-#&gt; 24   bike_6550                       0918 BIKETOWN -122.6979 45.52980
-#&gt; 25   bike_7280                      0026 BIKETOWN  -122.6408 45.49833
-#&gt; 26   bike_6089                       0837 BIKETOWN -122.6826 45.52121
-#&gt; 27   bike_7348                 1018 RIP CITY RIDER -122.6648 45.55692
-#&gt; 28   bike_7309            0995 BETRUE 2018 TRAINER -122.6496 45.52581
-#&gt; 29   bike_6636                       0825 BIKETOWN -122.6594 45.53196
-#&gt; 30   bike_6186                       0737 BIKETOWN -122.6716 45.52503
-#&gt; 31   bike_6168                       0888 BIKETOWN -122.6374 45.50842
-#&gt; 32   bike_7383 0964 NATIVE AMERICAN HERITAGE MONTH -122.6987 45.52763
-#&gt; 33   bike_6098                       0454 BIKETOWN -122.6403 45.52815
-#&gt; 34   bike_7125                       0172 BIKETOWN -122.6601 45.55598
-#&gt; 35   bike_6870                       0779 BIKETOWN -122.6606 45.53593
-#&gt; 36   bike_6240                     0216 BIKETOWN   -122.6784 45.52081
-#&gt; 37   bike_6777                       0266 BIKETOWN -122.6651 45.52296
-#&gt; 38   bike_6034                       0899 BIKETOWN -122.6592 45.56184
-#&gt; 39   bike_7205                       0458 BIKETOWN -122.6617 45.51780
-#&gt; 40   bike_6573                       0843 BIKETOWN -122.6553 45.50859
-#&gt; 41   bike_6238                      0774 BIKETOWN  -122.6537 45.52150
-#&gt; 42   bike_6536                       0704 BIKETOWN -122.6656 45.53554
-#&gt; 43   bike_7294                    0997 ASCEND BIKE -122.6839 45.52797
-#&gt; 44   bike_6193                       0153 BIKETOWN -122.6488 45.50122
-#&gt; 45  bike_24814                       0398 BIKETOWN -122.6330 45.56158
-#&gt; 46   bike_6279                       0049 BIKETOWN -122.6831 45.52178
-#&gt; 47   bike_7211                       0004 BIKETOWN -122.6880 45.51325
-#&gt; 48  bike_19527                       0305 BIKETOWN -122.6810 45.51725
-#&gt; 49   bike_6503                       0326 BIKETOWN -122.6637 45.52161
-#&gt; 50   bike_7334                  0999 VETERANS BIKE -122.7065 45.53177
-#&gt; 51  bike_28387                       0689 BIKETOWN -122.6639 45.51302
-#&gt; 52   bike_7126                       0220 BIKETOWN -122.6852 45.53441
-#&gt; 53   bike_7275                       0264 BIKETOWN -122.6779 45.52303
-#&gt; 54   bike_6500                       0136 BIKETOWN -122.6606 45.51993
-#&gt; 55   bike_6246                      0511 BIKETOWN  -122.6209 45.53547
-#&gt; 56   bike_6878                      0141 BIKETOWN  -122.6368 45.50972
-#&gt; 57   bike_7163                       0173 BIKETOWN -122.6768 45.53093
-#&gt; 58  bike_19238                       0495 BIKETOWN -122.6709 45.52460
-#&gt; 59   bike_6494                      0734 BIKETOWN  -122.6767 45.52320
-#&gt; 60   bike_6377                       0110 BIKETOWN -122.6447 45.49957
-#&gt; 61   bike_6482                       0308 BIKETOWN -122.6802 45.52501
-#&gt; 62   bike_6195                     0662 BIKETOWN   -122.6690 45.53013
-#&gt; 63   bike_6786                     0529 BIKETOWN   -122.6488 45.52280
-#&gt; 64   bike_7297             0973 BLAZERS 50th BIKE  -122.6750 45.52999
-#&gt; 65   bike_6591                       0432 BIKETOWN -122.6089 45.52266
-#&gt; 66   bike_7255                       0013 BIKETOWN -122.6555 45.54357
-#&gt; 67   bike_6318                       0919 BIKETOWN -122.6393 45.51814
-#&gt; 68   bike_7138                       0245 BIKETOWN -122.6536 45.49886
-#&gt; 69   bike_6249                       0300 BIKETOWN -122.6446 45.49977
-#&gt; 70   bike_6838                      0358 BIKETOWN  -122.6218 45.53520
-#&gt; 71   bike_6600                      0923 BIKETOWN  -122.6099 45.50526
-#&gt; 72   bike_6155                       0032 BIKETOWN -122.6484 45.49667
-#&gt; 73   bike_6064                       0732 BIKETOWN -122.6799 45.51591
-#&gt; 74   bike_7313                   0985 ASCEND BIKE  -122.6568 45.51711
-#&gt; 75   bike_6065                       0584 BIKETOWN -122.6510 45.52220
-#&gt; 76   bike_7121                       0117 BIKETOWN -122.6350 45.50346
-#&gt; 77   bike_5997                       0150 BIKETOWN -122.6543 45.50087
-#&gt; 78   bike_6649                       0778 BIKETOWN -122.6823 45.52708
-#&gt; 79   bike_7298    0980 DESIGN BIKE, N PAUL BUNYAN  -122.6854 45.52636
-#&gt; 80   bike_7181                      0128 BIKETOWN  -122.6177 45.53500
-#&gt; 81   bike_7328                    1000 AIR SAFARI  -122.6409 45.50660
-#&gt; 82   bike_7394          1029 LATINX HERITAGE MONTH -122.6587 45.53401
-#&gt; 83   bike_6275                       0826 BIKETOWN -122.6618 45.55210
-#&gt; 84   bike_6026                       0442 BIKETOWN -122.6835 45.51909
-#&gt; 85  bike_24817                       0630 BIKETOWN -122.6615 45.54739
-#&gt; 86  bike_28106                       0319 BIKETOWN -122.6360 45.52583
-#&gt; 87   bike_7342          1016 LATINX HERITAGE MONTH -122.6545 45.52215
-#&gt; 88   bike_6223                       0353 BIKETOWN -122.6845 45.51691
-#&gt; 89  bike_24823                      0557 BIKETOWN  -122.6339 45.52204
-#&gt; 90  bike_19237                       0133 BIKETOWN -122.6768 45.53083
-#&gt; 91   bike_6892                       0206 BIKETOWN -122.6802 45.52506
-#&gt; 92  bike_19242                      0009 BIKETOWN  -122.6853 45.52802
-#&gt; 93   bike_7318            0993 BETRUE 2018 TRAINER -122.6602 45.51732
-#&gt; 94   bike_6861                       0541 BIKETOWN -122.6488 45.52279
-#&gt; 95  bike_29251                       0135 BIKETOWN -122.6316 45.52437
-#&gt; 96   bike_6354                       0374 BIKETOWN -122.6789 45.51560
-#&gt; 97   bike_6837                       0538 BIKETOWN -122.6840 45.51531
-#&gt; 98   bike_7343   1011 DESIGN BIKE, NE CYCLING LIFE -122.6689 45.53012
-#&gt; 99   bike_7319     0975 DESIGN BIKE, N PAUL BUNYAN -122.6860 45.51483
-#&gt; 100  bike_7236                      0006 BIKETOWN  -122.6054 45.53044
-#&gt; 101  bike_6272                      0685 BIKETOWN  -122.6402 45.51285
-#&gt; 102  bike_6061                       0165 BIKETOWN -122.6517 45.51996
-#&gt; 103  bike_6595                       0822 BIKETOWN -122.6781 45.52585
-#&gt; 104  bike_6170                       0336 BIKETOWN -122.6545 45.51579
-#&gt; 105  bike_6533                       0610 BIKETOWN -122.6756 45.52083
-#&gt; 106  bike_6165                       0613 BIKETOWN -122.6902 45.53142
-#&gt; 107  bike_7341              1021 BLAZERS 50th BIKE -122.6781 45.52738
-#&gt; 108  bike_7245                       0551 BIKETOWN -122.6547 45.51568
-#&gt; 109  bike_7333          1022 LATINX HERITAGE MONTH -122.6809 45.54586
-#&gt; 110 bike_29385                       0568 BIKETOWN -122.6910 45.53358
-#&gt; 111  bike_6420                       0283 BIKETOWN -122.6640 45.51937
-#&gt; 112  bike_6432                       0660 BIKETOWN -122.6607 45.51948
-#&gt; 113  bike_6113                       0227 BIKETOWN -122.6322 45.50475
-#&gt; 114  bike_6083                      0468 BIKETOWN  -122.6966 45.52759
-#&gt; 115  bike_6379                       0225 BIKETOWN -122.6548 45.50468
-#&gt; 116  bike_6793                       0703 BIKETOWN -122.6908 45.53209
-#&gt; 117  bike_7197                       0014 BIKETOWN -122.6668 45.53800
-#&gt; 118  bike_6381                       0842 BIKETOWN -122.6535 45.50375
-#&gt; 119  bike_7178                       0672 BIKETOWN -122.6620 45.56055
-#&gt; 120  bike_7351                     1003 AIR SAFARI -122.6610 45.52303
-#&gt; 121  bike_7498                      0181 BIKETOWN  -122.6538 45.55078
-#&gt; 122  bike_7122                       0276 BIKETOWN -122.6619 45.50634
-#&gt; 123  bike_7187                       0155 BIKETOWN -122.6690 45.53010
-#&gt;     is_reserved is_disabled        last_updated year month day hour minute
-#&gt; 1             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 2             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 3             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 4             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 5             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 6             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 7             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 8             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 9             0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 10            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 11            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 12            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 13            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 14            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 15            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 16            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 17            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 18            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 19            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 20            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 21            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 22            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 23            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 24            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 25            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 26            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 27            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 28            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 29            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 30            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 31            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 32            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 33            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 34            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 35            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 36            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 37            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 38            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 39            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 40            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 41            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 42            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 43            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 44            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 45            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 46            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 47            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 48            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 49            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 50            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 51            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 52            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 53            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 54            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 55            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 56            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 57            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 58            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 59            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 60            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 61            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 62            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 63            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 64            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 65            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 66            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 67            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 68            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 69            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 70            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 71            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 72            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 73            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 74            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 75            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 76            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 77            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 78            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 79            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 80            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 81            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 82            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 83            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 84            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 85            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 86            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 87            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 88            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 89            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 90            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 91            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 92            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 93            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 94            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 95            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 96            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 97            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 98            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 99            0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 100           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 101           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 102           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 103           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 104           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 105           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 106           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 107           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 108           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 109           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 110           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 111           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 112           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 113           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 114           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 115           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 116           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 117           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 118           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 119           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 120           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 121           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 122           0           0 2020-03-26 12:13:11 2020     3  26   12     13
-#&gt; 123           0           0 2020-03-26 12:13:11 2020     3  26   12     13</div><div class='input'>
+<span class='fu'>get_free_bike_status</span>(city = <span class='st'>"memphis"</span>,  
+                     directory = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
+                     output = <span class='st'>"both"</span>)                     
+</div><div class='output co'>#&gt; <span class='error'>Error in datasets_can_be_row_binded(data, paste(directory, file, sep = "/")): The bikeshare data just pulled has 13 columns, while the already stored bikeshare data, at file path /var/folders/qz/jqpclkqn0l9fkr5fr11xrzlh0000gn/T//RtmpkpZ3IW/free_bike_status.rds, has 6 columns, so they can not be row-binded.</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -715,7 +237,7 @@ are released by a given city.</p></div>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

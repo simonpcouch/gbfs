@@ -27,7 +27,7 @@ optional. This function grabs a list of each of the feeds supplied
 by a given city, as well as the URLs to access them.
 }
 \examples{
-# grab all of the feeds released by portland
-\donttest{get_which_gbfs_feeds(city = "portland")}
+# grab all of the feeds released by memphis
+\donttest{get_which_gbfs_feeds(city = "memphis")}
 
 }

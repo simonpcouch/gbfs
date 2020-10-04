@@ -1,10 +1,10 @@
 context("wrapper")
 
-# grab the feed for portland's biketown... these feeds
+# grab the feed for memphis's biketown... these feeds
 # change regularly, so test failures might result from
 # changes in the operation model of biketown rather than
 # failure of the software
-biketown <- get_gbfs("portland")
+biketown <- get_gbfs("memphis")
 bike_itau <- get_gbfs("santiago")
 greenville_bcycle <- get_gbfs("greenville")
 bird <- get_gbfs("https://mds.bird.co/gbfs/chicago/gbfs.json")
@@ -27,7 +27,7 @@ test_that("argument checking works", {
   skip_if_offline(host = "r-project.org")
   
   # no directory supplied but user wants to save
-  expect_error(get_gbfs("portland", 
+  expect_error(get_gbfs("memphis", 
                         output = "save"),
                "The argument to output suggests")
   
