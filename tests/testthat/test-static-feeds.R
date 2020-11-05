@@ -7,11 +7,11 @@ test_that("static feeds work", {
   
   get_station_information("memphis")
   
-  get_system_alerts("http://biketownpdx.socialbicycles.com/opendata/system_alerts.json")
+  get_system_alerts("https://gbfs.biketownpdx.com/gbfs/en/system_alerts.json")
   
-  get_system_calendar("http://biketownpdx.socialbicycles.com/opendata/system_calendar.json")
+  get_system_calendar("https://gbfs.biketownpdx.com/gbfs/en/system_calendar.json")
   
-  get_system_hours("http://biketownpdx.socialbicycles.com/opendata/system_hours.json")
+  get_system_hours("https://gbfs.biketownpdx.com/gbfs/en/system_hours.json")
   
   get_system_information("memphis")
   
