@@ -1,14 +1,21 @@
 # News
 
+### 1.3.5
+
+  - Update URLs in examples and unit tests to reflect bikeshare systems
+    adjusting operations due to COVID-19
+
 ### 1.3.4
 
-  - Update URLs in examples and unit tests to reflect closed bikeshare systems
+  - Update URLs in examples and unit tests to reflect bikeshare systems
+    adjusting operations due to COVID-19
   
 ### 1.3.3
 
   - Catch errors while fetching .json data and return a more informative
     message on timeout and HTTP 400 errors
-  - Update unit testing URLs to replace closed bikeshare systems
+  - Update URLs in examples and unit tests to reflect bikeshare systems
+    adjusting operations due to COVID-19
 
 ### 1.3.2
 

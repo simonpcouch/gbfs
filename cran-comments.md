@@ -1,7 +1,7 @@
 ### gbfs
 
-The 1.3.4 release update URLs in examples and unit tests to reflect 
-bikeshare systems that closed due to COVID-19.
+The 1.3.5 release update URLs in examples and unit tests to reflect 
+bikeshare systems adjusting operations due to COVID-19.
 
 ## Test environments
 
