@@ -1,13 +1,12 @@
-### gbfs
-
-The 1.3.5 release update URLs in examples and unit tests to reflect 
-bikeshare systems adjusting operations due to COVID-19.
+# gbfs
 
 ## Test environments
 
-  - local OS X install, R 3.6.3
-  - ubuntu 16.04.6 (on travis-ci), oldrel, release, devel
-  - win-builder (devel)
+* local macOS install, R 3.6.3
+* macOS (on github actions), release 
+* ubuntu 16.04 (on github actions), release, devel
+* windows (on github actions), release
+* windows (on win-builder), devel
 
 ## R CMD check results
 
