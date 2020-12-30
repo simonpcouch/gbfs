@@ -3,8 +3,8 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/gbfs)](https://cran.r-project.org/package=gbfs)
-[![Travis-CI Build
-Status](https://travis-ci.org/simonpcouch/gbfs.svg?branch=master)](https://travis-ci.org/simonpcouch/gbfs)
+[![R build 
+status](https://github.com/simonpcouch/gbfs/workflows/R-CMD-check/badge.svg)](https://github.com/simonpcouch/gbfs/actions)
 [![Testing
 Coverage](https://codecov.io/gh/simonpcouch/gbfs/branch/master/graph/badge.svg)](https://codecov.io/gh/simonpcouch/gbfs?branch=master)
 [![CRAN

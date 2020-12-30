@@ -2,7 +2,6 @@
 ^\.Rproj\.user$
 cran-comments.Rmd
 cran-comments.md
-^\.travis\.yml$
 docs/
 ^README.Rmd
 ^README.md
@@ -12,3 +11,4 @@ figures/
 ^CRAN-RELEASE$
 CONTRIBUTING.md
 ^pkgdown
+^\.github$

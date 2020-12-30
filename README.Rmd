@@ -14,7 +14,7 @@ devtools::load_all()
 # General Bikeshare Feed Specification - R Package <a href='https://gbfs.netlify.com'><img src='https://raw.githubusercontent.com/simonpcouch/gbfs/master/figures/hex.png' align="right" height="200" /></a>
 
 [![CRAN status](https://www.r-pkg.org/badges/version/gbfs)](https://cran.r-project.org/package=gbfs)
-[![Travis-CI Build Status](https://travis-ci.org/simonpcouch/gbfs.svg?branch=master)](https://travis-ci.org/simonpcouch/gbfs)
+[![R build status](https://github.com/simonpcouch/gbfs/workflows/R-CMD-check/badge.svg)](https://github.com/simonpcouch/gbfs/actions)
 [![Testing Coverage](https://codecov.io/gh/simonpcouch/gbfs/branch/master/graph/badge.svg)](https://codecov.io/gh/simonpcouch/gbfs?branch=master)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/gbfs)](https://cran.r-project.org/package=gbfs)
 
