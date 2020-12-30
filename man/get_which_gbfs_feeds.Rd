@@ -11,9 +11,9 @@ Specification \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 get_which_gbfs_feeds(city)
 }
 \arguments{
-\item{city}{A character string that can be matched to a city or a url to 
-an active gbfs .json feed. See [get_gbfs_cities()] for a 
-current list of available cities.}
+\item{city}{A character string that can be matched to a gbfs feed. The recommended
+argument is a system ID supplied in the output of [get_gbfs_cities()], but will
+also attempt to match to the URL of an active .json feed or city name.}
 }
 \value{
 A \code{data.frame} containing the feeds supplied by
@@ -27,7 +27,7 @@ optional. This function grabs a list of each of the feeds supplied
 by a given city, as well as the URLs to access them.
 }
 \examples{
-# grab all of the feeds released by memphis
-\donttest{get_which_gbfs_feeds(city = "memphis")}
+# grab all of the feeds released by portland
+\donttest{get_which_gbfs_feeds(city = "biketown_pdx")}
 
 }

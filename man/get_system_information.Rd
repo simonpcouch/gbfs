@@ -12,8 +12,9 @@ get_system_information(
 )
 }
 \arguments{
-\item{city}{A character string that can be matched to a city or a url to an active 
-gbfs .json feed. See [get_gbfs_cities()]  for a current list of available cities.}
+\item{city}{A character string that can be matched to a gbfs feed. The recommended
+argument is a system ID supplied in the output of [get_gbfs_cities()], but will
+also attempt to match to the URL of an active .json feed or city name.}
 
 \item{directory}{Optional. Path to a folder (or folder to be 
 created) where the feed will be saved.}
@@ -39,24 +40,24 @@ feed for a given city. Metadata for this dataset can be found at:
 \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 }
 \examples{
-# we can grab the system information feed for memphis, 
-# tennessee in one of several ways! first, supply the `city` 
+# we can grab the free bike status feed for portland, 
+# orgeon's bikeshare program in  several ways! first, supply the `city` 
 # argument as a URL, and save to file by leaving output 
 # set to it's default. usually, we would supply a character 
-# string (like "memphis", maybe,) for the `directory` argument 
+# string (like "pdx", maybe,) for the `directory` argument 
 # instead of `tempdir`.
 \donttest{get_system_information(city = 
-"https://gbfs.bcycle.com/bcycle_memphis/system_information.json",  
+"https://gbfs.biketownpdx.com/gbfs/en/system_information.json",  
                        directory = tempdir())}
                     
 # or, instead, just supply the name of 
 # the city as a string. 
-\donttest{get_system_information(city = "memphis",
+\donttest{get_system_information(city = "biketown_pdx",
                        directory = tempdir())}
                     
 # instead of saving the output as a file, we can 
 # just return the output as a dataframe
-\donttest{get_system_information(city = "memphis",  
+\donttest{get_system_information(city = "biketown_pdx",  
                        output = "return")}
 }
 \seealso{

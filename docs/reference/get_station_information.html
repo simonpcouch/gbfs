@@ -82,7 +82,7 @@ https://github.com/NABSA/gbfs/blob/master/gbfs.md" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gbfs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.6</span>
       </span>
     </div>
 
@@ -145,8 +145,9 @@ Metadata for this dataset can be found at:
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>city</th>
-      <td><p>A character string that can be matched to a city or a url to an active 
-gbfs .json feed. See [get_gbfs_cities()]  for a current list of available cities.</p></td>
+      <td><p>A character string that can be matched to a gbfs feed. The recommended
+argument is a system ID supplied in the output of [get_gbfs_cities()], but will
+also attempt to match to the URL of an active .json feed or city name.</p></td>
     </tr>
     <tr>
       <th>directory</th>
@@ -182,341 +183,1529 @@ functions, and [get_which_gbfs_feeds()] for a dataframe of which feeds
 are released by a given city.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># we can grab the station information feed for memphis, </span>
-<span class='co'># tennessee in one of several ways! first, supply the `city` </span>
+    <pre class="examples"><div class='input'><span class='co'># we can grab the free bike status feed for portland, </span>
+<span class='co'># orgeon's bikeshare program in  several ways! first, supply the `city` </span>
 <span class='co'># argument as a URL, and save to file by leaving output </span>
 <span class='co'># set to it's default. usually, we would supply a character </span>
-<span class='co'># string (like "memphis", maybe,) for the `directory` argument </span>
+<span class='co'># string (like "pdx", maybe,) for the `directory` argument </span>
 <span class='co'># instead of `tempdir`.</span>
 <span class='fu'>get_station_information</span>(city = 
-<span class='st'>"https://gbfs.bcycle.com/bcycle_memphis/station_information.json"</span>,  
+<span class='st'>"https://gbfs.biketownpdx.com/gbfs/en/station_information.json"</span>,  
                         directory = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
                     
 <span class='co'># or, instead, just supply the name of </span>
 <span class='co'># the city as a string. </span>
-<span class='fu'>get_station_information</span>(city = <span class='st'>"memphis"</span>,
+<span class='fu'>get_station_information</span>(city = <span class='st'>"biketown_pdx"</span>,
                         directory = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
                     
 <span class='co'># instead of saving the output as a file, we can </span>
 <span class='co'># just return the output as a dataframe</span>
-<span class='fu'>get_station_information</span>(city = <span class='st'>"memphis"</span>,  
+<span class='fu'>get_station_information</span>(city = <span class='st'>"biketown_pdx"</span>,  
                         output = <span class='st'>"return"</span>)
-</div><div class='output co'>#&gt;          lon      lat                          address
-#&gt; 1  -90.04896 35.14742      Corner of B.B. King &amp; Adams
-#&gt; 2  -90.04828 35.15682                   N. Main Street
-#&gt; 3  -90.05042 35.15087                   N. Main Street
-#&gt; 4  -90.06229 35.13294            West GE Patterson Ave
-#&gt; 5  -90.05385 35.14648                     Front Street
-#&gt; 6  -90.05231 35.14612                   N. Main Street
-#&gt; 7  -90.04841 35.14379                      Stadium Ct.
-#&gt; 8  -90.05369 35.14336                   S. Main Street
-#&gt; 9  -90.05092 35.14272      Autozone Park Main Entrance
-#&gt; 10 -90.05636 35.14063        Corner of Front and Beale
-#&gt; 11 -90.05411 35.14002 Between Main and Second on Beale
-#&gt; 12 -90.05179 35.14844                     Adams Avenue
-#&gt; 13 -90.05186 35.13914                     191 Beale St
-#&gt; 14 -90.05982 35.13963              251 Riverside Drive
-#&gt; 15 -90.05849 35.13775          Corner of Front &amp; Vance
-#&gt; 16 -90.05748 35.13642                    S Main Street
-#&gt; 17 -90.06358 35.13568                  Riverside Drive
-#&gt; 18 -90.05813 35.13338                  450 Mulberry St
-#&gt; 19 -90.06195 35.12809                 7 W Carolina Ave
-#&gt; 20 -90.06915 35.12602   Parking Area on Virginia Ave W
-#&gt; 21 -90.03530 35.14080                      Madison Ave
-#&gt; 22 -90.04137 35.14203                      Madison Ave
-#&gt; 23 -90.03720 35.14087                  Monroe Ave Ext.
-#&gt; 24 -90.03011 35.14041                  930 Madison Ave
-#&gt; 25 -90.04035 35.14069                       Monroe Ave
-#&gt; 26 -90.03664 35.13408                        Vance Ave
-#&gt; 27 -90.03902 35.11969                 Mississippi Blvd
-#&gt; 28 -90.03262 35.11942     Corner of Neptune and Walker
-#&gt; 29 -90.04266 35.11860                  590 Jennette Pl
-#&gt; 30 -90.02147 35.11510                  S Bellevue Blvd
-#&gt; 31 -90.03391 35.10854            1400 Mississippi Blvd
-#&gt; 32 -90.03278 35.10682                   Genesis Circle
-#&gt; 33 -90.01420 35.15110                   N Cleveland St
-#&gt; 34 -89.99332 35.14634                Veterans Plaza Dr
-#&gt; 35 -90.01955 35.13906                 1245 Madison Ave
-#&gt; 36 -90.01632 35.13858                   S Cleveland St
-#&gt; 37 -90.00767 35.13829     Corner of Madison and Avalon
-#&gt; 38 -89.99209 35.13695                      Madison Ave
-#&gt; 39 -90.01690 35.13352         On S. Cleveland at Vance
-#&gt; 40 -90.00043 35.13229                    S McLean Blvd
-#&gt; 41 -89.99031 35.13177                        Cooper St
-#&gt; 42 -89.99065 35.12493                        Cooper St
-#&gt; 43 -89.96155 35.11421                      Waverly Ave
-#&gt; 44 -89.98725 35.10718                         Park Ave
-#&gt; 45 -89.97535 35.10862                        Dallas St
-#&gt; 46 -89.96831 35.10460                     Deadrick Ave
-#&gt; 47 -90.08542 35.13523   Entrance of Big River Crossing
-#&gt; 48 -89.99932 35.14101                    N McLean Blvd
-#&gt; 49 -90.13981 35.14608                East Broadway Ave
-#&gt; 50 -89.99483 35.14988                 2000 Prentiss Pl
-#&gt; 51 -89.99099 35.12097                              TBD
-#&gt; 52 -90.05623 35.16192                     Island Drive
-#&gt; 53 -90.05573 35.17546                     Island Drive
-#&gt; 54 -90.05622 35.18090                     Island Drive
-#&gt; 55 -89.98254 35.14655                              TBD
-#&gt; 56 -90.04573 35.14651                    296 Adams Ave
-#&gt; 57 -90.00735 35.14879            1567 Overton Park Ave
-#&gt; 58 -90.03888 35.14479                   652 Adams Ave.
-#&gt; 59 -90.03088 35.11589              926 E. McLemore Ave
-#&gt; 60 -90.05520 35.14675             51 N. Riverside Blvd
-#&gt; 61 -89.99104 35.11812               1000 Cooper Street
-#&gt; 62 -90.04922 35.15401                   Main &amp; Jackson
-#&gt; 63 -90.05390 35.14557                   60 Madison Ave
-#&gt; 64 -90.04778 35.14275                 70 S. 4th Street
-#&gt; 65 -90.05540 35.14256                              TBD
-#&gt; 66 -90.05304 35.14422                   110 Monroe Ave
-#&gt; 67 -90.04430 35.15083                              TBD
-#&gt; 68 -90.05439 35.14095             Main @ Peabody Ave. 
-#&gt; 69 -90.03511 35.14353                 Manassas @ Adams
-#&gt; 70 -90.05048 35.14902               160 N. Main Street
-#&gt; 71 -90.05811 35.14937                              TBD
-#&gt; 72 -90.05870 35.14964                              TBD
-#&gt; 73 -90.05304 35.14918                              TBD
-#&gt; 74 -90.03675 35.13611     737 Union Ave - on MLK Drive
-#&gt; 75 -90.05542 35.14366                     47 Union Ave
-#&gt; 76 -90.04435 35.13353                     East Ratliff
-#&gt; 77 -90.04609 35.13375                     West Ratliff
-#&gt; 78 -90.04959 35.13698                              TBD
-#&gt;                             name          station_id
-#&gt; 1            B.B. King and Adams bcycle_memphis_3864
-#&gt; 2          Hudson Transit Center bcycle_memphis_3872
-#&gt; 3      Memphis Convention Center bcycle_memphis_3873
-#&gt; 4   Tennessee and G.E. Patterson bcycle_memphis_3874
-#&gt; 5                Front and Court bcycle_memphis_3875
-#&gt; 6                   Court Square bcycle_memphis_3924
-#&gt; 7                  Downtown YMCA bcycle_memphis_3925
-#&gt; 8                 Main and Union bcycle_memphis_3926
-#&gt; 9                  Autozone Park bcycle_memphis_3927
-#&gt; 10               Front and Beale bcycle_memphis_3928
-#&gt; 11                 2nd and Beale bcycle_memphis_3929
-#&gt; 12                Main and Adams bcycle_memphis_3930
-#&gt; 13             FedEx Forum Plaza bcycle_memphis_3931
-#&gt; 14          Beale Street Landing bcycle_memphis_3932
-#&gt; 15               Front and Vance bcycle_memphis_3933
-#&gt; 16               Main and Talbot bcycle_memphis_3934
-#&gt; 17                  Tom Lee Park bcycle_memphis_3935
-#&gt; 18  National Civil Rights Museum bcycle_memphis_3936
-#&gt; 19                   Loflin Yard bcycle_memphis_3937
-#&gt; 20       Big River Crossing-East bcycle_memphis_3938
-#&gt; 21          Madison and Manassas bcycle_memphis_3940
-#&gt; 22          Madison and Marshall bcycle_memphis_3941
-#&gt; 23                 Edge Triangle bcycle_memphis_3942
-#&gt; 24                   920 Madison bcycle_memphis_3943
-#&gt; 25           Marshall and Monroe bcycle_memphis_3944
-#&gt; 26              Vance and Walnut bcycle_memphis_3945
-#&gt; 27        Mississippi and Walker bcycle_memphis_3947
-#&gt; 28            Walker and Neptune bcycle_memphis_3948
-#&gt; 29               Knowledge Quest bcycle_memphis_3949
-#&gt; 30         Bellevue and McLemore bcycle_memphis_3951
-#&gt; 31  South Memphis Farmers Market bcycle_memphis_3952
-#&gt; 32                     The Works bcycle_memphis_3953
-#&gt; 33           Crosstown Concourse bcycle_memphis_3955
-#&gt; 34                  Overton Park bcycle_memphis_3957
-#&gt; 35 Southern College of Optometry bcycle_memphis_3959
-#&gt; 36         Madison and Cleveland bcycle_memphis_3960
-#&gt; 37            Madison and Avalon bcycle_memphis_3961
-#&gt; 38                Overton Square bcycle_memphis_3963
-#&gt; 39           Cleveland and Vance bcycle_memphis_3965
-#&gt; 40            Peabody and McLean bcycle_memphis_3966
-#&gt; 41            Cooper and Peabody bcycle_memphis_3967
-#&gt; 42          Memphis Made Brewery bcycle_memphis_3968
-#&gt; 43            Semmes and Waverly bcycle_memphis_3970
-#&gt; 44         Lamar Shopping Center bcycle_memphis_3971
-#&gt; 45 Orange Mound Community Center bcycle_memphis_3972
-#&gt; 46              Lewis Davis Park bcycle_memphis_3973
-#&gt; 47       Big River Crossing-West bcycle_memphis_3974
-#&gt; 48             McLean and Poplar bcycle_memphis_3976
-#&gt; 49               Big River Trail bcycle_memphis_3984
-#&gt; 50                   Memphis Zoo bcycle_memphis_3986
-#&gt; 51               Cooper &amp; Oliver bcycle_memphis_4101
-#&gt; 52        Greenbelt Park - South bcycle_memphis_4196
-#&gt; 53      Greenbelt Park - Central bcycle_memphis_4197
-#&gt; 54        Greenbelt Park - North bcycle_memphis_4198
-#&gt; 55           Overton Park - East bcycle_memphis_4201
-#&gt; 56                 4th and Adams bcycle_memphis_4255
-#&gt; 57                     Evergreen bcycle_memphis_4264
-#&gt; 58             Victorian Village bcycle_memphis_4269
-#&gt; 59                   Stax Museum bcycle_memphis_4279
-#&gt; 60        Mississippi River Park bcycle_memphis_4281
-#&gt; 61            First Congo Church bcycle_memphis_4285
-#&gt; 62                Main &amp; Jackson bcycle_memphis_4307
-#&gt; 63               Madison &amp; Front bcycle_memphis_4308
-#&gt; 64               Fielders Square bcycle_memphis_4309
-#&gt; 65                Front &amp; Gayoso bcycle_memphis_4313
-#&gt; 66       Main &amp; Monroe Starbucks bcycle_memphis_4314
-#&gt; 67      Uptown Square Apartments bcycle_memphis_4328
-#&gt; 68                Main &amp; Peabody bcycle_memphis_4330
-#&gt; 69              Manassas &amp; Adams bcycle_memphis_4368
-#&gt; 70            Shelby Co Building bcycle_memphis_4369
-#&gt; 71               Mud island West bcycle_memphis_4433
-#&gt; 72              Mud Island Plaza bcycle_memphis_4434
-#&gt; 73               Mud Island East bcycle_memphis_4435
-#&gt; 74 SWT Community College - Union bcycle_memphis_4519
-#&gt; 75               Memphis Tourism bcycle_memphis_4520
-#&gt; 76                Ratliff - East bcycle_memphis_4535
-#&gt; 77                Ratliff - West bcycle_memphis_4536
-#&gt; 78              S. 4th St &amp; MLK  bcycle_memphis_4574
-#&gt;                                                                                        rental_uris.ios
-#&gt; 1  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3864&amp;platform=iOS
-#&gt; 2  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3872&amp;platform=iOS
-#&gt; 3  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3873&amp;platform=iOS
-#&gt; 4  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3874&amp;platform=iOS
-#&gt; 5  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3875&amp;platform=iOS
-#&gt; 6  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3924&amp;platform=iOS
-#&gt; 7  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3925&amp;platform=iOS
-#&gt; 8  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3926&amp;platform=iOS
-#&gt; 9  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3927&amp;platform=iOS
-#&gt; 10 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3928&amp;platform=iOS
-#&gt; 11 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3929&amp;platform=iOS
-#&gt; 12 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3930&amp;platform=iOS
-#&gt; 13 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3931&amp;platform=iOS
-#&gt; 14 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3932&amp;platform=iOS
-#&gt; 15 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3933&amp;platform=iOS
-#&gt; 16 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3934&amp;platform=iOS
-#&gt; 17 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3935&amp;platform=iOS
-#&gt; 18 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3936&amp;platform=iOS
-#&gt; 19 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3937&amp;platform=iOS
-#&gt; 20 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3938&amp;platform=iOS
-#&gt; 21 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3940&amp;platform=iOS
-#&gt; 22 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3941&amp;platform=iOS
-#&gt; 23 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3942&amp;platform=iOS
-#&gt; 24 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3943&amp;platform=iOS
-#&gt; 25 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3944&amp;platform=iOS
-#&gt; 26 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3945&amp;platform=iOS
-#&gt; 27 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3947&amp;platform=iOS
-#&gt; 28 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3948&amp;platform=iOS
-#&gt; 29 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3949&amp;platform=iOS
-#&gt; 30 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3951&amp;platform=iOS
-#&gt; 31 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3952&amp;platform=iOS
-#&gt; 32 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3953&amp;platform=iOS
-#&gt; 33 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3955&amp;platform=iOS
-#&gt; 34 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3957&amp;platform=iOS
-#&gt; 35 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3959&amp;platform=iOS
-#&gt; 36 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3960&amp;platform=iOS
-#&gt; 37 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3961&amp;platform=iOS
-#&gt; 38 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3963&amp;platform=iOS
-#&gt; 39 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3965&amp;platform=iOS
-#&gt; 40 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3966&amp;platform=iOS
-#&gt; 41 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3967&amp;platform=iOS
-#&gt; 42 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3968&amp;platform=iOS
-#&gt; 43 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3970&amp;platform=iOS
-#&gt; 44 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3971&amp;platform=iOS
-#&gt; 45 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3972&amp;platform=iOS
-#&gt; 46 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3973&amp;platform=iOS
-#&gt; 47 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3974&amp;platform=iOS
-#&gt; 48 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3976&amp;platform=iOS
-#&gt; 49 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3984&amp;platform=iOS
-#&gt; 50 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3986&amp;platform=iOS
-#&gt; 51 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4101&amp;platform=iOS
-#&gt; 52 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4196&amp;platform=iOS
-#&gt; 53 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4197&amp;platform=iOS
-#&gt; 54 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4198&amp;platform=iOS
-#&gt; 55 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4201&amp;platform=iOS
-#&gt; 56 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4255&amp;platform=iOS
-#&gt; 57 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4264&amp;platform=iOS
-#&gt; 58 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4269&amp;platform=iOS
-#&gt; 59 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4279&amp;platform=iOS
-#&gt; 60 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4281&amp;platform=iOS
-#&gt; 61 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4285&amp;platform=iOS
-#&gt; 62 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4307&amp;platform=iOS
-#&gt; 63 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4308&amp;platform=iOS
-#&gt; 64 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4309&amp;platform=iOS
-#&gt; 65 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4313&amp;platform=iOS
-#&gt; 66 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4314&amp;platform=iOS
-#&gt; 67 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4328&amp;platform=iOS
-#&gt; 68 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4330&amp;platform=iOS
-#&gt; 69 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4368&amp;platform=iOS
-#&gt; 70 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4369&amp;platform=iOS
-#&gt; 71 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4433&amp;platform=iOS
-#&gt; 72 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4434&amp;platform=iOS
-#&gt; 73 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4435&amp;platform=iOS
-#&gt; 74 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4519&amp;platform=iOS
-#&gt; 75 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4520&amp;platform=iOS
-#&gt; 76 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4535&amp;platform=iOS
-#&gt; 77 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4536&amp;platform=iOS
-#&gt; 78 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4574&amp;platform=iOS
-#&gt;                                                                                        rental_uris.android
-#&gt; 1  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3864&amp;platform=android
-#&gt; 2  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3872&amp;platform=android
-#&gt; 3  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3873&amp;platform=android
-#&gt; 4  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3874&amp;platform=android
-#&gt; 5  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3875&amp;platform=android
-#&gt; 6  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3924&amp;platform=android
-#&gt; 7  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3925&amp;platform=android
-#&gt; 8  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3926&amp;platform=android
-#&gt; 9  https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3927&amp;platform=android
-#&gt; 10 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3928&amp;platform=android
-#&gt; 11 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3929&amp;platform=android
-#&gt; 12 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3930&amp;platform=android
-#&gt; 13 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3931&amp;platform=android
-#&gt; 14 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3932&amp;platform=android
-#&gt; 15 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3933&amp;platform=android
-#&gt; 16 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3934&amp;platform=android
-#&gt; 17 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3935&amp;platform=android
-#&gt; 18 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3936&amp;platform=android
-#&gt; 19 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3937&amp;platform=android
-#&gt; 20 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3938&amp;platform=android
-#&gt; 21 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3940&amp;platform=android
-#&gt; 22 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3941&amp;platform=android
-#&gt; 23 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3942&amp;platform=android
-#&gt; 24 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3943&amp;platform=android
-#&gt; 25 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3944&amp;platform=android
-#&gt; 26 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3945&amp;platform=android
-#&gt; 27 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3947&amp;platform=android
-#&gt; 28 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3948&amp;platform=android
-#&gt; 29 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3949&amp;platform=android
-#&gt; 30 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3951&amp;platform=android
-#&gt; 31 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3952&amp;platform=android
-#&gt; 32 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3953&amp;platform=android
-#&gt; 33 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3955&amp;platform=android
-#&gt; 34 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3957&amp;platform=android
-#&gt; 35 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3959&amp;platform=android
-#&gt; 36 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3960&amp;platform=android
-#&gt; 37 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3961&amp;platform=android
-#&gt; 38 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3963&amp;platform=android
-#&gt; 39 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3965&amp;platform=android
-#&gt; 40 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3966&amp;platform=android
-#&gt; 41 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3967&amp;platform=android
-#&gt; 42 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3968&amp;platform=android
-#&gt; 43 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3970&amp;platform=android
-#&gt; 44 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3971&amp;platform=android
-#&gt; 45 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3972&amp;platform=android
-#&gt; 46 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3973&amp;platform=android
-#&gt; 47 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3974&amp;platform=android
-#&gt; 48 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3976&amp;platform=android
-#&gt; 49 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3984&amp;platform=android
-#&gt; 50 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_3986&amp;platform=android
-#&gt; 51 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4101&amp;platform=android
-#&gt; 52 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4196&amp;platform=android
-#&gt; 53 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4197&amp;platform=android
-#&gt; 54 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4198&amp;platform=android
-#&gt; 55 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4201&amp;platform=android
-#&gt; 56 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4255&amp;platform=android
-#&gt; 57 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4264&amp;platform=android
-#&gt; 58 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4269&amp;platform=android
-#&gt; 59 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4279&amp;platform=android
-#&gt; 60 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4281&amp;platform=android
-#&gt; 61 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4285&amp;platform=android
-#&gt; 62 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4307&amp;platform=android
-#&gt; 63 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4308&amp;platform=android
-#&gt; 64 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4309&amp;platform=android
-#&gt; 65 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4313&amp;platform=android
-#&gt; 66 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4314&amp;platform=android
-#&gt; 67 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4328&amp;platform=android
-#&gt; 68 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4330&amp;platform=android
-#&gt; 69 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4368&amp;platform=android
-#&gt; 70 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4369&amp;platform=android
-#&gt; 71 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4433&amp;platform=android
-#&gt; 72 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4434&amp;platform=android
-#&gt; 73 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4435&amp;platform=android
-#&gt; 74 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4519&amp;platform=android
-#&gt; 75 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4520&amp;platform=android
-#&gt; 76 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4535&amp;platform=android
-#&gt; 77 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4536&amp;platform=android
-#&gt; 78 https://www.bcycle.com/applink?system_id=bcycle_memphis&amp;station_id=bcycle_memphis_4574&amp;platform=android</div><div class='input'>
+</div><div class='output co'>#&gt;     region_code      lat capacity eightd_has_key_dispenser
+#&gt; 1           PDX 45.56272       18                    FALSE
+#&gt; 2           PDX 45.49334        6                    FALSE
+#&gt; 3           PDX 45.50936       12                    FALSE
+#&gt; 4           PDX 45.51788       16                    FALSE
+#&gt; 5           PDX 45.52270       18                    FALSE
+#&gt; 6           PDX 45.50910       27                    FALSE
+#&gt; 7           PDX 45.54829       10                    FALSE
+#&gt; 8           PDX 45.53212       14                    FALSE
+#&gt; 9           PDX 45.55568       12                    FALSE
+#&gt; 10          PDX 45.52828       12                    FALSE
+#&gt; 11          PDX 45.55022        5                    FALSE
+#&gt; 12          PDX 45.52397       18                    FALSE
+#&gt; 13          PDX 45.52142       18                    FALSE
+#&gt; 14          PDX 45.56245       18                    FALSE
+#&gt; 15          PDX 45.52441       18                    FALSE
+#&gt; 16          PDX 45.55914       18                    FALSE
+#&gt; 17          PDX 45.51889       20                    FALSE
+#&gt; 18          PDX 45.54643       10                    FALSE
+#&gt; 19          PDX 45.52871       18                    FALSE
+#&gt; 20          PDX 45.52279       14                    FALSE
+#&gt; 21          PDX 45.51906        6                    FALSE
+#&gt; 22          PDX 45.54831       12                    FALSE
+#&gt; 23          PDX 45.56197        8                    FALSE
+#&gt; 24          PDX 45.52537       14                    FALSE
+#&gt; 25          PDX 45.51402        5                    FALSE
+#&gt; 26          PDX 45.53141        8                    FALSE
+#&gt; 27          PDX 45.51523        6                    FALSE
+#&gt; 28          PDX 45.49723        6                    FALSE
+#&gt; 29          PDX 45.52248       18                    FALSE
+#&gt; 30          PDX 45.51783       18                    FALSE
+#&gt; 31          PDX 45.50357        6                    FALSE
+#&gt; 32          PDX 45.51636       12                    FALSE
+#&gt; 33          PDX 45.55543        5                    FALSE
+#&gt; 34          PDX 45.51605        5                    FALSE
+#&gt; 35          PDX 45.52059       24                    FALSE
+#&gt; 36          PDX 45.52864       14                    FALSE
+#&gt; 37          PDX 45.53435        5                    FALSE
+#&gt; 38          PDX 45.55907        9                    FALSE
+#&gt; 39          PDX 45.55076       12                    FALSE
+#&gt; 40          PDX 45.50509        7                    FALSE
+#&gt; 41          PDX 45.51936       17                    FALSE
+#&gt; 42          PDX 45.51633       18                    FALSE
+#&gt; 43          PDX 45.52250        9                    FALSE
+#&gt; 44          PDX 45.51202       18                    FALSE
+#&gt; 45          PDX 45.55907        9                    FALSE
+#&gt; 46          PDX 45.56050        6                    FALSE
+#&gt; 47          PDX 45.49334        5                    FALSE
+#&gt; 48          PDX 45.51623       14                    FALSE
+#&gt; 49          PDX 45.52643       15                    FALSE
+#&gt; 50          PDX 45.53014       12                    FALSE
+#&gt; 51          PDX 45.54180       18                    FALSE
+#&gt; 52          PDX 45.55369        6                    FALSE
+#&gt; 53          PDX 45.53352       11                    FALSE
+#&gt; 54          PDX 45.55902       18                    FALSE
+#&gt; 55          PDX 45.54999       18                    FALSE
+#&gt; 56          PDX 45.52556       18                    FALSE
+#&gt; 57          PDX 45.52279       18                    FALSE
+#&gt; 58          PDX 45.52508       18                    FALSE
+#&gt; 59          PDX 45.52175       17                    FALSE
+#&gt; 60          PDX 45.53233       18                    FALSE
+#&gt; 61          PDX 45.52488       18                    FALSE
+#&gt; 62          PDX 45.54828        6                    FALSE
+#&gt; 63          PDX 45.55836        8                    FALSE
+#&gt; 64          PDX 45.51898       20                    FALSE
+#&gt; 65          PDX 45.52562        5                    FALSE
+#&gt; 66          PDX 45.51790       18                    FALSE
+#&gt; 67          PDX 45.53894       12                    FALSE
+#&gt; 68          PDX 45.53409       14                    FALSE
+#&gt; 69          PDX 45.55917       12                    FALSE
+#&gt; 70          PDX 45.56453        3                    FALSE
+#&gt; 71          PDX 45.52649       12                    FALSE
+#&gt; 72          PDX 45.57698        5                    FALSE
+#&gt; 73          PDX 45.51208       17                    FALSE
+#&gt; 74          PDX 45.52297       11                    FALSE
+#&gt; 75          PDX 45.54108       12                    FALSE
+#&gt; 76          PDX 45.52976       10                    FALSE
+#&gt; 77          PDX 45.53578       12                    FALSE
+#&gt; 78          PDX 45.52500       16                    FALSE
+#&gt; 79          PDX 45.51435        5                    FALSE
+#&gt; 80          PDX 45.52196       18                    FALSE
+#&gt; 81          PDX 45.52635       12                    FALSE
+#&gt; 82          PDX 45.53087       18                    FALSE
+#&gt; 83          PDX 45.55645       18                    FALSE
+#&gt; 84          PDX 45.48640       12                    FALSE
+#&gt; 85          PDX 45.49684        9                    FALSE
+#&gt; 86          PDX 45.51148       16                    FALSE
+#&gt; 87          PDX 45.50225        6                    FALSE
+#&gt; 88          PDX 45.56277        4                    FALSE
+#&gt; 89          PDX 45.56992        5                    FALSE
+#&gt; 90          PDX 45.50528        6                    FALSE
+#&gt; 91          PDX 45.52117       18                    FALSE
+#&gt; 92          PDX 45.50971       18                    FALSE
+#&gt; 93          PDX 45.56252        8                    FALSE
+#&gt; 94          PDX 45.51189        9                    FALSE
+#&gt; 95          PDX 45.53690        7                    FALSE
+#&gt; 96          PDX 45.55392        6                    FALSE
+#&gt; 97          PDX 45.56995        5                    FALSE
+#&gt; 98          PDX 45.52997        9                    FALSE
+#&gt; 99          PDX 45.52182       10                    FALSE
+#&gt; 100         PDX 45.52969        8                    FALSE
+#&gt; 101         PDX 45.52374       18                    FALSE
+#&gt; 102         PDX 45.52513       11                    FALSE
+#&gt; 103         PDX 45.51845       18                    FALSE
+#&gt; 104         PDX 45.53480       12                    FALSE
+#&gt; 105         PDX 45.50337       18                    FALSE
+#&gt; 106         PDX 45.49503       12                    FALSE
+#&gt; 107         PDX 45.55904        9                    FALSE
+#&gt; 108         PDX 45.51904        5                    FALSE
+#&gt; 109         PDX 45.49026        5                    FALSE
+#&gt; 110         PDX 45.51515       10                    FALSE
+#&gt; 111         PDX 45.51646       11                    FALSE
+#&gt; 112         PDX 45.56274       18                    FALSE
+#&gt; 113         PDX 45.50473        6                    FALSE
+#&gt; 114         PDX 45.53080       17                    FALSE
+#&gt; 115         PDX 45.57178        7                    FALSE
+#&gt; 116         PDX 45.54759       18                    FALSE
+#&gt; 117         PDX 45.51544       11                    FALSE
+#&gt; 118         PDX 45.50281       10                    FALSE
+#&gt; 119         PDX 45.51946       18                    FALSE
+#&gt; 120         PDX 45.50815        6                    FALSE
+#&gt; 121         PDX 45.50624       18                    FALSE
+#&gt; 122         PDX 45.51658        6                    FALSE
+#&gt; 123         PDX 45.53146        8                    FALSE
+#&gt; 124         PDX 45.50484       15                    FALSE
+#&gt; 125         PDX 45.56283       15                    FALSE
+#&gt; 126         PDX 45.52379        7                    FALSE
+#&gt; 127         PDX 45.53110        8                    FALSE
+#&gt; 128         PDX 45.52862       15                    FALSE
+#&gt; 129         PDX 45.51650       12                    FALSE
+#&gt; 130         PDX 45.50524        6                    FALSE
+#&gt; 131         PDX 45.51803       18                    FALSE
+#&gt; 132         PDX 45.53677        4                    FALSE
+#&gt; 133         PDX 45.47971        8                    FALSE
+#&gt; 134         PDX 45.49787        6                    FALSE
+#&gt; 135         PDX 45.53401        8                    FALSE
+#&gt; 136         PDX 45.55941       18                    FALSE
+#&gt; 137         PDX 45.52646        8                    FALSE
+#&gt; 138         PDX 45.55892       19                    FALSE
+#&gt; 139         PDX 45.51610       18                    FALSE
+#&gt; 140         PDX 45.53344       14                    FALSE
+#&gt; 141         PDX 45.51191       12                    FALSE
+#&gt; 142         PDX 45.56251        8                    FALSE
+#&gt; 143         PDX 45.51184       23                    FALSE
+#&gt; 144         PDX 45.55335       12                    FALSE
+#&gt; 145         PDX 45.55912        9                    FALSE
+#&gt; 146         PDX 45.51195        6                    FALSE
+#&gt; 147         PDX 45.50351        5                    FALSE
+#&gt; 148         PDX 45.51300        6                    FALSE
+#&gt; 149         PDX 45.52643       12                    FALSE
+#&gt; 150         PDX 45.52373       18                    FALSE
+#&gt; 151         PDX 45.50513       18                    FALSE
+#&gt; 152         PDX 45.52359        6                    FALSE
+#&gt; 153         PDX 45.51592       18                    FALSE
+#&gt; 154         PDX 45.51507       10                    FALSE
+#&gt; 155         PDX 45.51222       13                    FALSE
+#&gt; 156         PDX 45.55906        9                    FALSE
+#&gt; 157         PDX 45.51232       12                    FALSE
+#&gt; 158         PDX 45.49429       15                    FALSE
+#&gt; 159         PDX 45.53290       18                    FALSE
+#&gt; 160         PDX 45.53550       18                    FALSE
+#&gt; 161         PDX 45.52914       18                    FALSE
+#&gt; 162         PDX 45.53715       15                    FALSE
+#&gt; 163         PDX 45.55522       18                    FALSE
+#&gt; 164         PDX 45.54824        5                    FALSE
+#&gt; 165         PDX 45.53561       12                    FALSE
+#&gt; 166         PDX 45.50469       18                    FALSE
+#&gt; 167         PDX 45.53497       18                    FALSE
+#&gt; 168         PDX 45.49914       18                    FALSE
+#&gt; 169         PDX 45.53083       18                    FALSE
+#&gt; 170         PDX 45.54126        4                    FALSE
+#&gt; 171         PDX 45.55909        9                    FALSE
+#&gt; 172         PDX 45.54462        8                    FALSE
+#&gt; 173         PDX 45.54228        5                    FALSE
+#&gt; 174         PDX 45.56275       12                    FALSE
+#&gt; 175         PDX 45.55459       12                    FALSE
+#&gt; 176         PDX 45.51557       18                    FALSE
+#&gt; 177         PDX 45.53143       12                    FALSE
+#&gt; 178         PDX 45.56268       12                    FALSE
+#&gt; 179         PDX 45.50277       19                    FALSE
+#&gt; 180         PDX 45.52772        8                    FALSE
+#&gt; 181         PDX 45.54206        5                    FALSE
+#&gt; 182         PDX 45.53508       12                    FALSE
+#&gt; 183         PDX 45.53967        8                    FALSE
+#&gt; 184         PDX 45.55593        8                    FALSE
+#&gt; 185         PDX 45.51186       18                    FALSE
+#&gt; 186         PDX 45.51158       16                    FALSE
+#&gt; 187         PDX 45.52827       12                    FALSE
+#&gt;     dockless_bikes_parking_zone_capacity
+#&gt; 1                                     18
+#&gt; 2                                      6
+#&gt; 3                                     12
+#&gt; 4                                     16
+#&gt; 5                                     18
+#&gt; 6                                     27
+#&gt; 7                                     10
+#&gt; 8                                     14
+#&gt; 9                                     12
+#&gt; 10                                    12
+#&gt; 11                                     5
+#&gt; 12                                    18
+#&gt; 13                                    18
+#&gt; 14                                    18
+#&gt; 15                                    18
+#&gt; 16                                    18
+#&gt; 17                                    20
+#&gt; 18                                    10
+#&gt; 19                                    18
+#&gt; 20                                    14
+#&gt; 21                                     6
+#&gt; 22                                    12
+#&gt; 23                                     8
+#&gt; 24                                    14
+#&gt; 25                                     5
+#&gt; 26                                     8
+#&gt; 27                                     6
+#&gt; 28                                     6
+#&gt; 29                                    18
+#&gt; 30                                    18
+#&gt; 31                                     6
+#&gt; 32                                    12
+#&gt; 33                                     5
+#&gt; 34                                     5
+#&gt; 35                                    24
+#&gt; 36                                    14
+#&gt; 37                                     5
+#&gt; 38                                     9
+#&gt; 39                                    12
+#&gt; 40                                     7
+#&gt; 41                                    17
+#&gt; 42                                    18
+#&gt; 43                                     9
+#&gt; 44                                    18
+#&gt; 45                                     9
+#&gt; 46                                     6
+#&gt; 47                                     5
+#&gt; 48                                    14
+#&gt; 49                                    15
+#&gt; 50                                    12
+#&gt; 51                                    18
+#&gt; 52                                     6
+#&gt; 53                                    11
+#&gt; 54                                    18
+#&gt; 55                                    18
+#&gt; 56                                    18
+#&gt; 57                                    18
+#&gt; 58                                    18
+#&gt; 59                                    17
+#&gt; 60                                    18
+#&gt; 61                                    18
+#&gt; 62                                     6
+#&gt; 63                                     8
+#&gt; 64                                    20
+#&gt; 65                                     5
+#&gt; 66                                    18
+#&gt; 67                                    12
+#&gt; 68                                    14
+#&gt; 69                                    12
+#&gt; 70                                     3
+#&gt; 71                                    12
+#&gt; 72                                     5
+#&gt; 73                                    17
+#&gt; 74                                    11
+#&gt; 75                                    12
+#&gt; 76                                    10
+#&gt; 77                                    12
+#&gt; 78                                    16
+#&gt; 79                                     5
+#&gt; 80                                    18
+#&gt; 81                                    12
+#&gt; 82                                    18
+#&gt; 83                                    18
+#&gt; 84                                    12
+#&gt; 85                                     9
+#&gt; 86                                    16
+#&gt; 87                                     6
+#&gt; 88                                     4
+#&gt; 89                                     5
+#&gt; 90                                     6
+#&gt; 91                                    18
+#&gt; 92                                    18
+#&gt; 93                                     8
+#&gt; 94                                     9
+#&gt; 95                                     7
+#&gt; 96                                     6
+#&gt; 97                                     5
+#&gt; 98                                     9
+#&gt; 99                                    10
+#&gt; 100                                    8
+#&gt; 101                                   18
+#&gt; 102                                   11
+#&gt; 103                                   18
+#&gt; 104                                   12
+#&gt; 105                                   18
+#&gt; 106                                   12
+#&gt; 107                                    9
+#&gt; 108                                    5
+#&gt; 109                                    5
+#&gt; 110                                   10
+#&gt; 111                                   11
+#&gt; 112                                   18
+#&gt; 113                                    6
+#&gt; 114                                   17
+#&gt; 115                                    7
+#&gt; 116                                   18
+#&gt; 117                                   11
+#&gt; 118                                   10
+#&gt; 119                                   18
+#&gt; 120                                    6
+#&gt; 121                                   18
+#&gt; 122                                    6
+#&gt; 123                                    8
+#&gt; 124                                   15
+#&gt; 125                                   15
+#&gt; 126                                    7
+#&gt; 127                                    8
+#&gt; 128                                   15
+#&gt; 129                                   12
+#&gt; 130                                    6
+#&gt; 131                                   18
+#&gt; 132                                    4
+#&gt; 133                                    8
+#&gt; 134                                    6
+#&gt; 135                                    8
+#&gt; 136                                   18
+#&gt; 137                                    8
+#&gt; 138                                   19
+#&gt; 139                                   18
+#&gt; 140                                   14
+#&gt; 141                                   12
+#&gt; 142                                    8
+#&gt; 143                                   23
+#&gt; 144                                   12
+#&gt; 145                                    9
+#&gt; 146                                    6
+#&gt; 147                                    5
+#&gt; 148                                    6
+#&gt; 149                                   12
+#&gt; 150                                   18
+#&gt; 151                                   18
+#&gt; 152                                    6
+#&gt; 153                                   18
+#&gt; 154                                   10
+#&gt; 155                                   13
+#&gt; 156                                    9
+#&gt; 157                                   12
+#&gt; 158                                   15
+#&gt; 159                                   18
+#&gt; 160                                   18
+#&gt; 161                                   18
+#&gt; 162                                   15
+#&gt; 163                                   18
+#&gt; 164                                    5
+#&gt; 165                                   12
+#&gt; 166                                   18
+#&gt; 167                                   18
+#&gt; 168                                   18
+#&gt; 169                                   18
+#&gt; 170                                    4
+#&gt; 171                                    9
+#&gt; 172                                    8
+#&gt; 173                                    5
+#&gt; 174                                   12
+#&gt; 175                                   12
+#&gt; 176                                   18
+#&gt; 177                                   12
+#&gt; 178                                   12
+#&gt; 179                                   19
+#&gt; 180                                    8
+#&gt; 181                                    5
+#&gt; 182                                   12
+#&gt; 183                                    8
+#&gt; 184                                    8
+#&gt; 185                                   18
+#&gt; 186                                   16
+#&gt; 187                                   12
+#&gt;                                                                                                                                                                        address
+#&gt; 1                                                   DAME, 2930, Northeast Killingsworth Street, Concordia, Portland, Multnomah County, Oregon, 97211, United States of America
+#&gt; 2                            Gladstone Street Pizza, 3813, Southeast Gladstone Street, Creston-Kenilworth, Portland, Multnomah County, Oregon, 97202, United States of America
+#&gt; 3                                  Portland State University, Robert Hugh Baldock Freeway, South Portland, Portland, Multnomah County, Oregon, 97258, United States of America
+#&gt; 4                                          Go Food Stores, 1720, Southwest Jefferson Street, Goose Hollow, Portland, Multnomah County, Oregon, 97201, United States of America
+#&gt; 5              Portland Skidmore/Old Town Historic District, Northwest Naito Parkway, Chinatown, Old Town, Portland, Multnomah County, Oregon, 97240, United States of America
+#&gt; 6                                                         320, South Montgomery Street, Portland Downtown, Portland, Multnomah County, Oregon, 97201, United States of America
+#&gt; 7                                                                   1410, Northeast Fremont Street, Sabin, Portland, Multnomah County, Oregon, 97212, United States of America
+#&gt; 8                              Biketown PDX NW 23rd at Overton, Northwest 23rd Avenue, Northwest District, Portland, Multnomah County, Oregon, 97210, United States of America
+#&gt; 9                                                                       4520, Northeast 14th Place, Sabin, Portland, Multnomah County, Oregon, 97211, United States of America
+#&gt; 10                                                     Cairns, Northwest Station Way, Chinatown, Old Town, Portland, Multnomah County, Oregon, 97208, United States of America
+#&gt; 11                                                            3726, Northeast 77th Avenue, Roseway, Portland, Metro, Multnomah County, Oregon, 97213, United States of America
+#&gt; 12                                                    Fred Meyer, 100, Northwest 20th Place, Goose Hollow, Portland, Multnomah County, Oregon, 97209, United States of America
+#&gt; 13             Portland Skidmore/Old Town Historic District, Northwest Naito Parkway, Chinatown, Old Town, Portland, Multnomah County, Oregon, 97240, United States of America
+#&gt; 14                                                                5425, North Concord Avenue, Arbor Lodge, Portland, Multnomah County, Oregon, 97217, United States of America
+#&gt; 15                                                        Big Town Hero, Northeast Sandy Boulevard, Kerns, Portland, Multnomah County, Oregon, 97232, United States of America
+#&gt; 16                                        Eritrean Community Center, 1006, Northeast Alberta Street, King, Portland, Multnomah County, Oregon, 97211, United States of America
+#&gt; 17                                     Southwest 5th at Morrison, Southwest 5th Avenue, Portland Downtown, Portland, Multnomah County, Oregon, 97204, United States of America
+#&gt; 18                                                                   3236, Northeast 68th Avenue, Roseway, Portland, Multnomah County, Oregon, 97213, United States of America
+#&gt; 19                              Northwest Naito at Ironside, Northwest Naito Parkway, Chinatown, Old Town, Portland, Multnomah County, Oregon, 97208, United States of America
+#&gt; 20                                                    2, Southeast 9th Avenue, Central East Side, Buckman, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 21                                                 10115, Southeast Stark Street, Russellville, Mill Park, Portland, Multnomah County, Oregon, 97216, United States of America
+#&gt; 22                                      Alameda Brewhouse, 4765, Northeast Fremont Street, Rose City Park, Portland, Multnomah County, Oregon, 97213, United States of America
+#&gt; 23                                                                5420, North Interstate Avenue, Overlook, Portland, Multnomah County, Oregon, 97217, United States of America
+#&gt; 24                              Biketown PDX NW 2nd at Everett, Northwest 2nd Avenue, Chinatown, Old Town, Portland, Multnomah County, Oregon, 97240, United States of America
+#&gt; 25                Portland Adventist Academy, 1500, Southeast 96th Avenue, Russellville, Hazelwood, Portland, Metro, Multnomah County, Oregon, 97216, United States of America
+#&gt; 26                                 Northeast Multnomah at 9th, Northeast Multnomah Street, Lloyd District, Portland, Multnomah County, Oregon, 97212, United States of America
+#&gt; 27                                Multnomah County Court House, 1021, Southwest 4th Avenue, Pioneer Place, Portland, Multnomah County, Oregon, 97204, United States of America
+#&gt; 28                                 Cricket Wireless, 2929, Southeast Powell Boulevard, Creston-Kenilworth, Portland, Multnomah County, Oregon, 97202, United States of America
+#&gt; 29             Portland Skidmore/Old Town Historic District, Northwest Naito Parkway, Chinatown, Old Town, Portland, Multnomah County, Oregon, 97240, United States of America
+#&gt; 30                                                        687, Southwest Naito Parkway, Portland Downtown, Portland, Multnomah County, Oregon, 97204, United States of America
+#&gt; 31                                                                                      Hosford-Abernethy, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 32                                             1919, Southeast Belmont Street, Central East Side, Buckman, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 33                                                        7151, Northeast Prescott Street, Roseway, Portland, Metro, Multnomah County, Oregon, 97218, United States of America
+#&gt; 34                                            740, Southeast 106th Avenue, Russellville, Mill Park, Portland, Metro, Multnomah County, Oregon, 97216, United States of America
+#&gt; 35                                                             Bamboo Sushi, Southeast 28th Avenue, Kerns, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 36                                           Tanner Place, 1030, Northwest Johnson Street, Pearl District, Portland, Multnomah County, Oregon, 97209, United States of America
+#&gt; 37                                                         1321, Northwest Raleigh Street, Pearl District, Portland, Multnomah County, Oregon, 97209, United States of America
+#&gt; 38                                                Zilla Saké, 1806, Northeast Alberta Street, Alberta, Vernon, Portland, Metro, Multnomah County, Oregon, 97211, United States
+#&gt; 39                                    North Failing at Williams, North Failing Street, Mississippi, Boise, Portland, Multnomah County, Oregon, 97227, United States of America
+#&gt; 40                                         Bank of the West, 8135, Southeast Division Street, South Tabor, Portland, Multnomah County, Oregon, 97206, United States of America
+#&gt; 41                                                                    2900, Southeast Stark Street, Kerns, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 42             Rogue East Side Pub &amp; Pilot Brewery, 928, Southeast 9th Avenue, Central East Side, Buckman, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 43                                                   10223, East Burnside Street, Russellville, Hazelwood, Portland, Multnomah County, Oregon, 97216, United States of America
+#&gt; 44                                                2835, Southeast Hawthorne Boulevard, Belmont, Sunnyside, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 45                              Community Cycling Center, 1700, Northeast Alberta Street, Alberta, Vernon, Portland, Multnomah County, Oregon, 97211, United States of America
+#&gt; 46                                                              301, Northeast Sumner Street, King, Portland, Metro, Multnomah County, Oregon, 97211, United States of America
+#&gt; 47                                                   2800, Southeast Gladstone Street, Creston-Kenilworth, Portland, Multnomah County, Oregon, 97202, United States of America
+#&gt; 48                                                         915, Southeast 29th Avenue, Belmont, Sunnyside, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 49                                                Migration Brewery, Northeast Glisan Street, Laurelhurst, Portland, Multnomah County, Oregon, 97232, United States of America
+#&gt; 50                                                        1101, Northeast Holladay Street, Lloyd District, Portland, Multnomah County, Oregon, 97232, United States of America
+#&gt; 51                                     2650, Northeast Martin Luther King Junior Boulevard, Albina, Eliot, Portland, Multnomah County, Oregon, 97212, United States of America
+#&gt; 52                                              3409, Northeast Skidmore Street, Beaumont-Wilshire, Portland, Metro, Multnomah County, Oregon, 97211, United States of America
+#&gt; 53                                                        Arco, Northeast Halsey Street, Parkrose Heights, Portland, Multnomah County, Oregon, 97220, United States of America
+#&gt; 54                                                  Cord, 2916, Northeast Alberta Street, Alberta, Vernon, Portland, Multnomah County, Oregon, 97211, United States of America
+#&gt; 55                                 Bridge City Comics, 3725, North Mississippi Avenue, Mississippi, Boise, Portland, Multnomah County, Oregon, 97227, United States of America
+#&gt; 56                                  Alphabet Historic District, Northwest 24th Avenue, Northwest District, Portland, Multnomah County, Oregon, 97210, United States of America
+#&gt; 57            People's Bike Library of Portland, Southwest 13th Avenue, Portland Downtown, Pearl District, Portland, Multnomah County, Oregon, 97209, United States of America
+#&gt; 58                                                           224, Northwest Broadway, Chinatown, Old Town, Portland, Multnomah County, Oregon, 97209, United States of America
+#&gt; 59                         Radish Underground, 414, Southwest 10th Avenue, Portland Downtown, Swan Island, Portland, Multnomah County, Oregon, 97205, United States of America
+#&gt; 60                       Northwest 11th at The Fields, Northwest Overton Street, Block 17, Pearl District, Portland, Multnomah County, Oregon, 97209, United States of America
+#&gt; 61                                  Alphabet Historic District, Northwest 24th Avenue, Northwest District, Portland, Multnomah County, Oregon, 97210, United States of America
+#&gt; 62                                                         5024, Northeast Fremont Street, Rose City Park, Portland, Multnomah County, Oregon, 97213, United States of America
+#&gt; 63                                              U.S. Bank, 4920, Northeast 42nd Avenue, Beaumont-Wilshire, Portland, Multnomah County, Oregon, 97218, United States of America
+#&gt; 64                             Park Avenue West, Southwest Yamhill Street, Portland Downtown, Swan Island, Portland, Multnomah County, Oregon, 97204, United States of America
+#&gt; 65                 Portland Thirteenth Avenue Historic District, Northwest Johnson Street, Pearl District, Portland, Multnomah County, Oregon, 97209, United States of America
+#&gt; 66                          East Portland Grand Avenue Historic District, Southeast Stark Street, Buckman, Portland, Multnomah County, Oregon, 97204, United States of America
+#&gt; 67                                    Irvington Historic District, Northeast Morris Street, Albina, Eliot, Portland, Multnomah County, Oregon, 97227, United States of America
+#&gt; 68                          Biketown PDX NW Raleigh at 21st, Northwest Raleigh Street, Northwest District, Portland, Multnomah County, Oregon, 97209, United States of America
+#&gt; 69                                         Cupcake Jones, 1405, Northeast Alberta Street, Alberta, Vernon, Portland, Multnomah County, Oregon, 97211, United States of America
+#&gt; 70                                                 Kennedy School, 5736, Northeast 33rd Avenue, Concordia, Portland, Multnomah County, Oregon, 97211, United States of America
+#&gt; 71                                            Uno Mas Taquiza, 2337, Northeast Glisan Street, Laurelhurst, Portland, Multnomah County, Oregon, 97232, United States of America
+#&gt; 72                              North Lombard Transit Center, North Interstate Avenue, Arbor Lodge, Portland, Metro, Multnomah County, Oregon, 97217, United States of America
+#&gt; 73           Ladd's Addition Historic District, Southeast Hawthorne Boulevard, Central East Side, Buckman, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 74                                                                     USPS, Northeast 22nd Avenue, Kerns, Portland, Multnomah County, Oregon, 97232, United States of America
+#&gt; 75                                      Widmer Brothers Brewing, 955, North Russell Street, Albina, Eliot, Portland, Multnomah County, Oregon, 97227, United States of America
+#&gt; 76                                                           Northwest Lovejoy &amp; 22nd, Northwest District, Portland, Multnomah County, Oregon, 97205, United States of America
+#&gt; 77                                          Hollywood Theatre, 4122, Northeast Sandy Boulevard, Hollywood, Portland, Multnomah County, Oregon, 97212, United States of America
+#&gt; 78                                       Northwest 10th at Everett, Northwest 10th Avenue, Pearl District, Portland, Multnomah County, Oregon, 97208, United States of America
+#&gt; 79                                Oregon Brass Works, Southeast Salmon Street, Central East Side, Buckman, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 80                                                          1750, Southwest Morrison Street, Goose Hollow, Portland, Multnomah County, Oregon, 97205, United States of America
+#&gt; 81                                  Alphabet Historic District, Northwest 24th Avenue, Northwest District, Portland, Multnomah County, Oregon, 97210, United States of America
+#&gt; 82                                                              1, North Multnomah Street, Lloyd District, Portland, Multnomah County, Oregon, 97227, United States of America
+#&gt; 83                                                        NE Grand at Going, Northeast Going Street, King, Portland, Multnomah County, Oregon, 97211, United States of America
+#&gt; 84                         Portland Mercado Food Carts, Southeast Foster Road, Arleta, Mount Scott-Arleta, Portland, Multnomah County, Oregon, 97206, United States of America
+#&gt; 85                                                 Parry Center, Southeast 35th Place, Creston-Kenilworth, Portland, Multnomah County, Oregon, 97202, United States of America
+#&gt; 86                                                               Southeast Clay Street, Hosford-Abernethy, Portland, Multnomah County, Oregon, 97258, United States of America
+#&gt; 87                        Portland State Business Accelerator, 2828, South Corbett Avenue, South Portland, Portland, Multnomah County, Oregon, 97201, United States of America
+#&gt; 88                                                 Keys Lounge, 533, Northeast Killingsworth Street, King, Portland, Multnomah County, Oregon, 97211, United States of America
+#&gt; 89                                              North Rosa Parks Way &amp; Albina, North Rosa Parks Way, Piedmont, Portland, Metro, Multnomah County, Oregon, 97217, United States
+#&gt; 90                                       The Lot at Scout Food Carts, Southeast Division Street, Richmond, Portland, Multnomah County, Oregon, 97215, United States of America
+#&gt; 91                                              Care Oregon, 315, Southwest 5th Avenue, Portland Downtown, Portland, Multnomah County, Oregon, 97204, United States of America
+#&gt; 92                                                           Southwest Harrison Street, Portland Downtown, Portland, Multnomah County, Oregon, 97258, United States of America
+#&gt; 93                                                  Bad Habit Room, 5433, North Michigan Avenue, Humboldt, Portland, Multnomah County, Oregon, 97217, United States of America
+#&gt; 94                                       Sapphire Hotel, 5008, Southeast Hawthorne Boulevard, Mount Tabor, Portland, Multnomah County, Oregon, 97215, United States of America
+#&gt; 95                                      Ragan’s Boutique, 1925;1925 ,#A, Northeast 42nd Avenue, Hollywood, Portland, Multnomah County, Oregon, 97213, United States of America
+#&gt; 96                                                                       Northeast Skidmore Street, Cully, Portland, Multnomah County, Oregon, 97218, United States of America
+#&gt; 97                                                Chevron, 2809, North Rosa Parks Way, Arbor Lodge, Portland, Metro, Multnomah County, Oregon, 97217, United States of America
+#&gt; 98                      Bell Circles II, Ulsan Friendship Bell, Northeast Holladay Street, Lloyd District, Portland, Multnomah County, Oregon, 97240, United States of America
+#&gt; 99                                                          2609, Southwest Park Place, Arlington Heights, Portland, Multnomah County, Oregon, 97205, United States of America
+#&gt; 100                                                                                               Lloyd District, Portland, Multnomah County, Oregon, United States of America
+#&gt; 101                           The Henry, 1025, Northwest Couch Street, The Brewery Blocks, Pearl District, Portland, Multnomah County, Oregon, 97209, United States of America
+#&gt; 102                Portland Thirteenth Avenue Historic District, Northwest Johnson Street, Pearl District, Portland, Multnomah County, Oregon, 97209, United States of America
+#&gt; 103                        Washington High School, 531, Southeast 14th Avenue, Central East Side, Buckman, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 104                                                                     1698, North Wheeler Avenue, Eliot, Portland, Multnomah County, Oregon, 97227, United States of America
+#&gt; 105              Yama Sushi &amp; Izakaya, 2038, Southeast Clinton Street, Ladd's Addition, Hosford-Abernethy, Portland, Multnomah County, Oregon, 97202, United States of America
+#&gt; 106                                 Foster Burger, 5339, Southeast Foster Road, Creston-Kenilworth, Portland, Metro, Multnomah County, Oregon, 97206, United States of America
+#&gt; 107                                          Kargi Gogo, 3039, Northeast Alberta Street, Concordia, Portland, Metro, Multnomah County, Oregon, 97211, United States of America
+#&gt; 108                                                         498, Southeast 113th Avenue, Hazelwood, Portland, Metro, Multnomah County, Oregon, 97216, United States of America
+#&gt; 109                                                       8201, Southeast Holgate Boulevard, Lents, Portland, Metro, Multnomah County, Oregon, 97266, United States of America
+#&gt; 110                                     80, Southeast Taylor Street, King Taylor Business Center, Buckman, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 111                                                  4210, Southeast Belmont Street, Hawthorne, Sunnyside, Portland, Multnomah County, Oregon, 97215, United States of America
+#&gt; 112                                                       2103-2105, North Killingsworth Street, Overlook, Portland, Multnomah County, Oregon, 97217, United States of America
+#&gt; 113                                                                 2509, Southeast 37th Avenue, Richmond, Portland, Multnomah County, Oregon, 97202, United States of America
+#&gt; 114                                     Northwest 13th at Marshall, Northwest 13th Avenue, Pearl District, Portland, Multnomah County, Oregon, 97209, United States of America
+#&gt; 115                                                          909, Northeast Dekum Street, Woodlawn, Portland, Metro, Multnomah County, Oregon, 97211, United States of America
+#&gt; 116                                       North Williams at Fremont, North Williams Avenue, Albina, Eliot, Portland, Multnomah County, Oregon, 97227, United States of America
+#&gt; 117                                          Safeway, 1010, Southwest Jefferson Street, Portland Downtown, Portland, Multnomah County, Oregon, 97201, United States of America
+#&gt; 118                                     1238, Southeast Gideon Street, Ladd's Addition, Hosford-Abernethy, Portland, Multnomah County, Oregon, 97202, United States of America
+#&gt; 119                                                            640, Southwest Broadway, Portland Downtown, Portland, Multnomah County, Oregon, 97205, United States of America
+#&gt; 120                                                          Southeast Lincoln Street, Mount Tabor, Portland, Metro, Multnomah County, Oregon, 97215, United States of America
+#&gt; 121                                Southwest 2nd Place at Tilikum, Southeast 2nd Place, Hosford-Abernethy, Portland, Multnomah County, Oregon, 97258, United States of America
+#&gt; 122                                 Red Square Cafe, 4505, Southeast Belmont Street, Hawthorne, Sunnyside, Portland, Multnomah County, Oregon, 97215, United States of America
+#&gt; 123                                     NE Multnomah at Grand, Northeast Multnomah Street, Lloyd District, Portland, Multnomah County, Oregon, 97240, United States of America
+#&gt; 124                                                 Ava Gene's, 3377, Southeast Division Street, Richmond, Portland, Multnomah County, Oregon, 97202, United States of America
+#&gt; 125                      Moriarty Arts and Humanities Building, 705, North Killingsworth Street, Humboldt, Portland, Multnomah County, Oregon, 97217, United States of America
+#&gt; 126 Portland New Chinatown-Japantown Historic District, Southwest 5th Avenue, Portland Downtown, Old Town, Portland, Multnomah County, Oregon, 97240, United States of America
+#&gt; 127                                         The Oregon Clinic, Gateway Transit Center, Gateway, Hazelwood, Portland, Multnomah County, Oregon, 97220, United States of America
+#&gt; 128                                 Alphabet Historic District, Northwest 24th Avenue, Northwest District, Portland, Multnomah County, Oregon, 97210, United States of America
+#&gt; 129                                             HMart, 3301, Southeast Belmont Street, Belmont, Sunnyside, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 130                                       Beads at Dusti Creek, 4848, Southeast Division Street, Richmond, Portland, Multnomah County, Oregon, 97206, United States of America
+#&gt; 131                                         Mohawk Building, Southwest Morrison Street, Portland Downtown, Portland, Multnomah County, Oregon, 97204, United States of America
+#&gt; 132                                                   The Beverly, 2025, Northeast 44th Avenue, Hollywood, Portland, Multnomah County, Oregon, 97213, United States of America
+#&gt; 133                                                       Southeast 92nd Avenue, Lents Town Center, Lents, Portland, Multnomah County, Oregon, 97266, United States of America
+#&gt; 134                                                        Southeast Powell Boulevard, Creston-Kenilworth, Portland, Multnomah County, Oregon, 97202, United States of America
+#&gt; 135                                              The Morland, 1530, Northeast 10th Avenue, Lloyd District, Portland, Multnomah County, Oregon, 97232, United States of America
+#&gt; 136                                              Humboldt Gardens, 5033, North Vancouver Avenue, Humboldt, Portland, Multnomah County, Oregon, 97217, United States of America
+#&gt; 137                                                            5251, Northeast Glisan Street, North Tabor, Portland, Multnomah County, Oregon, 97213, United States of America
+#&gt; 138                                                               4915, North Interstate Avenue, Overlook, Portland, Multnomah County, Oregon, 97217, United States of America
+#&gt; 139                                               Saigon Kitchen, Southwest 5th Avenue, Portland Downtown, Portland, Multnomah County, Oregon, 97258, United States of America
+#&gt; 140                                                      10529, Northeast Halsey Street, Parkrose Heights, Portland, Multnomah County, Oregon, 97220, United States of America
+#&gt; 141                                               3412, Southeast Hawthorne Boulevard, Belmont, Sunnyside, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 142                                                                5410, Northeast Cully Boulevard, Cully, Portland, Multnomah County, Oregon, 97218, United States of America
+#&gt; 143                                Portland State University, Robert Hugh Baldock Freeway, South Portland, Portland, Multnomah County, Oregon, 97258, United States of America
+#&gt; 144                                                           120, North Mason Street, Mississippi, Boise, Portland, Multnomah County, Oregon, 97217, United States of America
+#&gt; 145                                              Donny Vegas, 1203, Northeast Alberta Street, King, Portland, Metro, Multnomah County, Oregon, 97211, United States of America
+#&gt; 146                                                                 1527, Southeast 47th Avenue, Richmond, Portland, Multnomah County, Oregon, 97215, United States of America
+#&gt; 147                                               Tabor View Lofts, 2655, Southeast 50th Avenue, Richmond, Portland, Multnomah County, Oregon, 97206, United States of America
+#&gt; 148                               Custom Stamping, 1340, Southeast 9th Avenue, Central East Side, Buckman, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 149                                       LaurelThirst Public House, Northeast Glisan Street, Laurelhurst, Portland, Multnomah County, Oregon, 97232, United States of America
+#&gt; 150                                                              Beulahland, Northeast 28th Avenue, Kerns, Portland, Multnomah County, Oregon, 97232, United States of America
+#&gt; 151          Ladd's Addition Historic District, Southeast Hawthorne Boulevard, Central East Side, Buckman, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 152                                                  Northeast Martin Luther King Junior Boulevard, Kerns, Portland, Multnomah County, Oregon, 97240, United States of America
+#&gt; 153                   Southwest Park at the Portland Art Museum, Southwest Park Avenue, Portland Downtown, Portland, Multnomah County, Oregon, 97204, United States of America
+#&gt; 154            The Cameron, 1500, Southwest 12th Avenue, Portland Downtown, Northwest Industrial District, Portland, Multnomah County, Oregon, 97201, United States of America
+#&gt; 155                               2003, Southeast Hawthorne Boulevard, Ladd's Addition, Hosford-Abernethy, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 156                                  Pine State Biscuits, 2204, Northeast Alberta Street, Alberta, Vernon, Portland, Multnomah County, Oregon, 97211, United States of America
+#&gt; 157                  Southwest Market at Keller Fountain Park, Southwest Market Street, Portland Downtown, Portland, Multnomah County, Oregon, 97258, United States of America
+#&gt; 158                                                      South Thomas Street, The Matisse, South Portland, Portland, Multnomah County, Oregon, 97258, United States of America
+#&gt; 159                                                     1450, Northwest Pettygrove Street, Pearl District, Portland, Multnomah County, Oregon, 97209, United States of America
+#&gt; 160                         Biketown PDX NW Thurman at 24th, Northwest Thurman Street, Northwest District, Portland, Multnomah County, Oregon, 97210, United States of America
+#&gt; 161                                 Alphabet Historic District, Northwest 24th Avenue, Northwest District, Portland, Multnomah County, Oregon, 97210, United States of America
+#&gt; 162                                                      2016, Northwest Front Avenue, Northwest District, Portland, Multnomah County, Oregon, 97209, United States of America
+#&gt; 163                                                                 1406, North Prescott Street, Overlook, Portland, Multnomah County, Oregon, 97217, United States of America
+#&gt; 164                                            Union Bank, 2416, Northeast Fremont Street, Alameda, Portland, Metro, Multnomah County, Oregon, 97212, United States of America
+#&gt; 165                                                            1732, Northeast 2nd Avenue, Lloyd District, Portland, Multnomah County, Oregon, 97212, United States of America
+#&gt; 166                                                                 2523, Southeast 30th Avenue, Richmond, Portland, Multnomah County, Oregon, 97202, United States of America
+#&gt; 167                                                     Safeway, 1100, Northeast Broadway, Lloyd District, Portland, Multnomah County, Oregon, 97232, United States of America
+#&gt; 168                       OHSU Center For Health And Healing, 3303, Southwest Bond Avenue, South Portland, Portland, Multnomah County, Oregon, 97239, United States of America
+#&gt; 169                                                             Northwest Marshall Street, Pearl District, Portland, Multnomah County, Oregon, 97208, United States of America
+#&gt; 170                                Ristretto Roasters, 2181, Northwest Nicolai Street, Northwest District, Portland, Multnomah County, Oregon, 97210, United States of America
+#&gt; 171                                                       2405, Northeast Alberta Street, Alberta, Vernon, Portland, Multnomah County, Oregon, 97211, United States of America
+#&gt; 172                                       Dawson Park Apartments, 101, North Morris Street, Albina, Eliot, Portland, Multnomah County, Oregon, 97227, United States of America
+#&gt; 173         Rose City Park United Methodist Church, 5830, Northeast Alameda Street, Rose City Park, Portland, Metro, Multnomah County, Oregon, 97213, United States of America
+#&gt; 174                                                          5515, Northeast 17th Avenue, Alberta, Vernon, Portland, Multnomah County, Oregon, 97211, United States of America
+#&gt; 175                           North Mississippi at Skidmore, North Mississippi Avenue, Mississippi, Boise, Portland, Multnomah County, Oregon, 97227, United States of America
+#&gt; 176                             SW Salmon at Waterfront Park, Southwest Salmon Street, World Trade Center, Portland, Multnomah County, Oregon, 97258, United States of America
+#&gt; 177                                   Pro Photo Supply Rentals, Northwest 18th Avenue, Northwest District, Portland, Multnomah County, Oregon, 97209, United States of America
+#&gt; 178                                                               5430, North Burrage Avenue, Arbor Lodge, Portland, Multnomah County, Oregon, 97217, United States of America
+#&gt; 179                                                      South Waterfront/Southwest Moody, South Portland, Portland, Multnomah County, Oregon, 97258, United States of America
+#&gt; 180                                                                              Apotheker Plaza, Lloyd District, Portland, Multnomah County, Oregon, United States of America
+#&gt; 181                                                       USPS, Northeast Knott Street, Grant Park, Portland, Metro, Multnomah County, Oregon, 97212, United States of America
+#&gt; 182                                               Peet's Coffee, 1441, Northeast Broadway, Lloyd District, Portland, Multnomah County, Oregon, 97232, United States of America
+#&gt; 183                               Rose City Park Post Office, 2425, Northeast 50th Avenue, Rose City Park, Portland, Multnomah County, Oregon, 97213, United States of America
+#&gt; 184                                                                    4523, Northeast 60th Avenue, Cully, Portland, Multnomah County, Oregon, 97218, United States of America
+#&gt; 185                         New Seasons Market, 4034, Southeast Hawthorne Boulevard, Hawthorne, Sunnyside, Portland, Multnomah County, Oregon, 97214, United States of America
+#&gt; 186                                Portland State University, Robert Hugh Baldock Freeway, South Portland, Portland, Multnomah County, Oregon, 97258, United States of America
+#&gt; 187                                 Alphabet Historic District, Northwest 24th Avenue, Northwest District, Portland, Multnomah County, Oregon, 97210, United States of America
+#&gt;              station_id electric_bike_surcharge_waiver station_type
+#&gt; 1   1440913911409460218                          FALSE  lightweight
+#&gt; 2   1440914010193708188                          FALSE  lightweight
+#&gt; 3   1440914087503119616                          FALSE  lightweight
+#&gt; 4   1440914082243625346                          FALSE  lightweight
+#&gt; 5   1440914113272923436                          FALSE  lightweight
+#&gt; 6   1440914121862858038                          FALSE  lightweight
+#&gt; 7   1440913898524558302                          FALSE  lightweight
+#&gt; 8   1440913941474231340                          FALSE  lightweight
+#&gt; 9   1440913829805081460                          FALSE  lightweight
+#&gt; 10  1440913980128937064                          FALSE  lightweight
+#&gt; 11  1481015392272555424                          FALSE  lightweight
+#&gt; 12  1456383622081679656                          FALSE  lightweight
+#&gt; 13  1440914083208152312                          FALSE  lightweight
+#&gt; 14  1440913795445343034                          FALSE  lightweight
+#&gt; 15  1440913919999394818                          FALSE  lightweight
+#&gt; 16  1440913876085194860                          FALSE  lightweight
+#&gt; 17  1440914091059481924                          FALSE  lightweight
+#&gt; 18  1459024287353491654                          FALSE  lightweight
+#&gt; 19  1440913970574475490                          FALSE  lightweight
+#&gt; 20  1440914027373577398                          FALSE  lightweight
+#&gt; 21  1456086692230960482                          FALSE  lightweight
+#&gt; 22  1440913863200292958                          FALSE  lightweight
+#&gt; 23  1440913799740310340                          FALSE  lightweight
+#&gt; 24  1440913944804671680                          FALSE  lightweight
+#&gt; 25  1472781733132019568                          FALSE  lightweight
+#&gt; 26  1440913914739900562                          FALSE  lightweight
+#&gt; 27  1456140958053603248                          FALSE  lightweight
+#&gt; 28  1440914066028283098                          FALSE  lightweight
+#&gt; 29  1440914082469547316                          FALSE  lightweight
+#&gt; 30  1440914116603363768                          FALSE  lightweight
+#&gt; 31  1440914047883886932                          FALSE  lightweight
+#&gt; 32  1440914035224906986                          FALSE  lightweight
+#&gt; 33  1473197832631849206                          FALSE  lightweight
+#&gt; 34  1480244102250417912                          FALSE  lightweight
+#&gt; 35  1440913988718871668                          FALSE  lightweight
+#&gt; 36  1440913962210462840                          FALSE  lightweight
+#&gt; 37  1440913974869442794                          FALSE  lightweight
+#&gt; 38  1484982920426338730                          FALSE  lightweight
+#&gt; 39  1440913795445343038                          FALSE  lightweight
+#&gt; 40  1454280066339194724                          FALSE  lightweight
+#&gt; 41  1440913996344279296                          FALSE  lightweight
+#&gt; 42  1440914027373577396                          FALSE  lightweight
+#&gt; 43  1454652773980638046                          FALSE  lightweight
+#&gt; 44  1440913993013838974                          FALSE  lightweight
+#&gt; 45  1440913880380162160                          FALSE  lightweight
+#&gt; 46  1464586049118850668                          FALSE  lightweight
+#&gt; 47  1440914056699743492                          FALSE  lightweight
+#&gt; 48  1440913992049311996                          FALSE  lightweight
+#&gt; 49  1440913842689983370                          FALSE  lightweight
+#&gt; 50  1440913829805081458                          FALSE  lightweight
+#&gt; 51  1440913914739900560                          FALSE  lightweight
+#&gt; 52  1475393691475085892                          FALSE  lightweight
+#&gt; 53  1459019849658395180                          FALSE  lightweight
+#&gt; 54  1440913885639656392                          FALSE  lightweight
+#&gt; 55  1440913808330244946                          FALSE  lightweight
+#&gt; 56  1440913928589329426                          FALSE  lightweight
+#&gt; 57  1440914099649416530                          FALSE  lightweight
+#&gt; 58  1440913950064165944                          FALSE  lightweight
+#&gt; 59  1440914073653690746                          FALSE  lightweight
+#&gt; 60  1440913924294362124                          FALSE  lightweight
+#&gt; 61  1440913953394606284                          FALSE  lightweight
+#&gt; 62  1440913864164819880                          FALSE  lightweight
+#&gt; 63  1440913858905325648                          FALSE  lightweight
+#&gt; 64  1440914125193298376                          FALSE  lightweight
+#&gt; 65  1459019845363427878                          FALSE  lightweight
+#&gt; 66  1440914030704017724                          FALSE  lightweight
+#&gt; 67  1440913841725456440                          FALSE  lightweight
+#&gt; 68  1440913980128937062                          FALSE  lightweight
+#&gt; 69  1440913880380162158                          FALSE  lightweight
+#&gt; 70  1440913854610358344                          FALSE  lightweight
+#&gt; 71  1440913898524558306                          FALSE  lightweight
+#&gt; 72  1464631188172231042                          FALSE  lightweight
+#&gt; 73  1440914061733315796                          FALSE  lightweight
+#&gt; 74  1440913838395016060                          FALSE  lightweight
+#&gt; 75  1440913816920179552                          FALSE  lightweight
+#&gt; 76  1440913941474231334                          FALSE  lightweight
+#&gt; 77  1440913854610358348                          FALSE  lightweight
+#&gt; 78  1440913924294362120                          FALSE  lightweight
+#&gt; 79  1440914065063756144                          FALSE  lightweight
+#&gt; 80  1440914108977956132                          FALSE  lightweight
+#&gt; 81  1440913961984540882                          FALSE  lightweight
+#&gt; 82  1440913923329835164                          FALSE  lightweight
+#&gt; 83  1440913906149965958                          FALSE  lightweight
+#&gt; 84  1458693505802373278                          FALSE  lightweight
+#&gt; 85  1440914005898740884                          FALSE  lightweight
+#&gt; 86  1440914043814841592                          FALSE  lightweight
+#&gt; 87  1440913983459377396                          FALSE  lightweight
+#&gt; 88  1456140958053603252                          FALSE  lightweight
+#&gt; 89  1484982916131371432                          FALSE  lightweight
+#&gt; 90  1440914022114083116                          FALSE  lightweight
+#&gt; 91  1440914095354449222                          FALSE  lightweight
+#&gt; 92  1440914100388021524                          FALSE  lightweight
+#&gt; 93  1440913808330244944                          FALSE  lightweight
+#&gt; 94  1440914022114083118                          FALSE  lightweight
+#&gt; 95  1440913859869852574                          FALSE  lightweight
+#&gt; 96  1440913894229591002                          FALSE  lightweight
+#&gt; 97  1464631188172231038                          FALSE  lightweight
+#&gt; 98  1440913907114492912                          FALSE  lightweight
+#&gt; 99  1440914121124253042                          FALSE  lightweight
+#&gt; 100 1440913910444933258                          FALSE  lightweight
+#&gt; 101 1440913950064165948                          FALSE  lightweight
+#&gt; 102 1459019845363427880                          FALSE  lightweight
+#&gt; 103 1440913987980266658                          FALSE  lightweight
+#&gt; 104 1440913821215146858                          FALSE  lightweight
+#&gt; 105 1440914043814841594                          FALSE  lightweight
+#&gt; 106 1475770068410544440                          FALSE  lightweight
+#&gt; 107 1480244097955450614                          FALSE  lightweight
+#&gt; 108 1480244102250417914                          FALSE  lightweight
+#&gt; 109 1472781728837052268                          FALSE  lightweight
+#&gt; 110 1440914069584645404                          FALSE  lightweight
+#&gt; 111 1440914039519874290                          FALSE  lightweight
+#&gt; 112 1440913804035277640                          FALSE  lightweight
+#&gt; 113 1440914009455103170                          FALSE  lightweight
+#&gt; 114 1440913927624802472                          FALSE  lightweight
+#&gt; 115 1464631192467198342                          FALSE  lightweight
+#&gt; 116 1440913825510114158                          FALSE  lightweight
+#&gt; 117 1440914074618217706                          FALSE  lightweight
+#&gt; 118 1440914052404776192                          FALSE  lightweight
+#&gt; 119 1440914112534318436                          FALSE  lightweight
+#&gt; 120 1480244093660483314                          FALSE  lightweight
+#&gt; 121 1440913996344279298                          FALSE  lightweight
+#&gt; 122 1440914040258479302                          FALSE  lightweight
+#&gt; 123 1440913915704427520                          FALSE  lightweight
+#&gt; 124 1440914000639246602                          FALSE  lightweight
+#&gt; 125 1440913799740310342                          FALSE  lightweight
+#&gt; 126 1440913949099638980                          FALSE  lightweight
+#&gt; 127 1454284004050750174                          FALSE  lightweight
+#&gt; 128 1440913932884296732                          FALSE  lightweight
+#&gt; 129 1440914039519874284                          FALSE  lightweight
+#&gt; 130 1440914018045037774                          FALSE  lightweight
+#&gt; 131 1440914086764514614                          FALSE  lightweight
+#&gt; 132 1440913859869852578                          FALSE  lightweight
+#&gt; 133 1458693501507405978                          FALSE  lightweight
+#&gt; 134 1440914060768788840                          FALSE  lightweight
+#&gt; 135 1440913825510114160                          FALSE  lightweight
+#&gt; 136 1440913821215146854                          FALSE  lightweight
+#&gt; 137 1440913901854998660                          FALSE  lightweight
+#&gt; 138 1440913791150375730                          FALSE  lightweight
+#&gt; 139 1440914091059481920                          FALSE  lightweight
+#&gt; 140 1448727096877427868                          FALSE  lightweight
+#&gt; 141 1440914004934213902                          FALSE  lightweight
+#&gt; 142 1440913894229590996                          FALSE  lightweight
+#&gt; 143 1440914095128527258                          FALSE  lightweight
+#&gt; 144 1440913804035277644                          FALSE  lightweight
+#&gt; 145 1480244097955450612                          FALSE  lightweight
+#&gt; 146 1440914014488675490                          FALSE  lightweight
+#&gt; 147 1440914017819115816                          FALSE  lightweight
+#&gt; 148 1440914030929939682                          FALSE  lightweight
+#&gt; 149 1440913846984950672                          FALSE  lightweight
+#&gt; 150 1440913841725456442                          FALSE  lightweight
+#&gt; 151 1440914047883886936                          FALSE  lightweight
+#&gt; 152 1440913889934623696                          FALSE  lightweight
+#&gt; 153 1440914116603363770                          FALSE  lightweight
+#&gt; 154 1440914078174580010                          FALSE  lightweight
+#&gt; 155 1440914056699743496                          FALSE  lightweight
+#&gt; 156 1440913881344689088                          FALSE  lightweight
+#&gt; 157 1440914104682988826                          FALSE  lightweight
+#&gt; 158 1440914108239351132                          FALSE  lightweight
+#&gt; 159 1440913971539002462                          FALSE  lightweight
+#&gt; 160 1440913983685299354                          FALSE  lightweight
+#&gt; 161 1440913966279508184                          FALSE  lightweight
+#&gt; 162 1440913957915495540                          FALSE  lightweight
+#&gt; 163 1440913816920179550                          FALSE  lightweight
+#&gt; 164 1471660436585799816                          FALSE  lightweight
+#&gt; 165 1440913846020423744                          FALSE  lightweight
+#&gt; 166 1440914001603773578                          FALSE  lightweight
+#&gt; 167 1440913889934623692                          FALSE  lightweight
+#&gt; 168 1440914103718461862                          FALSE  lightweight
+#&gt; 169 1440913966279508188                          FALSE  lightweight
+#&gt; 170 1440913970574475492                          FALSE  lightweight
+#&gt; 171 1440913884675129460                          FALSE  lightweight
+#&gt; 172 1440913812625212250                          FALSE  lightweight
+#&gt; 173 1475393691475085898                          FALSE  lightweight
+#&gt; 174 1440913837430489136                          FALSE  lightweight
+#&gt; 175 1440913812625212248                          FALSE  lightweight
+#&gt; 176 1440914138304122232                          FALSE  lightweight
+#&gt; 177 1440913932884296726                          FALSE  lightweight
+#&gt; 178 1440913791150375734                          FALSE  lightweight
+#&gt; 179 1440914130452792640                          FALSE  lightweight
+#&gt; 180 1440913786855408432                          FALSE  lightweight
+#&gt; 181 1471660432290832512                          FALSE  lightweight
+#&gt; 182 1440913834100048758                          FALSE  lightweight
+#&gt; 183 1440913868459787180                          FALSE  lightweight
+#&gt; 184 1440913876085194858                          FALSE  lightweight
+#&gt; 185 1440914013524148510                          FALSE  lightweight
+#&gt; 186 1440914129488265680                          FALSE  lightweight
+#&gt; 187 1440913937179264036                          FALSE  lightweight
+#&gt;     eightd_station_services       rack_model           legacy_id
+#&gt; 1                      NULL CITY_PUBLIC_RACK 1440913911409460218
+#&gt; 2                      NULL CITY_PUBLIC_RACK 1440914010193708188
+#&gt; 3                      NULL  CITY_PILOT_RACK 1440914087503119616
+#&gt; 4                      NULL  CITY_PILOT_RACK 1440914082243625346
+#&gt; 5                      NULL  CITY_PILOT_RACK 1440914113272923436
+#&gt; 6                      NULL  CITY_PILOT_RACK 1440914121862858038
+#&gt; 7                      NULL CITY_PUBLIC_RACK 1440913898524558302
+#&gt; 8                      NULL  CITY_PILOT_RACK 1440913941474231340
+#&gt; 9                      NULL CITY_PUBLIC_RACK 1440913829805081460
+#&gt; 10                     NULL  CITY_PILOT_RACK 1440913980128937064
+#&gt; 11                     NULL  CITY_PILOT_RACK 1481015392272555424
+#&gt; 12                     NULL  CITY_PILOT_RACK 1456383622081679656
+#&gt; 13                     NULL  CITY_PILOT_RACK 1440914083208152312
+#&gt; 14                     NULL CITY_PUBLIC_RACK 1440913795445343034
+#&gt; 15                     NULL  CITY_PILOT_RACK 1440913919999394818
+#&gt; 16                     NULL CITY_PUBLIC_RACK 1440913876085194860
+#&gt; 17                     NULL  CITY_PILOT_RACK 1440914091059481924
+#&gt; 18                     NULL  CITY_PILOT_RACK 1459024287353491654
+#&gt; 19                     NULL  CITY_PILOT_RACK 1440913970574475490
+#&gt; 20                     NULL  CITY_PILOT_RACK 1440914027373577398
+#&gt; 21                     NULL  CITY_PILOT_RACK 1456086692230960482
+#&gt; 22                     NULL CITY_PUBLIC_RACK 1440913863200292958
+#&gt; 23                     NULL CITY_PUBLIC_RACK 1440913799740310340
+#&gt; 24                     NULL  CITY_PILOT_RACK 1440913944804671680
+#&gt; 25                     NULL  CITY_PILOT_RACK 1472781733132019568
+#&gt; 26                     NULL  CITY_PILOT_RACK 1440913914739900562
+#&gt; 27                     NULL CITY_PUBLIC_RACK 1456140958053603248
+#&gt; 28                     NULL CITY_PUBLIC_RACK 1440914066028283098
+#&gt; 29                     NULL  CITY_PILOT_RACK 1440914082469547316
+#&gt; 30                     NULL  CITY_PILOT_RACK 1440914116603363768
+#&gt; 31                     NULL  CITY_PILOT_RACK 1440914047883886932
+#&gt; 32                     NULL  CITY_PILOT_RACK 1440914035224906986
+#&gt; 33                     NULL  CITY_PILOT_RACK 1473197832631849206
+#&gt; 34                     NULL  CITY_PILOT_RACK 1480244102250417912
+#&gt; 35                     NULL CITY_PUBLIC_RACK 1440913988718871668
+#&gt; 36                     NULL  CITY_PILOT_RACK 1440913962210462840
+#&gt; 37                     NULL  CITY_PILOT_RACK 1440913974869442794
+#&gt; 38                     NULL CITY_PUBLIC_RACK 1484982920426338730
+#&gt; 39                     NULL  CITY_PILOT_RACK 1440913795445343038
+#&gt; 40                     NULL  CITY_PILOT_RACK 1454280066339194724
+#&gt; 41                     NULL  CITY_PILOT_RACK 1440913996344279296
+#&gt; 42                     NULL  CITY_PILOT_RACK 1440914027373577396
+#&gt; 43                     NULL  CITY_PILOT_RACK 1454652773980638046
+#&gt; 44                     NULL  CITY_PILOT_RACK 1440913993013838974
+#&gt; 45                     NULL CITY_PUBLIC_RACK 1440913880380162160
+#&gt; 46                     NULL CITY_PUBLIC_RACK 1464586049118850668
+#&gt; 47                     NULL  CITY_PILOT_RACK 1440914056699743492
+#&gt; 48                     NULL  CITY_PILOT_RACK 1440913992049311996
+#&gt; 49                     NULL CITY_PUBLIC_RACK 1440913842689983370
+#&gt; 50                     NULL  CITY_PILOT_RACK 1440913829805081458
+#&gt; 51                     NULL  CITY_PILOT_RACK 1440913914739900560
+#&gt; 52                     NULL  CITY_PILOT_RACK 1475393691475085892
+#&gt; 53                     NULL  CITY_PILOT_RACK 1459019849658395180
+#&gt; 54                     NULL CITY_PUBLIC_RACK 1440913885639656392
+#&gt; 55                     NULL  CITY_PILOT_RACK 1440913808330244946
+#&gt; 56                     NULL  CITY_PILOT_RACK 1440913928589329426
+#&gt; 57                     NULL  CITY_PILOT_RACK 1440914099649416530
+#&gt; 58                     NULL  CITY_PILOT_RACK 1440913950064165944
+#&gt; 59                     NULL  CITY_PILOT_RACK 1440914073653690746
+#&gt; 60                     NULL  CITY_PILOT_RACK 1440913924294362124
+#&gt; 61                     NULL  CITY_PILOT_RACK 1440913953394606284
+#&gt; 62                     NULL CITY_PUBLIC_RACK 1440913864164819880
+#&gt; 63                     NULL  CITY_PILOT_RACK 1440913858905325648
+#&gt; 64                     NULL  CITY_PILOT_RACK 1440914125193298376
+#&gt; 65                     NULL  CITY_PILOT_RACK 1459019845363427878
+#&gt; 66                     NULL  CITY_PILOT_RACK 1440914030704017724
+#&gt; 67                     NULL CITY_PUBLIC_RACK 1440913841725456440
+#&gt; 68                     NULL  CITY_PILOT_RACK 1440913980128937062
+#&gt; 69                     NULL CITY_PUBLIC_RACK 1440913880380162158
+#&gt; 70                     NULL CITY_PUBLIC_RACK 1440913854610358344
+#&gt; 71                     NULL  CITY_PILOT_RACK 1440913898524558306
+#&gt; 72                     NULL  CITY_PILOT_RACK 1464631188172231042
+#&gt; 73                     NULL  CITY_PILOT_RACK 1440914061733315796
+#&gt; 74                     NULL  CITY_PILOT_RACK 1440913838395016060
+#&gt; 75                     NULL CITY_PUBLIC_RACK 1440913816920179552
+#&gt; 76                     NULL  CITY_PILOT_RACK 1440913941474231334
+#&gt; 77                     NULL CITY_PUBLIC_RACK 1440913854610358348
+#&gt; 78                     NULL  CITY_PILOT_RACK 1440913924294362120
+#&gt; 79                     NULL  CITY_PILOT_RACK 1440914065063756144
+#&gt; 80                     NULL  CITY_PILOT_RACK 1440914108977956132
+#&gt; 81                     NULL  CITY_PILOT_RACK 1440913961984540882
+#&gt; 82                     NULL  CITY_PILOT_RACK 1440913923329835164
+#&gt; 83                     NULL  CITY_PILOT_RACK 1440913906149965958
+#&gt; 84                     NULL  CITY_PILOT_RACK 1458693505802373278
+#&gt; 85                     NULL  CITY_PILOT_RACK 1440914005898740884
+#&gt; 86                     NULL  CITY_PILOT_RACK 1440914043814841592
+#&gt; 87                     NULL CITY_PUBLIC_RACK 1440913983459377396
+#&gt; 88                     NULL CITY_PUBLIC_RACK 1456140958053603252
+#&gt; 89                     NULL  CITY_PILOT_RACK 1484982916131371432
+#&gt; 90                     NULL CITY_PUBLIC_RACK 1440914022114083116
+#&gt; 91                     NULL  CITY_PILOT_RACK 1440914095354449222
+#&gt; 92                     NULL  CITY_PILOT_RACK 1440914100388021524
+#&gt; 93                     NULL CITY_PUBLIC_RACK 1440913808330244944
+#&gt; 94                     NULL CITY_PUBLIC_RACK 1440914022114083118
+#&gt; 95                     NULL  CITY_PILOT_RACK 1440913859869852574
+#&gt; 96                     NULL CITY_PUBLIC_RACK 1440913894229591002
+#&gt; 97                     NULL  CITY_PILOT_RACK 1464631188172231038
+#&gt; 98                     NULL  CITY_PILOT_RACK 1440913907114492912
+#&gt; 99                     NULL CITY_PUBLIC_RACK 1440914121124253042
+#&gt; 100                    NULL CITY_PUBLIC_RACK 1440913910444933258
+#&gt; 101                    NULL  CITY_PILOT_RACK 1440913950064165948
+#&gt; 102                    NULL  CITY_PILOT_RACK 1459019845363427880
+#&gt; 103                    NULL  CITY_PILOT_RACK 1440913987980266658
+#&gt; 104                    NULL CITY_PUBLIC_RACK 1440913821215146858
+#&gt; 105                    NULL  CITY_PILOT_RACK 1440914043814841594
+#&gt; 106                    NULL CITY_PUBLIC_RACK 1475770068410544440
+#&gt; 107                    NULL CITY_PUBLIC_RACK 1480244097955450614
+#&gt; 108                    NULL  CITY_PILOT_RACK 1480244102250417914
+#&gt; 109                    NULL  CITY_PILOT_RACK 1472781728837052268
+#&gt; 110                    NULL  CITY_PILOT_RACK 1440914069584645404
+#&gt; 111                    NULL  CITY_PILOT_RACK 1440914039519874290
+#&gt; 112                    NULL CITY_PUBLIC_RACK 1440913804035277640
+#&gt; 113                    NULL CITY_PUBLIC_RACK 1440914009455103170
+#&gt; 114                    NULL  CITY_PILOT_RACK 1440913927624802472
+#&gt; 115                    NULL  CITY_PILOT_RACK 1464631192467198342
+#&gt; 116                    NULL  CITY_PILOT_RACK 1440913825510114158
+#&gt; 117                    NULL  CITY_PILOT_RACK 1440914074618217706
+#&gt; 118                    NULL  CITY_PILOT_RACK 1440914052404776192
+#&gt; 119                    NULL  CITY_PILOT_RACK 1440914112534318436
+#&gt; 120                    NULL CITY_PUBLIC_RACK 1480244093660483314
+#&gt; 121                    NULL  CITY_PILOT_RACK 1440913996344279298
+#&gt; 122                    NULL CITY_PUBLIC_RACK 1440914040258479302
+#&gt; 123                    NULL  CITY_PILOT_RACK 1440913915704427520
+#&gt; 124                    NULL  CITY_PILOT_RACK 1440914000639246602
+#&gt; 125                    NULL  CITY_PILOT_RACK 1440913799740310342
+#&gt; 126                    NULL  CITY_PILOT_RACK 1440913949099638980
+#&gt; 127                    NULL  CITY_PILOT_RACK 1454284004050750174
+#&gt; 128                    NULL  CITY_PILOT_RACK 1440913932884296732
+#&gt; 129                    NULL  CITY_PILOT_RACK 1440914039519874284
+#&gt; 130                    NULL CITY_PUBLIC_RACK 1440914018045037774
+#&gt; 131                    NULL  CITY_PILOT_RACK 1440914086764514614
+#&gt; 132                    NULL  CITY_PILOT_RACK 1440913859869852578
+#&gt; 133                    NULL  CITY_PILOT_RACK 1458693501507405978
+#&gt; 134                    NULL  CITY_PILOT_RACK 1440914060768788840
+#&gt; 135                    NULL CITY_PUBLIC_RACK 1440913825510114160
+#&gt; 136                    NULL  CITY_PILOT_RACK 1440913821215146854
+#&gt; 137                    NULL  CITY_PILOT_RACK 1440913901854998660
+#&gt; 138                    NULL  CITY_PILOT_RACK 1440913791150375730
+#&gt; 139                    NULL  CITY_PILOT_RACK 1440914091059481920
+#&gt; 140                    NULL  CITY_PILOT_RACK 1448727096877427868
+#&gt; 141                    NULL  CITY_PILOT_RACK 1440914004934213902
+#&gt; 142                    NULL  CITY_PILOT_RACK 1440913894229590996
+#&gt; 143                    NULL  CITY_PILOT_RACK 1440914095128527258
+#&gt; 144                    NULL  CITY_PILOT_RACK 1440913804035277644
+#&gt; 145                    NULL CITY_PUBLIC_RACK 1480244097955450612
+#&gt; 146                    NULL CITY_PUBLIC_RACK 1440914014488675490
+#&gt; 147                    NULL  CITY_PILOT_RACK 1440914017819115816
+#&gt; 148                    NULL  CITY_PILOT_RACK 1440914030929939682
+#&gt; 149                    NULL CITY_PUBLIC_RACK 1440913846984950672
+#&gt; 150                    NULL CITY_PUBLIC_RACK 1440913841725456442
+#&gt; 151                    NULL  CITY_PILOT_RACK 1440914047883886936
+#&gt; 152                    NULL  CITY_PILOT_RACK 1440913889934623696
+#&gt; 153                    NULL  CITY_PILOT_RACK 1440914116603363770
+#&gt; 154                    NULL  CITY_PILOT_RACK 1440914078174580010
+#&gt; 155                    NULL  CITY_PILOT_RACK 1440914056699743496
+#&gt; 156                    NULL CITY_PUBLIC_RACK 1440913881344689088
+#&gt; 157                    NULL  CITY_PILOT_RACK 1440914104682988826
+#&gt; 158                    NULL  CITY_PILOT_RACK 1440914108239351132
+#&gt; 159                    NULL  CITY_PILOT_RACK 1440913971539002462
+#&gt; 160                    NULL  CITY_PILOT_RACK 1440913983685299354
+#&gt; 161                    NULL  CITY_PILOT_RACK 1440913966279508184
+#&gt; 162                    NULL  CITY_PILOT_RACK 1440913957915495540
+#&gt; 163                    NULL  CITY_PILOT_RACK 1440913816920179550
+#&gt; 164                    NULL  CITY_PILOT_RACK 1471660436585799816
+#&gt; 165                    NULL  CITY_PILOT_RACK 1440913846020423744
+#&gt; 166                    NULL  CITY_PILOT_RACK 1440914001603773578
+#&gt; 167                    NULL  CITY_PILOT_RACK 1440913889934623692
+#&gt; 168                    NULL  CITY_PILOT_RACK 1440914103718461862
+#&gt; 169                    NULL  CITY_PILOT_RACK 1440913966279508188
+#&gt; 170                    NULL CITY_PUBLIC_RACK 1440913970574475492
+#&gt; 171                    NULL CITY_PUBLIC_RACK 1440913884675129460
+#&gt; 172                    NULL  CITY_PILOT_RACK 1440913812625212250
+#&gt; 173                    NULL  CITY_PILOT_RACK 1475393691475085898
+#&gt; 174                    NULL CITY_PUBLIC_RACK 1440913837430489136
+#&gt; 175                    NULL  CITY_PILOT_RACK 1440913812625212248
+#&gt; 176                    NULL  CITY_PILOT_RACK 1440914138304122232
+#&gt; 177                    NULL  CITY_PILOT_RACK 1440913932884296726
+#&gt; 178                    NULL CITY_PUBLIC_RACK 1440913791150375734
+#&gt; 179                    NULL  CITY_PILOT_RACK 1440914130452792640
+#&gt; 180                    NULL CITY_PUBLIC_RACK 1440913786855408432
+#&gt; 181                    NULL  CITY_PILOT_RACK 1471660432290832512
+#&gt; 182                    NULL  CITY_PILOT_RACK 1440913834100048758
+#&gt; 183                    NULL  CITY_PILOT_RACK 1440913868459787180
+#&gt; 184                    NULL  CITY_PILOT_RACK 1440913876085194858
+#&gt; 185                    NULL  CITY_PILOT_RACK 1440914013524148510
+#&gt; 186                    NULL  CITY_PILOT_RACK 1440914129488265680
+#&gt; 187                    NULL  CITY_PILOT_RACK 1440913937179264036
+#&gt;                                                 name has_kiosk
+#&gt; 1                           NE Killingsworth at 30th     FALSE
+#&gt; 2                               SE 37th at Gladstone     FALSE
+#&gt; 3                                  SW 4th at College     FALSE
+#&gt; 4                               SW 18th at Jefferson     FALSE
+#&gt; 5                           SW Naito at Ankeny Plaza     FALSE
+#&gt; 6                             SW River at Montgomery     FALSE
+#&gt; 7                                 NE Fremont at 15th     FALSE
+#&gt; 8                                 NW 23rd at Overton     FALSE
+#&gt; 9                             NE 14th Pl at Prescott     FALSE
+#&gt; 10                              NW Station at Irving     FALSE
+#&gt; 11                             NE 77th at Sandy Blvd     FALSE
+#&gt; 12                           NW 20th Pl (Fred Meyer)     FALSE
+#&gt; 13                                    SW 2nd at Pine     FALSE
+#&gt; 14                        N Concord at Killingsworth     FALSE
+#&gt; 15                                  NE Sandy at 16th     FALSE
+#&gt; 16                                NE Alberta at 10th     FALSE
+#&gt; 17                                SW 5th at Morrison     FALSE
+#&gt; 18                                  NE 68th at Sandy     FALSE
+#&gt; 19                              NW Naito at Ironside     FALSE
+#&gt; 20                                SE 9th at Burnside     FALSE
+#&gt; 21                                 SE Stark at 102nd     FALSE
+#&gt; 22                                NE 48th at Fremont     FALSE
+#&gt; 23                        N Interstate at Willamette     FALSE
+#&gt; 24                                 NW 2nd at Everett     FALSE
+#&gt; 25                               SE 96th Ave at Main     FALSE
+#&gt; 26                               NE Multnomah at 9th     FALSE
+#&gt; 27                                 SW 4th at Madison     FALSE
+#&gt; 28                            SE Powell Blvd at 29th     FALSE
+#&gt; 29                                  SW 3rd at Ankeny     FALSE
+#&gt; 30                              SW Naito at Morrison     FALSE
+#&gt; 31                                SE Clinton at 26th     FALSE
+#&gt; 32                                SE Belmont at 20th     FALSE
+#&gt; 33                           NE Prescott at 72nd Ave     FALSE
+#&gt; 34     SE 106th at Cherry Blossom Dr (E Portland CC)     FALSE
+#&gt; 35                                   SE 28th at Pine     FALSE
+#&gt; 36                      NW Johnson at Jamison Square     FALSE
+#&gt; 37                                NW Raleigh at 13th     FALSE
+#&gt; 38                                NE Alberta at 18th     FALSE
+#&gt; 39                             N Failing at Williams     FALSE
+#&gt; 40                               SE Division at 82nd     FALSE
+#&gt; 41                                  SE 29th at Stark     FALSE
+#&gt; 42                                 SE 9th at Belmont     FALSE
+#&gt; 43                               E Burnside at 102nd     FALSE
+#&gt; 44                              SE 29th at Hawthorne     FALSE
+#&gt; 45                                NE Alberta at 17th     FALSE
+#&gt; 46                                  NE Sumner at MLK     FALSE
+#&gt; 47                        SE Gladstone at 28th Place     FALSE
+#&gt; 48                                SE 29th at Belmont     FALSE
+#&gt; 49                                 NE 28th at Glisan     FALSE
+#&gt; 50                          NE 11th at Holladay Park     FALSE
+#&gt; 51                                   NE MLK at Knott     FALSE
+#&gt; 52                           NE Skidmore at 33rd Ave     FALSE
+#&gt; 53                                NE Halsey at 102nd     FALSE
+#&gt; 54                           NE Alberta at 29th/30th     FALSE
+#&gt; 55                            N Mississippi at Beech     FALSE
+#&gt; 56                               NW 18th at Flanders     FALSE
+#&gt; 57                        SW Harvey Milk at Burnside     FALSE
+#&gt; 58                            NW Broadway at Everett     FALSE
+#&gt; 59                            SW 10th at Harvey Milk     FALSE
+#&gt; 60                             NW 11th at The Fields     FALSE
+#&gt; 61                                NW Everett at 22nd     FALSE
+#&gt; 62                                NE 50th at Fremont     FALSE
+#&gt; 63                          NE 42nd at Alberta Court     FALSE
+#&gt; 64                       SW Yamhill at Director Park     FALSE
+#&gt; 65                               NW 14th at Flanders     FALSE
+#&gt; 66                                   SE Alder at 6th     FALSE
+#&gt; 67       NE 22nd at Thompson (Irvington Tennis Club)     FALSE
+#&gt; 68                                NW Raleigh at 21st     FALSE
+#&gt; 69                                NE Alberta at 14th     FALSE
+#&gt; 70               NE 33rd at Jarrett (Kennedy School)     FALSE
+#&gt; 71                                 NE Glisan at 24th     FALSE
+#&gt; 72                       N Interstate Ave at Lombard     FALSE
+#&gt; 73                              SE Ladd at Hawthorne     FALSE
+#&gt; 74                               NE 22nd at Burnside     FALSE
+#&gt; 75                           N Russell at Interstate     FALSE
+#&gt; 76                                NW 22nd at Lovejoy     FALSE
+#&gt; 77         NE 41st at Sandy Blvd (Hollywood Theatre)     FALSE
+#&gt; 78                                NW 10th at Everett     FALSE
+#&gt; 79                              SE Salmon St at 10th     FALSE
+#&gt; 80                               SW Morrison at 18th     FALSE
+#&gt; 81                                 NW Glisan at 21st     FALSE
+#&gt; 82                           NE Wheeler at Multnomah     FALSE
+#&gt; 83                                 NE Going at Grand     FALSE
+#&gt; 84                                 SE Foster at 72nd     FALSE
+#&gt; 85                      SE 35th Place at Powell Blvd     FALSE
+#&gt; 86                                  SE Clay at Water     FALSE
+#&gt; 87                          PSU Business Accelerator     FALSE
+#&gt; 88                       NE Killingsworth at 6th Ave     FALSE
+#&gt; 89                        N Rosa Parks Way at Albina     FALSE
+#&gt; 90                               SE 50th at Division     FALSE
+#&gt; 91                                     SW 5th at Oak     FALSE
+#&gt; 92                                SW Harrison at 1st     FALSE
+#&gt; 93                       N Michigan at Killingsworth     FALSE
+#&gt; 94                              SE 50th at Hawthorne     FALSE
+#&gt; 95                                NE 42nd at Hancock     FALSE
+#&gt; 96                              NE Cully at Skidmore     FALSE
+#&gt; 97                           N Rosa Parks at Greeley     FALSE
+#&gt; 98                                NE Holladay at 2nd     FALSE
+#&gt; 99  SW Park at SW Wright (Oregon Holocaust Memorial)     FALSE
+#&gt; 100                               NE Holladay at MLK     FALSE
+#&gt; 101                                 NW Couch at 11th     FALSE
+#&gt; 102                               NW 14th at Everett     FALSE
+#&gt; 103                                 SE 14th at Stark     FALSE
+#&gt; 104                            N Wheeler at Broadway     FALSE
+#&gt; 105                               SE Clinton at 21st     FALSE
+#&gt; 106                            SE Foster at 54th Ave     FALSE
+#&gt; 107                           NE Alberta at 31st Ave     FALSE
+#&gt; 108                                SE 113th at Stark     FALSE
+#&gt; 109                           SE Holgate at 82nd Ave     FALSE
+#&gt; 110                               SE Water at Taylor     FALSE
+#&gt; 111                               SE Belmont at 42nd     FALSE
+#&gt; 112                           N Killingsworth at Gay     FALSE
+#&gt; 113                              SE 37th at Division     FALSE
+#&gt; 114                              NW 13th at Marshall     FALSE
+#&gt; 115                           NE Dekum at Oneonta St     FALSE
+#&gt; 116                            N Williams at Fremont     FALSE
+#&gt; 117                              SW 10th at Columbia     FALSE
+#&gt; 118                SE Gideon at 12th Ave MAX station     FALSE
+#&gt; 119            SW Morrison at Pioneer Courthouse Sq.     FALSE
+#&gt; 120                            SE 64th at Lincoln St     FALSE
+#&gt; 121                         SE 2nd Pl at Tilikum Way     FALSE
+#&gt; 122                               SE Belmont at 45th     FALSE
+#&gt; 123                            NE Multnomah at Grand     FALSE
+#&gt; 124                              SE 34th at Division     FALSE
+#&gt; 125                        N Killingsworth at Albina     FALSE
+#&gt; 126                                  NW 4th at Couch     FALSE
+#&gt; 127                          NE 99th at Multnomah St     FALSE
+#&gt; 128                               NW 19th at Johnson     FALSE
+#&gt; 129                               SE Belmont at 33rd     FALSE
+#&gt; 130                              SE 49th at Division     FALSE
+#&gt; 131                               SW 3rd at Morrison     FALSE
+#&gt; 132                                 NE 43rd at Sandy     FALSE
+#&gt; 133                                SE 92nd at Foster     FALSE
+#&gt; 134                           SE Powell Blvd at 28th     FALSE
+#&gt; 135                                NE 10th at Halsey     FALSE
+#&gt; 136                           N Vancouver at Alberta     FALSE
+#&gt; 137                                NE Glisan at 53rd     FALSE
+#&gt; 138               N Alberta Street at Interstate Ave     FALSE
+#&gt; 139                                   SW 5th at Main     FALSE
+#&gt; 140                            NE Halsey St at 106th     FALSE
+#&gt; 141                             SE 34th at Hawthorne     FALSE
+#&gt; 142                        NE Cully at Killingsworth     FALSE
+#&gt; 143      SW Broadway at Smith Memorial Student Union     FALSE
+#&gt; 144                              N Mason at Williams     FALSE
+#&gt; 145                               NE Alberta at 12th     FALSE
+#&gt; 146                             SE 47th at Hawthorne     FALSE
+#&gt; 147                               SE 50th at Clinton     FALSE
+#&gt; 148                                SE 9th at Madison     FALSE
+#&gt; 149                                NE 30th at Glisan     FALSE
+#&gt; 150                                 NE 28th at Couch     FALSE
+#&gt; 151                           SE Elliott at Division     FALSE
+#&gt; 152                                  NE Couch at MLK     FALSE
+#&gt; 153                   SW Park at Portland Art Museum     FALSE
+#&gt; 154                                  SW 12th at Clay     FALSE
+#&gt; 155                             SE Hawthorne at 20th     FALSE
+#&gt; 156                               NE Alberta at 22nd     FALSE
+#&gt; 157                SW Market at Keller Fountain Park     FALSE
+#&gt; 158                               SW Moody at Thomas     FALSE
+#&gt; 159                            NW Pettygrove at 15th     FALSE
+#&gt; 160                               NW Thurman at 24th     FALSE
+#&gt; 161                               NW Kearney at 23rd     FALSE
+#&gt; 162                                 NW Front at 17th     FALSE
+#&gt; 163                         N Prescott at Interstate     FALSE
+#&gt; 164                               NE Fremont at 24th     FALSE
+#&gt; 165                               NE 2nd at Schuyler     FALSE
+#&gt; 166                              SE 30th at Division     FALSE
+#&gt; 167                              NE Broadway at 12th     FALSE
+#&gt; 168                 SW Moody at Aerial Tram Terminal     FALSE
+#&gt; 169               NW Marshall at Tanner Springs Park     FALSE
+#&gt; 170                           NW Nicolai at Sherlock     FALSE
+#&gt; 171                               NE Alberta at 24th     FALSE
+#&gt; 172                            N Morris at Vancouver     FALSE
+#&gt; 173                           NE Alameda at 58th Ave     FALSE
+#&gt; 174                         NE 17th at Killingsworth     FALSE
+#&gt; 175                        N Mississippi at Skidmore     FALSE
+#&gt; 176                     SW Salmon at Waterfront Park     FALSE
+#&gt; 177                              NW 18th at Northrup     FALSE
+#&gt; 178                       N Burrage at Killingsworth     FALSE
+#&gt; 179                         Tilikum West at SW Moody     FALSE
+#&gt; 180                                     Metro Campus     FALSE
+#&gt; 181                                 NE Knott at 33rd     FALSE
+#&gt; 182                              NE 15th at Broadway     FALSE
+#&gt; 183                                 NE 50th at Sandy     FALSE
+#&gt; 184                                 NE 60th at Cully     FALSE
+#&gt; 185                             SE 40th at Hawthorne     FALSE
+#&gt; 186                     Urban Center Plaza at SW 6th     FALSE
+#&gt; 187                               NW 21st at Johnson     FALSE
+#&gt;                          external_id       lon                client_station_id
+#&gt; 1   motivate_PDX_1440913911409460218 -122.6350 motivate_PDX_1440913911409460218
+#&gt; 2   motivate_PDX_1440914010193708188 -122.6234 motivate_PDX_1440914010193708188
+#&gt; 3   motivate_PDX_1440914087503119616 -122.6812 motivate_PDX_1440914087503119616
+#&gt; 4   motivate_PDX_1440914082243625346 -122.6920 motivate_PDX_1440914082243625346
+#&gt; 5   motivate_PDX_1440914113272923436 -122.6703 motivate_PDX_1440914113272923436
+#&gt; 6   motivate_PDX_1440914121862858038 -122.6735 motivate_PDX_1440914121862858038
+#&gt; 7   motivate_PDX_1440913898524558302 -122.6508 motivate_PDX_1440913898524558302
+#&gt; 8   motivate_PDX_1440913941474231340 -122.6986 motivate_PDX_1440913941474231340
+#&gt; 9   motivate_PDX_1440913829805081460 -122.6507 motivate_PDX_1440913829805081460
+#&gt; 10  motivate_PDX_1440913980128937064 -122.6766 motivate_PDX_1440913980128937064
+#&gt; 11  motivate_PDX_1481015392272555424 -122.5838 motivate_PDX_1481015392272555424
+#&gt; 12  motivate_PDX_1456383622081679656 -122.6932 motivate_PDX_1456383622081679656
+#&gt; 13  motivate_PDX_1440914083208152312 -122.6726 motivate_PDX_1440914083208152312
+#&gt; 14  motivate_PDX_1440913795445343034 -122.6848 motivate_PDX_1440913795445343034
+#&gt; 15  motivate_PDX_1440913919999394818 -122.6498 motivate_PDX_1440913919999394818
+#&gt; 16  motivate_PDX_1440913876085194860 -122.6554 motivate_PDX_1440913876085194860
+#&gt; 17  motivate_PDX_1440914091059481924 -122.6774 motivate_PDX_1440914091059481924
+#&gt; 18  motivate_PDX_1459024287353491654 -122.5933 motivate_PDX_1459024287353491654
+#&gt; 19  motivate_PDX_1440913970574475490 -122.6742 motivate_PDX_1440913970574475490
+#&gt; 20  motivate_PDX_1440914027373577398 -122.6566 motivate_PDX_1440914027373577398
+#&gt; 21  motivate_PDX_1456086692230960482 -122.5585 motivate_PDX_1456086692230960482
+#&gt; 22  motivate_PDX_1440913863200292958 -122.6137 motivate_PDX_1440913863200292958
+#&gt; 23  motivate_PDX_1440913799740310340 -122.6820 motivate_PDX_1440913799740310340
+#&gt; 24  motivate_PDX_1440913944804671680 -122.6725 motivate_PDX_1440913944804671680
+#&gt; 25  motivate_PDX_1472781733132019568 -122.5642 motivate_PDX_1472781733132019568
+#&gt; 26  motivate_PDX_1440913914739900562 -122.6575 motivate_PDX_1440913914739900562
+#&gt; 27  motivate_PDX_1456140958053603248 -122.6783 motivate_PDX_1456140958053603248
+#&gt; 28  motivate_PDX_1440914066028283098 -122.6354 motivate_PDX_1440914066028283098
+#&gt; 29  motivate_PDX_1440914082469547316 -122.6733 motivate_PDX_1440914082469547316
+#&gt; 30  motivate_PDX_1440914116603363768 -122.6725 motivate_PDX_1440914116603363768
+#&gt; 31  motivate_PDX_1440914047883886932 -122.6395 motivate_PDX_1440914047883886932
+#&gt; 32  motivate_PDX_1440914035224906986 -122.6460 motivate_PDX_1440914035224906986
+#&gt; 33  motivate_PDX_1473197832631849206 -122.5891 motivate_PDX_1473197832631849206
+#&gt; 34  motivate_PDX_1480244102250417912 -122.5539 motivate_PDX_1480244102250417912
+#&gt; 35  motivate_PDX_1440913988718871668 -122.6372 motivate_PDX_1440913988718871668
+#&gt; 36  motivate_PDX_1440913962210462840 -122.6820 motivate_PDX_1440913962210462840
+#&gt; 37  motivate_PDX_1440913974869442794 -122.6849 motivate_PDX_1440913974869442794
+#&gt; 38  motivate_PDX_1484982920426338730 -122.6466 motivate_PDX_1484982920426338730
+#&gt; 39  motivate_PDX_1440913795445343038 -122.6669 motivate_PDX_1440913795445343038
+#&gt; 40  motivate_PDX_1454280066339194724 -122.5790 motivate_PDX_1454280066339194724
+#&gt; 41  motivate_PDX_1440913996344279296 -122.6360 motivate_PDX_1440913996344279296
+#&gt; 42  motivate_PDX_1440914027373577396 -122.6566 motivate_PDX_1440914027373577396
+#&gt; 43  motivate_PDX_1454652773980638046 -122.5579 motivate_PDX_1454652773980638046
+#&gt; 44  motivate_PDX_1440913993013838974 -122.6363 motivate_PDX_1440913993013838974
+#&gt; 45  motivate_PDX_1440913880380162160 -122.6475 motivate_PDX_1440913880380162160
+#&gt; 46  motivate_PDX_1464586049118850668 -122.6621 motivate_PDX_1464586049118850668
+#&gt; 47  motivate_PDX_1440914056699743492 -122.6370 motivate_PDX_1440914056699743492
+#&gt; 48  motivate_PDX_1440913992049311996 -122.6361 motivate_PDX_1440913992049311996
+#&gt; 49  motivate_PDX_1440913842689983370 -122.6362 motivate_PDX_1440913842689983370
+#&gt; 50  motivate_PDX_1440913829805081458 -122.6547 motivate_PDX_1440913829805081458
+#&gt; 51  motivate_PDX_1440913914739900560 -122.6615 motivate_PDX_1440913914739900560
+#&gt; 52  motivate_PDX_1475393691475085892 -122.6305 motivate_PDX_1475393691475085892
+#&gt; 53  motivate_PDX_1459019849658395180 -122.5582 motivate_PDX_1459019849658395180
+#&gt; 54  motivate_PDX_1440913885639656392 -122.6355 motivate_PDX_1440913885639656392
+#&gt; 55  motivate_PDX_1440913808330244946 -122.6757 motivate_PDX_1440913808330244946
+#&gt; 56  motivate_PDX_1440913928589329426 -122.6893 motivate_PDX_1440913928589329426
+#&gt; 57  motivate_PDX_1440914099649416530 -122.6840 motivate_PDX_1440914099649416530
+#&gt; 58  motivate_PDX_1440913950064165944 -122.6776 motivate_PDX_1440913950064165944
+#&gt; 59  motivate_PDX_1440914073653690746 -122.6811 motivate_PDX_1440914073653690746
+#&gt; 60  motivate_PDX_1440913924294362124 -122.6824 motivate_PDX_1440913924294362124
+#&gt; 61  motivate_PDX_1440913953394606284 -122.6965 motivate_PDX_1440913953394606284
+#&gt; 62  motivate_PDX_1440913864164819880 -122.6112 motivate_PDX_1440913864164819880
+#&gt; 63  motivate_PDX_1440913858905325648 -122.6204 motivate_PDX_1440913858905325648
+#&gt; 64  motivate_PDX_1440914125193298376 -122.6813 motivate_PDX_1440914125193298376
+#&gt; 65  motivate_PDX_1459019845363427878 -122.6853 motivate_PDX_1459019845363427878
+#&gt; 66  motivate_PDX_1440914030704017724 -122.6601 motivate_PDX_1440914030704017724
+#&gt; 67  motivate_PDX_1440913841725456440 -122.6433 motivate_PDX_1440913841725456440
+#&gt; 68  motivate_PDX_1440913980128937062 -122.6949 motivate_PDX_1440913980128937062
+#&gt; 69  motivate_PDX_1440913880380162158 -122.6514 motivate_PDX_1440913880380162158
+#&gt; 70  motivate_PDX_1440913854610358344 -122.6305 motivate_PDX_1440913854610358344
+#&gt; 71  motivate_PDX_1440913898524558306 -122.6416 motivate_PDX_1440913898524558306
+#&gt; 72  motivate_PDX_1464631188172231042 -122.6819 motivate_PDX_1464631188172231042
+#&gt; 73  motivate_PDX_1440914061733315796 -122.6533 motivate_PDX_1440914061733315796
+#&gt; 74  motivate_PDX_1440913838395016060 -122.6434 motivate_PDX_1440913838395016060
+#&gt; 75  motivate_PDX_1440913816920179552 -122.6770 motivate_PDX_1440913816920179552
+#&gt; 76  motivate_PDX_1440913941474231334 -122.6966 motivate_PDX_1440913941474231334
+#&gt; 77  motivate_PDX_1440913854610358348 -122.6206 motivate_PDX_1440913854610358348
+#&gt; 78  motivate_PDX_1440913924294362120 -122.6811 motivate_PDX_1440913924294362120
+#&gt; 79  motivate_PDX_1440914065063756144 -122.6558 motivate_PDX_1440914065063756144
+#&gt; 80  motivate_PDX_1440914108977956132 -122.6897 motivate_PDX_1440914108977956132
+#&gt; 81  motivate_PDX_1440913961984540882 -122.6941 motivate_PDX_1440913961984540882
+#&gt; 82  motivate_PDX_1440913923329835164 -122.6659 motivate_PDX_1440913923329835164
+#&gt; 83  motivate_PDX_1440913906149965958 -122.6604 motivate_PDX_1440913906149965958
+#&gt; 84  motivate_PDX_1458693505802373278 -122.5889 motivate_PDX_1458693505802373278
+#&gt; 85  motivate_PDX_1440914005898740884 -122.6277 motivate_PDX_1440914005898740884
+#&gt; 86  motivate_PDX_1440914043814841592 -122.6663 motivate_PDX_1440914043814841592
+#&gt; 87  motivate_PDX_1440913983459377396 -122.6753 motivate_PDX_1440913983459377396
+#&gt; 88  motivate_PDX_1456140958053603252 -122.6598 motivate_PDX_1456140958053603252
+#&gt; 89  motivate_PDX_1484982916131371432 -122.6744 motivate_PDX_1484982916131371432
+#&gt; 90  motivate_PDX_1440914022114083116 -122.6109 motivate_PDX_1440914022114083116
+#&gt; 91  motivate_PDX_1440914095354449222 -122.6764 motivate_PDX_1440914095354449222
+#&gt; 92  motivate_PDX_1440914100388021524 -122.6777 motivate_PDX_1440914100388021524
+#&gt; 93  motivate_PDX_1440913808330244944 -122.6770 motivate_PDX_1440913808330244944
+#&gt; 94  motivate_PDX_1440914022114083118 -122.6113 motivate_PDX_1440914022114083118
+#&gt; 95  motivate_PDX_1440913859869852574 -122.6200 motivate_PDX_1440913859869852574
+#&gt; 96  motivate_PDX_1440913894229591002 -122.6021 motivate_PDX_1440913894229591002
+#&gt; 97  motivate_PDX_1464631188172231038 -122.6957 motivate_PDX_1464631188172231038
+#&gt; 98  motivate_PDX_1440913907114492912 -122.6632 motivate_PDX_1440913907114492912
+#&gt; 99  motivate_PDX_1440914121124253042 -122.7044 motivate_PDX_1440914121124253042
+#&gt; 100 motivate_PDX_1440913910444933258 -122.6618 motivate_PDX_1440913910444933258
+#&gt; 101 motivate_PDX_1440913950064165948 -122.6818 motivate_PDX_1440913950064165948
+#&gt; 102 motivate_PDX_1459019845363427880 -122.6853 motivate_PDX_1459019845363427880
+#&gt; 103 motivate_PDX_1440913987980266658 -122.6517 motivate_PDX_1440913987980266658
+#&gt; 104 motivate_PDX_1440913821215146858 -122.6687 motivate_PDX_1440913821215146858
+#&gt; 105 motivate_PDX_1440914043814841594 -122.6447 motivate_PDX_1440914043814841594
+#&gt; 106 motivate_PDX_1475770068410544440 -122.6077 motivate_PDX_1475770068410544440
+#&gt; 107 motivate_PDX_1480244097955450614 -122.6340 motivate_PDX_1480244097955450614
+#&gt; 108 motivate_PDX_1480244102250417914 -122.5469 motivate_PDX_1480244102250417914
+#&gt; 109 motivate_PDX_1472781728837052268 -122.5786 motivate_PDX_1472781728837052268
+#&gt; 110 motivate_PDX_1440914069584645404 -122.6658 motivate_PDX_1440914069584645404
+#&gt; 111 motivate_PDX_1440914039519874290 -122.6190 motivate_PDX_1440914039519874290
+#&gt; 112 motivate_PDX_1440913804035277640 -122.6890 motivate_PDX_1440913804035277640
+#&gt; 113 motivate_PDX_1440914009455103170 -122.6253 motivate_PDX_1440914009455103170
+#&gt; 114 motivate_PDX_1440913927624802472 -122.6844 motivate_PDX_1440913927624802472
+#&gt; 115 motivate_PDX_1464631192467198342 -122.6565 motivate_PDX_1464631192467198342
+#&gt; 116 motivate_PDX_1440913825510114158 -122.6668 motivate_PDX_1440913825510114158
+#&gt; 117 motivate_PDX_1440914074618217706 -122.6847 motivate_PDX_1440914074618217706
+#&gt; 118 motivate_PDX_1440914052404776192 -122.6535 motivate_PDX_1440914052404776192
+#&gt; 119 motivate_PDX_1440914112534318436 -122.6795 motivate_PDX_1440914112534318436
+#&gt; 120 motivate_PDX_1480244093660483314 -122.5978 motivate_PDX_1480244093660483314
+#&gt; 121 motivate_PDX_1440913996344279298 -122.6633 motivate_PDX_1440913996344279298
+#&gt; 122 motivate_PDX_1440914040258479302 -122.6160 motivate_PDX_1440914040258479302
+#&gt; 123 motivate_PDX_1440913915704427520 -122.6597 motivate_PDX_1440913915704427520
+#&gt; 124 motivate_PDX_1440914000639246602 -122.6296 motivate_PDX_1440914000639246602
+#&gt; 125 motivate_PDX_1440913799740310342 -122.6747 motivate_PDX_1440913799740310342
+#&gt; 126 motivate_PDX_1440913949099638980 -122.6747 motivate_PDX_1440913949099638980
+#&gt; 127 motivate_PDX_1454284004050750174 -122.5625 motivate_PDX_1454284004050750174
+#&gt; 128 motivate_PDX_1440913932884296732 -122.6905 motivate_PDX_1440913932884296732
+#&gt; 129 motivate_PDX_1440914039519874284 -122.6308 motivate_PDX_1440914039519874284
+#&gt; 130 motivate_PDX_1440914018045037774 -122.6121 motivate_PDX_1440914018045037774
+#&gt; 131 motivate_PDX_1440914086764514614 -122.6755 motivate_PDX_1440914086764514614
+#&gt; 132 motivate_PDX_1440913859869852578 -122.6188 motivate_PDX_1440913859869852578
+#&gt; 133 motivate_PDX_1458693501507405978 -122.5686 motivate_PDX_1458693501507405978
+#&gt; 134 motivate_PDX_1440914060768788840 -122.6375 motivate_PDX_1440914060768788840
+#&gt; 135 motivate_PDX_1440913825510114160 -122.6556 motivate_PDX_1440913825510114160
+#&gt; 136 motivate_PDX_1440913821215146854 -122.6685 motivate_PDX_1440913821215146854
+#&gt; 137 motivate_PDX_1440913901854998660 -122.6093 motivate_PDX_1440913901854998660
+#&gt; 138 motivate_PDX_1440913791150375730 -122.6824 motivate_PDX_1440913791150375730
+#&gt; 139 motivate_PDX_1440914091059481920 -122.6791 motivate_PDX_1440914091059481920
+#&gt; 140 motivate_PDX_1448727096877427868 -122.5539 motivate_PDX_1448727096877427868
+#&gt; 141 motivate_PDX_1440914004934213902 -122.6295 motivate_PDX_1440914004934213902
+#&gt; 142 motivate_PDX_1440913894229590996 -122.5944 motivate_PDX_1440913894229590996
+#&gt; 143 motivate_PDX_1440914095128527258 -122.6837 motivate_PDX_1440914095128527258
+#&gt; 144 motivate_PDX_1440913804035277644 -122.6669 motivate_PDX_1440913804035277644
+#&gt; 145 motivate_PDX_1480244097955450612 -122.6535 motivate_PDX_1480244097955450612
+#&gt; 146 motivate_PDX_1440914014488675490 -122.6142 motivate_PDX_1440914014488675490
+#&gt; 147 motivate_PDX_1440914017819115816 -122.6111 motivate_PDX_1440914017819115816
+#&gt; 148 motivate_PDX_1440914030929939682 -122.6567 motivate_PDX_1440914030929939682
+#&gt; 149 motivate_PDX_1440913846984950672 -122.6347 motivate_PDX_1440913846984950672
+#&gt; 150 motivate_PDX_1440913841725456442 -122.6372 motivate_PDX_1440913841725456442
+#&gt; 151 motivate_PDX_1440914047883886936 -122.6534 motivate_PDX_1440914047883886936
+#&gt; 152 motivate_PDX_1440913889934623696 -122.6619 motivate_PDX_1440913889934623696
+#&gt; 153 motivate_PDX_1440914116603363770 -122.6833 motivate_PDX_1440914116603363770
+#&gt; 154 motivate_PDX_1440914078174580010 -122.6870 motivate_PDX_1440914078174580010
+#&gt; 155 motivate_PDX_1440914056699743496 -122.6454 motivate_PDX_1440914056699743496
+#&gt; 156 motivate_PDX_1440913881344689088 -122.6427 motivate_PDX_1440913881344689088
+#&gt; 157 motivate_PDX_1440914104682988826 -122.6789 motivate_PDX_1440914104682988826
+#&gt; 158 motivate_PDX_1440914108239351132 -122.6719 motivate_PDX_1440914108239351132
+#&gt; 159 motivate_PDX_1440913971539002462 -122.6863 motivate_PDX_1440913971539002462
+#&gt; 160 motivate_PDX_1440913983685299354 -122.7007 motivate_PDX_1440913983685299354
+#&gt; 161 motivate_PDX_1440913966279508184 -122.6987 motivate_PDX_1440913966279508184
+#&gt; 162 motivate_PDX_1440913957915495540 -122.6881 motivate_PDX_1440913957915495540
+#&gt; 163 motivate_PDX_1440913816920179550 -122.6819 motivate_PDX_1440913816920179550
+#&gt; 164 motivate_PDX_1471660436585799816 -122.6410 motivate_PDX_1471660436585799816
+#&gt; 165 motivate_PDX_1440913846020423744 -122.6636 motivate_PDX_1440913846020423744
+#&gt; 166 motivate_PDX_1440914001603773578 -122.6346 motivate_PDX_1440914001603773578
+#&gt; 167 motivate_PDX_1440913889934623692 -122.6536 motivate_PDX_1440913889934623692
+#&gt; 168 motivate_PDX_1440914103718461862 -122.6716 motivate_PDX_1440914103718461862
+#&gt; 169 motivate_PDX_1440913966279508188 -122.6816 motivate_PDX_1440913966279508188
+#&gt; 170 motivate_PDX_1440913970574475492 -122.6967 motivate_PDX_1440913970574475492
+#&gt; 171 motivate_PDX_1440913884675129460 -122.6408 motivate_PDX_1440913884675129460
+#&gt; 172 motivate_PDX_1440913812625212250 -122.6677 motivate_PDX_1440913812625212250
+#&gt; 173 motivate_PDX_1475393691475085898 -122.6037 motivate_PDX_1475393691475085898
+#&gt; 174 motivate_PDX_1440913837430489136 -122.6481 motivate_PDX_1440913837430489136
+#&gt; 175 motivate_PDX_1440913812625212248 -122.6755 motivate_PDX_1440913812625212248
+#&gt; 176 motivate_PDX_1440914138304122232 -122.6739 motivate_PDX_1440914138304122232
+#&gt; 177 motivate_PDX_1440913932884296726 -122.6896 motivate_PDX_1440913932884296726
+#&gt; 178 motivate_PDX_1440913791150375734 -122.6946 motivate_PDX_1440913791150375734
+#&gt; 179 motivate_PDX_1440914130452792640 -122.6714 motivate_PDX_1440914130452792640
+#&gt; 180 motivate_PDX_1440913786855408432 -122.6604 motivate_PDX_1440913786855408432
+#&gt; 181 motivate_PDX_1471660432290832512 -122.6308 motivate_PDX_1471660432290832512
+#&gt; 182 motivate_PDX_1440913834100048758 -122.6506 motivate_PDX_1440913834100048758
+#&gt; 183 motivate_PDX_1440913868459787180 -122.6119 motivate_PDX_1440913868459787180
+#&gt; 184 motivate_PDX_1440913876085194858 -122.6008 motivate_PDX_1440913876085194858
+#&gt; 185 motivate_PDX_1440914013524148510 -122.6210 motivate_PDX_1440914013524148510
+#&gt; 186 motivate_PDX_1440914129488265680 -122.6823 motivate_PDX_1440914129488265680
+#&gt; 187 motivate_PDX_1440913937179264036 -122.6946 motivate_PDX_1440913937179264036
+#&gt;                     rental_uris.android                     rental_uris.ios
+#&gt; 1   https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 2   https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 3   https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 4   https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 5   https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 6   https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 7   https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 8   https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 9   https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 10  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 11  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 12  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 13  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 14  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 15  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 16  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 17  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 18  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 19  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 20  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 21  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 22  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 23  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 24  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 25  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 26  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 27  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 28  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 29  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 30  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 31  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 32  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 33  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 34  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 35  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 36  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 37  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 38  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 39  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 40  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 41  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 42  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 43  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 44  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 45  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 46  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 47  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 48  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 49  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 50  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 51  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 52  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 53  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 54  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 55  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 56  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 57  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 58  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 59  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 60  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 61  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 62  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 63  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 64  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 65  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 66  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 67  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 68  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 69  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 70  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 71  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 72  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 73  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 74  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 75  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 76  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 77  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 78  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 79  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 80  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 81  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 82  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 83  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 84  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 85  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 86  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 87  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 88  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 89  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 90  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 91  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 92  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 93  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 94  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 95  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 96  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 97  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 98  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 99  https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 100 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 101 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 102 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 103 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 104 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 105 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 106 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 107 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 108 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 109 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 110 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 111 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 112 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 113 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 114 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 115 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 116 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 117 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 118 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 119 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 120 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 121 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 122 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 123 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 124 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 125 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 126 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 127 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 128 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 129 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 130 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 131 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 132 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 133 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 134 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 135 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 136 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 137 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 138 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 139 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 140 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 141 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 142 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 143 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 144 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 145 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 146 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 147 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 148 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 149 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 150 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 151 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 152 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 153 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 154 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 155 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 156 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 157 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 158 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 159 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 160 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 161 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 162 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 163 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 164 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 165 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 166 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 167 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 168 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 169 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 170 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 171 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 172 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 173 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 174 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 175 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 176 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 177 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 178 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 179 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 180 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 181 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 182 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 183 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 184 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 185 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 186 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
+#&gt; 187 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan</div><div class='input'>
 
 </div></pre>
   </div>

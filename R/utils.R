@@ -84,18 +84,39 @@ city_to_url <- function(city_, feed_) {
     
   }
   
-  # lastly, then, try to match the string argument to a cities URL...
-  # grab the most current gbfs_cities dataframe
+  # try to match the string to the system ID
   cities <- get_gbfs_cities() %>%
-    dplyr::select(Name, Location, 'Auto-Discovery URL')
-    
-  # find the ind(ex/ices) of cities matching the supplied string
+    dplyr::select(Name, Location, `Auto-Discovery URL`, `System ID`)
+   
+  system_index <- stringr::str_detect(string = tolower(cities$`System ID`), 
+                                      pattern = tolower(city_)) %>%
+    which()
+
+  system_res <- find_feed_from_index(system_index, cities, feed_)
+  
+  if (inherits(system_res, "character")) {
+    return(system_res)
+  }
+  
+  # and then try to match ind(ex/ices) of cities matching the supplied string
   city_index <- stringr::str_detect(string = tolower(cities$Location), 
                                     pattern = tolower(city_)) %>%
                 which()
-    
+  
+  city_res <- find_feed_from_index(city_index, cities, feed_)
+  
+  if (inherits(city_res, "character")) {
+    return(city_res)
+  }
+  # otherwise, the string didn't match any cities... 
+  stop(sprintf(c("No supported cities matched the string supplied. Consider ", 
+               "using `get_gbfs_cities()` to find the desired .json URL.")))
+}
+
+# takes in a (multi)index and returns the relevant URL
+find_feed_from_index <- function(index_, cities_, feed_) {
   # grab data each of the relevant indices
-  url <- as.data.frame((cities)[city_index, 'Auto-Discovery URL'])
+  url <- as.data.frame((cities_)[index_, 'Auto-Discovery URL'])
   
   # if there's just one url, return the relevant feed
   if (nrow(url) == 1) { 
@@ -114,10 +135,6 @@ city_to_url <- function(city_, feed_) {
                    "URLs for the cities matching the string are: \n    ",
                    paste0(dplyr::pull(url), sep = " \n    "))))
   }
-  
-  # otherwise, the string didn't match any cities... 
-  stop(sprintf(c("No supported cities matched the string supplied. Consider ", 
-               "using `get_gbfs_cities()` to find the desired .json URL.")))
 }
   
 # a function that takes in a top-level gbfs.json URL, the name of the desired 

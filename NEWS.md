@@ -1,5 +1,14 @@
 # News
 
+### 1.3.6
+
+  - Introduce support for the new system ID key to improve stability of
+    argument matching. This is now the recommended method for specifying the
+    system of interest!
+  - Switch from Travis to GitHub Actions for continuous integration
+  - Update URLs in examples and unit tests to reflect bikeshare systems
+    adjusting operations due to COVID-19
+
 ### 1.3.5
 
   - Update URLs in examples and unit tests to reflect bikeshare systems

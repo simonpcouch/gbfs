@@ -12,8 +12,9 @@ get_free_bike_status(
 )
 }
 \arguments{
-\item{city}{A character string that can be matched to a city or a url to an active 
-gbfs .json feed. See [get_gbfs_cities()]  for a current list of available cities.}
+\item{city}{A character string that can be matched to a gbfs feed. The recommended
+argument is a system ID supplied in the output of [get_gbfs_cities()], but will
+also attempt to match to the URL of an active .json feed or city name.}
 
 \item{directory}{Optional. Path to a folder (or folder to be 
 created) where the feed will be saved.}
@@ -41,28 +42,28 @@ bikeshare bikes not parked at bikeshare stations. Metadata for this dataset
 can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 }
 \examples{
-# we can grab the free bike status feed for memphis, 
-# tennessee's bikeshare program in  several ways! the most 
+# we can grab the free bike status feed for portland, 
+# orgeon's bikeshare program in  several ways! the most 
 # straightforward way is just to supply the `city` argument
 # as a string:
-\donttest{get_free_bike_status(city = "memphis")}
+\donttest{get_free_bike_status(city = "biketown_pdx")}
 
 # the `city` argument can also be supplied as an
 # actual URL to an active .json feed
 \donttest{get_free_bike_status(city = 
-"https://gbfs.bcycle.com/bcycle_memphis/free_bike_status.json",  
+"https://gbfs.biketownpdx.com/gbfs/en/free_bike_status.json",  
                      directory = tempdir())}
 
 # if you'd like to save the output to file, supply a 
 # `directory` argument. usually, though, we would supply a 
-# character string (like "memphis", maybe,) for the `directory` 
+# character string (like "pdx", maybe,) for the `directory` 
 # argument instead of `tempdir`.
-\donttest{get_free_bike_status(city = "memphis",  
+\donttest{get_free_bike_status(city = "biketown_pdx",  
                      directory = tempdir())}
                      
 # the output argument can control whether the file is
 # saved and/or returned explicitly
-\donttest{get_free_bike_status(city = "memphis",  
+\donttest{get_free_bike_status(city = "biketown_pdx",  
                      directory = tempdir(),
                      output = "both")}                     
 

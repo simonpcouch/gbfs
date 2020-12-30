@@ -40,12 +40,12 @@ test_that("argument checking works", {
   
   # one matching city, non top-level feed
   # no matching cities
-  expect_equal(city_to_url(city_ = "memphis",
+  expect_equal(city_to_url(city_ = "biketown_pdx",
                            feed_ = "station_information"),
-               "https://gbfs.bcycle.com/bcycle_memphis/station_information.json") 
+               "https://gbfs.biketownpdx.com/gbfs/en/station_information.json") 
   
   # several matching cities
-  expect_error(city_to_url(city_ = "buenos",
+  expect_error(city_to_url(city_ = "nextbike_na",
                            feed_ = "gbfs"),
                "Several cities matched") 
   
@@ -60,28 +60,28 @@ test_that("find feed from top level works", {
   skip_if_offline(host = "r-project.org")
   
   expect_equal(find_feed_from_top_level(
-                 "https://gbfs.bcycle.com/bcycle_memphis/gbfs.json",
+                 "https://gbfs.biketownpdx.com/gbfs/gbfs.json",
                  "station_information"),
-               "https://gbfs.bcycle.com/bcycle_memphis/station_information.json")
+               "https://gbfs.biketownpdx.com/gbfs/en/station_information.json")
 
   expect_error(find_feed_from_top_level(
-      "https://gbfs.bcycle.com/bcycle_memphis/gbfs.json",
+      "https://gbfs.biketownpdx.com/gbfs/gbfs.json",
       "weird_feed"),
     "webpage for the weird_feed .json")
   
   expect_equal(find_feed_from_top_level(
-    "https://gbfs.bcycle.com/bcycle_memphis/gbfs.json",
+    "https://gbfs.biketownpdx.com/gbfs/gbfs.json",
     "gbfs"),
-    "https://gbfs.bcycle.com/bcycle_memphis/gbfs.json")
+    "https://gbfs.biketownpdx.com/gbfs/gbfs.json")
   
 })
 
 test_that("determine output type works", {
-  expect_equal(determine_output_types("memphis",
+  expect_equal(determine_output_types("biketown_pdx",
                                       "both"),
                c(TRUE, TRUE))
   
-  expect_equal(determine_output_types("memphis",
+  expect_equal(determine_output_types("biketown_pdx",
                                       NULL),
                c(TRUE, FALSE))  
   
@@ -89,11 +89,11 @@ test_that("determine output type works", {
                                       "return"),
                c(FALSE, TRUE)) 
   
-  expect_message(determine_output_types("memphis",
+  expect_message(determine_output_types("biketown_pdx",
                                       "return"),
                  "and only returning the output") 
   
-  expect_error(determine_output_types("memphis",
+  expect_error(determine_output_types("biketown_pdx",
                                       "bad"),
                  "argument doesn't match any of") 
   
@@ -105,15 +105,15 @@ test_that("no internet connection message works", {
   with_mock("gbfs::connected_to_internet" = function() FALSE,
   
   # try it on all of the different functions that test internet connection
-    expect_message(get_gbfs("memphis")),
+    expect_message(get_gbfs("biketown_pdx")),
   
-    expect_message(get_gbfs_dataset_("memphis", 
+    expect_message(get_gbfs_dataset_("biketown_pdx", 
                                    NULL, 
                                    NULL, 
                                    "return", 
                                    "station_information")),
   
-    expect_message(get_which_gbfs_feeds("memphis")),
+    expect_message(get_which_gbfs_feeds("biketown_pdx")),
   
     expect_message(get_gbfs_cities()),
   

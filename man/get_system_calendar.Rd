@@ -12,8 +12,9 @@ get_system_calendar(
 )
 }
 \arguments{
-\item{city}{A character string that can be matched to a city or a url to an active 
-gbfs .json feed. See [get_gbfs_cities()]  for a current list of available cities.}
+\item{city}{A character string that can be matched to a gbfs feed. The recommended
+argument is a system ID supplied in the output of [get_gbfs_cities()], but will
+also attempt to match to the URL of an active .json feed or city name.}
 
 \item{directory}{Optional. Path to a folder (or folder to be 
 created) where the feed will be saved.}
@@ -41,7 +42,7 @@ for a given city. Metadata for this dataset can be found at:
 \examples{
 # grab the system calendar feed for portland, oregon
 \donttest{get_system_calendar(city = 
-"http://biketownpdx.socialbicycles.com/opendata/system_calendar.json",  
+"https://gbfs.biketownpdx.com/gbfs/en/system_calendar.json",  
                     directory = tempdir())}
 
 
