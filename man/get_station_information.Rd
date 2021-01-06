@@ -41,19 +41,9 @@ Metadata for this dataset can be found at:
 \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 }
 \examples{
-# we can grab the free bike status feed for portland, 
-# orgeon's bikeshare program in  several ways! first, supply the `city` 
-# argument as a URL, and save to file by leaving output 
-# set to it's default. usually, we would supply a character 
-# string (like "pdx", maybe,) for the `directory` argument 
-# instead of `tempdir`.
+# grab the free bike status feed for portland, oreoon's bikeshare program 
 \donttest{get_station_information(city = 
 "https://gbfs.biketownpdx.com/gbfs/en/station_information.json",  
-                        directory = tempdir())}
-                    
-# or, instead, just supply the name of 
-# the city as a string and return the output as a dataframe 
-\donttest{get_station_information(city = "biketown_pdx",  
                         output = "return")}
 
 }

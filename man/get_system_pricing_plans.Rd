@@ -48,7 +48,7 @@ feed for a given city. Metadata for this dataset can be found at:
 # instead of `tempdir`.
 \donttest{get_system_pricing_plans(city = 
 "https://gbfs.bcycle.com/bcycle_greenville/system_pricing_plans.json",  
-                         directory = tempdir())}
+                         output = "return")}
 }
 \seealso{
 [get_gbfs()] for a wrapper to call each of the \code{get_feed}

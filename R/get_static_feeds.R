@@ -29,19 +29,9 @@
 #' are released by a given city.
 #' 
 #' @examples
-#' # we can grab the free bike status feed for portland, 
-#' # orgeon's bikeshare program in  several ways! first, supply the `city` 
-#' # argument as a URL, and save to file by leaving output 
-#' # set to it's default. usually, we would supply a character 
-#' # string (like "pdx", maybe,) for the `directory` argument 
-#' # instead of `tempdir`.
+#' # grab the free bike status feed for portland, oreoon's bikeshare program 
 #' \donttest{get_station_information(city = 
 #' "https://gbfs.biketownpdx.com/gbfs/en/station_information.json",  
-#'                         directory = tempdir())}
-#'                     
-#' # or, instead, just supply the name of 
-#' # the city as a string and return the output as a dataframe 
-#'\donttest{get_station_information(city = "biketown_pdx",  
 #'                         output = "return")}
 #' 
 #' @export
@@ -63,9 +53,8 @@ get_station_information <- function(city, directory = NULL, file = "station_info
 #' # grab the system alerts feed for portland, oregon
 #' \donttest{get_system_alerts(city = 
 #' "https://gbfs.biketownpdx.com/gbfs/en/system_alerts.json",  
-#'                   directory = tempdir())}
+#'                   output = "return")}
 #'  
-#'                   
 #' @export
 
 get_system_alerts <- function (city, directory = NULL, file = "system_alerts.rds", output = NULL) {
@@ -86,7 +75,7 @@ get_system_alerts <- function (city, directory = NULL, file = "system_alerts.rds
 #' # grab the system calendar feed for portland, oregon
 #' \donttest{get_system_calendar(city = 
 #' "https://gbfs.biketownpdx.com/gbfs/en/system_calendar.json",  
-#'                     directory = tempdir())}
+#'                     output = "return")}
 #' 
 #' 
 #' @export
@@ -110,7 +99,7 @@ get_system_calendar <- function (city, directory = NULL, file = "system_calendar
 #' # grab the system hours feed for portland, oregon
 #' \donttest{get_system_hours(city = 
 #' "https://gbfs.biketownpdx.com/gbfs/en/system_hours.json",  
-#'                  directory = tempdir())}
+#'                  output = "return")}
 #' 
 #' @export
 
@@ -130,7 +119,7 @@ get_system_hours <- function (city, directory = NULL, file = "system_hours.rds",
 #' 
 #' @examples
 #' # we can grab the free bike status feed for portland, 
-#' # orgeon's bikeshare program in  several ways! first, supply the `city` 
+#' # oregon's bikeshare program in  several ways! first, supply the `city` 
 #' # argument as a URL, and save to file by leaving output 
 #' # set to it's default. usually, we would supply a character 
 #' # string (like "pdx", maybe,) for the `directory` argument 
@@ -168,7 +157,7 @@ get_system_information <- function(city, directory = NULL, file = "system_inform
 #' # instead of `tempdir`.
 #' \donttest{get_system_pricing_plans(city = 
 #' "https://gbfs.bcycle.com/bcycle_greenville/system_pricing_plans.json",  
-#'                          directory = tempdir())}
+#'                          output = "return")}
 #' @export
 
 get_system_pricing_plans <- function(city, directory = NULL, file = "system_pricing_plans.rds", output = NULL) {

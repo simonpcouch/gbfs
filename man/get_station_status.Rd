@@ -43,7 +43,7 @@ can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 }
 \examples{
 # we can grab the free bike status feed for portland, 
-# orgeon's bikeshare program in  several ways! the most 
+# oregon's bikeshare program in several ways! the most 
 # straightforward way is just to supply the `city` argument
 # as a string:
 \donttest{get_station_status(city = "biketown_pdx")}
@@ -52,13 +52,6 @@ can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 # actual URL to an active .json feed
 \donttest{get_station_status(city = 
 "https://gbfs.biketownpdx.com/gbfs/en/station_status.json")}
-
-# if you'd like to save the output to file, supply a 
-# `directory` argument. usually, though, we would supply a 
-# character string (like "pdx", maybe,) for the `directory` 
-# argument instead of `tempdir`.
-\donttest{get_station_status(city = "biketown_pdx",  
-                     directory = tempdir())}
                      
 }
 \seealso{

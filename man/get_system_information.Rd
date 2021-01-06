@@ -41,7 +41,7 @@ feed for a given city. Metadata for this dataset can be found at:
 }
 \examples{
 # we can grab the free bike status feed for portland, 
-# orgeon's bikeshare program in  several ways! first, supply the `city` 
+# oregon's bikeshare program in  several ways! first, supply the `city` 
 # argument as a URL, and save to file by leaving output 
 # set to it's default. usually, we would supply a character 
 # string (like "pdx", maybe,) for the `directory` argument 

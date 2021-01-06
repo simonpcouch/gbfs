@@ -44,7 +44,7 @@ dataset can be found at:
 # grab the system hours feed for portland, oregon
 \donttest{get_system_hours(city = 
 "https://gbfs.biketownpdx.com/gbfs/en/system_hours.json",  
-                 directory = tempdir())}
+                 output = "return")}
 
 }
 \seealso{

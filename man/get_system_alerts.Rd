@@ -43,9 +43,8 @@ dataset can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 # grab the system alerts feed for portland, oregon
 \donttest{get_system_alerts(city = 
 "https://gbfs.biketownpdx.com/gbfs/en/system_alerts.json",  
-                  directory = tempdir())}
+                  output = "return")}
  
-                  
 }
 \seealso{
 [get_gbfs()] for a wrapper to call each of the \code{get_feed}
