@@ -171,25 +171,15 @@ get_system_information <- function(city, directory = NULL, file = "system_inform
 #' @inherit get_station_information params return seealso 
 #' 
 #' @examples
-#' # we can grab the free bike status feed for portland, 
-#' # orgeon's bikeshare program in  several ways! first, supply the `city` 
+#' # grab the system pricing plans feed for greenville's 
+#' # "divvy" bikeshare program. first, supply the `city` 
 #' # argument as a URL, and save to file by leaving output 
 #' # set to it's default. usually, we would supply a character 
-#' # string (like "pdx", maybe,) for the `directory` argument 
+#' # string (like "divvy", maybe,) for the `directory` argument 
 #' # instead of `tempdir`.
 #' \donttest{get_system_pricing_plans(city = 
-#' "https://gbfs.biketownpdx.com/gbfs/en/system_pricing_plans.json",  
+#' "https://gbfs.bcycle.com/bcycle_greenville/system_pricing_plans.json",  
 #'                          directory = tempdir())}
-#'                     
-#' # or, instead, just supply the name of 
-#' # the city as a string. 
-#'\donttest{get_system_pricing_plans(city = "biketown_pdx",
-#'                          directory = tempdir())}
-#'                     
-#' # instead of saving the output as a file, we can 
-#' # just return the output as a dataframe
-#' \donttest{get_system_pricing_plans(city = "biketown_pdx",  
-#'                          output = "return")}
 #' @export
 
 get_system_pricing_plans <- function(city, directory = NULL, file = "system_pricing_plans.rds", output = NULL) {
