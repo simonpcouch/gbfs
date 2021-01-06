@@ -182,7 +182,7 @@ are released by a given city.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># we can grab the free bike status feed for portland, </span>
-<span class='co'># orgeon's bikeshare program in  several ways! first, supply the `city` </span>
+<span class='co'># oregon's bikeshare program in  several ways! first, supply the `city` </span>
 <span class='co'># argument as a URL, and save to file by leaving output </span>
 <span class='co'># set to it's default. usually, we would supply a character </span>
 <span class='co'># string (like "pdx", maybe,) for the `directory` argument </span>
@@ -192,12 +192,7 @@ are released by a given city.</p></div>
                        directory = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
                     
 <span class='co'># or, instead, just supply the name of </span>
-<span class='co'># the city as a string. </span>
-<span class='fu'>get_system_information</span>(city = <span class='st'>"biketown_pdx"</span>,
-                       directory = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-                    
-<span class='co'># instead of saving the output as a file, we can </span>
-<span class='co'># just return the output as a dataframe</span>
+<span class='co'># the city as a string and return the output as a dataframe</span>
 <span class='fu'>get_system_information</span>(city = <span class='st'>"biketown_pdx"</span>,  
                        output = <span class='st'>"return"</span>)
 </div><div class='output co'>#&gt;   name            timezone language system_id

@@ -192,16 +192,12 @@ are released by a given city.</p></div>
                    directory = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
                     
 <span class='co'># or, instead, just supply the name of </span>
-<span class='co'># the city as a string. </span>
-<span class='fu'>get_system_regions</span>(city = <span class='st'>"biketown_pdx"</span>,
-                   directory = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-                    
-<span class='co'># instead of saving the output as a file, we can </span>
-<span class='co'># just return the output as a dataframe</span>
+<span class='co'># the city as a string and return the output</span>
+<span class='co'># as a dataframe</span>
 <span class='fu'>get_system_regions</span>(city = <span class='st'>"biketown_pdx"</span>,  
                    output = <span class='st'>"return"</span>)
-</div><div class='output co'>#&gt;   region_id name
-#&gt; 1       PDX  PDX</div></pre>
+</div><div class='output co'>#&gt;   name region_id
+#&gt; 1  PDX       PDX</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

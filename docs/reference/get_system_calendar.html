@@ -184,8 +184,9 @@ are released by a given city.</p></div>
     <pre class="examples"><div class='input'><span class='co'># grab the system calendar feed for portland, oregon</span>
 <span class='fu'>get_system_calendar</span>(city = 
 <span class='st'>"https://gbfs.biketownpdx.com/gbfs/en/system_calendar.json"</span>,  
-                    directory = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-
+                    output = <span class='st'>"return"</span>)
+</div><div class='output co'>#&gt;   start_month start_day end_month end_day
+#&gt; 1           1         1        12      31</div><div class='input'>
 
 </div></pre>
   </div>

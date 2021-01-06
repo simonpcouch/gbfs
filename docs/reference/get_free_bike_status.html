@@ -183,1356 +183,312 @@ functions, and [get_which_gbfs_feeds()] for a dataframe of which feeds
 are released by a given city.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># we can grab the free bike status feed for portland, </span>
-<span class='co'># orgeon's bikeshare program in  several ways! the most </span>
-<span class='co'># straightforward way is just to supply the `city` argument</span>
-<span class='co'># as a string:</span>
-<span class='fu'>get_free_bike_status</span>(city = <span class='st'>"biketown_pdx"</span>)
-</div><div class='output co'>#&gt; <span class='message'>Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.</span></div><div class='output co'>#&gt;          lat          type is_disabled       lon
-#&gt; 1   45.52964 electric_bike           0 -122.6854
-#&gt; 2   45.51203 electric_bike           0 -122.6272
-#&gt; 3   45.53198 electric_bike           0 -122.6517
-#&gt; 4   45.48932 electric_bike           0 -122.6511
-#&gt; 5   45.56519 electric_bike           0 -122.6277
-#&gt; 6   45.50233 electric_bike           0 -122.6720
-#&gt; 7   45.51244 electric_bike           0 -122.6201
-#&gt; 8   45.53617 electric_bike           0 -122.6668
-#&gt; 9   45.53348 electric_bike           0 -122.6202
-#&gt; 10  45.55307 electric_bike           0 -122.6421
-#&gt; 11  45.52416 electric_bike           0 -122.5952
-#&gt; 12  45.52212 electric_bike           0 -122.6953
-#&gt; 13  45.53361 electric_bike           0 -122.6839
-#&gt; 14  45.53062 electric_bike           0 -122.6876
-#&gt; 15  45.52257 electric_bike           0 -122.6071
-#&gt; 16  45.52149 electric_bike           0 -122.6434
-#&gt; 17  45.56770 electric_bike           0 -122.6842
-#&gt; 18  45.51574 electric_bike           0 -122.6556
-#&gt; 19  45.55450 electric_bike           0 -122.6636
-#&gt; 20  45.51921 electric_bike           0 -122.5808
-#&gt; 21  45.57724 electric_bike           0 -122.6883
-#&gt; 22  45.53557 electric_bike           0 -122.6959
-#&gt; 23  45.54365 electric_bike           0 -122.6310
-#&gt; 24  45.52457 electric_bike           0 -122.6766
-#&gt; 25  45.53646 electric_bike           0 -122.7048
-#&gt; 26  45.51238 electric_bike           0 -122.6487
-#&gt; 27  45.56649 electric_bike           0 -122.6218
-#&gt; 28  45.49041 electric_bike           0 -122.6278
-#&gt; 29  45.52424 electric_bike           0 -122.6878
-#&gt; 30  45.51224 electric_bike           0 -122.6246
-#&gt; 31  45.52273 electric_bike           0 -122.6754
-#&gt; 32  45.51305 electric_bike           0 -122.6797
-#&gt; 33  45.53028 electric_bike           0 -122.6346
-#&gt; 34  45.52575 electric_bike           0 -122.6496
-#&gt; 35  45.52303 electric_bike           0 -122.6779
-#&gt; 36  45.51884 electric_bike           0 -122.6742
-#&gt; 37  45.51973 electric_bike           0 -122.6736
-#&gt; 38  45.52055 electric_bike           0 -122.6800
-#&gt; 39  45.53112 electric_bike           0 -122.6527
-#&gt; 40  45.51873 electric_bike           0 -122.6638
-#&gt; 41  45.56215 electric_bike           0 -122.6205
-#&gt; 42  45.56688 electric_bike           0 -122.6821
-#&gt; 43  45.50416 electric_bike           0 -122.5748
-#&gt; 44  45.53579 electric_bike           0 -122.7125
-#&gt; 45  45.53004 electric_bike           0 -122.6889
-#&gt; 46  45.52687 electric_bike           0 -122.6833
-#&gt; 47  45.52675 electric_bike           0 -122.6813
-#&gt; 48  45.52113 electric_bike           0 -122.6487
-#&gt; 49  45.49730 electric_bike           0 -122.5861
-#&gt; 50  45.52536 electric_bike           0 -122.6750
-#&gt; 51  45.53009 electric_bike           0 -122.6889
-#&gt; 52  45.53826 electric_bike           0 -122.7135
-#&gt; 53  45.52767 electric_bike           0 -122.6767
-#&gt; 54  45.52805 electric_bike           0 -122.6288
-#&gt; 55  45.51705 electric_bike           0 -122.6961
-#&gt; 56  45.56476 electric_bike           0 -122.6296
-#&gt; 57  45.47968 electric_bike           0 -122.5676
-#&gt; 58  45.57000 electric_bike           0 -122.6852
-#&gt; 59  45.52655 electric_bike           0 -122.6805
-#&gt; 60  45.55035 electric_bike           0 -122.6765
-#&gt; 61  45.52107 electric_bike           0 -122.6803
-#&gt; 62  45.52137 electric_bike           0 -122.6982
-#&gt; 63  45.48282 electric_bike           0 -122.5634
-#&gt; 64  45.50232 electric_bike           0 -122.6721
-#&gt; 65  45.49477 electric_bike           0 -122.5765
-#&gt; 66  45.51922 electric_bike           0 -122.5823
-#&gt; 67  45.57632 electric_bike           0 -122.6816
-#&gt; 68  45.53001 electric_bike           0 -122.6344
-#&gt; 69  45.52323 electric_bike           0 -122.6924
-#&gt; 70  45.52911 electric_bike           0 -122.6818
-#&gt; 71  45.52317 electric_bike           0 -122.6955
-#&gt; 72  45.57717 electric_bike           0 -122.6706
-#&gt; 73  45.54758 electric_bike           0 -122.6681
-#&gt; 74  45.56633 electric_bike           0 -122.6627
-#&gt; 75  45.51642 electric_bike           0 -122.6495
-#&gt; 76  45.53023 electric_bike           0 -122.6812
-#&gt; 77  45.49738 electric_bike           0 -122.6791
-#&gt; 78  45.53374 electric_bike           0 -122.5960
-#&gt; 79  45.52365 electric_bike           0 -122.6637
-#&gt; 80  45.56987 electric_bike           0 -122.6871
-#&gt; 81  45.49772 electric_bike           0 -122.5956
-#&gt; 82  45.53529 electric_bike           0 -122.7086
-#&gt; 83  45.50693 electric_bike           0 -122.6226
-#&gt; 84  45.56404 electric_bike           0 -122.6607
-#&gt; 85  45.50803 electric_bike           0 -122.6803
-#&gt; 86  45.57722 electric_bike           0 -122.6976
-#&gt; 87  45.51645 electric_bike           0 -122.6384
-#&gt; 88  45.55892 electric_bike           0 -122.6380
-#&gt; 89  45.51921 electric_bike           0 -122.5823
-#&gt; 90  45.53528 electric_bike           0 -122.7083
-#&gt; 91  45.57589 electric_bike           0 -122.6617
-#&gt; 92  45.51990 electric_bike           0 -122.6620
-#&gt; 93  45.50233 electric_bike           0 -122.6720
-#&gt; 94  45.50322 electric_bike           0 -122.6579
-#&gt; 95  45.52362 electric_bike           0 -122.6540
-#&gt; 96  45.55174 electric_bike           0 -122.6756
-#&gt; 97  45.53338 electric_bike           0 -122.6195
-#&gt; 98  45.56989 electric_bike           0 -122.6484
-#&gt; 99  45.52317 electric_bike           0 -122.6955
-#&gt; 100 45.52672 electric_bike           0 -122.6810
-#&gt; 101 45.52625 electric_bike           0 -122.6374
-#&gt; 102 45.52916 electric_bike           0 -122.6889
-#&gt; 103 45.54480 electric_bike           0 -122.5793
-#&gt; 104 45.52115 electric_bike           0 -122.6615
-#&gt; 105 45.51188 electric_bike           0 -122.6202
-#&gt; 106 45.52274 electric_bike           0 -122.6810
-#&gt; 107 45.53002 electric_bike           0 -122.5429
-#&gt; 108 45.52044 electric_bike           0 -122.5429
-#&gt; 109 45.52250 electric_bike           0 -122.6758
-#&gt; 110 45.52346 electric_bike           0 -122.6965
-#&gt; 111 45.52199 electric_bike           0 -122.6010
-#&gt; 112 45.51444 electric_bike           0 -122.6535
-#&gt; 113 45.53342 electric_bike           0 -122.6203
-#&gt; 114 45.52452 electric_bike           0 -122.6823
-#&gt; 115 45.50389 electric_bike           0 -122.5534
-#&gt; 116 45.50904 electric_bike           0 -122.5889
-#&gt; 117 45.51894 electric_bike           0 -122.6639
-#&gt; 118 45.56519 electric_bike           0 -122.6093
-#&gt; 119 45.53007 electric_bike           0 -122.6334
-#&gt; 120 45.49104 electric_bike           0 -122.6256
-#&gt; 121 45.51912 electric_bike           0 -122.5816
-#&gt; 122 45.53207 electric_bike           0 -122.5625
-#&gt; 123 45.52542 electric_bike           0 -122.6765
-#&gt; 124 45.51935 electric_bike           0 -122.6038
-#&gt; 125 45.50960 electric_bike           0 -122.6839
-#&gt; 126 45.51868 electric_bike           0 -122.6284
-#&gt; 127 45.52796 electric_bike           0 -122.6287
-#&gt; 128 45.55915 electric_bike           0 -122.6507
-#&gt; 129 45.52286 electric_bike           0 -122.6148
-#&gt; 130 45.51627 electric_bike           0 -122.6497
-#&gt; 131 45.57255 electric_bike           0 -122.6571
-#&gt; 132 45.50786 electric_bike           0 -122.6599
-#&gt; 133 45.55484 electric_bike           0 -122.6680
-#&gt; 134 45.56139 electric_bike           0 -122.6829
-#&gt; 135 45.56403 electric_bike           0 -122.6607
-#&gt; 136 45.53506 electric_bike           0 -122.6530
-#&gt; 137 45.49049 electric_bike           0 -122.6089
-#&gt; 138 45.51699 electric_bike           0 -122.5925
-#&gt; 139 45.55155 electric_bike           0 -122.6756
-#&gt; 140 45.50366 electric_bike           0 -122.6766
-#&gt; 141 45.52204 electric_bike           0 -122.6022
-#&gt; 142 45.55837 electric_bike           0 -122.6857
-#&gt; 143 45.51193 electric_bike           0 -122.6203
-#&gt; 144 45.52686 electric_bike           0 -122.6812
-#&gt; 145 45.55907 electric_bike           0 -122.6442
-#&gt; 146 45.53006 electric_bike           0 -122.6568
-#&gt; 147 45.54995 electric_bike           0 -122.6390
-#&gt; 148 45.52150 electric_bike           0 -122.6982
-#&gt; 149 45.56286 electric_bike           0 -122.5969
-#&gt; 150 45.51254 electric_bike           0 -122.5428
-#&gt; 151 45.57716 electric_bike           0 -122.6708
-#&gt; 152 45.57720 electric_bike           0 -122.6974
-#&gt; 153 45.53245 electric_bike           0 -122.6639
-#&gt; 154 45.51908 electric_bike           0 -122.6106
-#&gt; 155 45.55201 electric_bike           0 -122.6474
-#&gt; 156 45.49733 electric_bike           0 -122.6339
-#&gt; 157 45.53332 electric_bike           0 -122.6202
-#&gt; 158 45.52294 electric_bike           0 -122.6056
-#&gt; 159 45.52296 electric_bike           0 -122.6085
-#&gt; 160 45.49528 electric_bike           0 -122.5663
-#&gt; 161 45.54085 electric_bike           0 -122.6677
-#&gt; 162 45.49760 electric_bike           0 -122.5820
-#&gt; 163 45.52073 electric_bike           0 -122.6526
-#&gt; 164 45.56147 electric_bike           0 -122.6299
-#&gt; 165 45.54457 electric_bike           0 -122.6668
-#&gt; 166 45.50097 electric_bike           0 -122.6817
-#&gt; 167 45.51213 electric_bike           0 -122.6583
-#&gt; 168 45.56264 electric_bike           0 -122.6096
-#&gt; 169 45.51845 electric_bike           0 -122.6937
-#&gt; 170 45.50691 electric_bike           0 -122.6225
-#&gt; 171 45.52361 electric_bike           0 -122.6540
-#&gt; 172 45.50363 electric_bike           0 -122.6784
-#&gt; 173 45.53041 electric_bike           0 -122.5887
-#&gt; 174 45.53427 electric_bike           0 -122.6421
-#&gt; 175 45.53373 electric_bike           0 -122.6534
-#&gt; 176 45.48300 electric_bike           0 -122.5801
-#&gt; 177 45.52797 electric_bike           0 -122.6433
-#&gt; 178 45.50234 electric_bike           0 -122.6720
-#&gt; 179 45.52449 electric_bike           0 -122.6757
-#&gt; 180 45.52184 electric_bike           0 -122.6749
-#&gt; 181 45.52125 electric_bike           0 -122.6807
-#&gt; 182 45.51857 electric_bike           0 -122.6810
-#&gt; 183 45.52339 electric_bike           0 -122.6925
-#&gt; 184 45.50718 electric_bike           0 -122.6746
-#&gt; 185 45.53063 electric_bike           0 -122.6890
-#&gt; 186 45.49774 electric_bike           0 -122.5956
-#&gt; 187 45.52800 electric_bike           0 -122.6808
-#&gt; 188 45.50233 electric_bike           0 -122.6720
-#&gt;                                 name is_reserved
-#&gt; 1   f3864af240c858af911f84d864a5ab89           0
-#&gt; 2   de89eec6d068b007cc1b4a5d7f25ac4a           0
-#&gt; 3   035ccd4511e085b140de90ca2077ae45           0
-#&gt; 4   6c390508601dfbcc79641a41a36d8e25           0
-#&gt; 5   d924fc553f65682530b0a0e474eed4ed           0
-#&gt; 6   56d664f6ebd3b04c3ba8d7a1259b4308           0
-#&gt; 7   8bc68d8d188d26e93a9e1a342d9e8487           0
-#&gt; 8   571a8483f7d0daeffd00676453ea7e14           0
-#&gt; 9   266fac00f4011a2348a5e6a0da4626ab           0
-#&gt; 10  9392ef26761e2777f2ab2450355017cc           0
-#&gt; 11  9f84bcc9717af4d968be78f269d33f00           0
-#&gt; 12  f0bdf96c5ed589cb11956439f15db76d           0
-#&gt; 13  3e46f53cf174f0ba6812d72724aa19cf           0
-#&gt; 14  e1c8a20e6fb9a7673eaca94b0c34b21f           0
-#&gt; 15  2c6b35627f2a3f5a9764c4498fc791aa           0
-#&gt; 16  c23c6748bc0112b2bf56e55a429c8dcf           0
-#&gt; 17  c576cb4b4087a94ec7f57bbc1e711974           0
-#&gt; 18  ce185bc493eae11a98b50e3ec7a0930c           0
-#&gt; 19  4fce62fcec9af43245b6bde692369ef6           0
-#&gt; 20  eaa722af56d35b2a59ddffcbcde931e5           0
-#&gt; 21  15a4030180690d704f3e699da9b88ad0           0
-#&gt; 22  7e4362e49b2058592b7252be097bee1e           0
-#&gt; 23  ca1965aded8d03e21a31ba1e3e11f91e           0
-#&gt; 24  f5d4927d816016293d12da022cf32575           0
-#&gt; 25  ec7e6e80c8f2ff23af82f84a0a2e6b41           0
-#&gt; 26  82b86d8398836c5f8a9b7933b9e4dc33           0
-#&gt; 27  055f59b5aab4d2e297fa4d004867f058           0
-#&gt; 28  d69663b2bb00cb5f1e17661caae246eb           0
-#&gt; 29  5169e323c6dfdba6bee45adca134a319           0
-#&gt; 30  b3bd9d91d87a406aab988cd0deb6784b           0
-#&gt; 31  0fc5e7ba74443c6fe7379ab7eee71ca8           0
-#&gt; 32  c6296a14a1748b4436efe6027a1c7763           0
-#&gt; 33  7a67a7ff7133ea15dc666a9366b0fb2d           0
-#&gt; 34  2d280ffb74337ef42f673064ae9200c3           0
-#&gt; 35  3d8958b79aa1ec40889f89a57d8583d0           0
-#&gt; 36  26baf01ad01eebb9e17c999d4336bb77           0
-#&gt; 37  024031349c72d51e8cb9ad7b966c4ee0           0
-#&gt; 38  4715b6bd70531d0735adc14704341d4f           0
-#&gt; 39  80f249fc134778849cc44b510aa58bd3           0
-#&gt; 40  05a1ebe987951f06450bb44b156e7b6d           0
-#&gt; 41  4efdfd05b6f4805b5a45e93fc06bcdc2           0
-#&gt; 42  9aa7850a51f365d123e0f8a02985a128           0
-#&gt; 43  6438c092ecfa14728703853772d8fd1f           0
-#&gt; 44  bd014384f5207c55454231dde8ecce96           0
-#&gt; 45  a63af246730cb953cba7186c9495359e           0
-#&gt; 46  8a77bc6e9234a5e7a57bdc0c90f18266           0
-#&gt; 47  34942f21ea308d12b05c0c210188f047           0
-#&gt; 48  1493cc34919294a0915eb85f4487a483           0
-#&gt; 49  f36868a1470b47a549013d9df3881676           0
-#&gt; 50  2ad5a61a5b5864ff9d3f66cc18fa1cb9           0
-#&gt; 51  896cb418c9e1b8f5b9773391e84d8abf           0
-#&gt; 52  40e4fe68c20940da8b457ff5075bcd9e           0
-#&gt; 53  4aed4f3f50314c8f00a275896a756d58           0
-#&gt; 54  560a04a39bb70a5d8b6d0efcbfd28a07           0
-#&gt; 55  1f39b83ce4e8c90cde4147685eb55933           0
-#&gt; 56  85237cd39ace1404b206f0fc1baa8b75           0
-#&gt; 57  7d6bdf05c671ad97032ceecce9dd53d3           0
-#&gt; 58  bfdd9f4d4698b0865b3e9cd756132c6c           0
-#&gt; 59  cc8f7700e88b0f71a1045b9202ded982           0
-#&gt; 60  c5ec37b7356de396e1db2d78abfe6e63           0
-#&gt; 61  1d368173edfca3ae9e853231c86ac482           0
-#&gt; 62  51d6b4c397b2762c5312153c749ba7bb           0
-#&gt; 63  dc161cf095f7ee4ade71f8f67bc8b0f3           0
-#&gt; 64  8526d7e49e8bf145afa4a835c7965733           0
-#&gt; 65  3da8595e11985c82479d45b43930bd1c           0
-#&gt; 66  ae08007708e6a23cbbc5fcd697fc7900           0
-#&gt; 67  8cac7c23b0dc1f9a683f3868e341a4c5           0
-#&gt; 68  48e6f313c432198d1d62e3d364b65837           0
-#&gt; 69  c1952e356b9092340c15575f07f7f560           0
-#&gt; 70  8489f7f8ae74178b9ff5db8719090612           0
-#&gt; 71  7b35e599507666904f57eef70745a0db           0
-#&gt; 72  2f9d1788ed24a0f5e12c8c365b9dc635           0
-#&gt; 73  7dc40d4c6a752e24b5919efaac7590b4           0
-#&gt; 74  3528ce7b19b9173f2c5c1e936188a97b           0
-#&gt; 75  094462e2cd20fac3b370906174d44107           0
-#&gt; 76  e69608be07cbaf8cf5fd41c7ad414b18           0
-#&gt; 77  4bfc43b01303a18765d923b86f8d624f           0
-#&gt; 78  e0320f3b0f2fdaeb556ce4e123a06242           0
-#&gt; 79  b2b125f34b2912ac7476ede587b3a871           0
-#&gt; 80  8a186eaa0dddcc828c004403f6baed42           0
-#&gt; 81  7523d21647e14fa8894a3c3985a40774           0
-#&gt; 82  086f9f6e4aec75c3cf67fdc6bf0c0355           0
-#&gt; 83  223787a48e2a4b3c2a2381937a68c720           0
-#&gt; 84  84111a1c8a847811ca542d094881557f           0
-#&gt; 85  467fec4ad73893336fac56b1d56d5471           0
-#&gt; 86  4820207db66e8d79791c49dc4b17d626           0
-#&gt; 87  dc219c35ee9270ab63fe5f76a34a2e42           0
-#&gt; 88  6eb312a231739f20c71d7fd02d29b7b7           0
-#&gt; 89  9cdf55559cddd9ebbc2aa079c1642f73           0
-#&gt; 90  d0628344c5990cc35fe84b04be360093           0
-#&gt; 91  64b9ef46f2ac40b17dddc4424107fb2a           0
-#&gt; 92  c93bfbb5686a3cdb1208dfdee7299d33           0
-#&gt; 93  bb330ad9aa2246733b48fc8537b50321           0
-#&gt; 94  f1608ddb474208e4a77e549e036d863a           0
-#&gt; 95  73b4cdae6c43bf5900c7fe7679d6795d           0
-#&gt; 96  d1fce8b46e284775acd112720e97c36a           0
-#&gt; 97  3ff4fdb201466e3220da48c2b66820ed           0
-#&gt; 98  d429ee0ec9f2181799e51259e7a88228           0
-#&gt; 99  917ac86326d9e3bbd16bc9fb014bfb22           0
-#&gt; 100 1e685b134ca811be01e1f9de7fc1eb5c           0
-#&gt; 101 012ff35359979467ab8572cade598a4e           0
-#&gt; 102 d611603518da220a9faf16657724868f           0
-#&gt; 103 2d54f26d2c88ff11735cd7ede9587c9b           0
-#&gt; 104 277c2fd150a60d9eb7f104a4207297b6           0
-#&gt; 105 9b4eeefe067e20a383d030ed600889e2           0
-#&gt; 106 225ae1ad5b83c41e5a309b59f99faa14           0
-#&gt; 107 d9b8b22aba05b3530ec31cc43f37018b           0
-#&gt; 108 ae61543f224a162bc9d4db047d7e9b97           0
-#&gt; 109 f9ff69fd926304672e784e0d76f3b0ce           0
-#&gt; 110 a76aefc5b66a2e3c236b192fa28253aa           0
-#&gt; 111 07cc235cc9343374170b8c31c83ad615           0
-#&gt; 112 cb3671349d948c0f426a3f76a6f28036           0
-#&gt; 113 15e2f9dfa82464027eada213df56981e           0
-#&gt; 114 3eddfc42b2dd4748fe8066f274af87b1           0
-#&gt; 115 2083b5cfcba373474629c6c217e94dd8           0
-#&gt; 116 1cad726398d4271de95003f023b219cf           0
-#&gt; 117 a8eedc32c5b0a3bae5f9d77182c757c3           0
-#&gt; 118 331b84e039e960cf1cb425451fd2908a           0
-#&gt; 119 5a1fa6627f06fc1941c52b9d391322ca           0
-#&gt; 120 f8062d6eea207065f4b914e3ea774f21           0
-#&gt; 121 5556344f8109056f5c9275be06c4df92           0
-#&gt; 122 ec8eecc4912c322b75d928f73375771b           0
-#&gt; 123 0c5d143377735ab906820ca25008b638           0
-#&gt; 124 9c8d25a77a15b369926ed7798fbe3300           0
-#&gt; 125 411af52537913394285fde79ae52dcf3           0
-#&gt; 126 a7b0658d522d9d7890541142d0b4fd8f           0
-#&gt; 127 237a10728a7317b7b125ac8d277d6300           0
-#&gt; 128 261af525d87e1fc375758ee0d039b8fd           0
-#&gt; 129 dfb398c93606f1aa7d50fcfb1cc4c5b5           0
-#&gt; 130 ad37075e107d22fe5bf275ecbd67a5ae           0
-#&gt; 131 dd313546f1462149dcaa00503a468ae2           0
-#&gt; 132 37e3699b20c4d92cc81e077216d5b536           0
-#&gt; 133 7892abe8f3b4c3f7abae344dcc3ab71d           0
-#&gt; 134 97383fdfaad5bd21bd71fb09d9f82fc0           0
-#&gt; 135 0b66d30ad12e7767b6dcf9f269fe9e00           0
-#&gt; 136 91cce9fc79cdac9480efd0b00cc2eb9d           0
-#&gt; 137 22a84cef97ae1004f00b83921cd755fe           0
-#&gt; 138 889bb70d554d53fcc8c3e72984c4ca5b           0
-#&gt; 139 2a69676876d85dcbe4e3512bcf9a7ad1           0
-#&gt; 140 7d4805ceb1d5920d8139f6b1f3b45f47           0
-#&gt; 141 7250bb30fa8a39e2a6ae2853c30631c1           0
-#&gt; 142 be4b26ae8e4f615d60032713e61e20d6           0
-#&gt; 143 6b9adc176e3d1f38d4b2323f3219143a           0
-#&gt; 144 a63a81e821549e8fcfb1cd7565fdde7f           0
-#&gt; 145 003ad2183686edef254d71eda7be92e3           0
-#&gt; 146 8d433ba83beec45d4d9b4d2d39067977           0
-#&gt; 147 6ef7d02a2a57289b3ebacd3010869f2b           0
-#&gt; 148 b87f9a70825c2180da5593e2e60f276e           0
-#&gt; 149 4918c7afef92291993c0ab969a534bf2           0
-#&gt; 150 7c2996856b1cf0bf63fea15c68eceeff           0
-#&gt; 151 447496d560fccbf8c4735d2ce02d3c99           0
-#&gt; 152 e1095d8f29cf096f82a3b2f6d4ce41a5           0
-#&gt; 153 74ac7c81ef489c1488e38e94f88c5ca6           0
-#&gt; 154 08271f7ee9d87f5f85bf833e2ddfb88c           0
-#&gt; 155 8f036f60adb9111be3aa9df1082713b0           0
-#&gt; 156 97ec0110e3b52bf2087ae4cef1531619           0
-#&gt; 157 dc17332141c1db661eedcf322a016638           0
-#&gt; 158 6a0a4dd0c4b7c2bf5e08054820407ee2           0
-#&gt; 159 fee202aebca7550073946de8a2bc6c46           0
-#&gt; 160 a54b2306b4af385aa1f88200e3dc329e           0
-#&gt; 161 db85ffb26e608e30cba2b48017fdcf7b           0
-#&gt; 162 36f44dd37a5440a72b2e51f58c38e1b9           0
-#&gt; 163 20ad1538117b05872aab69ad97fc997b           0
-#&gt; 164 9106a3c57822cba362e36fb537523b52           0
-#&gt; 165 a22fb51108f396ed9bce3d29f2712e52           0
-#&gt; 166 e9747c8869a4b93c6121859dd2e1df0b           0
-#&gt; 167 04e570c0cef17eefd0c1c18a03b8af7e           0
-#&gt; 168 964ca8792266886f2f45e1163efe9c50           0
-#&gt; 169 918f9b017a2572ad785d441a16afeac0           0
-#&gt; 170 f573e5951c02c972741e36f902defb35           0
-#&gt; 171 17c20ab3cbe8bd53c763fa3c9d8f55e4           0
-#&gt; 172 d654a3715e60094d1f293be44a00601f           0
-#&gt; 173 deb241edcab37fb733df0d86952bab48           0
-#&gt; 174 fde8551f4c033a3062614cbdcad5f6e2           0
-#&gt; 175 8c4278972ad01294d1f546dffb5d1770           0
-#&gt; 176 4dcdb92303f99ff76f7cc1749aa63480           0
-#&gt; 177 2ef3d42d7bc939835911508a033c2a96           0
-#&gt; 178 0c09f45407eaa82392d8caac0d1bdc81           0
-#&gt; 179 056dd8ff792f5d3cb7dfd5ab9be5a374           0
-#&gt; 180 c9aad66298553645dd551737b52f2a3a           0
-#&gt; 181 24c519b1a86d6460fc91bd254120ea40           0
-#&gt; 182 81f618b4ddf54a4f3ae000c9e4da49d0           0
-#&gt; 183 0359b20fb3fad2213a6231bf9dd8ae12           0
-#&gt; 184 dbbe7c81f5295f2f535d8c61e985b7bc           0
-#&gt; 185 419e56be9963eed698a2492e93f4edc0           0
-#&gt; 186 8bdb56b6b954b77eb6a449601f28c6a8           0
-#&gt; 187 6c6307d09e36395c469f66dffbc7541b           0
-#&gt; 188 d3f7a0c91d38137218d1ac3c5ad76a05           0
-#&gt;                              bike_id                 rental_uris.android
-#&gt; 1   f3864af240c858af911f84d864a5ab89 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 2   de89eec6d068b007cc1b4a5d7f25ac4a https://pdx.lft.to/lastmile_qr_scan
-#&gt; 3   035ccd4511e085b140de90ca2077ae45 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 4   6c390508601dfbcc79641a41a36d8e25 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 5   d924fc553f65682530b0a0e474eed4ed https://pdx.lft.to/lastmile_qr_scan
-#&gt; 6   56d664f6ebd3b04c3ba8d7a1259b4308 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 7   8bc68d8d188d26e93a9e1a342d9e8487 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 8   571a8483f7d0daeffd00676453ea7e14 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 9   266fac00f4011a2348a5e6a0da4626ab https://pdx.lft.to/lastmile_qr_scan
-#&gt; 10  9392ef26761e2777f2ab2450355017cc https://pdx.lft.to/lastmile_qr_scan
-#&gt; 11  9f84bcc9717af4d968be78f269d33f00 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 12  f0bdf96c5ed589cb11956439f15db76d https://pdx.lft.to/lastmile_qr_scan
-#&gt; 13  3e46f53cf174f0ba6812d72724aa19cf https://pdx.lft.to/lastmile_qr_scan
-#&gt; 14  e1c8a20e6fb9a7673eaca94b0c34b21f https://pdx.lft.to/lastmile_qr_scan
-#&gt; 15  2c6b35627f2a3f5a9764c4498fc791aa https://pdx.lft.to/lastmile_qr_scan
-#&gt; 16  c23c6748bc0112b2bf56e55a429c8dcf https://pdx.lft.to/lastmile_qr_scan
-#&gt; 17  c576cb4b4087a94ec7f57bbc1e711974 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 18  ce185bc493eae11a98b50e3ec7a0930c https://pdx.lft.to/lastmile_qr_scan
-#&gt; 19  4fce62fcec9af43245b6bde692369ef6 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 20  eaa722af56d35b2a59ddffcbcde931e5 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 21  15a4030180690d704f3e699da9b88ad0 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 22  7e4362e49b2058592b7252be097bee1e https://pdx.lft.to/lastmile_qr_scan
-#&gt; 23  ca1965aded8d03e21a31ba1e3e11f91e https://pdx.lft.to/lastmile_qr_scan
-#&gt; 24  f5d4927d816016293d12da022cf32575 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 25  ec7e6e80c8f2ff23af82f84a0a2e6b41 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 26  82b86d8398836c5f8a9b7933b9e4dc33 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 27  055f59b5aab4d2e297fa4d004867f058 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 28  d69663b2bb00cb5f1e17661caae246eb https://pdx.lft.to/lastmile_qr_scan
-#&gt; 29  5169e323c6dfdba6bee45adca134a319 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 30  b3bd9d91d87a406aab988cd0deb6784b https://pdx.lft.to/lastmile_qr_scan
-#&gt; 31  0fc5e7ba74443c6fe7379ab7eee71ca8 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 32  c6296a14a1748b4436efe6027a1c7763 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 33  7a67a7ff7133ea15dc666a9366b0fb2d https://pdx.lft.to/lastmile_qr_scan
-#&gt; 34  2d280ffb74337ef42f673064ae9200c3 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 35  3d8958b79aa1ec40889f89a57d8583d0 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 36  26baf01ad01eebb9e17c999d4336bb77 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 37  024031349c72d51e8cb9ad7b966c4ee0 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 38  4715b6bd70531d0735adc14704341d4f https://pdx.lft.to/lastmile_qr_scan
-#&gt; 39  80f249fc134778849cc44b510aa58bd3 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 40  05a1ebe987951f06450bb44b156e7b6d https://pdx.lft.to/lastmile_qr_scan
-#&gt; 41  4efdfd05b6f4805b5a45e93fc06bcdc2 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 42  9aa7850a51f365d123e0f8a02985a128 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 43  6438c092ecfa14728703853772d8fd1f https://pdx.lft.to/lastmile_qr_scan
-#&gt; 44  bd014384f5207c55454231dde8ecce96 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 45  a63af246730cb953cba7186c9495359e https://pdx.lft.to/lastmile_qr_scan
-#&gt; 46  8a77bc6e9234a5e7a57bdc0c90f18266 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 47  34942f21ea308d12b05c0c210188f047 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 48  1493cc34919294a0915eb85f4487a483 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 49  f36868a1470b47a549013d9df3881676 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 50  2ad5a61a5b5864ff9d3f66cc18fa1cb9 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 51  896cb418c9e1b8f5b9773391e84d8abf https://pdx.lft.to/lastmile_qr_scan
-#&gt; 52  40e4fe68c20940da8b457ff5075bcd9e https://pdx.lft.to/lastmile_qr_scan
-#&gt; 53  4aed4f3f50314c8f00a275896a756d58 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 54  560a04a39bb70a5d8b6d0efcbfd28a07 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 55  1f39b83ce4e8c90cde4147685eb55933 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 56  85237cd39ace1404b206f0fc1baa8b75 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 57  7d6bdf05c671ad97032ceecce9dd53d3 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 58  bfdd9f4d4698b0865b3e9cd756132c6c https://pdx.lft.to/lastmile_qr_scan
-#&gt; 59  cc8f7700e88b0f71a1045b9202ded982 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 60  c5ec37b7356de396e1db2d78abfe6e63 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 61  1d368173edfca3ae9e853231c86ac482 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 62  51d6b4c397b2762c5312153c749ba7bb https://pdx.lft.to/lastmile_qr_scan
-#&gt; 63  dc161cf095f7ee4ade71f8f67bc8b0f3 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 64  8526d7e49e8bf145afa4a835c7965733 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 65  3da8595e11985c82479d45b43930bd1c https://pdx.lft.to/lastmile_qr_scan
-#&gt; 66  ae08007708e6a23cbbc5fcd697fc7900 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 67  8cac7c23b0dc1f9a683f3868e341a4c5 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 68  48e6f313c432198d1d62e3d364b65837 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 69  c1952e356b9092340c15575f07f7f560 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 70  8489f7f8ae74178b9ff5db8719090612 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 71  7b35e599507666904f57eef70745a0db https://pdx.lft.to/lastmile_qr_scan
-#&gt; 72  2f9d1788ed24a0f5e12c8c365b9dc635 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 73  7dc40d4c6a752e24b5919efaac7590b4 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 74  3528ce7b19b9173f2c5c1e936188a97b https://pdx.lft.to/lastmile_qr_scan
-#&gt; 75  094462e2cd20fac3b370906174d44107 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 76  e69608be07cbaf8cf5fd41c7ad414b18 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 77  4bfc43b01303a18765d923b86f8d624f https://pdx.lft.to/lastmile_qr_scan
-#&gt; 78  e0320f3b0f2fdaeb556ce4e123a06242 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 79  b2b125f34b2912ac7476ede587b3a871 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 80  8a186eaa0dddcc828c004403f6baed42 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 81  7523d21647e14fa8894a3c3985a40774 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 82  086f9f6e4aec75c3cf67fdc6bf0c0355 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 83  223787a48e2a4b3c2a2381937a68c720 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 84  84111a1c8a847811ca542d094881557f https://pdx.lft.to/lastmile_qr_scan
-#&gt; 85  467fec4ad73893336fac56b1d56d5471 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 86  4820207db66e8d79791c49dc4b17d626 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 87  dc219c35ee9270ab63fe5f76a34a2e42 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 88  6eb312a231739f20c71d7fd02d29b7b7 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 89  9cdf55559cddd9ebbc2aa079c1642f73 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 90  d0628344c5990cc35fe84b04be360093 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 91  64b9ef46f2ac40b17dddc4424107fb2a https://pdx.lft.to/lastmile_qr_scan
-#&gt; 92  c93bfbb5686a3cdb1208dfdee7299d33 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 93  bb330ad9aa2246733b48fc8537b50321 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 94  f1608ddb474208e4a77e549e036d863a https://pdx.lft.to/lastmile_qr_scan
-#&gt; 95  73b4cdae6c43bf5900c7fe7679d6795d https://pdx.lft.to/lastmile_qr_scan
-#&gt; 96  d1fce8b46e284775acd112720e97c36a https://pdx.lft.to/lastmile_qr_scan
-#&gt; 97  3ff4fdb201466e3220da48c2b66820ed https://pdx.lft.to/lastmile_qr_scan
-#&gt; 98  d429ee0ec9f2181799e51259e7a88228 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 99  917ac86326d9e3bbd16bc9fb014bfb22 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 100 1e685b134ca811be01e1f9de7fc1eb5c https://pdx.lft.to/lastmile_qr_scan
-#&gt; 101 012ff35359979467ab8572cade598a4e https://pdx.lft.to/lastmile_qr_scan
-#&gt; 102 d611603518da220a9faf16657724868f https://pdx.lft.to/lastmile_qr_scan
-#&gt; 103 2d54f26d2c88ff11735cd7ede9587c9b https://pdx.lft.to/lastmile_qr_scan
-#&gt; 104 277c2fd150a60d9eb7f104a4207297b6 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 105 9b4eeefe067e20a383d030ed600889e2 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 106 225ae1ad5b83c41e5a309b59f99faa14 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 107 d9b8b22aba05b3530ec31cc43f37018b https://pdx.lft.to/lastmile_qr_scan
-#&gt; 108 ae61543f224a162bc9d4db047d7e9b97 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 109 f9ff69fd926304672e784e0d76f3b0ce https://pdx.lft.to/lastmile_qr_scan
-#&gt; 110 a76aefc5b66a2e3c236b192fa28253aa https://pdx.lft.to/lastmile_qr_scan
-#&gt; 111 07cc235cc9343374170b8c31c83ad615 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 112 cb3671349d948c0f426a3f76a6f28036 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 113 15e2f9dfa82464027eada213df56981e https://pdx.lft.to/lastmile_qr_scan
-#&gt; 114 3eddfc42b2dd4748fe8066f274af87b1 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 115 2083b5cfcba373474629c6c217e94dd8 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 116 1cad726398d4271de95003f023b219cf https://pdx.lft.to/lastmile_qr_scan
-#&gt; 117 a8eedc32c5b0a3bae5f9d77182c757c3 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 118 331b84e039e960cf1cb425451fd2908a https://pdx.lft.to/lastmile_qr_scan
-#&gt; 119 5a1fa6627f06fc1941c52b9d391322ca https://pdx.lft.to/lastmile_qr_scan
-#&gt; 120 f8062d6eea207065f4b914e3ea774f21 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 121 5556344f8109056f5c9275be06c4df92 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 122 ec8eecc4912c322b75d928f73375771b https://pdx.lft.to/lastmile_qr_scan
-#&gt; 123 0c5d143377735ab906820ca25008b638 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 124 9c8d25a77a15b369926ed7798fbe3300 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 125 411af52537913394285fde79ae52dcf3 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 126 a7b0658d522d9d7890541142d0b4fd8f https://pdx.lft.to/lastmile_qr_scan
-#&gt; 127 237a10728a7317b7b125ac8d277d6300 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 128 261af525d87e1fc375758ee0d039b8fd https://pdx.lft.to/lastmile_qr_scan
-#&gt; 129 dfb398c93606f1aa7d50fcfb1cc4c5b5 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 130 ad37075e107d22fe5bf275ecbd67a5ae https://pdx.lft.to/lastmile_qr_scan
-#&gt; 131 dd313546f1462149dcaa00503a468ae2 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 132 37e3699b20c4d92cc81e077216d5b536 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 133 7892abe8f3b4c3f7abae344dcc3ab71d https://pdx.lft.to/lastmile_qr_scan
-#&gt; 134 97383fdfaad5bd21bd71fb09d9f82fc0 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 135 0b66d30ad12e7767b6dcf9f269fe9e00 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 136 91cce9fc79cdac9480efd0b00cc2eb9d https://pdx.lft.to/lastmile_qr_scan
-#&gt; 137 22a84cef97ae1004f00b83921cd755fe https://pdx.lft.to/lastmile_qr_scan
-#&gt; 138 889bb70d554d53fcc8c3e72984c4ca5b https://pdx.lft.to/lastmile_qr_scan
-#&gt; 139 2a69676876d85dcbe4e3512bcf9a7ad1 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 140 7d4805ceb1d5920d8139f6b1f3b45f47 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 141 7250bb30fa8a39e2a6ae2853c30631c1 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 142 be4b26ae8e4f615d60032713e61e20d6 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 143 6b9adc176e3d1f38d4b2323f3219143a https://pdx.lft.to/lastmile_qr_scan
-#&gt; 144 a63a81e821549e8fcfb1cd7565fdde7f https://pdx.lft.to/lastmile_qr_scan
-#&gt; 145 003ad2183686edef254d71eda7be92e3 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 146 8d433ba83beec45d4d9b4d2d39067977 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 147 6ef7d02a2a57289b3ebacd3010869f2b https://pdx.lft.to/lastmile_qr_scan
-#&gt; 148 b87f9a70825c2180da5593e2e60f276e https://pdx.lft.to/lastmile_qr_scan
-#&gt; 149 4918c7afef92291993c0ab969a534bf2 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 150 7c2996856b1cf0bf63fea15c68eceeff https://pdx.lft.to/lastmile_qr_scan
-#&gt; 151 447496d560fccbf8c4735d2ce02d3c99 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 152 e1095d8f29cf096f82a3b2f6d4ce41a5 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 153 74ac7c81ef489c1488e38e94f88c5ca6 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 154 08271f7ee9d87f5f85bf833e2ddfb88c https://pdx.lft.to/lastmile_qr_scan
-#&gt; 155 8f036f60adb9111be3aa9df1082713b0 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 156 97ec0110e3b52bf2087ae4cef1531619 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 157 dc17332141c1db661eedcf322a016638 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 158 6a0a4dd0c4b7c2bf5e08054820407ee2 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 159 fee202aebca7550073946de8a2bc6c46 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 160 a54b2306b4af385aa1f88200e3dc329e https://pdx.lft.to/lastmile_qr_scan
-#&gt; 161 db85ffb26e608e30cba2b48017fdcf7b https://pdx.lft.to/lastmile_qr_scan
-#&gt; 162 36f44dd37a5440a72b2e51f58c38e1b9 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 163 20ad1538117b05872aab69ad97fc997b https://pdx.lft.to/lastmile_qr_scan
-#&gt; 164 9106a3c57822cba362e36fb537523b52 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 165 a22fb51108f396ed9bce3d29f2712e52 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 166 e9747c8869a4b93c6121859dd2e1df0b https://pdx.lft.to/lastmile_qr_scan
-#&gt; 167 04e570c0cef17eefd0c1c18a03b8af7e https://pdx.lft.to/lastmile_qr_scan
-#&gt; 168 964ca8792266886f2f45e1163efe9c50 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 169 918f9b017a2572ad785d441a16afeac0 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 170 f573e5951c02c972741e36f902defb35 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 171 17c20ab3cbe8bd53c763fa3c9d8f55e4 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 172 d654a3715e60094d1f293be44a00601f https://pdx.lft.to/lastmile_qr_scan
-#&gt; 173 deb241edcab37fb733df0d86952bab48 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 174 fde8551f4c033a3062614cbdcad5f6e2 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 175 8c4278972ad01294d1f546dffb5d1770 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 176 4dcdb92303f99ff76f7cc1749aa63480 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 177 2ef3d42d7bc939835911508a033c2a96 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 178 0c09f45407eaa82392d8caac0d1bdc81 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 179 056dd8ff792f5d3cb7dfd5ab9be5a374 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 180 c9aad66298553645dd551737b52f2a3a https://pdx.lft.to/lastmile_qr_scan
-#&gt; 181 24c519b1a86d6460fc91bd254120ea40 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 182 81f618b4ddf54a4f3ae000c9e4da49d0 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 183 0359b20fb3fad2213a6231bf9dd8ae12 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 184 dbbe7c81f5295f2f535d8c61e985b7bc https://pdx.lft.to/lastmile_qr_scan
-#&gt; 185 419e56be9963eed698a2492e93f4edc0 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 186 8bdb56b6b954b77eb6a449601f28c6a8 https://pdx.lft.to/lastmile_qr_scan
-#&gt; 187 6c6307d09e36395c469f66dffbc7541b https://pdx.lft.to/lastmile_qr_scan
-#&gt; 188 d3f7a0c91d38137218d1ac3c5ad76a05 https://pdx.lft.to/lastmile_qr_scan
-#&gt;                         rental_uris.ios        last_updated year month day hour
-#&gt; 1   https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 2   https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 3   https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 4   https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 5   https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 6   https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 7   https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 8   https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 9   https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 10  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 11  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 12  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 13  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 14  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 15  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 16  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 17  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 18  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 19  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 20  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 21  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 22  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 23  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 24  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 25  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 26  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 27  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 28  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 29  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 30  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 31  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 32  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 33  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 34  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 35  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 36  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 37  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 38  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 39  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 40  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 41  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 42  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 43  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 44  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 45  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 46  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 47  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 48  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 49  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 50  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 51  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 52  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 53  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 54  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 55  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 56  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 57  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 58  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 59  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 60  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 61  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 62  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 63  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 64  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 65  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 66  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 67  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 68  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 69  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 70  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 71  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 72  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 73  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 74  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 75  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 76  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 77  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 78  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 79  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 80  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 81  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 82  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 83  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 84  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 85  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 86  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 87  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 88  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 89  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 90  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 91  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 92  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 93  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 94  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 95  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 96  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 97  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 98  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 99  https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 100 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 101 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 102 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 103 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 104 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 105 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 106 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 107 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 108 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 109 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 110 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 111 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 112 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 113 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 114 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 115 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 116 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 117 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 118 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 119 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 120 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 121 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 122 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 123 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 124 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 125 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 126 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 127 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 128 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 129 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 130 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 131 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 132 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 133 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 134 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 135 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 136 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 137 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 138 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 139 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 140 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 141 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 142 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 143 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 144 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 145 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 146 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 147 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 148 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 149 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 150 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 151 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 152 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 153 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 154 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 155 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 156 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 157 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 158 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 159 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 160 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 161 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 162 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 163 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 164 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 165 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 166 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 167 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 168 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 169 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 170 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 171 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 172 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 173 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 174 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 175 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 176 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 177 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 178 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 179 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 180 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 181 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 182 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 183 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 184 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 185 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 186 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 187 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt; 188 https://pdx.lft.to/lastmile_qr_scan 2020-12-29 21:01:15 2020    12  29   21
-#&gt;     minute
-#&gt; 1        1
-#&gt; 2        1
-#&gt; 3        1
-#&gt; 4        1
-#&gt; 5        1
-#&gt; 6        1
-#&gt; 7        1
-#&gt; 8        1
-#&gt; 9        1
-#&gt; 10       1
-#&gt; 11       1
-#&gt; 12       1
-#&gt; 13       1
-#&gt; 14       1
-#&gt; 15       1
-#&gt; 16       1
-#&gt; 17       1
-#&gt; 18       1
-#&gt; 19       1
-#&gt; 20       1
-#&gt; 21       1
-#&gt; 22       1
-#&gt; 23       1
-#&gt; 24       1
-#&gt; 25       1
-#&gt; 26       1
-#&gt; 27       1
-#&gt; 28       1
-#&gt; 29       1
-#&gt; 30       1
-#&gt; 31       1
-#&gt; 32       1
-#&gt; 33       1
-#&gt; 34       1
-#&gt; 35       1
-#&gt; 36       1
-#&gt; 37       1
-#&gt; 38       1
-#&gt; 39       1
-#&gt; 40       1
-#&gt; 41       1
-#&gt; 42       1
-#&gt; 43       1
-#&gt; 44       1
-#&gt; 45       1
-#&gt; 46       1
-#&gt; 47       1
-#&gt; 48       1
-#&gt; 49       1
-#&gt; 50       1
-#&gt; 51       1
-#&gt; 52       1
-#&gt; 53       1
-#&gt; 54       1
-#&gt; 55       1
-#&gt; 56       1
-#&gt; 57       1
-#&gt; 58       1
-#&gt; 59       1
-#&gt; 60       1
-#&gt; 61       1
-#&gt; 62       1
-#&gt; 63       1
-#&gt; 64       1
-#&gt; 65       1
-#&gt; 66       1
-#&gt; 67       1
-#&gt; 68       1
-#&gt; 69       1
-#&gt; 70       1
-#&gt; 71       1
-#&gt; 72       1
-#&gt; 73       1
-#&gt; 74       1
-#&gt; 75       1
-#&gt; 76       1
-#&gt; 77       1
-#&gt; 78       1
-#&gt; 79       1
-#&gt; 80       1
-#&gt; 81       1
-#&gt; 82       1
-#&gt; 83       1
-#&gt; 84       1
-#&gt; 85       1
-#&gt; 86       1
-#&gt; 87       1
-#&gt; 88       1
-#&gt; 89       1
-#&gt; 90       1
-#&gt; 91       1
-#&gt; 92       1
-#&gt; 93       1
-#&gt; 94       1
-#&gt; 95       1
-#&gt; 96       1
-#&gt; 97       1
-#&gt; 98       1
-#&gt; 99       1
-#&gt; 100      1
-#&gt; 101      1
-#&gt; 102      1
-#&gt; 103      1
-#&gt; 104      1
-#&gt; 105      1
-#&gt; 106      1
-#&gt; 107      1
-#&gt; 108      1
-#&gt; 109      1
-#&gt; 110      1
-#&gt; 111      1
-#&gt; 112      1
-#&gt; 113      1
-#&gt; 114      1
-#&gt; 115      1
-#&gt; 116      1
-#&gt; 117      1
-#&gt; 118      1
-#&gt; 119      1
-#&gt; 120      1
-#&gt; 121      1
-#&gt; 122      1
-#&gt; 123      1
-#&gt; 124      1
-#&gt; 125      1
-#&gt; 126      1
-#&gt; 127      1
-#&gt; 128      1
-#&gt; 129      1
-#&gt; 130      1
-#&gt; 131      1
-#&gt; 132      1
-#&gt; 133      1
-#&gt; 134      1
-#&gt; 135      1
-#&gt; 136      1
-#&gt; 137      1
-#&gt; 138      1
-#&gt; 139      1
-#&gt; 140      1
-#&gt; 141      1
-#&gt; 142      1
-#&gt; 143      1
-#&gt; 144      1
-#&gt; 145      1
-#&gt; 146      1
-#&gt; 147      1
-#&gt; 148      1
-#&gt; 149      1
-#&gt; 150      1
-#&gt; 151      1
-#&gt; 152      1
-#&gt; 153      1
-#&gt; 154      1
-#&gt; 155      1
-#&gt; 156      1
-#&gt; 157      1
-#&gt; 158      1
-#&gt; 159      1
-#&gt; 160      1
-#&gt; 161      1
-#&gt; 162      1
-#&gt; 163      1
-#&gt; 164      1
-#&gt; 165      1
-#&gt; 166      1
-#&gt; 167      1
-#&gt; 168      1
-#&gt; 169      1
-#&gt; 170      1
-#&gt; 171      1
-#&gt; 172      1
-#&gt; 173      1
-#&gt; 174      1
-#&gt; 175      1
-#&gt; 176      1
-#&gt; 177      1
-#&gt; 178      1
-#&gt; 179      1
-#&gt; 180      1
-#&gt; 181      1
-#&gt; 182      1
-#&gt; 183      1
-#&gt; 184      1
-#&gt; 185      1
-#&gt; 186      1
-#&gt; 187      1
-#&gt; 188      1</div><div class='input'>
-<span class='co'># the `city` argument can also be supplied as an</span>
-<span class='co'># actual URL to an active .json feed</span>
+    <pre class="examples"><div class='input'><span class='co'># grab the free bike status feed for portland, oregon's bikeshare program </span>
 <span class='fu'>get_free_bike_status</span>(city = 
-<span class='st'>"https://gbfs.biketownpdx.com/gbfs/en/free_bike_status.json"</span>,  
-                     directory = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-
-<span class='co'># if you'd like to save the output to file, supply a </span>
-<span class='co'># `directory` argument. usually, though, we would supply a </span>
-<span class='co'># character string (like "pdx", maybe,) for the `directory` </span>
-<span class='co'># argument instead of `tempdir`.</span>
-<span class='fu'>get_free_bike_status</span>(city = <span class='st'>"biketown_pdx"</span>,  
-                     directory = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-                     
-<span class='co'># the output argument can control whether the file is</span>
-<span class='co'># saved and/or returned explicitly</span>
-<span class='fu'>get_free_bike_status</span>(city = <span class='st'>"biketown_pdx"</span>,  
-                     directory = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
-                     output = <span class='st'>"both"</span>)                     
-</div><div class='output co'>#&gt;              type      lat is_reserved                             name
-#&gt; 1   electric_bike 45.52964           0 f3864af240c858af911f84d864a5ab89
-#&gt; 2   electric_bike 45.51203           0 de89eec6d068b007cc1b4a5d7f25ac4a
-#&gt; 3   electric_bike 45.53198           0 035ccd4511e085b140de90ca2077ae45
-#&gt; 4   electric_bike 45.48932           0 6c390508601dfbcc79641a41a36d8e25
-#&gt; 5   electric_bike 45.56519           0 d924fc553f65682530b0a0e474eed4ed
-#&gt; 6   electric_bike 45.56831           0 ffbd332385cc45b836e5883f409c492c
-#&gt; 7   electric_bike 45.50233           0 56d664f6ebd3b04c3ba8d7a1259b4308
-#&gt; 8   electric_bike 45.51244           0 8bc68d8d188d26e93a9e1a342d9e8487
-#&gt; 9   electric_bike 45.53617           0 571a8483f7d0daeffd00676453ea7e14
-#&gt; 10  electric_bike 45.53348           0 266fac00f4011a2348a5e6a0da4626ab
-#&gt; 11  electric_bike 45.55307           0 9392ef26761e2777f2ab2450355017cc
-#&gt; 12  electric_bike 45.52416           0 9f84bcc9717af4d968be78f269d33f00
-#&gt; 13  electric_bike 45.52212           0 f0bdf96c5ed589cb11956439f15db76d
-#&gt; 14  electric_bike 45.53361           0 3e46f53cf174f0ba6812d72724aa19cf
-#&gt; 15  electric_bike 45.53062           0 e1c8a20e6fb9a7673eaca94b0c34b21f
-#&gt; 16  electric_bike 45.52257           0 2c6b35627f2a3f5a9764c4498fc791aa
-#&gt; 17  electric_bike 45.55197           0 167d75bce872eb58a74642fce7bebca1
-#&gt; 18  electric_bike 45.57194           0 716de6fe08ae2bec111cbaa8b90f734e
-#&gt; 19  electric_bike 45.56770           0 c576cb4b4087a94ec7f57bbc1e711974
-#&gt; 20  electric_bike 45.51574           0 ce185bc493eae11a98b50e3ec7a0930c
-#&gt; 21  electric_bike 45.55450           0 4fce62fcec9af43245b6bde692369ef6
-#&gt; 22  electric_bike 45.51921           0 eaa722af56d35b2a59ddffcbcde931e5
-#&gt; 23  electric_bike 45.57724           0 15a4030180690d704f3e699da9b88ad0
-#&gt; 24  electric_bike 45.53557           0 7e4362e49b2058592b7252be097bee1e
-#&gt; 25  electric_bike 45.54365           0 ca1965aded8d03e21a31ba1e3e11f91e
-#&gt; 26  electric_bike 45.52457           0 f5d4927d816016293d12da022cf32575
-#&gt; 27  electric_bike 45.53646           0 ec7e6e80c8f2ff23af82f84a0a2e6b41
-#&gt; 28  electric_bike 45.51238           0 82b86d8398836c5f8a9b7933b9e4dc33
-#&gt; 29  electric_bike 45.56649           0 055f59b5aab4d2e297fa4d004867f058
-#&gt; 30  electric_bike 45.49041           0 d69663b2bb00cb5f1e17661caae246eb
-#&gt; 31  electric_bike 45.52424           0 5169e323c6dfdba6bee45adca134a319
-#&gt; 32  electric_bike 45.51224           0 b3bd9d91d87a406aab988cd0deb6784b
-#&gt; 33  electric_bike 45.52273           0 0fc5e7ba74443c6fe7379ab7eee71ca8
-#&gt; 34  electric_bike 45.51305           0 c6296a14a1748b4436efe6027a1c7763
-#&gt; 35  electric_bike 45.53028           0 7a67a7ff7133ea15dc666a9366b0fb2d
-#&gt; 36  electric_bike 45.52575           0 2d280ffb74337ef42f673064ae9200c3
-#&gt; 37  electric_bike 45.53007           0 db34dab99b4e1c0e6349733db2cc2ead
-#&gt; 38  electric_bike 45.52859           0 fca44ed346852d2f0bbe66df8dfe5d45
-#&gt; 39  electric_bike 45.51884           0 26baf01ad01eebb9e17c999d4336bb77
-#&gt; 40  electric_bike 45.51973           0 024031349c72d51e8cb9ad7b966c4ee0
-#&gt; 41  electric_bike 45.52055           0 4715b6bd70531d0735adc14704341d4f
-#&gt; 42  electric_bike 45.53112           0 80f249fc134778849cc44b510aa58bd3
-#&gt; 43  electric_bike 45.51873           0 05a1ebe987951f06450bb44b156e7b6d
-#&gt; 44  electric_bike 45.56215           0 4efdfd05b6f4805b5a45e93fc06bcdc2
-#&gt; 45  electric_bike 45.56688           0 9aa7850a51f365d123e0f8a02985a128
-#&gt; 46  electric_bike 45.50416           0 6438c092ecfa14728703853772d8fd1f
-#&gt; 47  electric_bike 45.49693           0 62872fff9605daabcf65972286d107e5
-#&gt; 48  electric_bike 45.53004           0 a63af246730cb953cba7186c9495359e
-#&gt; 49  electric_bike 45.52687           0 8a77bc6e9234a5e7a57bdc0c90f18266
-#&gt; 50  electric_bike 45.52675           0 34942f21ea308d12b05c0c210188f047
-#&gt; 51  electric_bike 45.52113           0 1493cc34919294a0915eb85f4487a483
-#&gt; 52  electric_bike 45.49730           0 f36868a1470b47a549013d9df3881676
-#&gt; 53  electric_bike 45.53009           0 896cb418c9e1b8f5b9773391e84d8abf
-#&gt; 54  electric_bike 45.52767           0 4aed4f3f50314c8f00a275896a756d58
-#&gt; 55  electric_bike 45.51705           0 1f39b83ce4e8c90cde4147685eb55933
-#&gt; 56  electric_bike 45.56476           0 85237cd39ace1404b206f0fc1baa8b75
-#&gt; 57  electric_bike 45.47968           0 7d6bdf05c671ad97032ceecce9dd53d3
-#&gt; 58  electric_bike 45.57000           0 bfdd9f4d4698b0865b3e9cd756132c6c
-#&gt; 59  electric_bike 45.52718           0 5c966bfbcfb1d6f119f1f0d2b28be830
-#&gt; 60  electric_bike 45.52655           0 cc8f7700e88b0f71a1045b9202ded982
-#&gt; 61  electric_bike 45.55035           0 c5ec37b7356de396e1db2d78abfe6e63
-#&gt; 62  electric_bike 45.53503           0 cdb291d04812a6b1faa474f5de882564
-#&gt; 63  electric_bike 45.52107           0 1d368173edfca3ae9e853231c86ac482
-#&gt; 64  electric_bike 45.52137           0 51d6b4c397b2762c5312153c749ba7bb
-#&gt; 65  electric_bike 45.48282           0 dc161cf095f7ee4ade71f8f67bc8b0f3
-#&gt; 66  electric_bike 45.57632           0 8cac7c23b0dc1f9a683f3868e341a4c5
-#&gt; 67  electric_bike 45.53001           0 48e6f313c432198d1d62e3d364b65837
-#&gt; 68  electric_bike 45.57176           0 69ab09ac3a83e0f13702ca6b2396a047
-#&gt; 69  electric_bike 45.52323           0 c1952e356b9092340c15575f07f7f560
-#&gt; 70  electric_bike 45.52911           0 8489f7f8ae74178b9ff5db8719090612
-#&gt; 71  electric_bike 45.52317           0 7b35e599507666904f57eef70745a0db
-#&gt; 72  electric_bike 45.50413           0 9324e598bc1a9818430b0b2a5a643bd3
-#&gt; 73  electric_bike 45.57717           0 2f9d1788ed24a0f5e12c8c365b9dc635
-#&gt; 74  electric_bike 45.54758           0 7dc40d4c6a752e24b5919efaac7590b4
-#&gt; 75  electric_bike 45.54029           0 cff5756576639fe9bf66f01946c572d9
-#&gt; 76  electric_bike 45.56633           0 3528ce7b19b9173f2c5c1e936188a97b
-#&gt; 77  electric_bike 45.52731           0 ecaf929f3944fe074f0c4ea3df4c4f0d
-#&gt; 78  electric_bike 45.51642           0 094462e2cd20fac3b370906174d44107
-#&gt; 79  electric_bike 45.53023           0 e69608be07cbaf8cf5fd41c7ad414b18
-#&gt; 80  electric_bike 45.49738           0 4bfc43b01303a18765d923b86f8d624f
-#&gt; 81  electric_bike 45.53374           0 e0320f3b0f2fdaeb556ce4e123a06242
-#&gt; 82  electric_bike 45.52365           0 b2b125f34b2912ac7476ede587b3a871
-#&gt; 83  electric_bike 45.56987           0 8a186eaa0dddcc828c004403f6baed42
-#&gt; 84  electric_bike 45.49772           0 7523d21647e14fa8894a3c3985a40774
-#&gt; 85  electric_bike 45.53529           0 086f9f6e4aec75c3cf67fdc6bf0c0355
-#&gt; 86  electric_bike 45.56404           0 84111a1c8a847811ca542d094881557f
-#&gt; 87  electric_bike 45.50803           0 467fec4ad73893336fac56b1d56d5471
-#&gt; 88  electric_bike 45.57722           0 4820207db66e8d79791c49dc4b17d626
-#&gt; 89  electric_bike 45.53460           0 682f7f9a12ee623ae7a9358fa75e7572
-#&gt; 90  electric_bike 45.51645           0 dc219c35ee9270ab63fe5f76a34a2e42
-#&gt; 91  electric_bike 45.55892           0 6eb312a231739f20c71d7fd02d29b7b7
-#&gt; 92  electric_bike 45.51921           0 9cdf55559cddd9ebbc2aa079c1642f73
-#&gt; 93  electric_bike 45.53528           0 d0628344c5990cc35fe84b04be360093
-#&gt; 94  electric_bike 45.57589           0 64b9ef46f2ac40b17dddc4424107fb2a
-#&gt; 95  electric_bike 45.51990           0 c93bfbb5686a3cdb1208dfdee7299d33
-#&gt; 96  electric_bike 45.50233           0 bb330ad9aa2246733b48fc8537b50321
-#&gt; 97  electric_bike 45.50322           0 f1608ddb474208e4a77e549e036d863a
-#&gt; 98  electric_bike 45.55174           0 d1fce8b46e284775acd112720e97c36a
-#&gt; 99  electric_bike 45.53338           0 3ff4fdb201466e3220da48c2b66820ed
-#&gt; 100 electric_bike 45.56989           0 d429ee0ec9f2181799e51259e7a88228
-#&gt; 101 electric_bike 45.52672           0 1e685b134ca811be01e1f9de7fc1eb5c
-#&gt; 102 electric_bike 45.52625           0 012ff35359979467ab8572cade598a4e
-#&gt; 103 electric_bike 45.52916           0 d611603518da220a9faf16657724868f
-#&gt; 104 electric_bike 45.54480           0 2d54f26d2c88ff11735cd7ede9587c9b
-#&gt; 105 electric_bike 45.52115           0 277c2fd150a60d9eb7f104a4207297b6
-#&gt; 106 electric_bike 45.51188           0 9b4eeefe067e20a383d030ed600889e2
-#&gt; 107 electric_bike 45.52274           0 225ae1ad5b83c41e5a309b59f99faa14
-#&gt; 108 electric_bike 45.53002           0 d9b8b22aba05b3530ec31cc43f37018b
-#&gt; 109 electric_bike 45.52044           0 ae61543f224a162bc9d4db047d7e9b97
-#&gt; 110 electric_bike 45.52250           0 f9ff69fd926304672e784e0d76f3b0ce
-#&gt; 111 electric_bike 45.52346           0 a76aefc5b66a2e3c236b192fa28253aa
-#&gt; 112 electric_bike 45.52199           0 07cc235cc9343374170b8c31c83ad615
-#&gt; 113 electric_bike 45.53342           0 15e2f9dfa82464027eada213df56981e
-#&gt; 114 electric_bike 45.52452           0 3eddfc42b2dd4748fe8066f274af87b1
-#&gt; 115 electric_bike 45.50389           0 2083b5cfcba373474629c6c217e94dd8
-#&gt; 116 electric_bike 45.50904           0 1cad726398d4271de95003f023b219cf
-#&gt; 117 electric_bike 45.56519           0 331b84e039e960cf1cb425451fd2908a
-#&gt; 118 electric_bike 45.53007           0 5a1fa6627f06fc1941c52b9d391322ca
-#&gt; 119 electric_bike 45.52500           0 ba6c2d51c3774e735e5b49a3e595fb67
-#&gt; 120 electric_bike 45.49104           0 f8062d6eea207065f4b914e3ea774f21
-#&gt; 121 electric_bike 45.51912           0 5556344f8109056f5c9275be06c4df92
-#&gt; 122 electric_bike 45.53207           0 ec8eecc4912c322b75d928f73375771b
-#&gt; 123 electric_bike 45.52542           0 0c5d143377735ab906820ca25008b638
-#&gt; 124 electric_bike 45.51935           0 9c8d25a77a15b369926ed7798fbe3300
-#&gt; 125 electric_bike 45.50960           0 411af52537913394285fde79ae52dcf3
-#&gt; 126 electric_bike 45.51868           0 a7b0658d522d9d7890541142d0b4fd8f
-#&gt; 127 electric_bike 45.52796           0 237a10728a7317b7b125ac8d277d6300
-#&gt; 128 electric_bike 45.55915           0 261af525d87e1fc375758ee0d039b8fd
-#&gt; 129 electric_bike 45.51627           0 ad37075e107d22fe5bf275ecbd67a5ae
-#&gt; 130 electric_bike 45.52125           0 6d3461a683a6e183b5e48afc9de05393
-#&gt; 131 electric_bike 45.57255           0 dd313546f1462149dcaa00503a468ae2
-#&gt; 132 electric_bike 45.50786           0 37e3699b20c4d92cc81e077216d5b536
-#&gt; 133 electric_bike 45.55484           0 7892abe8f3b4c3f7abae344dcc3ab71d
-#&gt; 134 electric_bike 45.52055           0 701126b21aca3fac8855bdc1fc9fa5f6
-#&gt; 135 electric_bike 45.56139           0 97383fdfaad5bd21bd71fb09d9f82fc0
-#&gt; 136 electric_bike 45.56403           0 0b66d30ad12e7767b6dcf9f269fe9e00
-#&gt; 137 electric_bike 45.53506           0 91cce9fc79cdac9480efd0b00cc2eb9d
-#&gt; 138 electric_bike 45.49049           0 22a84cef97ae1004f00b83921cd755fe
-#&gt; 139 electric_bike 45.51699           0 889bb70d554d53fcc8c3e72984c4ca5b
-#&gt; 140 electric_bike 45.50685           0 b005766c43acac2ea6b808759c77b5fa
-#&gt; 141 electric_bike 45.55155           0 2a69676876d85dcbe4e3512bcf9a7ad1
-#&gt; 142 electric_bike 45.50333           0 df0e4f84ede18d2bf9a028027a5233ee
-#&gt; 143 electric_bike 45.50366           0 7d4805ceb1d5920d8139f6b1f3b45f47
-#&gt; 144 electric_bike 45.52204           0 7250bb30fa8a39e2a6ae2853c30631c1
-#&gt; 145 electric_bike 45.55837           0 be4b26ae8e4f615d60032713e61e20d6
-#&gt; 146 electric_bike 45.52686           0 a63a81e821549e8fcfb1cd7565fdde7f
-#&gt; 147 electric_bike 45.55907           0 003ad2183686edef254d71eda7be92e3
-#&gt; 148 electric_bike 45.53006           0 8d433ba83beec45d4d9b4d2d39067977
-#&gt; 149 electric_bike 45.54995           0 6ef7d02a2a57289b3ebacd3010869f2b
-#&gt; 150 electric_bike 45.52150           0 b87f9a70825c2180da5593e2e60f276e
-#&gt; 151 electric_bike 45.56286           0 4918c7afef92291993c0ab969a534bf2
-#&gt; 152 electric_bike 45.51254           0 7c2996856b1cf0bf63fea15c68eceeff
-#&gt; 153 electric_bike 45.57716           0 447496d560fccbf8c4735d2ce02d3c99
-#&gt; 154 electric_bike 45.57720           0 e1095d8f29cf096f82a3b2f6d4ce41a5
-#&gt; 155 electric_bike 45.53245           0 74ac7c81ef489c1488e38e94f88c5ca6
-#&gt; 156 electric_bike 45.51908           0 08271f7ee9d87f5f85bf833e2ddfb88c
-#&gt; 157 electric_bike 45.55201           0 8f036f60adb9111be3aa9df1082713b0
-#&gt; 158 electric_bike 45.49733           0 97ec0110e3b52bf2087ae4cef1531619
-#&gt; 159 electric_bike 45.53332           0 dc17332141c1db661eedcf322a016638
-#&gt; 160 electric_bike 45.52294           0 6a0a4dd0c4b7c2bf5e08054820407ee2
-#&gt; 161 electric_bike 45.52296           0 fee202aebca7550073946de8a2bc6c46
-#&gt; 162 electric_bike 45.49528           0 a54b2306b4af385aa1f88200e3dc329e
-#&gt; 163 electric_bike 45.54085           0 db85ffb26e608e30cba2b48017fdcf7b
-#&gt; 164 electric_bike 45.49760           0 36f44dd37a5440a72b2e51f58c38e1b9
-#&gt; 165 electric_bike 45.51738           0 cf868ee2ef4ab6c8e8dde15b30ba17a9
-#&gt; 166 electric_bike 45.56147           0 9106a3c57822cba362e36fb537523b52
-#&gt; 167 electric_bike 45.54457           0 a22fb51108f396ed9bce3d29f2712e52
-#&gt; 168 electric_bike 45.50097           0 e9747c8869a4b93c6121859dd2e1df0b
-#&gt; 169 electric_bike 45.51213           0 04e570c0cef17eefd0c1c18a03b8af7e
-#&gt; 170 electric_bike 45.56142           0 f8ba4b216fae9e05679dae1a8b871dc9
-#&gt; 171 electric_bike 45.56264           0 964ca8792266886f2f45e1163efe9c50
-#&gt; 172 electric_bike 45.51845           0 918f9b017a2572ad785d441a16afeac0
-#&gt; 173 electric_bike 45.50691           0 f573e5951c02c972741e36f902defb35
-#&gt; 174 electric_bike 45.50363           0 d654a3715e60094d1f293be44a00601f
-#&gt; 175 electric_bike 45.53041           0 deb241edcab37fb733df0d86952bab48
-#&gt; 176 electric_bike 45.53427           0 fde8551f4c033a3062614cbdcad5f6e2
-#&gt; 177 electric_bike 45.53373           0 8c4278972ad01294d1f546dffb5d1770
-#&gt; 178 electric_bike 45.48300           0 4dcdb92303f99ff76f7cc1749aa63480
-#&gt; 179 electric_bike 45.52797           0 2ef3d42d7bc939835911508a033c2a96
-#&gt; 180 electric_bike 45.50234           0 0c09f45407eaa82392d8caac0d1bdc81
-#&gt; 181 electric_bike 45.52449           0 056dd8ff792f5d3cb7dfd5ab9be5a374
-#&gt; 182 electric_bike 45.52125           0 24c519b1a86d6460fc91bd254120ea40
-#&gt; 183 electric_bike 45.51857           0 81f618b4ddf54a4f3ae000c9e4da49d0
-#&gt; 184 electric_bike 45.53473           0 d004099be26b80175ef1ef881d06bfb7
-#&gt; 185 electric_bike 45.52339           0 0359b20fb3fad2213a6231bf9dd8ae12
-#&gt; 186 electric_bike 45.50718           0 dbbe7c81f5295f2f535d8c61e985b7bc
-#&gt; 187 electric_bike 45.53063           0 419e56be9963eed698a2492e93f4edc0
-#&gt; 188 electric_bike 45.49774           0 8bdb56b6b954b77eb6a449601f28c6a8
-#&gt; 189 electric_bike 45.52800           0 6c6307d09e36395c469f66dffbc7541b
-#&gt; 190 electric_bike 45.50233           0 d3f7a0c91d38137218d1ac3c5ad76a05
-#&gt;                              bike_id       lon is_disabled
-#&gt; 1   f3864af240c858af911f84d864a5ab89 -122.6854           0
-#&gt; 2   de89eec6d068b007cc1b4a5d7f25ac4a -122.6272           0
-#&gt; 3   035ccd4511e085b140de90ca2077ae45 -122.6517           0
-#&gt; 4   6c390508601dfbcc79641a41a36d8e25 -122.6511           0
-#&gt; 5   d924fc553f65682530b0a0e474eed4ed -122.6277           0
-#&gt; 6   ffbd332385cc45b836e5883f409c492c -122.6393           0
-#&gt; 7   56d664f6ebd3b04c3ba8d7a1259b4308 -122.6720           0
-#&gt; 8   8bc68d8d188d26e93a9e1a342d9e8487 -122.6201           0
-#&gt; 9   571a8483f7d0daeffd00676453ea7e14 -122.6668           0
-#&gt; 10  266fac00f4011a2348a5e6a0da4626ab -122.6202           0
-#&gt; 11  9392ef26761e2777f2ab2450355017cc -122.6421           0
-#&gt; 12  9f84bcc9717af4d968be78f269d33f00 -122.5952           0
-#&gt; 13  f0bdf96c5ed589cb11956439f15db76d -122.6953           0
-#&gt; 14  3e46f53cf174f0ba6812d72724aa19cf -122.6839           0
-#&gt; 15  e1c8a20e6fb9a7673eaca94b0c34b21f -122.6876           0
-#&gt; 16  2c6b35627f2a3f5a9764c4498fc791aa -122.6071           0
-#&gt; 17  167d75bce872eb58a74642fce7bebca1 -122.6473           0
-#&gt; 18  716de6fe08ae2bec111cbaa8b90f734e -122.6516           0
-#&gt; 19  c576cb4b4087a94ec7f57bbc1e711974 -122.6842           0
-#&gt; 20  ce185bc493eae11a98b50e3ec7a0930c -122.6556           0
-#&gt; 21  4fce62fcec9af43245b6bde692369ef6 -122.6636           0
-#&gt; 22  eaa722af56d35b2a59ddffcbcde931e5 -122.5808           0
-#&gt; 23  15a4030180690d704f3e699da9b88ad0 -122.6883           0
-#&gt; 24  7e4362e49b2058592b7252be097bee1e -122.6959           0
-#&gt; 25  ca1965aded8d03e21a31ba1e3e11f91e -122.6310           0
-#&gt; 26  f5d4927d816016293d12da022cf32575 -122.6766           0
-#&gt; 27  ec7e6e80c8f2ff23af82f84a0a2e6b41 -122.7048           0
-#&gt; 28  82b86d8398836c5f8a9b7933b9e4dc33 -122.6487           0
-#&gt; 29  055f59b5aab4d2e297fa4d004867f058 -122.6218           0
-#&gt; 30  d69663b2bb00cb5f1e17661caae246eb -122.6278           0
-#&gt; 31  5169e323c6dfdba6bee45adca134a319 -122.6878           0
-#&gt; 32  b3bd9d91d87a406aab988cd0deb6784b -122.6246           0
-#&gt; 33  0fc5e7ba74443c6fe7379ab7eee71ca8 -122.6754           0
-#&gt; 34  c6296a14a1748b4436efe6027a1c7763 -122.6797           0
-#&gt; 35  7a67a7ff7133ea15dc666a9366b0fb2d -122.6346           0
-#&gt; 36  2d280ffb74337ef42f673064ae9200c3 -122.6496           0
-#&gt; 37  db34dab99b4e1c0e6349733db2cc2ead -122.6570           0
-#&gt; 38  fca44ed346852d2f0bbe66df8dfe5d45 -122.6812           0
-#&gt; 39  26baf01ad01eebb9e17c999d4336bb77 -122.6742           0
-#&gt; 40  024031349c72d51e8cb9ad7b966c4ee0 -122.6736           0
-#&gt; 41  4715b6bd70531d0735adc14704341d4f -122.6800           0
-#&gt; 42  80f249fc134778849cc44b510aa58bd3 -122.6527           0
-#&gt; 43  05a1ebe987951f06450bb44b156e7b6d -122.6638           0
-#&gt; 44  4efdfd05b6f4805b5a45e93fc06bcdc2 -122.6205           0
-#&gt; 45  9aa7850a51f365d123e0f8a02985a128 -122.6821           0
-#&gt; 46  6438c092ecfa14728703853772d8fd1f -122.5748           0
-#&gt; 47  62872fff9605daabcf65972286d107e5 -122.6337           0
-#&gt; 48  a63af246730cb953cba7186c9495359e -122.6889           0
-#&gt; 49  8a77bc6e9234a5e7a57bdc0c90f18266 -122.6833           0
-#&gt; 50  34942f21ea308d12b05c0c210188f047 -122.6813           0
-#&gt; 51  1493cc34919294a0915eb85f4487a483 -122.6487           0
-#&gt; 52  f36868a1470b47a549013d9df3881676 -122.5861           0
-#&gt; 53  896cb418c9e1b8f5b9773391e84d8abf -122.6889           0
-#&gt; 54  4aed4f3f50314c8f00a275896a756d58 -122.6767           0
-#&gt; 55  1f39b83ce4e8c90cde4147685eb55933 -122.6961           0
-#&gt; 56  85237cd39ace1404b206f0fc1baa8b75 -122.6296           0
-#&gt; 57  7d6bdf05c671ad97032ceecce9dd53d3 -122.5676           0
-#&gt; 58  bfdd9f4d4698b0865b3e9cd756132c6c -122.6852           0
-#&gt; 59  5c966bfbcfb1d6f119f1f0d2b28be830 -122.6895           0
-#&gt; 60  cc8f7700e88b0f71a1045b9202ded982 -122.6805           0
-#&gt; 61  c5ec37b7356de396e1db2d78abfe6e63 -122.6765           0
-#&gt; 62  cdb291d04812a6b1faa474f5de882564 -122.6392           0
-#&gt; 63  1d368173edfca3ae9e853231c86ac482 -122.6803           0
-#&gt; 64  51d6b4c397b2762c5312153c749ba7bb -122.6982           0
-#&gt; 65  dc161cf095f7ee4ade71f8f67bc8b0f3 -122.5634           0
-#&gt; 66  8cac7c23b0dc1f9a683f3868e341a4c5 -122.6816           0
-#&gt; 67  48e6f313c432198d1d62e3d364b65837 -122.6344           0
-#&gt; 68  69ab09ac3a83e0f13702ca6b2396a047 -122.6582           0
-#&gt; 69  c1952e356b9092340c15575f07f7f560 -122.6924           0
-#&gt; 70  8489f7f8ae74178b9ff5db8719090612 -122.6818           0
-#&gt; 71  7b35e599507666904f57eef70745a0db -122.6955           0
-#&gt; 72  9324e598bc1a9818430b0b2a5a643bd3 -122.5507           0
-#&gt; 73  2f9d1788ed24a0f5e12c8c365b9dc635 -122.6706           0
-#&gt; 74  7dc40d4c6a752e24b5919efaac7590b4 -122.6681           0
-#&gt; 75  cff5756576639fe9bf66f01946c572d9 -122.7051           0
-#&gt; 76  3528ce7b19b9173f2c5c1e936188a97b -122.6627           0
-#&gt; 77  ecaf929f3944fe074f0c4ea3df4c4f0d -122.6894           0
-#&gt; 78  094462e2cd20fac3b370906174d44107 -122.6495           0
-#&gt; 79  e69608be07cbaf8cf5fd41c7ad414b18 -122.6812           0
-#&gt; 80  4bfc43b01303a18765d923b86f8d624f -122.6791           0
-#&gt; 81  e0320f3b0f2fdaeb556ce4e123a06242 -122.5960           0
-#&gt; 82  b2b125f34b2912ac7476ede587b3a871 -122.6637           0
-#&gt; 83  8a186eaa0dddcc828c004403f6baed42 -122.6871           0
-#&gt; 84  7523d21647e14fa8894a3c3985a40774 -122.5956           0
-#&gt; 85  086f9f6e4aec75c3cf67fdc6bf0c0355 -122.7086           0
-#&gt; 86  84111a1c8a847811ca542d094881557f -122.6607           0
-#&gt; 87  467fec4ad73893336fac56b1d56d5471 -122.6803           0
-#&gt; 88  4820207db66e8d79791c49dc4b17d626 -122.6976           0
-#&gt; 89  682f7f9a12ee623ae7a9358fa75e7572 -122.6213           0
-#&gt; 90  dc219c35ee9270ab63fe5f76a34a2e42 -122.6384           0
-#&gt; 91  6eb312a231739f20c71d7fd02d29b7b7 -122.6380           0
-#&gt; 92  9cdf55559cddd9ebbc2aa079c1642f73 -122.5823           0
-#&gt; 93  d0628344c5990cc35fe84b04be360093 -122.7083           0
-#&gt; 94  64b9ef46f2ac40b17dddc4424107fb2a -122.6617           0
-#&gt; 95  c93bfbb5686a3cdb1208dfdee7299d33 -122.6620           0
-#&gt; 96  bb330ad9aa2246733b48fc8537b50321 -122.6720           0
-#&gt; 97  f1608ddb474208e4a77e549e036d863a -122.6579           0
-#&gt; 98  d1fce8b46e284775acd112720e97c36a -122.6756           0
-#&gt; 99  3ff4fdb201466e3220da48c2b66820ed -122.6195           0
-#&gt; 100 d429ee0ec9f2181799e51259e7a88228 -122.6484           0
-#&gt; 101 1e685b134ca811be01e1f9de7fc1eb5c -122.6810           0
-#&gt; 102 012ff35359979467ab8572cade598a4e -122.6374           0
-#&gt; 103 d611603518da220a9faf16657724868f -122.6889           0
-#&gt; 104 2d54f26d2c88ff11735cd7ede9587c9b -122.5793           0
-#&gt; 105 277c2fd150a60d9eb7f104a4207297b6 -122.6615           0
-#&gt; 106 9b4eeefe067e20a383d030ed600889e2 -122.6202           0
-#&gt; 107 225ae1ad5b83c41e5a309b59f99faa14 -122.6810           0
-#&gt; 108 d9b8b22aba05b3530ec31cc43f37018b -122.5429           0
-#&gt; 109 ae61543f224a162bc9d4db047d7e9b97 -122.5429           0
-#&gt; 110 f9ff69fd926304672e784e0d76f3b0ce -122.6758           0
-#&gt; 111 a76aefc5b66a2e3c236b192fa28253aa -122.6965           0
-#&gt; 112 07cc235cc9343374170b8c31c83ad615 -122.6010           0
-#&gt; 113 15e2f9dfa82464027eada213df56981e -122.6203           0
-#&gt; 114 3eddfc42b2dd4748fe8066f274af87b1 -122.6823           0
-#&gt; 115 2083b5cfcba373474629c6c217e94dd8 -122.5534           0
-#&gt; 116 1cad726398d4271de95003f023b219cf -122.5889           0
-#&gt; 117 331b84e039e960cf1cb425451fd2908a -122.6093           0
-#&gt; 118 5a1fa6627f06fc1941c52b9d391322ca -122.6334           0
-#&gt; 119 ba6c2d51c3774e735e5b49a3e595fb67 -122.6042           0
-#&gt; 120 f8062d6eea207065f4b914e3ea774f21 -122.6256           0
-#&gt; 121 5556344f8109056f5c9275be06c4df92 -122.5816           0
-#&gt; 122 ec8eecc4912c322b75d928f73375771b -122.5625           0
-#&gt; 123 0c5d143377735ab906820ca25008b638 -122.6765           0
-#&gt; 124 9c8d25a77a15b369926ed7798fbe3300 -122.6038           0
-#&gt; 125 411af52537913394285fde79ae52dcf3 -122.6839           0
-#&gt; 126 a7b0658d522d9d7890541142d0b4fd8f -122.6284           0
-#&gt; 127 237a10728a7317b7b125ac8d277d6300 -122.6287           0
-#&gt; 128 261af525d87e1fc375758ee0d039b8fd -122.6507           0
-#&gt; 129 ad37075e107d22fe5bf275ecbd67a5ae -122.6497           0
-#&gt; 130 6d3461a683a6e183b5e48afc9de05393 -122.6806           0
-#&gt; 131 dd313546f1462149dcaa00503a468ae2 -122.6571           0
-#&gt; 132 37e3699b20c4d92cc81e077216d5b536 -122.6599           0
-#&gt; 133 7892abe8f3b4c3f7abae344dcc3ab71d -122.6680           0
-#&gt; 134 701126b21aca3fac8855bdc1fc9fa5f6 -122.6781           0
-#&gt; 135 97383fdfaad5bd21bd71fb09d9f82fc0 -122.6829           0
-#&gt; 136 0b66d30ad12e7767b6dcf9f269fe9e00 -122.6607           0
-#&gt; 137 91cce9fc79cdac9480efd0b00cc2eb9d -122.6530           0
-#&gt; 138 22a84cef97ae1004f00b83921cd755fe -122.6089           0
-#&gt; 139 889bb70d554d53fcc8c3e72984c4ca5b -122.5925           0
-#&gt; 140 b005766c43acac2ea6b808759c77b5fa -122.6366           0
-#&gt; 141 2a69676876d85dcbe4e3512bcf9a7ad1 -122.6756           0
-#&gt; 142 df0e4f84ede18d2bf9a028027a5233ee -122.6253           0
-#&gt; 143 7d4805ceb1d5920d8139f6b1f3b45f47 -122.6766           0
-#&gt; 144 7250bb30fa8a39e2a6ae2853c30631c1 -122.6022           0
-#&gt; 145 be4b26ae8e4f615d60032713e61e20d6 -122.6857           0
-#&gt; 146 a63a81e821549e8fcfb1cd7565fdde7f -122.6812           0
-#&gt; 147 003ad2183686edef254d71eda7be92e3 -122.6442           0
-#&gt; 148 8d433ba83beec45d4d9b4d2d39067977 -122.6568           0
-#&gt; 149 6ef7d02a2a57289b3ebacd3010869f2b -122.6390           0
-#&gt; 150 b87f9a70825c2180da5593e2e60f276e -122.6982           0
-#&gt; 151 4918c7afef92291993c0ab969a534bf2 -122.5969           0
-#&gt; 152 7c2996856b1cf0bf63fea15c68eceeff -122.5428           0
-#&gt; 153 447496d560fccbf8c4735d2ce02d3c99 -122.6708           0
-#&gt; 154 e1095d8f29cf096f82a3b2f6d4ce41a5 -122.6974           0
-#&gt; 155 74ac7c81ef489c1488e38e94f88c5ca6 -122.6639           0
-#&gt; 156 08271f7ee9d87f5f85bf833e2ddfb88c -122.6106           0
-#&gt; 157 8f036f60adb9111be3aa9df1082713b0 -122.6474           0
-#&gt; 158 97ec0110e3b52bf2087ae4cef1531619 -122.6339           0
-#&gt; 159 dc17332141c1db661eedcf322a016638 -122.6202           0
-#&gt; 160 6a0a4dd0c4b7c2bf5e08054820407ee2 -122.6056           0
-#&gt; 161 fee202aebca7550073946de8a2bc6c46 -122.6085           0
-#&gt; 162 a54b2306b4af385aa1f88200e3dc329e -122.5663           0
-#&gt; 163 db85ffb26e608e30cba2b48017fdcf7b -122.6677           0
-#&gt; 164 36f44dd37a5440a72b2e51f58c38e1b9 -122.5820           0
-#&gt; 165 cf868ee2ef4ab6c8e8dde15b30ba17a9 -122.6758           0
-#&gt; 166 9106a3c57822cba362e36fb537523b52 -122.6299           0
-#&gt; 167 a22fb51108f396ed9bce3d29f2712e52 -122.6668           0
-#&gt; 168 e9747c8869a4b93c6121859dd2e1df0b -122.6817           0
-#&gt; 169 04e570c0cef17eefd0c1c18a03b8af7e -122.6583           0
-#&gt; 170 f8ba4b216fae9e05679dae1a8b871dc9 -122.6287           0
-#&gt; 171 964ca8792266886f2f45e1163efe9c50 -122.6096           0
-#&gt; 172 918f9b017a2572ad785d441a16afeac0 -122.6937           0
-#&gt; 173 f573e5951c02c972741e36f902defb35 -122.6225           0
-#&gt; 174 d654a3715e60094d1f293be44a00601f -122.6784           0
-#&gt; 175 deb241edcab37fb733df0d86952bab48 -122.5887           0
-#&gt; 176 fde8551f4c033a3062614cbdcad5f6e2 -122.6421           0
-#&gt; 177 8c4278972ad01294d1f546dffb5d1770 -122.6534           0
-#&gt; 178 4dcdb92303f99ff76f7cc1749aa63480 -122.5801           0
-#&gt; 179 2ef3d42d7bc939835911508a033c2a96 -122.6433           0
-#&gt; 180 0c09f45407eaa82392d8caac0d1bdc81 -122.6720           0
-#&gt; 181 056dd8ff792f5d3cb7dfd5ab9be5a374 -122.6757           0
-#&gt; 182 24c519b1a86d6460fc91bd254120ea40 -122.6807           0
-#&gt; 183 81f618b4ddf54a4f3ae000c9e4da49d0 -122.6810           0
-#&gt; 184 d004099be26b80175ef1ef881d06bfb7 -122.6546           0
-#&gt; 185 0359b20fb3fad2213a6231bf9dd8ae12 -122.6925           0
-#&gt; 186 dbbe7c81f5295f2f535d8c61e985b7bc -122.6746           0
-#&gt; 187 419e56be9963eed698a2492e93f4edc0 -122.6890           0
-#&gt; 188 8bdb56b6b954b77eb6a449601f28c6a8 -122.5956           0
-#&gt; 189 6c6307d09e36395c469f66dffbc7541b -122.6808           0
-#&gt; 190 d3f7a0c91d38137218d1ac3c5ad76a05 -122.6720           0
+<span class='st'>"https://gbfs.biketownpdx.com/gbfs/en/free_bike_status.json"</span>,
+output = <span class='st'>"return"</span>)
+</div><div class='output co'>#&gt;              type                          bike_id      lat is_disabled
+#&gt; 1   electric_bike 75415701bc2d7984e72283b4aeb11e00 45.51745           0
+#&gt; 2   electric_bike 45f0eb8dfc00d5fde99f1f86b89c7204 45.56453           0
+#&gt; 3   electric_bike 772a6ceb2fbc94f004ea0fbb8e545a01 45.52101           0
+#&gt; 4   electric_bike bb5b2f80fa76335082d9f40dd3a6f5fb 45.48932           0
+#&gt; 5   electric_bike 1b03487f83e7f8f4953035872b2f5876 45.52497           0
+#&gt; 6   electric_bike 58f3003058018a431ce57613e65bc003 45.56829           0
+#&gt; 7   electric_bike b2ecc442e76c28aab727430f996f4896 45.51642           0
+#&gt; 8   electric_bike d663e4406d05620aef1748a1117519ec 45.51727           0
+#&gt; 9   electric_bike 16646a9a3c9ce8a3997fd3b0835f1a20 45.54361           0
+#&gt; 10  electric_bike 07b121d3410aa00e91544571153e4df6 45.49467           0
+#&gt; 11  electric_bike e68821989f7d51e6f4dfb0e2d6953ef1 45.53348           0
+#&gt; 12  electric_bike b4e1d40ff6cffcbc6ce07a9ae23f1272 45.56018           0
+#&gt; 13  electric_bike 5b6d816fdb40746a3aee414dac4ac54b 45.54370           0
+#&gt; 14  electric_bike 6b2831c272a0810c0e59cb5fd2ab13e9 45.53347           0
+#&gt; 15  electric_bike 44f54a70164c316609c3a54ecaa7700c 45.52578           0
+#&gt; 16  electric_bike 262f888850773650f5f0e29b058d9a31 45.52298           0
+#&gt; 17  electric_bike c463454886a6df29b8aa89c72b250bb9 45.52217           0
+#&gt; 18  electric_bike 96582ddb48be8cddf316f7e298c9f4f5 45.54241           0
+#&gt; 19  electric_bike fb6768a715f0ffcc30adf4f184422cd9 45.53496           0
+#&gt; 20  electric_bike c9c226db45384d62ba712b2ac0bf6925 45.53341           0
+#&gt; 21  electric_bike e8d853d22241100f8676133ea6ab2362 45.55196           0
+#&gt; 22  electric_bike 9045da1e89926338fdc6b15187a701bc 45.52370           0
+#&gt; 23  electric_bike 13168d8d67e0890856992b9d9b611c81 45.48299           0
+#&gt; 24  electric_bike ada7ae800cd0c05c334f028d314465d1 45.49199           0
+#&gt; 25  electric_bike 35b6e9956abc9bd9da2c5eabd158d745 45.57720           0
+#&gt; 26  electric_bike f9cb002f01109fdb51bd0372601e90a9 45.52005           0
+#&gt; 27  electric_bike 65e2c40ddb136cd55b602e234e37fdf5 45.54755           0
+#&gt; 28  electric_bike 473a40f15a744b497d4db962c3d769d2 45.50426           0
+#&gt; 29  electric_bike 976363ae3f19bbaba4b3c91135100149 45.52905           0
+#&gt; 30  electric_bike f60d7bf118bd869ef3c2068e169baff8 45.53093           0
+#&gt; 31  electric_bike 4a2f2f7751f3f7cfe52ec7138ea65e9b 45.51842           0
+#&gt; 32  electric_bike ba5396f3ea79e192f77b851eb0f8d3da 45.53444           0
+#&gt; 33  electric_bike d79eb9b8f852f00b4a41e6cec2b12528 45.49038           0
+#&gt; 34  electric_bike 9b76db24dcde06be5344f1e0789db75e 45.52171           0
+#&gt; 35  electric_bike 83de5df5abf609821c38ccdf4c2771ce 45.52572           0
+#&gt; 36  electric_bike 5e6c6ec7844b61a1df813c4c881ab0f1 45.53340           0
+#&gt; 37  electric_bike aa0818867c191712799d9fdfef54ed63 45.51724           0
+#&gt; 38  electric_bike 712f66c8a31bc1d038111ea1a09aaac9 45.51967           0
+#&gt; 39  electric_bike 4babd16cb09a4578242cc8d96c0ed268 45.56036           0
+#&gt; 40  electric_bike 85e4cec1652aacd8acd46e95280d9be4 45.51513           0
+#&gt; 41  electric_bike 81a7ae499b54a433b819c06aa03a1f1f 45.53732           0
+#&gt; 42  electric_bike cb086b8652e63b738d3cffb353087d7b 45.56209           0
+#&gt; 43  electric_bike 552b65eb2d446fc226695e10b59fa9f8 45.51773           0
+#&gt; 44  electric_bike cf24185bf01c5a106521e10cb00cb89a 45.52732           0
+#&gt; 45  electric_bike 5c2e65222d9f82d5247f67fdb7d0d2b6 45.50232           0
+#&gt; 46  electric_bike 364bcbc9435478e26e709f433f7b76e7 45.54140           0
+#&gt; 47  electric_bike de3f8ff94682f5e88569d8b7656384b2 45.52320           0
+#&gt; 48  electric_bike b237d864c7fcc5a61bd0501d1dc79d9c 45.48927           0
+#&gt; 49  electric_bike 40b84a21736964b2f0fcc2db4367df5e 45.49718           0
+#&gt; 50  electric_bike e266ca7c841a9a4a1a897a62fae851b5 45.49399           0
+#&gt; 51  electric_bike 8ba377504dbbd2091369d57a69146648 45.56278           0
+#&gt; 52  electric_bike 027f92bd2734ab2ea5b1c26a500e09c4 45.50231           0
+#&gt; 53  electric_bike 4dc978392c47196e68f2174f7d00d5e9 45.49035           0
+#&gt; 54  electric_bike cdc2f36fad4b4347d9abfb2a74e5fefd 45.52768           0
+#&gt; 55  electric_bike 8785e76ec98e1d32d7c15e32a5efed16 45.52805           0
+#&gt; 56  electric_bike c0cf2935032877b30a4844baccd1f493 45.52141           0
+#&gt; 57  electric_bike 62f275d9cf9d56c599e2b9d901c24ffc 45.57063           0
+#&gt; 58  electric_bike 9506c51f5c7018b0d6f201421a5dd9ee 45.55554           0
+#&gt; 59  electric_bike f1df7de57205cd511c304fed69a87bfb 45.53431           0
+#&gt; 60  electric_bike 393ffbeab8745d03bcc7d2936f6f961e 45.52616           0
+#&gt; 61  electric_bike 3f2d79b2428c2a794ac8239686e2c25e 45.56449           0
+#&gt; 62  electric_bike 9436fa29550b069d316070d010045728 45.52289           0
+#&gt; 63  electric_bike 0aca2a1baf88d4eb8d240baf5b6c3408 45.48312           0
+#&gt; 64  electric_bike ed8c0169a4b6793f7c7b8b7518fd92ed 45.47972           0
+#&gt; 65  electric_bike a036b6d03c69505de69217b6e606dfe9 45.54205           0
+#&gt; 66  electric_bike d2992533c6458873c0330ec13282b861 45.49666           0
+#&gt; 67  electric_bike 602ba54234837abd3e89d7285565d709 45.54689           0
+#&gt; 68  electric_bike b2e9853ef9902625e66bf6c130ed2b0b 45.51190           0
+#&gt; 69  electric_bike e9b43f44617120753e333dd1fc78b66b 45.51205           0
+#&gt; 70  electric_bike 3b8e866af5b5c6831afe26c999ea6342 45.51159           0
+#&gt; 71  electric_bike 04b6ca25328661e47f44828c26e11c3d 45.51857           0
+#&gt; 72  electric_bike 4b9a7b8f44e0b2b30951bc238175fd64 45.56614           0
+#&gt; 73  electric_bike 5e2966ca772ed968961bec4b56fa5f65 45.57705           0
+#&gt; 74  electric_bike 92e431036b91a8f039aab23098deec14 45.53740           0
+#&gt; 75  electric_bike 9ad9d8ffa57e7ebc8b684afd7c69730b 45.51313           0
+#&gt; 76  electric_bike aeff9072c1baf5b027cd4bfb1f0a996e 45.56830           0
+#&gt; 77  electric_bike ba987c1125c40ddfe33491c41db3987f 45.57721           0
+#&gt; 78  electric_bike 24b15713c6b190a0bcaccaa6a2bbd6a1 45.51786           0
+#&gt; 79  electric_bike cffc9c11742d84ea539592823cdd1c0e 45.53458           0
+#&gt; 80  electric_bike 3cc801278af09d6edcc8695188f91a77 45.51921           0
+#&gt; 81  electric_bike 71970dedf769de8316e80f667138cf32 45.57285           0
+#&gt; 82  electric_bike 5da77805ca88d494d952abce4f22a8ae 45.50879           0
+#&gt; 83  electric_bike a97b0f5b7f62cd78b6ce80ddca64a63e 45.52251           0
+#&gt; 84  electric_bike faa4cd85527d09dcd6595371214c15c5 45.52174           0
+#&gt; 85  electric_bike ac299510b815f37f75ae82471c2f6d80 45.55175           0
+#&gt; 86  electric_bike 4306f3b294de79430229f1def324359d 45.53320           0
+#&gt; 87  electric_bike 2897abc9c7d4d3bd4fc9c062dc7d72a1 45.56688           0
+#&gt; 88  electric_bike ff32aaaf33b133b7637fdd8243c52e2b 45.52649           0
+#&gt; 89  electric_bike e73f660a3b39ebd68b6afef8929608be 45.51764           0
+#&gt; 90  electric_bike 6ab9725e401e97b7fa8baefb7f650a25 45.52109           0
+#&gt; 91  electric_bike 56b13062f7753783876906bc403f95bf 45.51701           0
+#&gt; 92  electric_bike 671ae9dc2e9f9760ff0ec6eb70566699 45.51932           0
+#&gt; 93  electric_bike 4e9b643d236fc91e61a3660731b9b11c 45.52367           0
+#&gt; 94  electric_bike e61716965d102041b62a9b5f9512af66 45.52399           0
+#&gt; 95  electric_bike 576519f2a55225b81d0a296c23c92165 45.57688           0
+#&gt; 96  electric_bike 05a090ab50722cb22db08e210cbfc2d0 45.53345           0
+#&gt; 97  electric_bike 8e2349bc310b520e0f8351da26a1b0a8 45.54830           0
+#&gt; 98  electric_bike 522874c9526a46e09aca4b616956a0a8 45.53531           0
+#&gt; 99  electric_bike 64f4382d4ecc3af03a5c75532b899613 45.52593           0
+#&gt; 100 electric_bike 7fa11f6fd945c9a4d254e54d8150480a 45.50544           0
+#&gt; 101 electric_bike e76a0b417ebb282c113dcba508d98f09 45.56517           0
+#&gt; 102 electric_bike 80c4de5f1cdcbcc45876005c27325391 45.55989           0
+#&gt; 103 electric_bike f212eef718aa8475f0d8a9fc833807b3 45.51209           0
+#&gt; 104 electric_bike c1ecfbd4e1abcf5b704cadce53f5e380 45.51312           0
+#&gt; 105 electric_bike 65c69590885cb1f2fb92d876dacb9d53 45.52280           0
+#&gt; 106 electric_bike 242ea3a9af50266aa7b8dceebe60bc5f 45.51912           0
+#&gt; 107 electric_bike ae633ad92779ea0d9543fd6769ae420c 45.53616           0
+#&gt; 108 electric_bike 1aad33ca94275a5763e8d416c94e7149 45.51733           0
+#&gt; 109 electric_bike 9c650480a2948cf071bd933aabe54d0a 45.51227           0
+#&gt; 110 electric_bike ebdd1199295e20f820c023b1b3ce8efb 45.48297           0
+#&gt; 111 electric_bike 140a5f385ad32ee3d2c7227ad209a6f2 45.53653           0
+#&gt; 112 electric_bike 29e7cd296d5f3b44ceac9a70519e4619 45.50791           0
+#&gt; 113 electric_bike 3a3668e782279e838416433ce323a972 45.52112           0
+#&gt; 114 electric_bike eba1ad8e98b092afcd8dbd6cef44ba7c 45.51762           0
+#&gt; 115 electric_bike 7303f53882f9c7f5a93116a27d3b7116 45.56401           0
+#&gt; 116 electric_bike 4903239d3e03890a219f056e2b01cf3e 45.53506           0
+#&gt; 117 electric_bike 43e9fbc2ace63426384c610b5ff43df5 45.52041           0
+#&gt; 118 electric_bike 306ce909ebde3bbfba86a126b8c60d00 45.51702           0
+#&gt; 119 electric_bike bfde8de14a2fdfda037c4b86975649c9 45.50583           0
+#&gt; 120 electric_bike 17592620d24e33fd56db8de61c7f4a33 45.51459           0
+#&gt; 121 electric_bike c1d7dc83210cba0443c65b91581d2ab0 45.50628           0
+#&gt; 122 electric_bike 416aaa6d21e998f536b344a0ca6f3d13 45.52843           0
+#&gt; 123 electric_bike c8cfb743a937009ba04fefef74f818b1 45.57724           0
+#&gt; 124 electric_bike ddf7433ff8cec4801c1090bc38d321a1 45.54367           0
+#&gt; 125 electric_bike ce576213f855358940c746f4fe6c0d0a 45.52744           0
+#&gt; 126 electric_bike d8b501e2898f96e071b7dcd7d8e3ff23 45.49099           0
+#&gt; 127 electric_bike da0ba12a3fab6dd226ba46063f9ff443 45.49415           0
+#&gt; 128 electric_bike ab3fba13ff02125d2ba865114120a2dd 45.52980           0
+#&gt; 129 electric_bike 1de2f8ac05ed752acbd0232186138167 45.49021           0
+#&gt; 130 electric_bike 22504ed1f10a6fda1cc75e32b20cfbc8 45.50089           0
+#&gt; 131 electric_bike d6ca2dd660c37a5112a125e0fc6800c4 45.51206           0
+#&gt; 132 electric_bike 13f5aecbec4b3052ded519a58db3814e 45.51732           0
+#&gt; 133 electric_bike c6bdc9d8037bd49feaaaf809607ba56d 45.54043           0
+#&gt; 134 electric_bike 35cb243aa9417a009075951942d6d933 45.51739           0
+#&gt; 135 electric_bike ccd8180de489255f93f1b76c093f6b56 45.56526           0
+#&gt; 136 electric_bike 34911291973204ecb243deba06d8aa7c 45.52663           0
+#&gt; 137 electric_bike b9e1e341ecc4fa5f8306bf35dd6e5748 45.53731           0
+#&gt; 138 electric_bike 0f76566dcf5059a40a5d8a6091db6fe6 45.51921           0
+#&gt; 139 electric_bike 56f9c8fc7bfb6fb0f1bf35cb052f442d 45.51884           0
+#&gt; 140 electric_bike b0de5bcf261c8ae2bb311b8d53d183ae 45.55929           0
+#&gt; 141 electric_bike e1ede6c129ca1a0c3ccb3317b45e05d8 45.51642           0
+#&gt; 142 electric_bike 7b886c67cd61aab029bed74a84de00d9 45.50164           0
+#&gt; 143 electric_bike 091fa64163acd4d3ac1b4ae04ee9d23c 45.52224           0
+#&gt; 144 electric_bike e9bbf8f3c1385400de3cac593cd612d1 45.52617           0
+#&gt; 145 electric_bike a48f57040d883d185a04f231f73fb253 45.51742           0
+#&gt; 146 electric_bike 4a12f1e794960c19302dd98d713d2a0d 45.52389           0
+#&gt; 147 electric_bike bfacd24a158d427915bda36cc5ab922d 45.49016           0
+#&gt; 148 electric_bike 5bf012738dfd7de78f93a24dec25dc1e 45.51009           0
+#&gt; 149 electric_bike bee9b8ec2db08eb2ec45c606038b264a 45.51193           0
+#&gt; 150 electric_bike 216df4979ac8ccebff9213b749b22915 45.52658           0
+#&gt;           lon                             name is_reserved
+#&gt; 1   -122.6801 75415701bc2d7984e72283b4aeb11e00           0
+#&gt; 2   -122.6952 45f0eb8dfc00d5fde99f1f86b89c7204           0
+#&gt; 3   -122.6751 772a6ceb2fbc94f004ea0fbb8e545a01           0
+#&gt; 4   -122.6510 bb5b2f80fa76335082d9f40dd3a6f5fb           0
+#&gt; 5   -122.6985 1b03487f83e7f8f4953035872b2f5876           0
+#&gt; 6   -122.6393 58f3003058018a431ce57613e65bc003           0
+#&gt; 7   -122.6338 b2ecc442e76c28aab727430f996f4896           0
+#&gt; 8   -122.6601 d663e4406d05620aef1748a1117519ec           0
+#&gt; 9   -122.6306 16646a9a3c9ce8a3997fd3b0835f1a20           0
+#&gt; 10  -122.6228 07b121d3410aa00e91544571153e4df6           0
+#&gt; 11  -122.6204 e68821989f7d51e6f4dfb0e2d6953ef1           0
+#&gt; 12  -122.6378 b4e1d40ff6cffcbc6ce07a9ae23f1272           0
+#&gt; 13  -122.6306 5b6d816fdb40746a3aee414dac4ac54b           0
+#&gt; 14  -122.5568 6b2831c272a0810c0e59cb5fd2ab13e9           0
+#&gt; 15  -122.6841 44f54a70164c316609c3a54ecaa7700c           0
+#&gt; 16  -122.6756 262f888850773650f5f0e29b058d9a31           0
+#&gt; 17  -122.6280 c463454886a6df29b8aa89c72b250bb9           0
+#&gt; 18  -122.6505 96582ddb48be8cddf316f7e298c9f4f5           0
+#&gt; 19  -122.6637 fb6768a715f0ffcc30adf4f184422cd9           0
+#&gt; 20  -122.7029 c9c226db45384d62ba712b2ac0bf6925           0
+#&gt; 21  -122.6474 e8d853d22241100f8676133ea6ab2362           0
+#&gt; 22  -122.6722 9045da1e89926338fdc6b15187a701bc           0
+#&gt; 23  -122.5777 13168d8d67e0890856992b9d9b611c81           0
+#&gt; 24  -122.6278 ada7ae800cd0c05c334f028d314465d1           0
+#&gt; 25  -122.6883 35b6e9956abc9bd9da2c5eabd158d745           0
+#&gt; 26  -122.6820 f9cb002f01109fdb51bd0372601e90a9           0
+#&gt; 27  -122.6640 65e2c40ddb136cd55b602e234e37fdf5           0
+#&gt; 28  -122.6611 473a40f15a744b497d4db962c3d769d2           0
+#&gt; 29  -122.5579 976363ae3f19bbaba4b3c91135100149           0
+#&gt; 30  -122.6987 f60d7bf118bd869ef3c2068e169baff8           0
+#&gt; 31  -122.6799 4a2f2f7751f3f7cfe52ec7138ea65e9b           0
+#&gt; 32  -122.6610 ba5396f3ea79e192f77b851eb0f8d3da           0
+#&gt; 33  -122.6278 d79eb9b8f852f00b4a41e6cec2b12528           0
+#&gt; 34  -122.6787 9b76db24dcde06be5344f1e0789db75e           0
+#&gt; 35  -122.6494 83de5df5abf609821c38ccdf4c2771ce           0
+#&gt; 36  -122.5445 5e6c6ec7844b61a1df813c4c881ab0f1           0
+#&gt; 37  -122.6645 aa0818867c191712799d9fdfef54ed63           0
+#&gt; 38  -122.6736 712f66c8a31bc1d038111ea1a09aaac9           0
+#&gt; 39  -122.6369 4babd16cb09a4578242cc8d96c0ed268           0
+#&gt; 40  -122.6495 85e4cec1652aacd8acd46e95280d9be4           0
+#&gt; 41  -122.6874 81a7ae499b54a433b819c06aa03a1f1f           0
+#&gt; 42  -122.6205 cb086b8652e63b738d3cffb353087d7b           0
+#&gt; 43  -122.6760 552b65eb2d446fc226695e10b59fa9f8           0
+#&gt; 44  -122.6415 cf24185bf01c5a106521e10cb00cb89a           0
+#&gt; 45  -122.6720 5c2e65222d9f82d5247f67fdb7d0d2b6           0
+#&gt; 46  -122.6587 364bcbc9435478e26e709f433f7b76e7           0
+#&gt; 47  -122.6902 de3f8ff94682f5e88569d8b7656384b2           0
+#&gt; 48  -122.5961 b237d864c7fcc5a61bd0501d1dc79d9c           0
+#&gt; 49  -122.6720 40b84a21736964b2f0fcc2db4367df5e           0
+#&gt; 50  -122.5946 e266ca7c841a9a4a1a897a62fae851b5           0
+#&gt; 51  -122.6668 8ba377504dbbd2091369d57a69146648           0
+#&gt; 52  -122.6720 027f92bd2734ab2ea5b1c26a500e09c4           0
+#&gt; 53  -122.6288 4dc978392c47196e68f2174f7d00d5e9           0
+#&gt; 54  -122.6767 cdc2f36fad4b4347d9abfb2a74e5fefd           0
+#&gt; 55  -122.6288 8785e76ec98e1d32d7c15e32a5efed16           0
+#&gt; 56  -122.6982 c0cf2935032877b30a4844baccd1f493           0
+#&gt; 57  -122.7068 62f275d9cf9d56c599e2b9d901c24ffc           0
+#&gt; 58  -122.6720 9506c51f5c7018b0d6f201421a5dd9ee           0
+#&gt; 59  -122.6332 f1df7de57205cd511c304fed69a87bfb           0
+#&gt; 60  -122.6786 393ffbeab8745d03bcc7d2936f6f961e           0
+#&gt; 61  -122.6530 3f2d79b2428c2a794ac8239686e2c25e           0
+#&gt; 62  -122.6757 9436fa29550b069d316070d010045728           0
+#&gt; 63  -122.5801 0aca2a1baf88d4eb8d240baf5b6c3408           0
+#&gt; 64  -122.5680 ed8c0169a4b6793f7c7b8b7518fd92ed           0
+#&gt; 65  -122.6239 a036b6d03c69505de69217b6e606dfe9           0
+#&gt; 66  -122.6686 d2992533c6458873c0330ec13282b861           0
+#&gt; 67  -122.6679 602ba54234837abd3e89d7285565d709           0
+#&gt; 68  -122.6277 b2e9853ef9902625e66bf6c130ed2b0b           0
+#&gt; 69  -122.6332 e9b43f44617120753e333dd1fc78b66b           0
+#&gt; 70  -122.6586 3b8e866af5b5c6831afe26c999ea6342           0
+#&gt; 71  -122.6791 04b6ca25328661e47f44828c26e11c3d           0
+#&gt; 72  -122.6824 4b9a7b8f44e0b2b30951bc238175fd64           0
+#&gt; 73  -122.6874 5e2966ca772ed968961bec4b56fa5f65           0
+#&gt; 74  -122.6536 92e431036b91a8f039aab23098deec14           0
+#&gt; 75  -122.5786 9ad9d8ffa57e7ebc8b684afd7c69730b           0
+#&gt; 76  -122.6382 aeff9072c1baf5b027cd4bfb1f0a996e           0
+#&gt; 77  -122.6975 ba987c1125c40ddfe33491c41db3987f           0
+#&gt; 78  -122.6542 24b15713c6b190a0bcaccaa6a2bbd6a1           0
+#&gt; 79  -122.6214 cffc9c11742d84ea539592823cdd1c0e           0
+#&gt; 80  -122.5823 3cc801278af09d6edcc8695188f91a77           0
+#&gt; 81  -122.6689 71970dedf769de8316e80f667138cf32           0
+#&gt; 82  -122.6599 5da77805ca88d494d952abce4f22a8ae           0
+#&gt; 83  -122.5527 a97b0f5b7f62cd78b6ce80ddca64a63e           0
+#&gt; 84  -122.6824 faa4cd85527d09dcd6595371214c15c5           0
+#&gt; 85  -122.6757 ac299510b815f37f75ae82471c2f6d80           0
+#&gt; 86  -122.6616 4306f3b294de79430229f1def324359d           0
+#&gt; 87  -122.6610 2897abc9c7d4d3bd4fc9c062dc7d72a1           0
+#&gt; 88  -122.6808 ff32aaaf33b133b7637fdd8243c52e2b           0
+#&gt; 89  -122.6515 e73f660a3b39ebd68b6afef8929608be           0
+#&gt; 90  -122.6615 6ab9725e401e97b7fa8baefb7f650a25           0
+#&gt; 91  -122.6850 56b13062f7753783876906bc403f95bf           0
+#&gt; 92  -122.6575 671ae9dc2e9f9760ff0ec6eb70566699           0
+#&gt; 93  -122.6634 4e9b643d236fc91e61a3660731b9b11c           0
+#&gt; 94  -122.6997 e61716965d102041b62a9b5f9512af66           0
+#&gt; 95  -122.6954 576519f2a55225b81d0a296c23c92165           0
+#&gt; 96  -122.6203 05a090ab50722cb22db08e210cbfc2d0           0
+#&gt; 97  -122.6043 8e2349bc310b520e0f8351da26a1b0a8           0
+#&gt; 98  -122.7086 522874c9526a46e09aca4b616956a0a8           0
+#&gt; 99  -122.6839 64f4382d4ecc3af03a5c75532b899613           0
+#&gt; 100 -122.5833 7fa11f6fd945c9a4d254e54d8150480a           0
+#&gt; 101 -122.6093 e76a0b417ebb282c113dcba508d98f09           0
+#&gt; 102 -122.6267 80c4de5f1cdcbcc45876005c27325391           0
+#&gt; 103 -122.6557 f212eef718aa8475f0d8a9fc833807b3           0
+#&gt; 104 -122.5786 c1ecfbd4e1abcf5b704cadce53f5e380           0
+#&gt; 105 -122.6597 65c69590885cb1f2fb92d876dacb9d53           0
+#&gt; 106 -122.6839 242ea3a9af50266aa7b8dceebe60bc5f           0
+#&gt; 107 -122.6668 ae633ad92779ea0d9543fd6769ae420c           0
+#&gt; 108 -122.6581 1aad33ca94275a5763e8d416c94e7149           0
+#&gt; 109 -122.6435 9c650480a2948cf071bd933aabe54d0a           0
+#&gt; 110 -122.5801 ebdd1199295e20f820c023b1b3ce8efb           0
+#&gt; 111 -122.6486 140a5f385ad32ee3d2c7227ad209a6f2           0
+#&gt; 112 -122.6548 29e7cd296d5f3b44ceac9a70519e4619           0
+#&gt; 113 -122.6807 3a3668e782279e838416433ce323a972           0
+#&gt; 114 -122.6761 eba1ad8e98b092afcd8dbd6cef44ba7c           0
+#&gt; 115 -122.6608 7303f53882f9c7f5a93116a27d3b7116           0
+#&gt; 116 -122.6528 4903239d3e03890a219f056e2b01cf3e           0
+#&gt; 117 -122.6743 43e9fbc2ace63426384c610b5ff43df5           0
+#&gt; 118 -122.5925 306ce909ebde3bbfba86a126b8c60d00           0
+#&gt; 119 -122.6644 bfde8de14a2fdfda037c4b86975649c9           0
+#&gt; 120 -122.6754 17592620d24e33fd56db8de61c7f4a33           0
+#&gt; 121 -122.6297 c1d7dc83210cba0443c65b91581d2ab0           0
+#&gt; 122 -122.6616 416aaa6d21e998f536b344a0ca6f3d13           0
+#&gt; 123 -122.6974 c8cfb743a937009ba04fefef74f818b1           0
+#&gt; 124 -122.6308 ddf7433ff8cec4801c1090bc38d321a1           0
+#&gt; 125 -122.6768 ce576213f855358940c746f4fe6c0d0a           0
+#&gt; 126 -122.5716 d8b501e2898f96e071b7dcd7d8e3ff23           0
+#&gt; 127 -122.5765 da0ba12a3fab6dd226ba46063f9ff443           0
+#&gt; 128 -122.6842 ab3fba13ff02125d2ba865114120a2dd           0
+#&gt; 129 -122.6195 1de2f8ac05ed752acbd0232186138167           0
+#&gt; 130 -122.6817 22504ed1f10a6fda1cc75e32b20cfbc8           0
+#&gt; 131 -122.6238 d6ca2dd660c37a5112a125e0fc6800c4           0
+#&gt; 132 -122.6595 13f5aecbec4b3052ded519a58db3814e           0
+#&gt; 133 -122.6094 c6bdc9d8037bd49feaaaf809607ba56d           0
+#&gt; 134 -122.6846 35cb243aa9417a009075951942d6d933           0
+#&gt; 135 -122.6820 ccd8180de489255f93f1b76c093f6b56           0
+#&gt; 136 -122.6779 34911291973204ecb243deba06d8aa7c           0
+#&gt; 137 -122.6874 b9e1e341ecc4fa5f8306bf35dd6e5748           0
+#&gt; 138 -122.5823 0f76566dcf5059a40a5d8a6091db6fe6           0
+#&gt; 139 -122.6640 56f9c8fc7bfb6fb0f1bf35cb052f442d           0
+#&gt; 140 -122.6205 b0de5bcf261c8ae2bb311b8d53d183ae           0
+#&gt; 141 -122.6478 e1ede6c129ca1a0c3ccb3317b45e05d8           0
+#&gt; 142 -122.6131 7b886c67cd61aab029bed74a84de00d9           0
+#&gt; 143 -122.6845 091fa64163acd4d3ac1b4ae04ee9d23c           0
+#&gt; 144 -122.5583 e9bbf8f3c1385400de3cac593cd612d1           0
+#&gt; 145 -122.6749 a48f57040d883d185a04f231f73fb253           0
+#&gt; 146 -122.6598 4a12f1e794960c19302dd98d713d2a0d           0
+#&gt; 147 -122.5978 bfacd24a158d427915bda36cc5ab922d           0
+#&gt; 148 -122.5695 5bf012738dfd7de78f93a24dec25dc1e           0
+#&gt; 149 -122.6278 bee9b8ec2db08eb2ec45c606038b264a           0
+#&gt; 150 -122.6863 216df4979ac8ccebff9213b749b22915           0
 #&gt;                     rental_uris.android                     rental_uris.ios
 #&gt; 1   https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
 #&gt; 2   https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
@@ -1684,237 +640,157 @@ are released by a given city.</p></div>
 #&gt; 148 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
 #&gt; 149 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
 #&gt; 150 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 151 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 152 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 153 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 154 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 155 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 156 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 157 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 158 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 159 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 160 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 161 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 162 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 163 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 164 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 165 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 166 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 167 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 168 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 169 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 170 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 171 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 172 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 173 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 174 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 175 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 176 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 177 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 178 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 179 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 180 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 181 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 182 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 183 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 184 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 185 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 186 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 187 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 188 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 189 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
-#&gt; 190 https://pdx.lft.to/lastmile_qr_scan https://pdx.lft.to/lastmile_qr_scan
 #&gt;            last_updated year month day hour minute
-#&gt; 1   2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 2   2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 3   2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 4   2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 5   2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 6   2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 7   2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 8   2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 9   2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 10  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 11  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 12  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 13  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 14  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 15  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 16  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 17  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 18  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 19  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 20  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 21  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 22  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 23  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 24  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 25  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 26  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 27  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 28  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 29  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 30  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 31  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 32  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 33  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 34  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 35  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 36  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 37  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 38  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 39  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 40  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 41  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 42  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 43  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 44  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 45  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 46  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 47  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 48  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 49  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 50  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 51  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 52  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 53  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 54  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 55  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 56  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 57  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 58  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 59  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 60  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 61  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 62  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 63  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 64  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 65  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 66  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 67  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 68  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 69  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 70  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 71  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 72  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 73  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 74  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 75  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 76  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 77  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 78  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 79  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 80  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 81  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 82  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 83  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 84  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 85  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 86  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 87  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 88  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 89  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 90  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 91  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 92  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 93  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 94  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 95  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 96  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 97  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 98  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 99  2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 100 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 101 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 102 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 103 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 104 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 105 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 106 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 107 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 108 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 109 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 110 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 111 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 112 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 113 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 114 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 115 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 116 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 117 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 118 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 119 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 120 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 121 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 122 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 123 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 124 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 125 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 126 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 127 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 128 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 129 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 130 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 131 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 132 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 133 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 134 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 135 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 136 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 137 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 138 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 139 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 140 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 141 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 142 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 143 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 144 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 145 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 146 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 147 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 148 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 149 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 150 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 151 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 152 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 153 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 154 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 155 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 156 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 157 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 158 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 159 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 160 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 161 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 162 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 163 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 164 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 165 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 166 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 167 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 168 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 169 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 170 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 171 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 172 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 173 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 174 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 175 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 176 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 177 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 178 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 179 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 180 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 181 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 182 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 183 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 184 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 185 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 186 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 187 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 188 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 189 2020-12-29 21:01:20 2020    12  29   21      1
-#&gt; 190 2020-12-29 21:01:20 2020    12  29   21      1</div><div class='input'>
+#&gt; 1   2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 2   2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 3   2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 4   2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 5   2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 6   2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 7   2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 8   2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 9   2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 10  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 11  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 12  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 13  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 14  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 15  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 16  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 17  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 18  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 19  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 20  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 21  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 22  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 23  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 24  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 25  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 26  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 27  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 28  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 29  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 30  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 31  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 32  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 33  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 34  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 35  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 36  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 37  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 38  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 39  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 40  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 41  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 42  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 43  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 44  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 45  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 46  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 47  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 48  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 49  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 50  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 51  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 52  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 53  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 54  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 55  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 56  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 57  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 58  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 59  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 60  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 61  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 62  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 63  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 64  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 65  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 66  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 67  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 68  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 69  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 70  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 71  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 72  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 73  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 74  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 75  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 76  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 77  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 78  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 79  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 80  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 81  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 82  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 83  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 84  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 85  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 86  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 87  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 88  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 89  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 90  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 91  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 92  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 93  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 94  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 95  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 96  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 97  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 98  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 99  2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 100 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 101 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 102 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 103 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 104 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 105 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 106 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 107 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 108 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 109 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 110 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 111 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 112 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 113 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 114 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 115 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 116 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 117 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 118 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 119 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 120 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 121 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 122 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 123 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 124 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 125 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 126 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 127 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 128 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 129 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 130 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 131 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 132 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 133 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 134 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 135 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 136 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 137 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 138 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 139 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 140 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 141 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 142 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 143 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 144 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 145 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 146 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 147 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 148 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 149 2021-01-05 17:40:05 2021     1   5   17     40
+#&gt; 150 2021-01-05 17:40:05 2021     1   5   17     40</div><div class='input'>                     
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

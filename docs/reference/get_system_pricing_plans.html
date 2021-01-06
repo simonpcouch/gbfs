@@ -181,27 +181,24 @@ functions, and [get_which_gbfs_feeds()] for a dataframe of which feeds
 are released by a given city.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># we can grab the free bike status feed for portland, </span>
-<span class='co'># orgeon's bikeshare program in  several ways! first, supply the `city` </span>
+    <pre class="examples"><div class='input'><span class='co'># grab the system pricing plans feed for greenville's </span>
+<span class='co'># "divvy" bikeshare program. first, supply the `city` </span>
 <span class='co'># argument as a URL, and save to file by leaving output </span>
 <span class='co'># set to it's default. usually, we would supply a character </span>
-<span class='co'># string (like "pdx", maybe,) for the `directory` argument </span>
+<span class='co'># string (like "divvy", maybe,) for the `directory` argument </span>
 <span class='co'># instead of `tempdir`.</span>
 <span class='fu'>get_system_pricing_plans</span>(city = 
 <span class='st'>"https://gbfs.bcycle.com/bcycle_greenville/system_pricing_plans.json"</span>,  
-                         directory = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-</div><div class='output co'>#&gt; <span class='message'>There was an issue connecting with the given gbfs provider. The response is printed below: </span>
-#&gt; <span class='message'>HTTP error 404.open.connection(con, "rb")</span></div><div class='output co'>#&gt; <span class='error'>Error in data_raw[[last_updated_index]]: attempt to select less than one element in get1index</span></div><div class='input'>                    
-<span class='co'># or, instead, just supply the name of </span>
-<span class='co'># the city as a string. </span>
-<span class='fu'>get_system_pricing_plans</span>(city = <span class='st'>"biketown_pdx"</span>,
-                         directory = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-</div><div class='output co'>#&gt; <span class='error'>Error in find_feed_from_top_level(dplyr::pull(url), feed_): The supplied "city" argument looks like the top-level "gbfs.json" URL, but the webpage for the system_pricing_plans .json feed doesn't seem to exist. Please supply the actual URL or the name of the city as a string.</span></div><div class='input'>                    
-<span class='co'># instead of saving the output as a file, we can </span>
-<span class='co'># just return the output as a dataframe</span>
-<span class='fu'>get_system_pricing_plans</span>(city = <span class='st'>"biketown_pdx"</span>,  
                          output = <span class='st'>"return"</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in find_feed_from_top_level(dplyr::pull(url), feed_): The supplied "city" argument looks like the top-level "gbfs.json" URL, but the webpage for the system_pricing_plans .json feed doesn't seem to exist. Please supply the actual URL or the name of the city as a string.</span></div></pre>
+</div><div class='output co'>#&gt;   price is_taxable                   url
+#&gt; 1     5          0 greenville.bcycle.com
+#&gt; 2    15          0 greenville.bcycle.com
+#&gt;                                                                                                     description
+#&gt; 1                                                                                             $5 per 30 minutes
+#&gt; 2 $15 for unlimited 60-minute rides for 24 hours. Rides over 60 minutes accrue usage fees of $3 per 30 minutes.
+#&gt;   currency        name               plan_id
+#&gt; 1      USD Single Ride bcycle_greenville_651
+#&gt; 2      USD    Day Pass bcycle_greenville_652</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
