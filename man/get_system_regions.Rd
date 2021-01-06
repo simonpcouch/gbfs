@@ -51,12 +51,8 @@ a given city.  Metadata for this dataset can be found at:
                    directory = tempdir())}
                     
 # or, instead, just supply the name of 
-# the city as a string. 
-\donttest{get_system_regions(city = "biketown_pdx",
-                   directory = tempdir())}
-                    
-# instead of saving the output as a file, we can 
-# just return the output as a dataframe
+# the city as a string and return the output
+# as a dataframe
 \donttest{get_system_regions(city = "biketown_pdx",  
                    output = "return")}
 }

@@ -40,15 +40,9 @@
 #'                         directory = tempdir())}
 #'                     
 #' # or, instead, just supply the name of 
-#' # the city as a string. 
-#'\donttest{get_station_information(city = "biketown_pdx",
-#'                         directory = tempdir())}
-#'                     
-#' # instead of saving the output as a file, we can 
-#' # just return the output as a dataframe
-#' \donttest{get_station_information(city = "biketown_pdx",  
+#' # the city as a string and return the output as a dataframe 
+#'\donttest{get_station_information(city = "biketown_pdx",  
 #'                         output = "return")}
-#'
 #' 
 #' @export
 get_station_information <- function(city, directory = NULL, file = "station_information.rds", output = NULL) {
@@ -146,13 +140,8 @@ get_system_hours <- function (city, directory = NULL, file = "system_hours.rds",
 #'                        directory = tempdir())}
 #'                     
 #' # or, instead, just supply the name of 
-#' # the city as a string. 
-#'\donttest{get_system_information(city = "biketown_pdx",
-#'                        directory = tempdir())}
-#'                     
-#' # instead of saving the output as a file, we can 
-#' # just return the output as a dataframe
-#' \donttest{get_system_information(city = "biketown_pdx",  
+#' # the city as a string and return the output as a dataframe
+#'\donttest{get_system_information(city = "biketown_pdx",  
 #'                        output = "return")}
 #' @export
 
@@ -208,13 +197,9 @@ get_system_pricing_plans <- function(city, directory = NULL, file = "system_pric
 #'                    directory = tempdir())}
 #'                     
 #' # or, instead, just supply the name of 
-#' # the city as a string. 
-#'\donttest{get_system_regions(city = "biketown_pdx",
-#'                    directory = tempdir())}
-#'                     
-#' # instead of saving the output as a file, we can 
-#' # just return the output as a dataframe
-#' \donttest{get_system_regions(city = "biketown_pdx",  
+#' # the city as a string and return the output
+#' # as a dataframe
+#'\donttest{get_system_regions(city = "biketown_pdx",  
 #'                    output = "return")}
 #' @export
 get_system_regions <- function(city, directory = NULL, file = "system_regions.rds", output = NULL) {

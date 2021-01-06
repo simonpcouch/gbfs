@@ -51,8 +51,7 @@ can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 # the `city` argument can also be supplied as an
 # actual URL to an active .json feed
 \donttest{get_free_bike_status(city = 
-"https://gbfs.biketownpdx.com/gbfs/en/free_bike_status.json",  
-                     directory = tempdir())}
+"https://gbfs.biketownpdx.com/gbfs/en/free_bike_status.json")}
 
 # if you'd like to save the output to file, supply a 
 # `directory` argument. usually, though, we would supply a 

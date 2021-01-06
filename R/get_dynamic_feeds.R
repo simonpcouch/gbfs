@@ -22,8 +22,7 @@
 #' # the `city` argument can also be supplied as an
 #' # actual URL to an active .json feed
 #' \donttest{get_free_bike_status(city = 
-#' "https://gbfs.biketownpdx.com/gbfs/en/free_bike_status.json",  
-#'                      directory = tempdir())}
+#' "https://gbfs.biketownpdx.com/gbfs/en/free_bike_status.json")}
 #' 
 #' # if you'd like to save the output to file, supply a 
 #' # `directory` argument. usually, though, we would supply a 
@@ -59,8 +58,7 @@ get_free_bike_status <- function(city, directory = NULL, file = "free_bike_statu
 #' # the `city` argument can also be supplied as an
 #' # actual URL to an active .json feed
 #' \donttest{get_station_status(city = 
-#' "https://gbfs.biketownpdx.com/gbfs/en/station_status.json",  
-#'                      directory = tempdir())}
+#' "https://gbfs.biketownpdx.com/gbfs/en/station_status.json")}
 #' 
 #' # if you'd like to save the output to file, supply a 
 #' # `directory` argument. usually, though, we would supply a 
