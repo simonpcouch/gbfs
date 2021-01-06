@@ -13,7 +13,7 @@ test_that("dynamic feeds work", {
 
 test_that("file saving and overwriting works", {
   
-  skip_if_offline(host = "r-project.org")
+  skip("row-binding trips up on GHA")
   
   # make a temporary directory
   dir <- tempdir()
