@@ -32,12 +32,6 @@
 #' \donttest{get_free_bike_status(city = "biketown_pdx",  
 #'                      directory = tempdir())}
 #'                      
-#' # the output argument can control whether the file is
-#' # saved and/or returned explicitly
-#' \donttest{get_free_bike_status(city = "biketown_pdx",  
-#'                      directory = tempdir(),
-#'                      output = "both")}                     
-#' 
 #' @export
 get_free_bike_status <- function(city, directory = NULL, file = "free_bike_status.rds", output = NULL) {
 
@@ -75,11 +69,6 @@ get_free_bike_status <- function(city, directory = NULL, file = "free_bike_statu
 #' \donttest{get_station_status(city = "biketown_pdx",  
 #'                      directory = tempdir())}
 #'                      
-#' # the output argument can control whether the file is
-#' # saved and/or returned explicitly
-#' \donttest{get_station_status(city = "biketown_pdx",  
-#'                      directory = tempdir(),
-#'                      output = "both")} 
 #' @export
 get_station_status <- function(city, directory = NULL, file = "station_status.rds", output = NULL) {
 

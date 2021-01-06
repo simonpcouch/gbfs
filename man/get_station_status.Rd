@@ -61,11 +61,6 @@ can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 \donttest{get_station_status(city = "biketown_pdx",  
                      directory = tempdir())}
                      
-# the output argument can control whether the file is
-# saved and/or returned explicitly
-\donttest{get_station_status(city = "biketown_pdx",  
-                     directory = tempdir(),
-                     output = "both")} 
 }
 \seealso{
 [get_gbfs()] for a wrapper to call each of the \code{get_feed}
