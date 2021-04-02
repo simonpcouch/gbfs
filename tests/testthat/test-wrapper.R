@@ -6,7 +6,6 @@ context("wrapper")
 # failure of the software
 biketown <- get_gbfs("biketown_pdx")
 bike_itau <- get_gbfs("santiago")
-greenville_bcycle <- get_gbfs("greenville")
 bird <- get_gbfs("https://mds.bird.co/gbfs/chicago/gbfs.json")
 
 
@@ -17,7 +16,6 @@ test_that("main wrapper works", {
   
   expect_equal(class(biketown), "list")
   expect_equal(class(bike_itau), "list")
-  expect_equal(class(greenville_bcycle), "list")
   expect_equal(class(bird), "list")
   
 })

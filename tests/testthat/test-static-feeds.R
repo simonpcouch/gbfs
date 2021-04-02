@@ -16,6 +16,4 @@ test_that("static feeds work", {
   get_system_information("https://gbfs.biketownpdx.com/gbfs/en/system_information.json")
   
   get_system_regions("https://gbfs.biketownpdx.com/gbfs/en/system_regions.json")
-  
-  get_system_pricing_plans("https://gbfs.bcycle.com/bcycle_greenville/system_pricing_plans.json")
 })

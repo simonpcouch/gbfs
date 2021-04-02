@@ -148,16 +148,6 @@ get_system_information <- function(city, directory = NULL, file = "system_inform
 #' 
 #' @inherit get_station_information params return seealso 
 #' 
-#' @examples
-#' # grab the system pricing plans feed for greenville's 
-#' # "divvy" bikeshare program. first, supply the `city` 
-#' # argument as a URL, and save to file by leaving output 
-#' # set to it's default. usually, we would supply a character 
-#' # string (like "divvy", maybe,) for the `directory` argument 
-#' # instead of `tempdir`.
-#' \donttest{get_system_pricing_plans(city = 
-#' "https://gbfs.bcycle.com/bcycle_greenville/system_pricing_plans.json",  
-#'                          output = "return")}
 #' @export
 
 get_system_pricing_plans <- function(city, directory = NULL, file = "system_pricing_plans.rds", output = NULL) {

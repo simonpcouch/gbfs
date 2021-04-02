@@ -39,17 +39,6 @@ feed, a dataframe object, or both.
 feed for a given city. Metadata for this dataset can be found at: 
 \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 }
-\examples{
-# grab the system pricing plans feed for greenville's 
-# "divvy" bikeshare program. first, supply the `city` 
-# argument as a URL, and save to file by leaving output 
-# set to it's default. usually, we would supply a character 
-# string (like "divvy", maybe,) for the `directory` argument 
-# instead of `tempdir`.
-\donttest{get_system_pricing_plans(city = 
-"https://gbfs.bcycle.com/bcycle_greenville/system_pricing_plans.json",  
-                         output = "return")}
-}
 \seealso{
 [get_gbfs()] for a wrapper to call each of the \code{get_feed}
 functions, [get_gbfs_cities()] for a dataframe of cities releasing gbfs
