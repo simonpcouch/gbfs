@@ -45,7 +45,7 @@ test_that("argument checking works", {
                "https://gbfs.biketownpdx.com/gbfs/en/station_information.json") 
   
   # several matching cities
-  expect_error(city_to_url(city_ = "nextbike_na",
+  expect_error(city_to_url(city_ = "los angeles",
                            feed_ = "gbfs"),
                "Several cities matched") 
   
