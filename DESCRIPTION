@@ -1,7 +1,7 @@
 Package: gbfs
 Type: Package
 Title: Interface with Live Bikeshare Data
-Version: 1.3.6.9000
+Version: 1.3.7
 Authors@R: c(
     person("Simon P.", "Couch", , "simonpatrickcouch@gmail.com", c("aut", "cre")),
     person("Kaelyn", "Rosenberg", , "kaerosenberg@gmail.com", c("aut")),

@@ -1,5 +1,12 @@
 # News
 
+### 1.3.7
+
+  - Update URLs in examples and unit tests to reflect bikeshare systems
+    adjusting operations due to COVID-19
+  - Catch errors while fetching .json data and return a more informative
+    message on timeout and HTTP 400 errors
+    
 ### 1.3.6
 
   - Introduce support for the new system ID key to improve stability of

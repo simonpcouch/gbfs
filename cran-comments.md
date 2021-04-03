@@ -2,7 +2,7 @@
 
 ## Test environments
 
-* local macOS install, R 3.6.3
+* local macOS install, R 4.0.3
 * macOS (on github actions), release 
 * ubuntu 16.04 (on github actions), release, devel
 * windows (on github actions), release
