@@ -7,8 +7,6 @@
 #'
 #' @details 
 #' 
-#'  \if{html}{\figure{hex.png}{options: align='right' alt='hex' width='120'}}
-#' 
 #' The main function exported by this package is \code{get_gbfs()}, which
 #' grabs every feed released by a city. Alternatively, the user can just
 #' grab information on specific feeds (or groups of feeds).
