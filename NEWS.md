@@ -4,6 +4,8 @@
 
 To be released as 1.3.8.
 
+  - Changed default development branch name from `master` to `main`.
+
 ### 1.3.7
 
   - Update URLs in examples and unit tests to reflect bikeshare systems

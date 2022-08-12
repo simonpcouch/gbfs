@@ -11,11 +11,11 @@ knitr::opts_chunk$set(
 devtools::load_all()
 ```
 
-# General Bikeshare Feed Specification - R Package <a href='https://gbfs.netlify.com'><img src='https://raw.githubusercontent.com/simonpcouch/gbfs/master/figures/hex.png' align="right" height="200" /></a>
+# General Bikeshare Feed Specification - R Package <a href='https://gbfs.netlify.com'><img src='https://raw.githubusercontent.com/simonpcouch/gbfs/main/figures/hex.png' align="right" height="200" /></a>
 
 [![CRAN status](https://www.r-pkg.org/badges/version/gbfs)](https://cran.r-project.org/package=gbfs)
 [![R build status](https://github.com/simonpcouch/gbfs/workflows/R-CMD-check/badge.svg)](https://github.com/simonpcouch/gbfs/actions)
-[![Testing Coverage](https://codecov.io/gh/simonpcouch/gbfs/branch/master/graph/badge.svg)](https://codecov.io/gh/simonpcouch/gbfs?branch=master)
+[![Testing Coverage](https://codecov.io/gh/simonpcouch/gbfs/branch/main/graph/badge.svg)](https://codecov.io/gh/simonpcouch/gbfs?branch=main)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/gbfs)](https://cran.r-project.org/package=gbfs)
 
 The `gbfs` package supplies a set of functions to interface with General
@@ -178,7 +178,7 @@ pdx_plot <- pdx_full %>%
 pdx_plot
 ```
 
-<a href='https://github.com/simonpcouch/gbfs'><img src='https://raw.githubusercontent.com/simonpcouch/gbfs/master/figures/plot-1.png' height="500" /></a>
+<a href='https://github.com/simonpcouch/gbfs'><img src='https://raw.githubusercontent.com/simonpcouch/gbfs/main/figures/plot-1.png' height="500" /></a>
 
 Folks who have spent a significant amount of time in Portland might be able to
 pick out the Willamette River running Northwest/Southeast through the city.
