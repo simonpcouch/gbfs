@@ -1,5 +1,9 @@
 # News
 
+### 1.3.7.9000 (developmental version)
+
+To be released as 1.3.8.
+
 ### 1.3.7
 
   - Update URLs in examples and unit tests to reflect bikeshare systems
