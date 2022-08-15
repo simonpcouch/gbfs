@@ -6,9 +6,14 @@ context("wrapper")
 # failure of the software
 biketown <- get_gbfs("biketown_pdx")
 bike_itau <- get_gbfs("santiago")
-bird <- get_gbfs("https://mds.bird.co/gbfs/chicago/gbfs.json")
 
+bird_url <- "https://mds.bird.co/gbfs/chicago/gbfs.json"
 
+if (url_exists(bird_url)) {
+  bird <- get_gbfs(bird_url)
+} else {
+  skip("no internet connection")
+}
 
 test_that("main wrapper works", {
  
