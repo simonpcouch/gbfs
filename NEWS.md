@@ -1,5 +1,10 @@
 # News
 
+
+### 1.3.8.9000
+
+To be released as gbfs 1.3.9.
+
 ### 1.3.8
 
   - Changed default development branch name from `master` to `main`.
