@@ -17,7 +17,7 @@
 #' Although all of the feeds are livestreamed, only a few of the datasets 
 #' change often:
 #' 
-#' \itemize{
+#' \describe{
 #'  \item{\code{station_status:}}{ Supplies the number of available bikes and 
 #'  docks at each station as well as station availability}
 #'  \item{\code{free_bike_status:}}{ Gives the coordinates and metadata on 
@@ -32,7 +32,7 @@
 #'  If you want to grab all of these for a given city, set \code{feeds = "static"}
 #'  when calling \code{get_gbfs}. Static feeds include:
 #' 
-#' \itemize{
+#' \describe{
 #'  \item{\code{system_information:}}{ Basic metadata about the bikeshare program}
 #'  \item{\code{station_information:}}{ Information on the capacity and coordinates of stations}
 #'  \item{Several optional feeds:}{ \code{system_hours}, \code{system_calendar}, 
