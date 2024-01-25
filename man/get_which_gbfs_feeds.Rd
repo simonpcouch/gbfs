@@ -5,7 +5,7 @@
 \title{Get dataframe of bikeshare feeds released by a city}
 \source{
 North American Bikeshare Association, General Bikeshare Feed 
-Specification \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
+Specification \url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
 }
 \usage{
 get_which_gbfs_feeds(city)

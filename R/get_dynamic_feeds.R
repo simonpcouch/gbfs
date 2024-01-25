@@ -2,7 +2,7 @@
 #' 
 #' Grab a dataframe giving the geographic location and other metadata of
 #' bikeshare bikes not parked at bikeshare stations. Metadata for this dataset
-#' can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
+#' can be found at: \url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
 #' 
 #' @inherit get_station_information params seealso 
 #' 
@@ -29,7 +29,7 @@ get_free_bike_status <- function(city, directory = NULL, file = "free_bike_statu
 #' 
 #' Grab a dataframe giving the geographic location and other metadata of
 #' bikeshare bikes parked at bikeshare stations. Metadata for this dataset
-#' can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
+#' can be found at: \url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
 #' 
 #' @inherit get_station_information params seealso 
 #' 

@@ -14,7 +14,7 @@ The `gbfs` package supplies a set of functions to interface with General
 Bikeshare Feed Specification .json feeds in R, allowing users to save
 and accumulate tidy .rds datasets for specified cities/bikeshare
 programs. The North American Bikeshare Association’s
-[gbfs](https://github.com/NABSA/gbfs) is a standardized data release
+[gbfs](https://github.com/MobilityData/gbfs) is a standardized data release
 format for live information on the status of bikeshare programs, as well
 as metadata, including counts of bikes at stations, ridership costs, and
 geographic locations of stations and parked bikes.
@@ -73,7 +73,7 @@ Each of the above feeds can be queried with the `get_suffix` function,
 where `suffix` is replaced with the name of the relevant feed.
 
 For more details on the official `gbfs` spec, see [this
-document](https://github.com/NABSA/gbfs/blob/master/gbfs.md).
+document](https://github.com/MobilityData/gbfs/blob/master/gbfs.md).
 
 ## Example
 

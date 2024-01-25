@@ -39,7 +39,7 @@ rather than overwritten.
 \description{
 Grab a dataframe giving the geographic location and other metadata of
 bikeshare bikes not parked at bikeshare stations. Metadata for this dataset
-can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
+can be found at: \url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
 }
 \examples{
 # grab the free bike status feed for portland, oregon's bikeshare program 

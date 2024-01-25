@@ -37,7 +37,7 @@ feed, a dataframe object, or both.
 \description{
 \code{get_system_pricing_plans} grabs and tidies the system_pricing_plans 
 feed for a given city. Metadata for this dataset can be found at: 
-\url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
+\url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
 }
 \seealso{
 [get_gbfs()] for a wrapper to call each of the \code{get_feed}

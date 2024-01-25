@@ -4,7 +4,7 @@
 #' column supplies the relevant .json feeds, while the entries in the `URL` column 
 #' take the user to the public-facing webpage of the programs.
 #' @source North American Bikeshare Association, General Bikeshare Feed Specification
-#'  \url{https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv}
+#'  \url{https://raw.githubusercontent.com/MobilityData/gbfs/master/systems.csv}
 #' @export
 get_gbfs_cities <- function() {
   
@@ -24,7 +24,7 @@ get_gbfs_cities <- function() {
   )
   
   # grab the data
-  readr::read_csv("https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv",
+  readr::read_csv("https://raw.githubusercontent.com/MobilityData/gbfs/master/systems.csv",
                   col_types = systems_cols)
 }
 
@@ -46,7 +46,7 @@ get_gbfs_cities <- function() {
 #' while the entries in the `URL` column supply the feeds themselves.
 #' 
 #' @source North American Bikeshare Association, General Bikeshare Feed 
-#' Specification \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
+#' Specification \url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
 #' 
 #' @examples 
 #' # grab all of the feeds released by portland
@@ -83,7 +83,7 @@ get_which_gbfs_feeds <- function(city) {
 #' datasets over time straightforward, the user can also save the results
 #' as .Rds files that will be automatically row-binded.
 #'  Metadata for each dataset can be found at:
-#' \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
+#' \url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
 #' 
 #' @param city A character string that can be matched to a city or a url to an 
 #' active gbfs.json feed. See \code{get_gbfs_cities} for a current list of available cities.
