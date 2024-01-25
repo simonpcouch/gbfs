@@ -42,7 +42,7 @@ for a given city. Metadata for this dataset can be found at:
 \examples{
 # grab the system calendar feed for portland, oregon
 \donttest{get_system_calendar(city = 
-"https://gbfs.biketownpdx.com/gbfs/en/system_calendar.json",  
+"https://gbfs.lyft.com/gbfs/1.1/pdx/en/system_calendar.json",  
                     output = "return")}
 
 

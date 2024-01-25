@@ -136,7 +136,7 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># grab portland station information and return it as a dataframe</span>
 <span class="va">pdx_station_info</span> <span class="op">&lt;-</span> 
-  <span class="fu"><a href="reference/get_station_information.html">get_station_information</a></span><span class="op">(</span><span class="st">"https://gbfs.biketownpdx.com/gbfs/gbfs.json"</span><span class="op">)</span>
+  <span class="fu"><a href="reference/get_station_information.html">get_station_information</a></span><span class="op">(</span><span class="st">"https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json"</span><span class="op">)</span>
 <span class="co">#&gt; Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.</span>
 
 <span class="co"># check it out!</span>
@@ -166,7 +166,7 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># grab current capacity at each station and return it as a dataframe</span>
 <span class="va">pdx_station_status</span> <span class="op">&lt;-</span> 
-  <span class="fu"><a href="reference/get_station_status.html">get_station_status</a></span><span class="op">(</span><span class="st">"https://gbfs.biketownpdx.com/gbfs/gbfs.json"</span><span class="op">)</span>
+  <span class="fu"><a href="reference/get_station_status.html">get_station_status</a></span><span class="op">(</span><span class="st">"https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json"</span><span class="op">)</span>
 <span class="co">#&gt; Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.</span>
 
 <span class="co"># check it out!</span>
@@ -210,7 +210,7 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># grab data on free bike status and save it as a dataframe</span>
 <span class="va">pdx_free_bikes</span> <span class="op">&lt;-</span> 
-  <span class="fu"><a href="reference/get_free_bike_status.html">get_free_bike_status</a></span><span class="op">(</span><span class="st">"https://gbfs.biketownpdx.com/gbfs/gbfs.json"</span>, 
+  <span class="fu"><a href="reference/get_free_bike_status.html">get_free_bike_status</a></span><span class="op">(</span><span class="st">"https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json"</span>, 
                        output <span class="op">=</span> <span class="st">"return"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># just select columns we're interested in visualizing</span>
   <span class="fu">select</span><span class="op">(</span>id <span class="op">=</span> <span class="va">bike_id</span>, <span class="va">lon</span>, <span class="va">lat</span><span class="op">)</span> <span class="op">%&gt;%</span>

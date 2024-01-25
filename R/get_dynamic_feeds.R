@@ -15,7 +15,7 @@
 #' @examples
 #' # grab the free bike status feed for portland, oregon's bikeshare program 
 #' \donttest{get_free_bike_status(city = 
-#' "https://gbfs.biketownpdx.com/gbfs/en/free_bike_status.json",
+#' "https://gbfs.lyft.com/gbfs/1.1/pdx/en/free_bike_status.json",
 #' output = "return")}
 #'                      
 #' @export
@@ -45,7 +45,7 @@ get_free_bike_status <- function(city, directory = NULL, file = "free_bike_statu
 #' # the `city` argument can also be supplied as an
 #' # actual URL to an active .json feed
 #' \donttest{get_station_status(city = 
-#' "https://gbfs.biketownpdx.com/gbfs/en/station_status.json")}
+#' "https://gbfs.lyft.com/gbfs/1.1/pdx/en/station_status.json")}
 
 #'                      
 #' @export

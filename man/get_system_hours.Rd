@@ -43,7 +43,7 @@ dataset can be found at:
 \examples{
 # grab the system hours feed for portland, oregon
 \donttest{get_system_hours(city = 
-"https://gbfs.biketownpdx.com/gbfs/en/system_hours.json",  
+"https://gbfs.lyft.com/gbfs/1.1/pdx/en/system_hours.json",  
                  output = "return")}
 
 }

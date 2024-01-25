@@ -42,7 +42,7 @@ test_that("argument checking works", {
   # no matching cities
   expect_equal(city_to_url(city_ = "biketown_pdx",
                            feed_ = "station_information"),
-               "https://gbfs.biketownpdx.com/gbfs/en/station_information.json") 
+               "https://gbfs.lyft.com/gbfs/2.3/pdx/en/station_information.json") 
   
   # several matching cities
   expect_error(city_to_url(city_ = "los angeles",
@@ -60,19 +60,19 @@ test_that("find feed from top level works", {
   skip_if_offline(host = "r-project.org")
   
   expect_equal(find_feed_from_top_level(
-                 "https://gbfs.biketownpdx.com/gbfs/gbfs.json",
+                 "https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json",
                  "station_information"),
-               "https://gbfs.biketownpdx.com/gbfs/en/station_information.json")
+               "https://gbfs.lyft.com/gbfs/1.1/pdx/en/station_information.json")
 
   expect_error(find_feed_from_top_level(
-      "https://gbfs.biketownpdx.com/gbfs/gbfs.json",
+      "https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json",
       "weird_feed"),
     "webpage for the weird_feed .json")
   
   expect_equal(find_feed_from_top_level(
-    "https://gbfs.biketownpdx.com/gbfs/gbfs.json",
+    "https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json",
     "gbfs"),
-    "https://gbfs.biketownpdx.com/gbfs/gbfs.json")
+    "https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json")
   
 })
 

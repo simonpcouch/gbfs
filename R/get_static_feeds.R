@@ -31,7 +31,7 @@
 #' @examples
 #' # grab the free bike status feed for portland, oreoon's bikeshare program 
 #' \donttest{get_station_information(city = 
-#' "https://gbfs.biketownpdx.com/gbfs/en/station_information.json",  
+#' "https://gbfs.lyft.com/gbfs/1.1/pdx/en/station_information.json",  
 #'                         output = "return")}
 #' 
 #' @export
@@ -52,7 +52,7 @@ get_station_information <- function(city, directory = NULL, file = "station_info
 #' @examples
 #' # grab the system alerts feed for portland, oregon
 #' \donttest{get_system_alerts(city = 
-#' "https://gbfs.biketownpdx.com/gbfs/en/system_alerts.json",  
+#' "https://gbfs.lyft.com/gbfs/1.1/pdx/en/system_alerts.json",  
 #'                   output = "return")}
 #'  
 #' @export
@@ -74,7 +74,7 @@ get_system_alerts <- function (city, directory = NULL, file = "system_alerts.rds
 #' @examples
 #' # grab the system calendar feed for portland, oregon
 #' \donttest{get_system_calendar(city = 
-#' "https://gbfs.biketownpdx.com/gbfs/en/system_calendar.json",  
+#' "https://gbfs.lyft.com/gbfs/1.1/pdx/en/system_calendar.json",  
 #'                     output = "return")}
 #' 
 #' 
@@ -98,7 +98,7 @@ get_system_calendar <- function (city, directory = NULL, file = "system_calendar
 #' @examples
 #' # grab the system hours feed for portland, oregon
 #' \donttest{get_system_hours(city = 
-#' "https://gbfs.biketownpdx.com/gbfs/en/system_hours.json",  
+#' "https://gbfs.lyft.com/gbfs/1.1/pdx/en/system_hours.json",  
 #'                  output = "return")}
 #' 
 #' @export
@@ -125,7 +125,7 @@ get_system_hours <- function (city, directory = NULL, file = "system_hours.rds",
 #' # string (like "pdx", maybe,) for the `directory` argument 
 #' # instead of `tempdir`.
 #' \donttest{get_system_information(city = 
-#' "https://gbfs.biketownpdx.com/gbfs/en/system_information.json",  
+#' "https://gbfs.lyft.com/gbfs/1.1/pdx/en/system_information.json",  
 #'                        directory = tempdir())}
 #'                     
 #' # or, instead, just supply the name of 
@@ -172,7 +172,7 @@ get_system_pricing_plans <- function(city, directory = NULL, file = "system_pric
 #' # string (like "pdx", maybe,) for the `directory` argument 
 #' # instead of `tempdir`.
 #' \donttest{get_system_regions(city = 
-#' "https://gbfs.biketownpdx.com/gbfs/en/system_regions.json",  
+#' "https://gbfs.lyft.com/gbfs/1.1/pdx/en/system_regions.json",  
 #'                    directory = tempdir())}
 #'                     
 #' # or, instead, just supply the name of 

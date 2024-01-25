@@ -7,10 +7,10 @@ context("wrapper")
 biketown <- get_gbfs("biketown_pdx")
 bike_itau <- get_gbfs("santiago")
 
-bird_url <- "https://mds.bird.co/gbfs/chicago/gbfs.json"
+chicago_url <- "https://gbfs.divvybikes.com/gbfs/2.3/gbfs.json"
 
-if (url_exists(bird_url)) {
-  bird <- get_gbfs(bird_url)
+if (url_exists(chicago_url)) {
+  chicago <- get_gbfs(chicago_url)
 } else {
   skip("no internet connection")
 }
@@ -21,7 +21,7 @@ test_that("main wrapper works", {
   
   expect_equal(class(biketown), "list")
   expect_equal(class(bike_itau), "list")
-  expect_equal(class(bird), "list")
+  expect_equal(class(chicago), "list")
   
 })
 

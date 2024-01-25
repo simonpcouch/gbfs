@@ -43,7 +43,7 @@ Metadata for this dataset can be found at:
 \examples{
 # grab the free bike status feed for portland, oreoon's bikeshare program 
 \donttest{get_station_information(city = 
-"https://gbfs.biketownpdx.com/gbfs/en/station_information.json",  
+"https://gbfs.lyft.com/gbfs/1.1/pdx/en/station_information.json",  
                         output = "return")}
 
 }

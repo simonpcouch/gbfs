@@ -90,7 +90,7 @@ First, we’ll grab some information on the stations.
 ``` r
 # grab portland station information and return it as a dataframe
 pdx_station_info <- 
-  get_station_information("https://gbfs.biketownpdx.com/gbfs/gbfs.json")
+  get_station_information("https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json")
 #> Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.
 
 # check it out!
@@ -123,7 +123,7 @@ glimpse(pdx_station_info)
 ``` r
 # grab current capacity at each station and return it as a dataframe
 pdx_station_status <- 
-  get_station_status("https://gbfs.biketownpdx.com/gbfs/gbfs.json")
+  get_station_status("https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json")
 #> Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.
 
 # check it out!
@@ -177,7 +177,7 @@ Portland that are not docked at a station,
 ``` r
 # grab data on free bike status and save it as a dataframe
 pdx_free_bikes <- 
-  get_free_bike_status("https://gbfs.biketownpdx.com/gbfs/gbfs.json", 
+  get_free_bike_status("https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json", 
                        output = "return") %>%
   # just select columns we're interested in visualizing
   select(id = bike_id, lon, lat) %>%

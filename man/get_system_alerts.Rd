@@ -42,7 +42,7 @@ dataset can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 \examples{
 # grab the system alerts feed for portland, oregon
 \donttest{get_system_alerts(city = 
-"https://gbfs.biketownpdx.com/gbfs/en/system_alerts.json",  
+"https://gbfs.lyft.com/gbfs/1.1/pdx/en/system_alerts.json",  
                   output = "return")}
  
 }

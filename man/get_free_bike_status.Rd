@@ -44,7 +44,7 @@ can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 \examples{
 # grab the free bike status feed for portland, oregon's bikeshare program 
 \donttest{get_free_bike_status(city = 
-"https://gbfs.biketownpdx.com/gbfs/en/free_bike_status.json",
+"https://gbfs.lyft.com/gbfs/1.1/pdx/en/free_bike_status.json",
 output = "return")}
                      
 }

@@ -47,7 +47,7 @@ feed for a given city. Metadata for this dataset can be found at:
 # string (like "pdx", maybe,) for the `directory` argument 
 # instead of `tempdir`.
 \donttest{get_system_information(city = 
-"https://gbfs.biketownpdx.com/gbfs/en/system_information.json",  
+"https://gbfs.lyft.com/gbfs/1.1/pdx/en/system_information.json",  
                        directory = tempdir())}
                     
 # or, instead, just supply the name of 

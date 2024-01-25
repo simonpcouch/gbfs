@@ -51,7 +51,7 @@ can be found at: \url{https://github.com/NABSA/gbfs/blob/master/gbfs.md}
 # the `city` argument can also be supplied as an
 # actual URL to an active .json feed
 \donttest{get_station_status(city = 
-"https://gbfs.biketownpdx.com/gbfs/en/station_status.json")}
+"https://gbfs.lyft.com/gbfs/1.1/pdx/en/station_status.json")}
                      
 }
 \seealso{

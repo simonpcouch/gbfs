@@ -54,7 +54,7 @@ as .Rds files that will be automatically row-binded.
 
 # if we're having trouble specifying the correct feed,
 # we can also supply the actual URL to the feed
-\donttest{get_gbfs(city = "https://gbfs.biketownpdx.com/gbfs/gbfs.json")}
+\donttest{get_gbfs(city = "https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json")}
                    
 # the examples above grab every feed that portland releases.
 # if, instead, we just wanted the dynamic feeds
