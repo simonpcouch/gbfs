@@ -151,7 +151,7 @@ find_feed_from_top_level <- function(top_level_, feed_) {
                    error = report_connection_issue)
   
   # pull out the names of the supplied sub-feeds
-  gbfs_feeds <- gbfs$data$en$feeds
+  gbfs_feeds <- gbfs$data[[1]]$feeds
   
   # if the sub-feed is provided by the program, return its URL
   if (feed_ %in% gbfs_feeds$name) {
