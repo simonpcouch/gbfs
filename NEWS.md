@@ -3,7 +3,13 @@
 
 ### 1.3.8.9000
 
-To be released as gbfs 1.3.9.
+  - Fixed bug where non-english feeds couldn't be accessed using the top-level
+    gbfs feed (#10).
+  - Update URLs to reflect the transition of the gbfs source from the NABSA 
+    GitHub organization to MobilityData (#9).
+  - Update URLs in examples and unit tests to reflect bikeshare systems
+    adjusting operations.
+  - Address CRAN check NOTEs related to help-file formatting.
 
 ### 1.3.8
 
