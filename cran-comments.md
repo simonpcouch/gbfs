@@ -2,9 +2,9 @@
 
 ## Test environments
 
-* local macOS install, R 4.0.3
-* macOS (on github actions), release 
-* ubuntu 16.04 (on github actions), release, devel
+* local macOS install on aarch64, R 4.3.1
+* macOS intel (on github actions), release 
+* ubuntu 20.04 (on github actions), release, devel
 * windows (on github actions), release
 * windows (on win-builder), devel
 
