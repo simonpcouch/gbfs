@@ -2,8 +2,8 @@
 % Please edit documentation in R/gbfs_description.R
 \docType{package}
 \name{gbfs}
-\alias{gbfs}
 \alias{gbfs-package}
+\alias{gbfs}
 \title{Package: gbfs}
 \description{
 The \code{gbfs} package allows users to query tidy datasets about bikeshare 
