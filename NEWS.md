@@ -1,3 +1,5 @@
+# gbfs (developmental version)
+
 # gbfs 1.3.9
 
 - Fixed bug where non-english feeds couldn't be accessed using the top-level
