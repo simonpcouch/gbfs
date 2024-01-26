@@ -1,7 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-cran-comments.Rmd
-cran-comments.md
 docs/
 ^README.Rmd
 ^README.md
