@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
 devtools::load_all()
 ```
 
-# General Bikeshare Feed Specification - R Package <a href='https://gbfs.netlify.com'><img src='https://raw.githubusercontent.com/simonpcouch/gbfs/main/figures/hex.png' align="right" height="200" /></a>
+# General Bikeshare Feed Specification <img src="https://raw.githubusercontent.com/simonpcouch/gbfs/main/figures/hex.png" alt="A hexagonal logo with a black border and white background showing a green bicycle icon." align="right" width=280 />
 
 [![CRAN status](https://www.r-pkg.org/badges/version/gbfs)](https://cran.r-project.org/package=gbfs)
 [![R build status](https://github.com/simonpcouch/gbfs/workflows/R-CMD-check/badge.svg)](https://github.com/simonpcouch/gbfs/actions)
