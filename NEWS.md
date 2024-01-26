@@ -1,7 +1,7 @@
 # News
 
 
-### 1.3.8.9000
+### 1.3.9
 
   - Fixed bug where non-english feeds couldn't be accessed using the top-level
     gbfs feed (#10).
