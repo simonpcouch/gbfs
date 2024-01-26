@@ -27,6 +27,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -39,18 +41,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">gbfs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.9</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -60,7 +56,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/simonpcouch/gbfs/">
+  <a href="https://github.com/simonpcouch/gbfs/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -77,33 +73,33 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="general-bikeshare-feed-specification---r-package-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#general-bikeshare-feed-specification---r-package-" class="anchor"></a>General Bikeshare Feed Specification - R Package <a href="https://gbfs.netlify.com"><img src="https://raw.githubusercontent.com/simonpcouch/gbfs/master/figures/hex.png" align="right" height="200"></a>
+<div class="section level1">
+<div class="page-header"><h1 id="general-bikeshare-feed-specification---r-package-">General Bikeshare Feed Specification - R Package <a href="https://gbfs.netlify.com" class="external-link"><img src="https://raw.githubusercontent.com/simonpcouch/gbfs/main/figures/hex.png" align="right" height="200"></a>
+<a class="anchor" aria-label="anchor" href="#general-bikeshare-feed-specification---r-package-"></a>
 </h1></div>
-
-<p>The <code>gbfs</code> package supplies a set of functions to interface with General Bikeshare Feed Specification .json feeds in R, allowing users to save and accumulate tidy .rds datasets for specified cities/bikeshare programs. The North American Bikeshare Association’s <a href="https://github.com/MobilityData/gbfs">gbfs</a> is a standardized data release format for live information on the status of bikeshare programs, as well as metadata, including counts of bikes at stations, ridership costs, and geographic locations of stations and parked bikes.</p>
+<p><a href="https://cran.r-project.org/package=gbfs" class="external-link"><img src="https://www.r-pkg.org/badges/version/gbfs" alt="CRAN status"></a> <a href="https://github.com/simonpcouch/gbfs/actions" class="external-link"><img src="https://github.com/simonpcouch/gbfs/workflows/R-CMD-check/badge.svg" alt="R build status"></a> <a href="https://codecov.io/gh/simonpcouch/gbfs?branch=main" class="external-link"><img src="https://codecov.io/gh/simonpcouch/gbfs/branch/main/graph/badge.svg" alt="Testing Coverage"></a> <a href="https://cran.r-project.org/package=gbfs" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/gbfs" alt="CRAN Downloads"></a></p>
+<p>The <code>gbfs</code> package supplies a set of functions to interface with General Bikeshare Feed Specification .json feeds in R, allowing users to save and accumulate tidy .rds datasets for specified cities/bikeshare programs. The North American Bikeshare Association’s <a href="https://github.com/MobilityData/gbfs" class="external-link">gbfs</a> is a standardized data release format for live information on the status of bikeshare programs, as well as metadata, including counts of bikes at stations, ridership costs, and geographic locations of stations and parked bikes.</p>
 <p><strong>Features</strong></p>
 <ul>
 <li>Get bikeshare data by specifying city name or supplying url of feed</li>
 <li>All feeds for a city can be saved with a single function</li>
 <li>New information from dynamic feeds can be appended to existing datasets</li>
 </ul>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>We’re on CRAN! Install the latest release with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"gbfs"</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/simonpcouch/gbfs">gbfs</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"gbfs"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/simonpcouch/gbfs" class="external-link">gbfs</a></span><span class="op">)</span></span></code></pre></div>
 <p>You can install the developmental version of <code>gbfs</code> from GitHub with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"simonpcouch/gbfs"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"simonpcouch/gbfs"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="background" class="section level2">
-<h2 class="hasAnchor">
-<a href="#background" class="anchor"></a>Background</h2>
+<div class="section level2">
+<h2 id="background">Background<a class="anchor" aria-label="anchor" href="#background"></a>
+</h2>
 <p>The <code>gbfs</code> is a standardized data feed describing the current status of a bikeshare program.</p>
 <p>Although all of the data is live, only a few of the datasets change often:</p>
 <ul>
@@ -123,123 +119,123 @@
 </li>
 </ul>
 <p>Each of the above feeds can be queried with the <code>get_suffix</code> function, where <code>suffix</code> is replaced with the name of the relevant feed.</p>
-<p>For more details on the official <code>gbfs</code> spec, see <a href="https://github.com/MobilityData/gbfs/blob/master/gbfs.md">this document</a>.</p>
+<p>For more details on the official <code>gbfs</code> spec, see <a href="https://github.com/MobilityData/gbfs/blob/master/gbfs.md" class="external-link">this document</a>.</p>
 </div>
-<div id="example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
 <p>In this example, we’ll grab data from Portland, Oregon’s Biketown bikeshare program and visualize some of the different datasets.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># load necessary packages</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># load necessary packages</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span></code></pre></div>
 <p>First, we’ll grab some information on the stations.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># grab portland station information and return it as a dataframe</span>
-<span class="va">pdx_station_info</span> <span class="op">&lt;-</span> 
-  <span class="fu"><a href="reference/get_station_information.html">get_station_information</a></span><span class="op">(</span><span class="st">"https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json"</span><span class="op">)</span>
-<span class="co">#&gt; Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.</span>
-
-<span class="co"># check it out!</span>
-<span class="fu">glimpse</span><span class="op">(</span><span class="va">pdx_station_info</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 165</span>
-<span class="co">#&gt; Columns: 19</span>
-<span class="co">#&gt; $ region_code                          &lt;chr&gt; "biketown_pdx", "biketown_pdx", "biketown_pdx", "biketown_pdx", "PDX…</span>
-<span class="co">#&gt; $ legacy_id                            &lt;chr&gt; "1440914125193298376", "14409138…</span>
-<span class="co">#&gt; $ station_type                         &lt;chr&gt; "lightweight", "lightweight", "l…</span>
-<span class="co">#&gt; $ eightd_station_services              &lt;list&gt; [[], [], [], [], [], [], [], []…</span>
-<span class="co">#&gt; $ external_id                          &lt;chr&gt; "motivate_PDX_144091412519329837…</span>
-<span class="co">#&gt; $ lon                                  &lt;dbl&gt; -122.6813, -122.6687, -122.6604,…</span>
-<span class="co">#&gt; $ has_kiosk                            &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALS…</span>
-<span class="co">#&gt; $ name                                 &lt;chr&gt; "SW Yamhill at Director Park", "…</span>
-<span class="co">#&gt; $ station_id                           &lt;chr&gt; "1440914125193298376", "14409138…</span>
-<span class="co">#&gt; $ dockless_bikes_parking_zone_capacity &lt;int&gt; 20, 12, 18, 18, 6, 10, 6, 12, 18…</span>
-<span class="co">#&gt; $ capacity                             &lt;int&gt; 20, 12, 18, 18, 6, 10, 6, 12, 18…</span>
-<span class="co">#&gt; $ lat                                  &lt;dbl&gt; 45.51898, 45.53480, 45.55645, 45…</span>
-<span class="co">#&gt; $ rack_model                           &lt;chr&gt; "CITY_PILOT_RACK", "CITY_PUBLIC_…</span>
-<span class="co">#&gt; $ address                              &lt;chr&gt; "Park Avenue West, Southwest Yam…</span>
-<span class="co">#&gt; $ eightd_has_key_dispenser             &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALS…</span>
-<span class="co">#&gt; $ electric_bike_surcharge_waiver       &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALS…</span>
-<span class="co">#&gt; $ client_station_id                    &lt;chr&gt; "motivate_PDX_144091412519329837…</span>
-<span class="co">#&gt; $ rental_uris.ios                      &lt;chr&gt; "https://pdx.lft.to/lastmile_qr_…</span>
-<span class="co">#&gt; $ rental_uris.android                  &lt;chr&gt; "https://pdx.lft.to/lastmile_qr_…</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># grab portland station information and return it as a dataframe</span></span>
+<span><span class="va">pdx_station_info</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="reference/get_station_information.html">get_station_information</a></span><span class="op">(</span><span class="st">"https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.</span></span>
+<span></span>
+<span><span class="co"># check it out!</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pdx_station_info</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 165</span></span>
+<span><span class="co">#&gt; Columns: 19</span></span>
+<span><span class="co">#&gt; $ region_code                          &lt;chr&gt; "biketown_pdx", "biketown_pdx", "biketown_pdx", "biketown_pdx", "PDX…</span></span>
+<span><span class="co">#&gt; $ legacy_id                            &lt;chr&gt; "1440914125193298376", "14409138…</span></span>
+<span><span class="co">#&gt; $ station_type                         &lt;chr&gt; "lightweight", "lightweight", "l…</span></span>
+<span><span class="co">#&gt; $ eightd_station_services              &lt;list&gt; [[], [], [], [], [], [], [], []…</span></span>
+<span><span class="co">#&gt; $ external_id                          &lt;chr&gt; "motivate_PDX_144091412519329837…</span></span>
+<span><span class="co">#&gt; $ lon                                  &lt;dbl&gt; -122.6813, -122.6687, -122.6604,…</span></span>
+<span><span class="co">#&gt; $ has_kiosk                            &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALS…</span></span>
+<span><span class="co">#&gt; $ name                                 &lt;chr&gt; "SW Yamhill at Director Park", "…</span></span>
+<span><span class="co">#&gt; $ station_id                           &lt;chr&gt; "1440914125193298376", "14409138…</span></span>
+<span><span class="co">#&gt; $ dockless_bikes_parking_zone_capacity &lt;int&gt; 20, 12, 18, 18, 6, 10, 6, 12, 18…</span></span>
+<span><span class="co">#&gt; $ capacity                             &lt;int&gt; 20, 12, 18, 18, 6, 10, 6, 12, 18…</span></span>
+<span><span class="co">#&gt; $ lat                                  &lt;dbl&gt; 45.51898, 45.53480, 45.55645, 45…</span></span>
+<span><span class="co">#&gt; $ rack_model                           &lt;chr&gt; "CITY_PILOT_RACK", "CITY_PUBLIC_…</span></span>
+<span><span class="co">#&gt; $ address                              &lt;chr&gt; "Park Avenue West, Southwest Yam…</span></span>
+<span><span class="co">#&gt; $ eightd_has_key_dispenser             &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALS…</span></span>
+<span><span class="co">#&gt; $ electric_bike_surcharge_waiver       &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALS…</span></span>
+<span><span class="co">#&gt; $ client_station_id                    &lt;chr&gt; "motivate_PDX_144091412519329837…</span></span>
+<span><span class="co">#&gt; $ rental_uris.ios                      &lt;chr&gt; "https://pdx.lft.to/lastmile_qr_…</span></span>
+<span><span class="co">#&gt; $ rental_uris.android                  &lt;chr&gt; "https://pdx.lft.to/lastmile_qr_…</span></span></code></pre></div>
 <p>…as well as the number of bikes at each station.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># grab current capacity at each station and return it as a dataframe</span>
-<span class="va">pdx_station_status</span> <span class="op">&lt;-</span> 
-  <span class="fu"><a href="reference/get_station_status.html">get_station_status</a></span><span class="op">(</span><span class="st">"https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json"</span><span class="op">)</span>
-<span class="co">#&gt; Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.</span>
-
-<span class="co"># check it out!</span>
-<span class="fu">glimpse</span><span class="op">(</span><span class="va">pdx_station_status</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 165</span>
-<span class="co">#&gt; Columns: 19</span>
-<span class="co">#&gt; $ is_renting                &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</span>
-<span class="co">#&gt; $ station_id                &lt;chr&gt; "1440914030704017724", "1440914074618217706…</span>
-<span class="co">#&gt; $ is_installed              &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</span>
-<span class="co">#&gt; $ num_docks_available       &lt;int&gt; 9, 5, 4, 8, 18, 8, 2, 4, 17, 12, 11, 5, 17,…</span>
-<span class="co">#&gt; $ num_docks_disabled        &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</span>
-<span class="co">#&gt; $ is_returning              &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</span>
-<span class="co">#&gt; $ last_reported             &lt;dbl&gt; 1.599610e+12, 1.599610e+12, 1.599610e+12, 1…</span>
-<span class="co">#&gt; $ num_ebikes_available      &lt;int&gt; 9, 6, 7, 7, 0, 6, 5, 1, 1, 5, 7, 7, 1, 2, 3…</span>
-<span class="co">#&gt; $ num_bikes_available       &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</span>
-<span class="co">#&gt; $ eightd_has_available_keys &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…</span>
-<span class="co">#&gt; $ station_status            &lt;chr&gt; "active", "active", "active", "active", "ac…</span>
-<span class="co">#&gt; $ legacy_id                 &lt;chr&gt; "1440914030704017724", "1440914074618217706…</span>
-<span class="co">#&gt; $ num_bikes_disabled        &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</span>
-<span class="co">#&gt; $ last_updated              &lt;dttm&gt; 2020-10-04 12:44:55, 2020-10-04 12:44:55, …</span>
-<span class="co">#&gt; $ year                      &lt;dbl&gt; 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2…</span>
-<span class="co">#&gt; $ month                     &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,…</span>
-<span class="co">#&gt; $ day                       &lt;int&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4…</span>
-<span class="co">#&gt; $ hour                      &lt;int&gt; 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,…</span>
-<span class="co">#&gt; $ minute                    &lt;int&gt; 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44,…</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># grab current capacity at each station and return it as a dataframe</span></span>
+<span><span class="va">pdx_station_status</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="reference/get_station_status.html">get_station_status</a></span><span class="op">(</span><span class="st">"https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Message: Returning the output data as an object, rather than saving it, since the `directory` argument was not specified. Setting `output = "return"` will silence this message.</span></span>
+<span></span>
+<span><span class="co"># check it out!</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pdx_station_status</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 165</span></span>
+<span><span class="co">#&gt; Columns: 19</span></span>
+<span><span class="co">#&gt; $ is_renting                &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</span></span>
+<span><span class="co">#&gt; $ station_id                &lt;chr&gt; "1440914030704017724", "1440914074618217706…</span></span>
+<span><span class="co">#&gt; $ is_installed              &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</span></span>
+<span><span class="co">#&gt; $ num_docks_available       &lt;int&gt; 9, 5, 4, 8, 18, 8, 2, 4, 17, 12, 11, 5, 17,…</span></span>
+<span><span class="co">#&gt; $ num_docks_disabled        &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</span></span>
+<span><span class="co">#&gt; $ is_returning              &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</span></span>
+<span><span class="co">#&gt; $ last_reported             &lt;dbl&gt; 1.599610e+12, 1.599610e+12, 1.599610e+12, 1…</span></span>
+<span><span class="co">#&gt; $ num_ebikes_available      &lt;int&gt; 9, 6, 7, 7, 0, 6, 5, 1, 1, 5, 7, 7, 1, 2, 3…</span></span>
+<span><span class="co">#&gt; $ num_bikes_available       &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</span></span>
+<span><span class="co">#&gt; $ eightd_has_available_keys &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…</span></span>
+<span><span class="co">#&gt; $ station_status            &lt;chr&gt; "active", "active", "active", "active", "ac…</span></span>
+<span><span class="co">#&gt; $ legacy_id                 &lt;chr&gt; "1440914030704017724", "1440914074618217706…</span></span>
+<span><span class="co">#&gt; $ num_bikes_disabled        &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</span></span>
+<span><span class="co">#&gt; $ last_updated              &lt;dttm&gt; 2020-10-04 12:44:55, 2020-10-04 12:44:55, …</span></span>
+<span><span class="co">#&gt; $ year                      &lt;dbl&gt; 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2…</span></span>
+<span><span class="co">#&gt; $ month                     &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,…</span></span>
+<span><span class="co">#&gt; $ day                       &lt;int&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4…</span></span>
+<span><span class="co">#&gt; $ hour                      &lt;int&gt; 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,…</span></span>
+<span><span class="co">#&gt; $ minute                    &lt;int&gt; 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44,…</span></span></code></pre></div>
 <p>Just like that, we have two tidy datasets containing information about Portland’s bikeshare program.</p>
 <p>Joining these datasets, we can get the capacity at each station, along with each station’s metadata.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># full join these two datasets on station_id and select a few columns</span>
-<span class="va">pdx_stations</span> <span class="op">&lt;-</span> <span class="fu">full_join</span><span class="op">(</span><span class="va">pdx_station_info</span>, 
-                          <span class="va">pdx_station_status</span>, 
-                          by <span class="op">=</span> <span class="st">"station_id"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="co"># just select columns we're interested in visualizing</span>
-  <span class="fu">select</span><span class="op">(</span>id <span class="op">=</span> <span class="va">station_id</span>, 
-         <span class="va">lon</span>, 
-         <span class="va">lat</span>, 
-         <span class="va">num_bikes_available</span>, 
-         <span class="va">num_docks_available</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"docked"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># full join these two datasets on station_id and select a few columns</span></span>
+<span><span class="va">pdx_stations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">full_join</a></span><span class="op">(</span><span class="va">pdx_station_info</span>, </span>
+<span>                          <span class="va">pdx_station_status</span>, </span>
+<span>                          by <span class="op">=</span> <span class="st">"station_id"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="co"># just select columns we're interested in visualizing</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span>id <span class="op">=</span> <span class="va">station_id</span>, </span>
+<span>         <span class="va">lon</span>, </span>
+<span>         <span class="va">lat</span>, </span>
+<span>         <span class="va">num_bikes_available</span>, </span>
+<span>         <span class="va">num_docks_available</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"docked"</span><span class="op">)</span></span></code></pre></div>
 <p>Finally, before we plot, lets grab the locations of the bikes parked in Portland that are not docked at a station,</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># grab data on free bike status and save it as a dataframe</span>
-<span class="va">pdx_free_bikes</span> <span class="op">&lt;-</span> 
-  <span class="fu"><a href="reference/get_free_bike_status.html">get_free_bike_status</a></span><span class="op">(</span><span class="st">"https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json"</span>, 
-                       output <span class="op">=</span> <span class="st">"return"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="co"># just select columns we're interested in visualizing</span>
-  <span class="fu">select</span><span class="op">(</span>id <span class="op">=</span> <span class="va">bike_id</span>, <span class="va">lon</span>, <span class="va">lat</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="co"># make columns analogous to station_status for row binding</span>
-  <span class="fu">mutate</span><span class="op">(</span>num_bikes_available <span class="op">=</span> <span class="fl">1</span>,
-         num_docks_available <span class="op">=</span> <span class="cn">NA</span>,
-         type <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># grab data on free bike status and save it as a dataframe</span></span>
+<span><span class="va">pdx_free_bikes</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="reference/get_free_bike_status.html">get_free_bike_status</a></span><span class="op">(</span><span class="st">"https://gbfs.lyft.com/gbfs/1.1/pdx/gbfs.json"</span>, </span>
+<span>                       output <span class="op">=</span> <span class="st">"return"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="co"># just select columns we're interested in visualizing</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span>id <span class="op">=</span> <span class="va">bike_id</span>, <span class="va">lon</span>, <span class="va">lat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="co"># make columns analogous to station_status for row binding</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>num_bikes_available <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>         num_docks_available <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>         type <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span></span></code></pre></div>
 <p>…and bind these dataframes together!</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># row bind stationed and free bike info</span>
-<span class="va">pdx_full</span> <span class="op">&lt;-</span> <span class="fu">bind_rows</span><span class="op">(</span><span class="va">pdx_stations</span>, <span class="va">pdx_free_bikes</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># row bind stationed and free bike info</span></span>
+<span><span class="va">pdx_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">pdx_stations</span>, <span class="va">pdx_free_bikes</span><span class="op">)</span></span></code></pre></div>
 <p>Now, plotting,</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># filter out stations with 0 available bikes</span>
-<span class="va">pdx_plot</span> <span class="op">&lt;-</span> <span class="va">pdx_full</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">num_bikes_available</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="co"># plot the geospatial distribution of bike counts</span>
-  <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">lon</span>, 
-      y <span class="op">=</span> <span class="va">lat</span>, 
-      size <span class="op">=</span> <span class="va">num_bikes_available</span>, 
-      col <span class="op">=</span> <span class="va">type</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="co"># make aesthetics slightly more cozy</span>
-  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_color_brewer</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"qual"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># filter out stations with 0 available bikes</span></span>
+<span><span class="va">pdx_plot</span> <span class="op">&lt;-</span> <span class="va">pdx_full</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">num_bikes_available</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="co"># plot the geospatial distribution of bike counts</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lon</span>, </span>
+<span>      y <span class="op">=</span> <span class="va">lat</span>, </span>
+<span>      size <span class="op">=</span> <span class="va">num_bikes_available</span>, </span>
+<span>      col <span class="op">=</span> <span class="va">type</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="co"># make aesthetics slightly more cozy</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="external-link">scale_color_brewer</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"qual"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pdx_plot</span></code></pre></div>
-<p><a href="https://github.com/simonpcouch/gbfs"><img src="https://raw.githubusercontent.com/simonpcouch/gbfs/master/figures/plot-1.png" height="500"></a></p>
+<code class="sourceCode R"><span><span class="va">pdx_plot</span></span></code></pre></div>
+<p><a href="https://github.com/simonpcouch/gbfs" class="external-link"><img src="https://raw.githubusercontent.com/simonpcouch/gbfs/main/figures/plot-1.png" height="500"></a></p>
 <p>Folks who have spent a significant amount of time in Portland might be able to pick out the Willamette River running Northwest/Southeast through the city. With a few lines of <code>gbfs</code>, <code>dplyr</code>, and <code>ggplot2</code>, we can put together a meaningful visualization to help us better understand how bikeshare bikes are distributed throughout Portland.</p>
 <p>Some other features worth playing around with in <code>gbfs</code> that weren’t touched on in this example:</p>
 <ul>
@@ -249,9 +245,9 @@
 <li>If you’re not sure if your city supplies <code>gbfs</code> feeds, you might find the <code>get_gbfs_cities</code> and <code>get_which_gbfs_feeds</code> functions useful.</li>
 </ul>
 </div>
-<div id="contributing" class="section level2">
-<h2 class="hasAnchor">
-<a href="#contributing" class="anchor"></a>Contributing</h2>
+<div class="section level2">
+<h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
+</h2>
 <p>Please note that the <code>gbfs</code> R package is released with a <a href="CONTRIBUTING.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 </div>
@@ -259,56 +255,58 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=gbfs">https://​cloud.r-project.org/​package=gbfs</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/simonpcouch/gbfs/">https://​github.com/​simonpcouch/​gbfs/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/simonpcouch/gbfs/issues">https://​github.com/​simonpcouch/​gbfs/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=gbfs" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/simonpcouch/gbfs/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/simonpcouch/gbfs/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>CC0</li>
 </ul>
 </div>
+
 <div class="community">
-<h2>Community</h2>
+<h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>Simon P. Couch <br><small class="roles"> Author, maintainer </small>  </li>
-<li>Kaelyn Rosenberg <br><small class="roles"> Author </small>  </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="authors.html#citation">Citing gbfs</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=gbfs"><img src="https://www.r-pkg.org/badges/version/gbfs" alt="CRAN status"></a></li>
-<li><a href="https://github.com/simonpcouch/gbfs/actions"><img src="https://github.com/simonpcouch/gbfs/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/gh/simonpcouch/gbfs?branch=master"><img src="https://codecov.io/gh/simonpcouch/gbfs/branch/master/graph/badge.svg" alt="Testing Coverage"></a></li>
-<li><a href="https://cran.r-project.org/package=gbfs"><img src="https://cranlogs.r-pkg.org/badges/grand-total/gbfs" alt="CRAN Downloads"></a></li>
+<li>Simon P. Couch <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Kaelyn Rosenberg <br><small class="roles"> Author </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
-</div>
+
+
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Simon P. Couch, Kaelyn Rosenberg.</p>
+  <p></p>
+<p>Developed by Simon P. Couch, Kaelyn Rosenberg.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -316,6 +314,8 @@
 
   
 
+
+  
 
   </body>
 </html>
