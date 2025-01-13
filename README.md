@@ -5,8 +5,6 @@
 status](https://www.r-pkg.org/badges/version/gbfs)](https://cran.r-project.org/package=gbfs)
 [![R build 
 status](https://github.com/simonpcouch/gbfs/workflows/R-CMD-check/badge.svg)](https://github.com/simonpcouch/gbfs/actions)
-[![Testing
-Coverage](https://codecov.io/gh/simonpcouch/gbfs/branch/main/graph/badge.svg)](https://codecov.io/gh/simonpcouch/gbfs?branch=main)
 [![CRAN
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/gbfs)](https://cran.r-project.org/package=gbfs)
 
