@@ -12,22 +12,20 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Interface with Live Bikeshare Data">
-<meta property="og:description" content="Supplies a set of functions to interface with bikeshare data
-    following the General Bikeshare Feed Specification, allowing users to query
-    and accumulate tidy datasets for specified cities/bikeshare programs.">
+<meta property="og:description" content="Supplies a set of functions to interface with bikeshare data following the General Bikeshare Feed Specification, allowing users to query and accumulate tidy datasets for specified cities/bikeshare programs.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -41,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">gbfs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.10</span>
       </span>
     </div>
 
@@ -58,7 +56,7 @@
 <li>
   <a href="https://github.com/simonpcouch/gbfs/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -69,14 +67,14 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
 <div class="page-header"><h1 id="general-bikeshare-feed-specification-">General Bikeshare Feed Specification <img src="https://raw.githubusercontent.com/simonpcouch/gbfs/main/figures/hex.png" alt="A hexagonal logo with a black border and white background showing a green bicycle icon." align="right" width="280"><a class="anchor" aria-label="anchor" href="#general-bikeshare-feed-specification-"></a>
 </h1></div>
-<p><a href="https://cran.r-project.org/package=gbfs" class="external-link"><img src="https://www.r-pkg.org/badges/version/gbfs" alt="CRAN status"></a> <a href="https://github.com/simonpcouch/gbfs/actions" class="external-link"><img src="https://github.com/simonpcouch/gbfs/workflows/R-CMD-check/badge.svg" alt="R build status"></a> <a href="https://codecov.io/gh/simonpcouch/gbfs?branch=main" class="external-link"><img src="https://codecov.io/gh/simonpcouch/gbfs/branch/main/graph/badge.svg" alt="Testing Coverage"></a> <a href="https://cran.r-project.org/package=gbfs" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/gbfs" alt="CRAN Downloads"></a></p>
+<p><a href="https://cran.r-project.org/package=gbfs" class="external-link"><img src="https://www.r-pkg.org/badges/version/gbfs" alt="CRAN status"></a> <a href="https://github.com/simonpcouch/gbfs/actions" class="external-link"><img src="https://github.com/simonpcouch/gbfs/workflows/R-CMD-check/badge.svg" alt="R build status"></a> <a href="https://cran.r-project.org/package=gbfs" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/gbfs" alt="CRAN Downloads"></a></p>
 <p>The <code>gbfs</code> package supplies a set of functions to interface with General Bikeshare Feed Specification .json feeds in R, allowing users to save and accumulate tidy .rds datasets for specified cities/bikeshare programs. The North American Bikeshare Association’s <a href="https://github.com/MobilityData/gbfs" class="external-link">gbfs</a> is a standardized data release format for live information on the status of bikeshare programs, as well as metadata, including counts of bikes at stations, ridership costs, and geographic locations of stations and parked bikes.</p>
 <p><strong>Features</strong></p>
 <ul>
@@ -305,16 +303,16 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>
