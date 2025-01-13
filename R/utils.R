@@ -420,7 +420,7 @@ url_exists <- function(x, quiet = FALSE, ...) {
 # a function to alert the user of no internet connection in a
 # more informative/helpful way
 message_no_internet <- function() {
-  message(c("You don't seem to have an active internet connection. Please", 
+  message(c("You don't seem to have an active internet connection. Please ", 
             "connect to the internet to use the gbfs package."))
   return(list())
 }

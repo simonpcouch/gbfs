@@ -100,26 +100,23 @@ test_that("determine output type works", {
 })
 
 test_that("no internet connection message works", {
-  
   # "pretend" that the internet connection doesn't work
-  with_mock("gbfs::connected_to_internet" = function() FALSE,
+  with_mocked_bindings(connected_to_internet = function() FALSE, {
+    # try it on all of the different functions that test internet connection
+    expect_message(get_gbfs("biketown_pdx"))
   
-  # try it on all of the different functions that test internet connection
-    expect_message(get_gbfs("biketown_pdx")),
+    expect_message(get_gbfs_dataset_(
+      "biketown_pdx",
+      NULL,
+      NULL,
+      "return",
+      "station_information"
+    ))
   
-    expect_message(get_gbfs_dataset_("biketown_pdx", 
-                                   NULL, 
-                                   NULL, 
-                                   "return", 
-                                   "station_information")),
+    expect_message(get_which_gbfs_feeds("biketown_pdx"))
   
-    expect_message(get_which_gbfs_feeds("biketown_pdx")),
+    expect_message(get_gbfs_cities())
   
-    expect_message(get_gbfs_cities()),
-  
-    expect_equal(get_gbfs_cities(),
-                 list())
-  
-  
-  )
+    expect_equal(get_gbfs_cities(), list())
+  })
 })

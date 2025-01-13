@@ -1,5 +1,8 @@
 # gbfs (developmental version)
 
+- Transitioned from deprecated `testthat::with_mock()` to 
+  `testthat::with_mocked_bindings()` in package tests.
+
 # gbfs 1.3.9
 
 - Fixed bug where non-english feeds couldn't be accessed using the top-level
