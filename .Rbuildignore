@@ -10,3 +10,4 @@ figures/
 CONTRIBUTING.md
 ^pkgdown
 ^\.github$
+^cran-comments\.md$
