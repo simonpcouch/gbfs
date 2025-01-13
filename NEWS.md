@@ -1,5 +1,3 @@
-# gbfs (development version)
-
 # gbfs 1.3.10
 
 - Transitioned from deprecated `testthat::with_mock()` to 
