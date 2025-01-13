@@ -1,7 +1,5 @@
 # gbfs 1.3.10
 
-# gbfs (developmental version)
-
 - Transitioned from deprecated `testthat::with_mock()` to 
   `testthat::with_mocked_bindings()` in package tests (#12).
 
