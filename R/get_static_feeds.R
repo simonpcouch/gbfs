@@ -186,3 +186,63 @@ get_system_regions <- function(city, directory = NULL, file = "system_regions.rd
   get_gbfs_dataset_(city, directory, file, output, feed = "system_regions")
   
 }
+
+#' Grab the geofencing_zones feed.
+#'
+#' \code{get_geofencing_zones} grabs and tidies the geofencing_zones feed for a given city.
+#' This feed provides geofencing zones and associated rules/attributes. See the
+#' GBFS specification for details: \url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
+#'
+#' @inherit get_station_information params return seealso
+#'
+#' @examples
+#' # grab the geofencing_zones feed for a city
+#' \donttest{get_geofencing_zones(city = 
+#' "https://gbfs.example.com/gbfs/1.1/system/en/geofencing_zones.json",  
+#'                   output = "return")}
+#' @export
+get_geofencing_zones <- function(city, directory = NULL, file = "geofencing_zones.rds", output = NULL) {
+
+  get_gbfs_dataset_(city, directory, file, output, feed = "geofencing_zones")
+  
+}
+
+#' Grab the vehicle_types feed.
+#'
+#' \code{get_vehicle_types} grabs and tidies the vehicle_types feed for a given city.
+#' This feed describes the types of vehicles available. See the GBFS specification
+#' for details: \url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
+#'
+#' @inherit get_station_information params return seealso
+#'
+#' @examples
+#' # grab the vehicle_types feed for a city
+#' \donttest{get_vehicle_types(city = 
+#' "https://gbfs.example.com/gbfs/1.1/system/en/vehicle_types.json",  
+#'                   output = "return")}
+#' @export
+get_vehicle_types <- function(city, directory = NULL, file = "vehicle_types.rds", output = NULL) {
+
+  get_gbfs_dataset_(city, directory, file, output, feed = "vehicle_types")
+  
+}
+
+#' Grab the gbfs_versions feed.
+#'
+#' \code{get_gbfs_versions} grabs the gbfs_versions feed for a given city.
+#' This feed lists available versions of the feed. See the GBFS specification:
+#' \url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
+#'
+#' @inherit get_station_information params return seealso
+#'
+#' @examples
+#' # grab the gbfs_versions feed for a city
+#' \donttest{get_gbfs_versions(city = 
+#' "https://gbfs.example.com/gbfs/1.1/system/en/gbfs_versions.json",  
+#'                   output = "return")}
+#' @export
+get_gbfs_versions <- function(city, directory = NULL, file = "gbfs_versions.rds", output = NULL) {
+
+  get_gbfs_dataset_(city, directory, file, output, feed = "gbfs_versions")
+  
+}

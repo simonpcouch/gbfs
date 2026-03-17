@@ -285,15 +285,41 @@ get_gbfs_dataset_ <- function(city, directory, file, output, feed) {
 
 # a data frame containing each possible feed that can be 
 # released by a city and the type of feed that it is
-all_feeds <- data.frame(name = c("system_information", "station_information", 
-                             "station_status", "free_bike_status", 
-                             "system_hours", "system_calendar",
-                             "system_regions", "system_pricing_plans", 
-                             "system_alerts"),
-                        type = c(rep("static", 2),
-                                 rep("dynamic", 2),
-                                 rep("static", 5)),
-                        stringsAsFactors = FALSE)
+all_feeds <- data.frame(
+  name = c(
+    "system_information",
+    "station_information",
+    "station_status",
+    "free_bike_status",
+    "vehicle_status",
+    "vehicle_availability",
+    "system_hours",
+    "system_calendar",
+    "system_regions",
+    "system_pricing_plans",
+    "system_alerts",
+    "geofencing_zones",
+    "vehicle_types",
+    "gbfs_versions"
+  ),
+  type = c(
+    "static",      # system_information
+    "static",      # station_information
+    "dynamic",     # station_status
+    "dynamic",     # free_bike_status
+    "dynamic",     # vehicle_status
+    "dynamic",     # vehicle_availability
+    "static",      # system_hours
+    "static",      # system_calendar
+    "static",      # system_regions
+    "static",      # system_pricing_plans
+    "static",      # system_alerts
+    "static",      # geofencing_zones
+    "static",      # vehicle_types
+    "static"       # gbfs_versions
+  ),
+  stringsAsFactors = FALSE
+)
 
 
 

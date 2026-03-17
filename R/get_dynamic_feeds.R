@@ -54,3 +54,46 @@ get_station_status <- function(city, directory = NULL, file = "station_status.rd
   get_gbfs_dataset_(city, directory, file, output, feed = "station_status")
   
 }
+
+#' Grab the vehicle_status feed.
+#'
+#' \code{get_vehicle_status} grabs and tidies the vehicle_status feed for a given city.
+#' This feed describes all vehicles not currently in active rental (dockless or
+#' otherwise). See the GBFS specification for details:
+#' \url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
+#'
+#' @inherit get_station_information params return seealso
+#'
+#' @examples
+#' # grab the vehicle_status feed for a city
+#' \donttest{get_vehicle_status(city = 
+#' "https://gbfs.example.com/gbfs/1.1/system/en/vehicle_status.json",  
+#'                   output = "return")}
+#' @export
+get_vehicle_status <- function(city, directory = NULL, file = "vehicle_status.rds", output = NULL) {
+
+  get_gbfs_dataset_(city, directory, file, output, feed = "vehicle_status")
+  
+}
+
+
+#' Grab the vehicle_availability feed.
+#'
+#' \code{get_vehicle_availability} grabs and tidies the vehicle_availability feed for a given city.
+#' This feed describes future availability of vehicles and is useful for systems
+#' that support reservations. See the GBFS specification for details:
+#' \url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
+#'
+#' @inherit get_station_information params return seealso
+#'
+#' @examples
+#' # grab the vehicle_availability feed for a city
+#' \donttest{get_vehicle_availability(city = 
+#' "https://gbfs.example.com/gbfs/1.1/system/en/vehicle_availability.json",  
+#'                   output = "return")}
+#' @export
+get_vehicle_availability <- function(city, directory = NULL, file = "vehicle_availability.rds", output = NULL) {
+
+  get_gbfs_dataset_(city, directory, file, output, feed = "vehicle_availability")
+  
+}
