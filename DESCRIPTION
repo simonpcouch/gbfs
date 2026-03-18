@@ -29,6 +29,8 @@ Suggests:
     knitr,
     rmarkdown,
     testthat (>= 2.1.0),
-    covr
+    covr,
+    sf,
+    lwgeom
 URL: https://github.com/simonpcouch/gbfs
 BugReports: https://github.com/simonpcouch/gbfs/issues
