@@ -16,4 +16,10 @@ test_that("static feeds work", {
   get_system_information("https://gbfs.lyft.com/gbfs/1.1/pdx/en/system_information.json")
   
   get_system_regions("https://gbfs.lyft.com/gbfs/1.1/pdx/en/system_regions.json")
+  
+  # vehicle_types: Chicago (Divvy / Lyft)
+  get_vehicle_types("https://gbfs.lyft.com/gbfs/2.3/chi/en/vehicle_types.json")
+
+  # geofencing_zones: Dortmund (Dott)
+  get_geofencing_zones("https://gbfs.api.ridedott.com/public/v2/dortmund/geofencing_zones.json")
 })

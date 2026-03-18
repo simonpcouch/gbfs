@@ -65,9 +65,9 @@ get_station_status <- function(city, directory = NULL, file = "station_status.rd
 #' @inherit get_station_information params return seealso
 #'
 #' @examples
-#' # grab the vehicle_status feed for a city
-#' \donttest{get_vehicle_status(city = 
-#' "https://gbfs.example.com/gbfs/1.1/system/en/vehicle_status.json",  
+#' # grab the vehicle_status feed for a city (Divvy/Chicago example)
+#' \dontrun{get_vehicle_status(city = 
+#' "https://gbfs.divvybikes.com/gbfs/2.3/gbfs.json",  
 #'                   output = "return")}
 #' @export
 get_vehicle_status <- function(city, directory = NULL, file = "vehicle_status.rds", output = NULL) {
@@ -87,9 +87,9 @@ get_vehicle_status <- function(city, directory = NULL, file = "vehicle_status.rd
 #' @inherit get_station_information params return seealso
 #'
 #' @examples
-#' # grab the vehicle_availability feed for a city
-#' \donttest{get_vehicle_availability(city = 
-#' "https://gbfs.example.com/gbfs/1.1/system/en/vehicle_availability.json",  
+#' # grab the vehicle_availability feed for a city (Divvy/Chicago example)
+#' \dontrun{get_vehicle_availability(city = 
+#' "https://gbfs.divvybikes.com/gbfs/2.3/gbfs.json",  
 #'                   output = "return")}
 #' @export
 get_vehicle_availability <- function(city, directory = NULL, file = "vehicle_availability.rds", output = NULL) {

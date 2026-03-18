@@ -196,9 +196,9 @@ get_system_regions <- function(city, directory = NULL, file = "system_regions.rd
 #' @inherit get_station_information params return seealso
 #'
 #' @examples
-#' # grab the geofencing_zones feed for a city
+#' # grab the geofencing_zones feed for a city (Dortmund example)
 #' \donttest{get_geofencing_zones(city = 
-#' "https://gbfs.example.com/gbfs/1.1/system/en/geofencing_zones.json",  
+#' "https://gbfs.api.ridedott.com/public/v2/dortmund/geofencing_zones.json",  
 #'                   output = "return")}
 #' @export
 get_geofencing_zones <- function(city, directory = NULL, file = "geofencing_zones.rds", output = NULL) {
@@ -216,9 +216,9 @@ get_geofencing_zones <- function(city, directory = NULL, file = "geofencing_zone
 #' @inherit get_station_information params return seealso
 #'
 #' @examples
-#' # grab the vehicle_types feed for a city
+#' # grab the vehicle_types feed for a city (Chicago / Divvy example)
 #' \donttest{get_vehicle_types(city = 
-#' "https://gbfs.example.com/gbfs/1.1/system/en/vehicle_types.json",  
+#' "https://gbfs.lyft.com/gbfs/2.3/chi/en/vehicle_types.json",  
 #'                   output = "return")}
 #' @export
 get_vehicle_types <- function(city, directory = NULL, file = "vehicle_types.rds", output = NULL) {
@@ -236,9 +236,9 @@ get_vehicle_types <- function(city, directory = NULL, file = "vehicle_types.rds"
 #' @inherit get_station_information params return seealso
 #'
 #' @examples
-#' # grab the gbfs_versions feed for a city
+#' # grab the gbfs_versions feed for a city (Dortmund example)
 #' \donttest{get_gbfs_versions(city = 
-#' "https://gbfs.example.com/gbfs/1.1/system/en/gbfs_versions.json",  
+#' "https://gbfs.api.ridedott.com/public/v2/dortmund/gbfs.json",  
 #'                   output = "return")}
 #' @export
 get_gbfs_versions <- function(city, directory = NULL, file = "gbfs_versions.rds", output = NULL) {
