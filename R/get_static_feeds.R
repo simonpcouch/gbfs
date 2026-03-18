@@ -186,3 +186,96 @@ get_system_regions <- function(city, directory = NULL, file = "system_regions.rd
   get_gbfs_dataset_(city, directory, file, output, feed = "system_regions")
   
 }
+
+#' Grab the geofencing_zones feed.
+#'
+#' \code{get_geofencing_zones} fetches the \code{geofencing_zones} feed for a
+#' given city and returns it as an \code{sf} data frame with polygon geometries
+#' and associated zone properties. This feed defines geographic areas with
+#' specific operating rules (e.g. speed limits, ride-through restrictions).
+#' See the GBFS specification for details:
+#' \url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
+#'
+#' @param city A character string that can be matched to a gbfs feed. The
+#'   recommended argument is the URL of the \code{geofencing_zones.json} feed,
+#'   or the top-level \code{gbfs.json} URL from which the feed URL will be
+#'   looked up. City names and system IDs from \code{\link{get_gbfs_cities}}
+#'   are also accepted.
+#' @param directory Optional. Path to a folder (or folder to be created) where
+#'   the resulting \code{sf} object will be saved as an \code{.rds} file.
+#' @param file Optional. File name for the saved output (used when
+#'   \code{output = "save"} or \code{output = "both"}). Must end in
+#'   \code{".rds"}. Defaults to \code{"geofencing_zones.rds"}.
+#' @param output Optional. Controls the return behaviour:
+#'   \describe{
+#'     \item{\code{"return"}}{Return the \code{sf} object (default when no
+#'       \code{directory} is supplied).}
+#'     \item{\code{"save"}}{Save the \code{sf} object to \code{directory/file}
+#'       (default when \code{directory} is supplied).}
+#'     \item{\code{"both"}}{Save \emph{and} return the \code{sf} object.}
+#'   }
+#'
+#' @return An \code{sf} data frame with one row per geofencing feature. Columns
+#'   include \code{name}, \code{start}, \code{end} (all potentially \code{NA}
+#'   when not provided by the operator), a \code{rules} list-column (when rules
+#'   are present), and a \code{geometry} column with Polygon or MultiPolygon
+#'   geometries in WGS 84 (EPSG:4326).
+#'   When \code{output = "save"}, the object is written to
+#'   \code{file.path(directory, file)} and \code{NULL} is returned invisibly.
+#'
+#' @seealso \code{\link{geofencing_zones_to_sf}} to convert a raw FeatureCollection
+#'   list yourself; \code{\link{get_gbfs}} for a wrapper that calls all feeds at
+#'   once; \code{\link{get_gbfs_cities}} for a data frame of supported cities.
+#'
+#' @examples
+#' # Return an sf object directly
+#' \donttest{get_geofencing_zones(
+#'   city   = "https://gbfs.api.ridedott.com/public/v2/dortmund/geofencing_zones.json",
+#'   output = "return"
+#' )}
+#' @export
+get_geofencing_zones <- function(city, directory = NULL, file = "geofencing_zones.rds", output = NULL) {
+
+  get_geofencing_zones_(city, directory, file, output)
+
+}
+
+#' Grab the vehicle_types feed.
+#'
+#' \code{get_vehicle_types} grabs and tidies the vehicle_types feed for a given city.
+#' This feed describes the types of vehicles available. See the GBFS specification
+#' for details: \url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
+#'
+#' @inherit get_station_information params return seealso
+#'
+#' @examples
+#' # grab the vehicle_types feed for a city (Chicago / Divvy example)
+#' \donttest{get_vehicle_types(city = 
+#' "https://gbfs.lyft.com/gbfs/2.3/chi/en/vehicle_types.json",  
+#'                   output = "return")}
+#' @export
+get_vehicle_types <- function(city, directory = NULL, file = "vehicle_types.rds", output = NULL) {
+
+  get_gbfs_dataset_(city, directory, file, output, feed = "vehicle_types")
+  
+}
+
+#' Grab the gbfs_versions feed.
+#'
+#' \code{get_gbfs_versions} grabs the gbfs_versions feed for a given city.
+#' This feed lists available versions of the feed. See the GBFS specification:
+#' \url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
+#'
+#' @inherit get_station_information params return seealso
+#'
+#' @examples
+#' # grab the gbfs_versions feed for a city (Dortmund example)
+#' \donttest{get_gbfs_versions(city = 
+#' "https://gbfs.api.ridedott.com/public/v2/dortmund/gbfs.json",  
+#'                   output = "return")}
+#' @export
+get_gbfs_versions <- function(city, directory = NULL, file = "gbfs_versions.rds", output = NULL) {
+
+  get_gbfs_dataset_(city, directory, file, output, feed = "gbfs_versions")
+  
+}

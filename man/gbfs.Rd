@@ -63,6 +63,7 @@ Authors:
 Other contributors:
 \itemize{
   \item Mark Padgham \email{mark.padgham@email.com} [contributor]
+  \item Janne Jakob Fleischer \email{janne.fleischer@ils-forschung.de} [contributor]
 }
 
 }

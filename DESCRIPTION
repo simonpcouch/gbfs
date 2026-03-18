@@ -3,9 +3,13 @@ Type: Package
 Title: Interface with Live Bikeshare Data
 Version: 1.3.10.9000
 Authors@R: c(
-    person("Simon P.", "Couch", , "simonpatrickcouch@gmail.com", c("aut", "cre")),
-    person("Kaelyn", "Rosenberg", , "kaerosenberg@gmail.com", c("aut")),
-    person("Mark", "Padgham", , "mark.padgham@email.com", c("ctb")))
+    person(given = "Simon P.", family = "Couch", email = "simonpatrickcouch@gmail.com", role = c("aut", "cre")),
+    person(given = "Kaelyn", family = "Rosenberg", email = "kaerosenberg@gmail.com", role = c("aut")),
+    person(given = "Mark", family = "Padgham", email = "mark.padgham@email.com", role = c("ctb")),
+    person(given = "Janne Jakob", family = "Fleischer", email = "janne.fleischer@ils-forschung.de", role = c("ctb"))
+    )
+Author: Simon P. Couch [aut, cre], Kaelyn Rosenberg [aut], Mark Padgham [ctb], Janne Jakob Fleischer [ctb]
+Maintainer: Simon P. Couch <simonpatrickcouch@gmail.com>
 Description: Supplies a set of functions to interface with bikeshare data
     following the General Bikeshare Feed Specification, allowing users to query
     and accumulate tidy datasets for specified cities/bikeshare programs.
@@ -20,11 +24,13 @@ Imports:
     purrr,
     curl
 Encoding: UTF-8
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.3
 Suggests: 
     knitr,
     rmarkdown,
     testthat (>= 2.1.0),
-    covr
+    covr,
+    sf,
+    lwgeom
 URL: https://github.com/simonpcouch/gbfs
 BugReports: https://github.com/simonpcouch/gbfs/issues
