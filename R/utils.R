@@ -463,141 +463,169 @@ connected_to_internet <- function() {
 }
 
 
-#' Convert geofencing_zones JSON (or parsed list) to an sf object
+#' Convert a parsed geofencing_zones FeatureCollection to an sf object
 #'
-#' This function accepts either a parsed JSON list (as returned by
-#' `jsonlite::fromJSON(..., simplifyVector = FALSE)`) or a character string
-#' pointing to a JSON (URL or local file). It returns an `sf` data.frame with
-#' a `name` column (best-effort) and polygon geometries in the given CRS.
+#' Converts a parsed GeoJSON FeatureCollection list (as returned by
+#' \code{jsonlite::fromJSON(url, simplifyVector = FALSE)}) to an \code{sf}
+#' data frame with polygon geometries and available zone properties.
+#'
+#' @param geofencing_json A named list representing a GeoJSON FeatureCollection,
+#'   as returned by \code{jsonlite::fromJSON(url, simplifyVector = FALSE)}.
+#' @param crs Coordinate reference system (EPSG code). Default is \code{4326}
+#'   (WGS 84).
+#'
+#' @return An \code{sf} data frame with one row per feature. Columns include
+#'   \code{name}, \code{start}, and \code{end} (where present in feature
+#'   properties), and a \code{rules} list-column when rules are defined in any
+#'   feature. Geometries are Polygon or MultiPolygon in the given CRS.
+#'
+#' @seealso \code{\link{get_geofencing_zones}}
 #'
 #' @export
-geofencing_zones_to_sf <- function(geofencing_json, name_field = NULL, crs = 4326) {
-  # require sf available (graceful failure)
+geofencing_zones_to_sf <- function(geofencing_json, crs = 4326) {
   if (!requireNamespace("sf", quietly = TRUE)) {
-    stop("Package 'sf' is required for geofencing_zones_to_sf(). Please install it (e.g. install.packages('sf')) or add it to Suggests/Imports.")
+    stop("Package 'sf' is required for geofencing_zones_to_sf(). ",
+         "Install with: install.packages('sf')")
   }
 
-  # lazy-load json if character input
-  if (is.character(geofencing_json) && length(geofencing_json) == 1) {
-    geofencing_json <- tryCatch(
-      jsonlite::fromJSON(txt = geofencing_json, simplifyVector = FALSE),
-      error = function(e) stop("Unable to parse geofencing JSON: ", e$message)
-    )
+  if (!is.list(geofencing_json) || is.null(geofencing_json[["features"]])) {
+    stop("`geofencing_json` must be a list containing a `features` element ",
+         "(a parsed GeoJSON FeatureCollection).")
   }
 
-  if (!is.list(geofencing_json) || is.null(geofencing_json$features)) {
-    stop("`geofencing_json` must be a parsed JSON list containing a `features` element")
+  features <- geofencing_json[["features"]]
+  if (length(features) == 0) {
+    stop("No features found in the FeatureCollection.")
   }
 
+  # Ensure a polygon ring is closed (first coordinate == last coordinate).
   close_ring <- function(mat) {
-    if (nrow(mat) > 0 && !identical(mat[1, ], mat[nrow(mat), ])) mat <- rbind(mat, mat[1, ])
+    if (nrow(mat) > 0 && !identical(mat[1L, ], mat[nrow(mat), ])) {
+      mat <- rbind(mat, mat[1L, ])
+    }
     mat
   }
 
-  repair_flat_vector <- function(vec) {
-    if (!is.numeric(vec) || length(vec) < 4 || (length(vec) %% 2) != 0) return(sf::st_geometrycollection())
-
-    n <- length(vec) / 2
-    mat_alt   <- matrix(vec, ncol = 2, byrow = TRUE)           # alternating pairs
-    mat_split <- cbind(vec[1:n], vec[(n + 1):(2 * n)])         # first half lon, second half lat
-
-    score <- function(mat) mean(mat[, 2] > 45, na.rm = TRUE)  # lat heuristic (>~45)
-    pick <- if (score(mat_split) >= score(mat_alt)) mat_split else mat_alt
-
-    if (max(pick[, 1], na.rm = TRUE) > 45 && max(pick[, 2], na.rm = TRUE) <= 45) pick <- pick[, c(2, 1)]
-    sf::st_polygon(list(close_ring(pick)))
+  # Convert a single GeoJSON point to a length-2 numeric vector.
+  # Points may be stored as numeric vectors c(lon, lat) or as lists
+  # list(lon, lat) depending on whether simplifyVector was TRUE or FALSE.
+  to_point <- function(pt) {
+    if (is.numeric(pt)) return(pt[1:2])
+    c(as.numeric(pt[[1L]]), as.numeric(pt[[2L]]))
   }
 
-  process_coordinates <- function(coords) {
-    # numeric flat vector
-    if (is.numeric(coords)) return(repair_flat_vector(coords))
+  # Convert a ring (list/vector of points) to a closed coordinate matrix.
+  ring_to_mat <- function(ring) {
+    close_ring(do.call(rbind, lapply(ring, to_point)))
+  }
 
-    # if it's a list, determine nesting depth until we reach numeric pairs
-    if (!is.list(coords)) return(sf::st_geometrycollection())
-
-    depth_first_elem <- function(x) {
-      d <- 0
-      cur <- x
-      while (is.list(cur) && length(cur) > 0) {
-        d <- d + 1
-        cur <- cur[[1]]
+  # Build an sfg geometry from GeoJSON coordinates and the geometry type string.
+  # Using the explicit type avoids ambiguous depth-based heuristics.
+  build_sfg <- function(coords, geom_type) {
+    tryCatch({
+      if (geom_type == "Polygon") {
+        sf::st_polygon(lapply(coords, ring_to_mat))
+      } else if (geom_type == "MultiPolygon") {
+        sf::st_multipolygon(
+          lapply(coords, function(poly) lapply(poly, ring_to_mat))
+        )
+      } else {
+        sf::st_geometrycollection()
       }
-      list(depth = d, leaf = cur)
-    }
-
-    df <- depth_first_elem(coords)
-    d <- df$depth
-    leaf <- df$leaf
-
-    # if leaf isn't numeric pair, fallback to geometrycollection
-    if (!is.numeric(leaf) || length(leaf) < 2) return(sf::st_geometrycollection())
-
-    # depth 1: list of pairs -> POLYGON (single ring)
-    if (d == 1) {
-      mat <- do.call(rbind, lapply(coords, function(x) as.numeric(x)))
-      return(sf::st_polygon(list(close_ring(mat))))
-    }
-
-    # depth 2: list of rings -> POLYGON (possibly with holes)
-    if (d == 2) {
-      rings <- lapply(coords, function(r) do.call(rbind, lapply(r, as.numeric)))
-      rings <- lapply(rings, close_ring)
-      return(sf::st_polygon(rings))
-    }
-
-    # depth >=3: treat as MULTIPOLYGON (list of polygons -> each polygon is list of rings)
-    if (d >= 3) {
-      # for each polygon
-      polys <- lapply(coords, function(poly) {
-        # poly is list of rings
-        rings <- lapply(poly, function(r) do.call(rbind, lapply(r, as.numeric)))
-        rings <- lapply(rings, close_ring)
-        rings
-      })
-      return(sf::st_multipolygon(polys))
-    }
-
-    sf::st_geometrycollection()
+    }, error = function(e) sf::st_geometrycollection())
   }
-
-  features <- geofencing_json$features
 
   sfg_list <- lapply(features, function(feat) {
-    coords <- NULL
-    if (!is.null(feat$geometry)) coords <- feat$geometry$coordinates
-    tryCatch(process_coordinates(coords), error = function(e) sf::st_geometrycollection())
+    geom <- feat[["geometry"]]
+    if (is.null(geom) || is.null(geom[["coordinates"]])) {
+      return(sf::st_geometrycollection())
+    }
+    build_sfg(geom[["coordinates"]], geom[["type"]])
   })
 
   sfc <- sf::st_sfc(sfg_list, crs = crs)
 
-  # try to extract names from common property fields
-  get_name <- function(feat) {
-    props <- feat$properties
-    if (!is.null(name_field) && !is.null(props) && !is.null(props[[name_field]])) return(as.character(props[[name_field]]))
-    if (!is.null(props$name)) return(as.character(props$name))
-    if (!is.null(props$zoneName)) return(as.character(props$zoneName))
-    if (!is.null(props$zone_id)) return(as.character(props$zone_id))
-    NA_character_
+  # Extract a scalar property value; return na_val if absent or itself a list.
+  get_prop <- function(props, key, na_val) {
+    val <- props[[key]]
+    if (is.null(val) || is.list(val)) return(na_val)
+    val
   }
 
-  names_vec <- vapply(features, get_name, character(1))
+  props_list <- lapply(features, function(feat) {
+    p <- if (!is.null(feat[["properties"]])) feat[["properties"]] else list()
+    data.frame(
+      name  = as.character(get_prop(p, "name",  NA_character_)),
+      start = as.numeric( get_prop(p, "start", NA_real_)),
+      end   = as.numeric( get_prop(p, "end",   NA_real_)),
+      stringsAsFactors = FALSE
+    )
+  })
+  props_df <- do.call(rbind, props_list)
 
-  df <- data.frame(name = names_vec, stringsAsFactors = FALSE)
-  sf_obj <- sf::st_sf(df, geometry = sfc, crs = crs)
+  # Attach rules as a list-column when at least one feature defines them.
+  rules_list <- lapply(features, function(feat) feat[["properties"]][["rules"]])
+  if (!all(vapply(rules_list, is.null, logical(1L)))) {
+    props_df[["rules"]] <- rules_list
+  }
 
-  # Quick validity fix for problematic geometries: attempt sf::st_make_valid,
-  # fallback to lwgeom::st_make_valid if available. If neither available,
-  # warn and return unmodified geometries.
+  sf_obj <- sf::st_sf(props_df, geometry = sfc)
+
+  # Attempt to repair invalid geometries using sf or lwgeom.
   bad <- which(!sf::st_is_empty(sf_obj) & !sf::st_is_valid(sf_obj))
-  if (length(bad) > 0) {
+  if (length(bad) > 0L) {
     if (exists("st_make_valid", where = asNamespace("sf"), inherits = FALSE)) {
       sf_obj[bad, ] <- sf::st_make_valid(sf_obj[bad, ])
-    } else if (requireNamespace("lwgeom", quietly = TRUE) && exists("st_make_valid", where = asNamespace("lwgeom"), inherits = FALSE)) {
+    } else if (requireNamespace("lwgeom", quietly = TRUE)) {
       sf_obj[bad, ] <- lwgeom::st_make_valid(sf_obj[bad, ])
     } else {
-      warning("Some geometries are invalid but neither sf::st_make_valid nor lwgeom::st_make_valid are available; returning geometries without attempting to repair them.")
+      warning("Some geometries are invalid; install 'sf' >= 1.0 or 'lwgeom' to repair them automatically.")
     }
   }
 
   sf_obj
+}
+
+# Fetch, parse, and return the geofencing_zones feed as an sf object.
+get_geofencing_zones_ <- function(city, directory, file, output) {
+  if (!connected_to_internet()) return(message_no_internet())
+
+  if (!requireNamespace("sf", quietly = TRUE)) {
+    stop("The 'sf' package is required for get_geofencing_zones(). ",
+         "Install with: install.packages('sf')")
+  }
+
+  check_return_arguments(directory_ = directory, file_ = file, output_ = output)
+
+  url <- city_to_url(city, "geofencing_zones")
+
+  # Use simplifyVector = FALSE so that polygon coordinate arrays stay as
+  # nested lists rather than being flattened into matrices/vectors.
+  data_raw <- tryCatch(
+    jsonlite::fromJSON(txt = url, simplifyVector = FALSE),
+    error = report_connection_issue
+  )
+
+  # Handle both standard GBFS nesting (data$geofencing_zones) and bare
+  # FeatureCollection responses from non-standard providers.
+  geojson_fc <- if (!is.null(data_raw[["data"]][["geofencing_zones"]])) {
+    data_raw[["data"]][["geofencing_zones"]]
+  } else if (identical(data_raw[["type"]], "FeatureCollection")) {
+    data_raw
+  } else {
+    stop("Could not locate a GeoJSON FeatureCollection in the feed response.")
+  }
+
+  sf_data <- geofencing_zones_to_sf(geojson_fc)
+
+  output_types <- determine_output_types(directory, output)
+
+  if (output_types[1L]) {
+    if (!dir.exists(directory)) dir.create(directory, recursive = TRUE)
+    saveRDS(sf_data, file = file.path(directory, file))
+  }
+
+  if (output_types[2L]) {
+    sf_data
+  }
 }

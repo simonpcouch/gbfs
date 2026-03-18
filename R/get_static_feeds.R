@@ -203,8 +203,8 @@ get_system_regions <- function(city, directory = NULL, file = "system_regions.rd
 #' @export
 get_geofencing_zones <- function(city, directory = NULL, file = "geofencing_zones.rds", output = NULL) {
 
-  get_gbfs_dataset_(city, directory, file, output, feed = "geofencing_zones")
-  
+  get_geofencing_zones_(city, directory, file, output)
+
 }
 
 #' Grab the vehicle_types feed.
