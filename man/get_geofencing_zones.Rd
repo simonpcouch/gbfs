@@ -12,42 +12,54 @@ get_geofencing_zones(
 )
 }
 \arguments{
-\item{city}{A character string that can be matched to a gbfs feed. The recommended
-argument is a system ID supplied in the output of [get_gbfs_cities()], but will
-also attempt to match to the URL of an active .json feed or city name.}
+\item{city}{A character string that can be matched to a gbfs feed. The
+recommended argument is the URL of the \code{geofencing_zones.json} feed,
+or the top-level \code{gbfs.json} URL from which the feed URL will be
+looked up. City names and system IDs from \code{\link{get_gbfs_cities}}
+are also accepted.}
 
-\item{directory}{Optional. Path to a folder (or folder to be 
-created) where the feed will be saved.}
+\item{directory}{Optional. Path to a folder (or folder to be created) where
+the resulting \code{sf} object will be saved as an \code{.rds} file.}
 
-\item{file}{Optional. The name of the file to be saved (if \code{output} 
-is set to \code{"save"} or \code{"both"}), as a character string. 
-Must end in \code{".rds"}.}
+\item{file}{Optional. File name for the saved output (used when
+\code{output = "save"} or \code{output = "both"}). Must end in
+\code{".rds"}. Defaults to \code{"geofencing_zones.rds"}.}
 
-\item{output}{Optional. The type of output method. If left as default, this
-argument is inferred from the \code{directory} argument. If 
-\code{output = "save"}, the object will be saved as an .rds object at 
-# the given path. If \code{output = "return"}, the output will be returned 
-as a dataframe object. Setting \code{output = "both"} will do both.}
+\item{output}{Optional. Controls the return behaviour:
+\describe{
+  \item{\code{"return"}}{Return the \code{sf} object (default when no
+    \code{directory} is supplied).}
+  \item{\code{"save"}}{Save the \code{sf} object to \code{directory/file}
+    (default when \code{directory} is supplied).}
+  \item{\code{"both"}}{Save \emph{and} return the \code{sf} object.}
+}}
 }
 \value{
-The output of this function depends on argument to \code{output}
-and \code{directory}. Either a saved .rds object generated from the current 
-feed, a dataframe object, or both.
+An \code{sf} data frame with one row per geofencing feature. Columns
+  include \code{name}, \code{start}, \code{end} (all potentially \code{NA}
+  when not provided by the operator), a \code{rules} list-column (when rules
+  are present), and a \code{geometry} column with Polygon or MultiPolygon
+  geometries in WGS 84 (EPSG:4326).
+  When \code{output = "save"}, the object is written to
+  \code{file.path(directory, file)} and \code{NULL} is returned invisibly.
 }
 \description{
-\code{get_geofencing_zones} grabs and tidies the geofencing_zones feed for a given city.
-This feed provides geofencing zones and associated rules/attributes. See the
-GBFS specification for details: \url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
+\code{get_geofencing_zones} fetches the \code{geofencing_zones} feed for a
+given city and returns it as an \code{sf} data frame with polygon geometries
+and associated zone properties. This feed defines geographic areas with
+specific operating rules (e.g. speed limits, ride-through restrictions).
+See the GBFS specification for details:
+\url{https://github.com/MobilityData/gbfs/blob/master/gbfs.md}
 }
 \examples{
-# grab the geofencing_zones feed for a city (Dortmund example)
-\donttest{get_geofencing_zones(city = 
-"https://gbfs.api.ridedott.com/public/v2/dortmund/geofencing_zones.json",  
-                  output = "return")}
+# Return an sf object directly
+\donttest{get_geofencing_zones(
+  city   = "https://gbfs.api.ridedott.com/public/v2/dortmund/geofencing_zones.json",
+  output = "return"
+)}
 }
 \seealso{
-[get_gbfs()] for a wrapper to call each of the \code{get_feed}
-functions, [get_gbfs_cities()] for a dataframe of cities releasing gbfs
-functions, and [get_which_gbfs_feeds()] for a dataframe of which feeds
-are released by a given city.
+\code{\link{geofencing_zones_to_sf}} to convert a raw FeatureCollection
+  list yourself; \code{\link{get_gbfs}} for a wrapper that calls all feeds at
+  once; \code{\link{get_gbfs_cities}} for a data frame of supported cities.
 }

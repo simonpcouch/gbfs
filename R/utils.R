@@ -463,29 +463,55 @@ connected_to_internet <- function() {
 }
 
 
-#' Convert a parsed geofencing_zones FeatureCollection to an sf object
+#' Convert a geofencing_zones FeatureCollection to an sf object
 #'
-#' Converts a parsed GeoJSON FeatureCollection list (as returned by
-#' \code{jsonlite::fromJSON(url, simplifyVector = FALSE)}) to an \code{sf}
-#' data frame with polygon geometries and available zone properties.
+#' \code{geofencing_zones_to_sf} converts a parsed GeoJSON FeatureCollection
+#' (as returned by \code{jsonlite::fromJSON(url, simplifyVector = FALSE)}) to
+#' an \code{sf} data frame with polygon geometries and zone properties.
+#'
+#' Note: \code{\link{get_geofencing_zones}} already returns an \code{sf} object
+#' internally, so you only need this function if you have a raw FeatureCollection
+#' list that you obtained yourself. Passing an already-converted \code{sf} object
+#' to this function is harmless — it will be returned unchanged.
 #'
 #' @param geofencing_json A named list representing a GeoJSON FeatureCollection,
-#'   as returned by \code{jsonlite::fromJSON(url, simplifyVector = FALSE)}.
-#' @param crs Coordinate reference system (EPSG code). Default is \code{4326}
-#'   (WGS 84).
+#'   as returned by \code{jsonlite::fromJSON(url, simplifyVector = FALSE)}, or
+#'   an \code{sf} object (returned as-is).
+#' @param crs Integer EPSG code for the coordinate reference system. Default
+#'   is \code{4326} (WGS 84).
 #'
-#' @return An \code{sf} data frame with one row per feature. Columns include
-#'   \code{name}, \code{start}, and \code{end} (where present in feature
-#'   properties), and a \code{rules} list-column when rules are defined in any
-#'   feature. Geometries are Polygon or MultiPolygon in the given CRS.
+#' @return An \code{sf} data frame with one row per feature. Columns include:
+#'   \describe{
+#'     \item{\code{name}}{Zone name from feature properties, or \code{NA}.}
+#'     \item{\code{start}}{Start time (Unix timestamp) from feature properties, or \code{NA}.}
+#'     \item{\code{end}}{End time (Unix timestamp) from feature properties, or \code{NA}.}
+#'     \item{\code{rules}}{List-column of zone rules (only present when at least one
+#'       feature defines rules).}
+#'     \item{\code{geometry}}{Polygon or MultiPolygon geometries in the given CRS.}
+#'   }
 #'
-#' @seealso \code{\link{get_geofencing_zones}}
+#' @seealso \code{\link{get_geofencing_zones}} to fetch and convert in one step.
+#'
+#' @examples
+#' \donttest{
+#' raw <- jsonlite::fromJSON(
+#'   "https://gbfs.api.ridedott.com/public/v2/dortmund/geofencing_zones.json",
+#'   simplifyVector = FALSE
+#' )
+#' fc <- raw$data$geofencing_zones
+#' sf_obj <- geofencing_zones_to_sf(fc)
+#' }
 #'
 #' @export
 geofencing_zones_to_sf <- function(geofencing_json, crs = 4326) {
   if (!requireNamespace("sf", quietly = TRUE)) {
     stop("Package 'sf' is required for geofencing_zones_to_sf(). ",
          "Install with: install.packages('sf')")
+  }
+
+  # If already an sf object, return as-is.
+  if (inherits(geofencing_json, "sf")) {
+    return(geofencing_json)
   }
 
   if (!is.list(geofencing_json) || is.null(geofencing_json[["features"]])) {
